@@ -18,6 +18,16 @@ var multer = require('multer');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// configure cookie parser - needed for oauth
+app.use(cookieParser());
+
+// configure session support
+app.use(session({ secret: 'meanstackisthebest' }));
+
+// initialize passport and session support
+app.use(passport.initialize());
+app.use(passport.session());
+
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
