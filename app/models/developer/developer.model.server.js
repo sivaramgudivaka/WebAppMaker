@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
 var q = require("q");
+var passport      = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function (db) {
     var DeveloperSchema = require("./developer.schema.server.js")();
