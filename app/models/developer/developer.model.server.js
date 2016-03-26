@@ -7,6 +7,8 @@ module.exports = function (db) {
     var DeveloperSchema = require("./developer.schema.server.js")();
     var Developer = mongoose.model("Developer", DeveloperSchema);
 
+    passport.use(new LocalStrategy(findDeveloperByCredentials));
+
     var api = {
         createDeveloper: createDeveloper,
         findAllDevelopers: findAllDevelopers,
@@ -15,6 +17,10 @@ module.exports = function (db) {
         deleteDeveloper: deleteDeveloper
     };
     return api;
+
+    function findDeveloperByCredentials(username, password, done) {
+
+    }
 
     function deleteDeveloper (username) {
         var deferred = q.defer();
