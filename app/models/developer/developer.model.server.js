@@ -20,7 +20,14 @@ module.exports = function (db) {
 
     function findDeveloperByCredentials(username, password, done) {
         Developer.findOne({ username: username }, function (err, developer) {
-
+            if (err) { return done(err); }
+            if (!developer) {
+                return done(null, false, { message: 'Incorrect username.' });
+            }
+            if (!developer.password === password) {
+                return done(null, false, { message: 'Incorrect password.' });
+            }
+            return done(null, developer);
         });
     }
 
