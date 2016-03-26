@@ -19,7 +19,9 @@ module.exports = function (db) {
     return api;
 
     function findDeveloperByCredentials(username, password, done) {
+        Developer.findOne({ username: username }, function (err, developer) {
 
+        });
     }
 
     function deleteDeveloper (username) {
