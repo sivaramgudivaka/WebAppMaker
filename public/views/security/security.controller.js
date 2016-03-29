@@ -3,7 +3,7 @@
         .module("WebAppMakerApp")
         .controller("LoginController", loginController);
 
-    function loginController(SecurityService) {
+    function loginController(SecurityService, $rootScope, $location) {
         var vm = this;
         vm.login = login;
 
@@ -12,10 +12,11 @@
                 .login(developer)
                 .then(
                     function(response) {
-
+                        $rootScope.currentUser = response.data;
+                        $location.url("/developer/"+developer.username+"/application");
                     },
                     function(err) {
-
+                        vm.error = err;
                     }
                 );
         }
