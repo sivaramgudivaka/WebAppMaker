@@ -11,6 +11,7 @@ module.exports = function (app, developerModel) {
     var auth = authorized;
     app.post  ('/api/login', passport.authenticate('local'), login);
     app.post  ('/api/logout',         logout);
+    app.get   ('/api/loggedin',       loggedin);
 
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
@@ -56,6 +57,10 @@ module.exports = function (app, developerModel) {
                     done(err, null);
                 }
             );
+    }
+
+    function loggedin(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
     }
 
     function logout(req, res) {
