@@ -1,18 +1,29 @@
-<a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page"
-   class="pull-left btn btn-danger">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-</a>
-<a ng-click="model.createPage (model.page)"
-   class="pull-right btn btn-primary">
-    <span class="glyphicon glyphicon-ok"></span>
-</a>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <a class="navbar-brand">New Page</a>
+        <a ng-click="model.createPage (model.page)"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>
 
-<h2>New Page</h2>
-
+Name
 <input ng-model="model.page.name"
        class="form-control"
        placeholder="Page Name"/>
 
+Title
 <input ng-model="model.page.title"
        class="form-control"
        placeholder="Page Title"/>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-header">
+        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page" class="navbar-brand">Cancel</a>
+        <a href="#/developer/{{currentUser.username}}/edit"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-home"></span>
+        </a>
+    </div>
+</nav>
