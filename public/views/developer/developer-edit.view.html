@@ -1,9 +1,12 @@
-<a ng-click="model.updateDeveloper (model.developer)"
-   class="pull-right btn btn-default">
-   <span class="glyphicon glyphicon-ok"></span>
-</a>
-
-<h2>Profile</h2>
+<nav class="navbar navbar-default navbar-fixed-top">
+   <div class="navbar-header">
+      <a class="navbar-brand">Profile</a>
+      <button ng-click="model.updateDeveloper (model.developer)"
+              class="navbar-toggle collapsed">
+         <span class="glyphicon glyphicon-ok"></span>
+      </button>
+   </div>
+</nav>
 
 <div ng-if="model.error" class="alert alert-success" role="alert">
    {{model.error}}
@@ -43,3 +46,12 @@ Last Name
         class="btn btn-danger btn-block">
    Logout
 </button>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+   <div class="navbar-header">
+      <a href="#/developer/{{model.developer.username}}/edit"
+              class="navbar-toggle collapsed">
+         <span class="glyphicon glyphicon-home"></span>
+      </a>
+   </div>
+</nav>

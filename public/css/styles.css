@@ -17,3 +17,22 @@
 .btn-default {
     border-color: white;
 }
+
+body {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:active {
+    background-color: transparent;
+}
+
+.navbar-brand {
+    font-size: 32px;
+    font-weight: bold;
+}
