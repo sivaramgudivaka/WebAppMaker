@@ -7,9 +7,14 @@
         var api = {
             addWidget: addWidget,
             getWidgets: getWidgets,
-            findWidgetById: findWidgetById
+            findWidgetById: findWidgetById,
+            updateWidget: updateWidget
         };
         return api;
+
+        function updateWidget(applicationId, pageId, widgetId, widget) {
+            return $http.put("/api/application/"+applicationId+"/page/"+pageId+"/widget/"+widgetId, widget);
+        }
 
         function findWidgetById(applicationId, pageId, widgetId) {
             return $http.get("/api/application/"+applicationId+"/page/"+pageId+"/widget/"+widgetId);

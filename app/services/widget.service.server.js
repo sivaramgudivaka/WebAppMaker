@@ -3,8 +3,28 @@ module.exports = function (app, applicationModel) {
     app.post ("/api/application/:applicationId/page/:pageId/widget", createWidget);
     app.get  ("/api/application/:applicationId/page/:pageId/widget", getWidgets);
     app.get  ("/api/application/:applicationId/page/:pageId/widget/:widgetId", findWidgetById);
+    app.put  ("/api/application/:applicationId/page/:pageId/widget/:widgetId", updateWidget);
 
     var widgetModel = require("../models/widget/widget.model.server.js")(applicationModel);
+
+    function updateWidget(req, res) {
+        var applicationId = req.params.applicationId;
+        var pageId = req.params.pageId;
+        var widgetId = req.params.widgetId;
+        var widget = req.body;
+        widgetModel
+            .updateWidget(applicationId, pageId, widgetId, widget)
+            .then(
+                function(response) {
+                    res.send(200);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+
+
+    }
 
     function findWidgetById(req, res) {
         var applicationId = req.params.applicationId;
