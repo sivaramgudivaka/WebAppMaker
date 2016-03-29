@@ -38,7 +38,7 @@
                     {{widget.text}}
                 </label>
             </div>
-            <div ng-switch-when="TEXT_INPUT">
+            <div ng-switch-when="TEXT">
                 <input ng-if="!widget.rows || widget.rows===1"
                        name="{{widget.name}}"
                        id="{{widget.id}}"
@@ -62,6 +62,9 @@
                 <a>
                     {{widget.text}}
                 </a>
+            </div>
+            <div ng-switch-when="IMAGE">
+                <img ng-src="{{widget.image.url}}" width="{{widget.image.width}}"/>
             </div>
         </div>
         <div class="col-xs-2 jga-nowrap">
