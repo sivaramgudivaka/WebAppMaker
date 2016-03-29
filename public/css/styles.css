@@ -13,3 +13,7 @@
 .form-control {
     margin-bottom: 5px;
 }
+
+.btn-default {
+    border-color: white;
+}
