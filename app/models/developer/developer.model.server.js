@@ -1,36 +1,28 @@
 var mongoose = require("mongoose");
 var q = require("q");
-var passport      = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function (db) {
     var DeveloperSchema = require("./developer.schema.server.js")();
     var Developer = mongoose.model("Developer", DeveloperSchema);
-
-    passport.use(new LocalStrategy(findDeveloperByCredentials));
 
     var api = {
         createDeveloper: createDeveloper,
         findAllDevelopers: findAllDevelopers,
         findDeveloperByUsername: findDeveloperByUsername,
         updateDeveloper: updateDeveloper,
-        deleteDeveloper: deleteDeveloper
+        deleteDeveloper: deleteDeveloper,
+        findDeveloperByCredentials: findDeveloperByCredentials
     };
     return api;
 
-    function findDeveloperByCredentials(username, password, done) {
-        Developer.findOne({ username: username }, function (err, developer) {
-            if (err) { return done(err); }
-            if (!developer) {
-                return done(null, false, { message: 'Incorrect username.' });
+    function findDeveloperByCredentials(credentials) {
+        return Developer.findOne(
+            {
+                username: credentials.username,
+                password: credentials.password
             }
-            if (!developer.password === password) {
-                return done(null, false, { message: 'Incorrect password.' });
-            }
-            return done(null, developer);
-        });
+        );
     }
-
     function deleteDeveloper (username) {
         var deferred = q.defer();
         Developer

@@ -1,9 +1,44 @@
+var passport      = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 module.exports = function (app, developerModel) {
     app.post ("/api/developer", createDeveloper);
     app.get ("/api/developer", findAllDevelopers);
     app.get ("/api/developer/:username", findDeveloperByUsername);
     app.put ("/api/developer/:username", updateDeveloper);
     app.delete ("/api/developer/:username", deleteDeveloper);
+
+    var auth = authorized;
+    app.post  ('/api/login', passport.authenticate('local'), login);
+
+    passport.use(new LocalStrategy(localStrategy));
+
+    function localStrategy(username, password, done) {
+        developerModel
+            .findUserByCredentials({username: username, password: password})
+            .then(
+                function(user) {
+                    if (!user) { return done(null, false); }
+                    return done(null, user);
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+    function authorized (req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
+    };
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
 
     function deleteDeveloper (req, res) {
         var username = req.params.username;
@@ -73,4 +108,4 @@ module.exports = function (app, developerModel) {
                 }
             );
     }
-}
+};
