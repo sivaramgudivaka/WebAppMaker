@@ -7,11 +7,11 @@
         var vm = this;
         vm.login = login;
 
-        function login(username, password) {
+        function login(developer) {
             SecurityService
-                .login(username, password)
+                .login(developer)
                 .then(
-                    function(developer) {
+                    function(response) {
 
                     },
                     function(err) {
