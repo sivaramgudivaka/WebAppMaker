@@ -8,9 +8,14 @@
             addWidget: addWidget,
             getWidgets: getWidgets,
             findWidgetById: findWidgetById,
-            updateWidget: updateWidget
+            updateWidget: updateWidget,
+            removeWidget: removeWidget
         };
         return api;
+
+        function removeWidget(applicationId, pageId, widgetId) {
+            return $http.delete("/api/application/"+applicationId+"/page/"+pageId+"/widget/"+widgetId);
+        }
 
         function updateWidget(applicationId, pageId, widgetId, widget) {
             return $http.put("/api/application/"+applicationId+"/page/"+pageId+"/widget/"+widgetId, widget);

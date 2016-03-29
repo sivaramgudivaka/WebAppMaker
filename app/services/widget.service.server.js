@@ -4,8 +4,25 @@ module.exports = function (app, applicationModel) {
     app.get  ("/api/application/:applicationId/page/:pageId/widget", getWidgets);
     app.get  ("/api/application/:applicationId/page/:pageId/widget/:widgetId", findWidgetById);
     app.put  ("/api/application/:applicationId/page/:pageId/widget/:widgetId", updateWidget);
+    app.delete("/api/application/:applicationId/page/:pageId/widget/:widgetId", removeWidget);
 
     var widgetModel = require("../models/widget/widget.model.server.js")(applicationModel);
+
+    function removeWidget(req, res) {
+        var applicationId = req.params.applicationId;
+        var pageId = req.params.pageId;
+        var widgetId = req.params.widgetId;
+        widgetModel
+            .removeWidget(applicationId, pageId, widgetId)
+            .then(
+                function(response) {
+                    res.send(200);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
 
     function updateWidget(req, res) {
         var applicationId = req.params.applicationId;
