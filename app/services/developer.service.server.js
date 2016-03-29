@@ -97,7 +97,7 @@ module.exports = function (app, developerModel) {
             .findDeveloperByUsername (req.params.username)
             .then (
                 function (developer) {
-                    delete user.password;
+                    delete developer.password;
                     res.json (developer);
                 },
                 function (err) {

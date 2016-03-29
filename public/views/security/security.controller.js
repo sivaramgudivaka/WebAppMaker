@@ -13,7 +13,7 @@
                 .then(
                     function(response) {
                         $rootScope.currentUser = response.data;
-                        $location.url("/developer/"+developer.username+"/application");
+                        $location.url("/developer/"+developer.username+"/edit");
                     },
                     function(err) {
                         vm.error = err;

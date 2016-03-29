@@ -22,7 +22,7 @@
                 controller: "NewDeveloperController",
                 controllerAs: "model"
             })
-            .when ("/developer/edit/:username", {
+            .when ("/developer/:username/edit", {
                 templateUrl: "views/developer/developer-edit.view.html",
                 controller: "EditDeveloperController",
                 controllerAs: "model"
