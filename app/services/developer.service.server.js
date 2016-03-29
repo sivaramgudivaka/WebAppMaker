@@ -35,6 +35,23 @@ module.exports = function (app, developerModel) {
         }
     };
 
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        developerModel
+            .findDeveloperById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
     function login(req, res) {
         var user = req.user;
         res.json(user);

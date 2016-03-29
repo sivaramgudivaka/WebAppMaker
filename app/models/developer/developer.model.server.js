@@ -11,9 +11,14 @@ module.exports = function (db) {
         findDeveloperByUsername: findDeveloperByUsername,
         updateDeveloper: updateDeveloper,
         deleteDeveloper: deleteDeveloper,
-        findDeveloperByCredentials: findDeveloperByCredentials
+        findDeveloperByCredentials: findDeveloperByCredentials,
+        findDeveloperById: findDeveloperById
     };
     return api;
+
+    function findDeveloperById(userId) {
+        return Developer.findById(userId);
+    }
 
     function findDeveloperByCredentials(credentials) {
         return Developer.findOne(
