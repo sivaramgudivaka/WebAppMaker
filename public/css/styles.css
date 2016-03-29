@@ -14,8 +14,10 @@
     margin-bottom: 5px;
 }
 
-.btn-default {
-    border-color: white;
+.btn-default,
+.btn-default:hover {
+    border-color: transparent;
+    background-color: transparent;
 }
 
 body {
@@ -33,6 +35,10 @@ body {
 }
 
 .navbar-brand {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
+}
+
+.table > tbody > tr > td {
+    border-top: 1px solid transparent;
 }

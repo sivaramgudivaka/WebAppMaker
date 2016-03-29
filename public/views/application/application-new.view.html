@@ -1,18 +1,30 @@
-<a href="#/developer/{{model.username}}/application"
-   class="pull-left btn btn-danger">
-   <span class="glyphicon glyphicon-chevron-left"></span>
-</a>
-<a ng-click="model.createApplication (model.application)"
-   class="pull-right btn btn-primary">
-    <span class="glyphicon glyphicon-ok"></span>
-</a>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <a class="navbar-brand">New Application</a>
+        <a ng-click="model.createApplication (model.application)"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>
 
-<h2>New Application</h2>
-
+Name
 <input ng-model="model.application.name"
        class="form-control"
        placeholder="Name"/>
 
-<input ng-model="model.application.description"
+Description
+<textarea ng-model="model.application.description"
+       rows="5"
        class="form-control"
-       placeholder="Description"/>
+       placeholder="Description"></textarea>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-header">
+        <a href="#/developer/{{model.username}}/application" class="navbar-brand">Cancel</a>
+        <a href="#/developer/{{currentUser.username}}/edit"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-home"></span>
+        </a>
+    </div>
+</nav>

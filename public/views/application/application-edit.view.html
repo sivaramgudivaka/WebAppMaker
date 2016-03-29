@@ -1,23 +1,40 @@
-<a href="#/developer/{{model.username}}/application"
-   class="pull-left btn btn-danger">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-</a>
-
-<h2>Edit Application</h2>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <a href="#/developer/{{currentUser.username}}/application"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+        <a class="navbar-brand">Edit Application</a>
+    </div>
+</nav>
 
 <div ng-if="model.error" class="alert alert-danger" role="alert">
     {{model.error}}
 </div>
 
+Application Name
 <input ng-model="model.application.name"
        class="form-control"
        placeholder="Name"/>
 
-<input ng-model="model.application.description"
+Application Description
+<textarea ng-model="model.application.description"
+          rows="5"
        class="form-control"
-       placeholder="Description"/>
+       placeholder="Description"></textarea>
 
 <button ng-click="model.removeApplication(model.application)"
         class="btn btn-danger btn-block">
     Delete
 </button>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-header">
+        <a href="#/developer/{{model.username}}/application" class="navbar-brand">Cancel</a>
+        <a href="#/developer/{{currentUser.username}}/edit"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-home"></span>
+        </a>
+    </div>
+</nav>

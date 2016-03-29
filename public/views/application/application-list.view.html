@@ -1,9 +1,12 @@
-<a  href="#/developer/{{model.username}}/application/new"
-    class="pull-right btn btn-default">
-    <span class="glyphicon glyphicon-plus"></span>
-</a>
-
-<h2>Applications</h2>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <a class="navbar-brand">Applications</a>
+        <a href="#/developer/{{model.username}}/application/new"
+                class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+</nav>
 
 <div ng-if="model.error"
      class="alert alert-danger"
@@ -11,16 +14,25 @@
     {{model.error}}
 </div>
 
-<table class="table table-striped">
+<table class="table table-hover">
     <tr ng-repeat="application in model.applications">
         <td>
             <a href="#/developer/{{model.username}}/application/{{application._id}}/page">
                 {{application.name}}
             </a>
             <a href="#/developer/{{model.username}}/application/edit/{{application._id}}"
-               class="pull-right btn btn-warning">
-                <span class="glyphicon glyphicon-info-sign"></span>
+                class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
             </a>
         </td>
     </tr>
 </table>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-header">
+        <a href="#/developer/{{currentUser.username}}/edit"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-home"></span>
+        </a>
+    </div>
+</nav>
