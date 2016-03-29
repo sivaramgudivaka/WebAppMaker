@@ -2,7 +2,17 @@
     angular
         .module ("WebAppMakerApp")
         .controller ("WidgetListController", widgetListController)
+        .controller ("WidgetEditController", widgetEditController)
         .controller ("ChooseWidgetController", chooseWidgetController);
+
+    function widgetEditController($routeParams) {
+
+        var vm = this;
+        vm.username      = $routeParams.username;
+        vm.applicationId = $routeParams.applicationId;
+        vm.pageId        = $routeParams.pageId;
+        vm.widgetId      = $routeParams.widgetId;
+    }
 
     function widgetListController ($routeParams, WidgetService, $location) {
 

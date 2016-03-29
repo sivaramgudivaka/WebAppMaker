@@ -84,7 +84,12 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-
+            .when ("/developer/:username/application/:applicationId/page/:pageId/widget/:widgetId/edit", {
+                templateUrl: "views/widget/widget-edit.view.html",
+                controller: "WidgetEditController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
             .otherwise ({
                 redirectTo: "/"
             });
