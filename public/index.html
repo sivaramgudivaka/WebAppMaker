@@ -11,6 +11,7 @@
     <script src="directives/jga-directives.js"></script>
     <script src="app.js"></script>
     <script src="config.js"></script>
+    <script src="views/main/main.controller.js"></script>
     <script src="views/developer/developer.controller.js"></script>
     <script src="views/application/application.controller.js"></script>
     <script src="views/page/page.controller.js"></script>
@@ -25,7 +26,7 @@
     <title>Web App Maker</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container" ng-controller="MainController as main">
         <div ng-view></div>
     </div>
 </body>

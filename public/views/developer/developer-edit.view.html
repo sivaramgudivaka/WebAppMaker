@@ -1,7 +1,3 @@
-<a href="#/developer"
-   class="pull-left btn btn-danger">
-   <span class="glyphicon glyphicon-chevron-left"></span>
-</a>
 <a ng-click="model.updateDeveloper (model.developer)"
    class="pull-right btn btn-primary">
    <span class="glyphicon glyphicon-ok"></span>
@@ -13,23 +9,32 @@
    {{model.error}}
 </div>
 
+Usename
 <input ng-model="model.developer.username"
        class="form-control"
        placeholder="username"/>
 
+Email
 <input ng-model="model.developer.email"
        class="form-control"
        placeholder="email"/>
 
+First Name
 <input ng-model="model.developer.firstName"
        class="form-control"
        placeholder="First Name"/>
 
+Last Name
 <input ng-model="model.developer.lastName"
        class="form-control"
        placeholder="Last Name"/>
 
 <button ng-click="model.deleteDeveloper(model.developer)"
-   class="btn btn-danger btn-block">
-   Delete
+        class="btn btn-danger btn-block">
+   Unregister
+</button>
+
+<button ng-click="main.logout(model.developer)"
+        class="btn btn-danger btn-block">
+   Logout
 </button>

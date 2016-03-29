@@ -10,6 +10,7 @@ module.exports = function (app, developerModel) {
 
     var auth = authorized;
     app.post  ('/api/login', passport.authenticate('local'), login);
+    app.post  ('/api/logout',         logout);
 
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
@@ -55,6 +56,11 @@ module.exports = function (app, developerModel) {
                     done(err, null);
                 }
             );
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.send(200);
     }
 
     function login(req, res) {

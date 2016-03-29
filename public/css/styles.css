@@ -9,3 +9,7 @@
 .jga-highlight-on-hover:hover {
     box-shadow: 0px 0px 1px #aaa;
 }
+
+.form-control {
+    margin-bottom: 5px;
+}
