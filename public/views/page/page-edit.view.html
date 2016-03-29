@@ -1,13 +1,12 @@
-<a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page"
-   class="pull-left btn btn-danger">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-</a>
-<a ng-click="model.updatePage (model.page)"
-   class="pull-right btn btn-primary">
-    <span class="glyphicon glyphicon-ok"></span>
-</a>
-
-<h2>Edit Page</h2>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <a class="navbar-brand">Edit Page</a>
+        <a ng-click="model.updatePage (model.page)"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>
 
 <div ng-if="model.error"
      class="alert alert-danger">
