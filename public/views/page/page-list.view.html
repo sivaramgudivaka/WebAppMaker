@@ -1,12 +1,12 @@
-<a href="#/developer/{{model.username}}/application"
-   class="pull-left btn btn-danger">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-</a>
-<a href="#/developer/{{model.username}}/application/{{model.applicationId}}/new" class="pull-right btn btn-primary">
-    <span class="glyphicon glyphicon-plus"></span>
-</a>
-
-<h2>Pages</h2>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <a class="navbar-brand">Pages</a>
+        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/new"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+</nav>
 
 <div ng-if="model.error"
      class="alert alert-danger"
