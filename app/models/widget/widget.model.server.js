@@ -37,6 +37,9 @@ module.exports = function(applicationModel) {
                     } else if(widget.widgetType === "YOUTUBE") {
                         widget.youTube.url = newWidget.youTube.url;
                         widget.youTube.width = newWidget.youTube.width;
+                    } else if(widget.widgetType === "TEXT") {
+                        widget.textInput.placeholder = newWidget.textInput.placeholder;
+                        widget.textInput.rows = newWidget.textInput.rows;
                     }
                     return application.save();
                 }

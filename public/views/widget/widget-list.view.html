@@ -39,19 +39,18 @@
                 </label>
             </div>
             <div ng-switch-when="TEXT">
-                <input ng-if="!widget.rows || widget.rows===1"
+                <input ng-if="!widget.textInput.rows || widget.textInput.rows===1"
                        name="{{widget.name}}"
-                       id="{{widget.id}}"
+                       id="{{widget._id}}"
                        value="{{widget.text}}"
-                       placeholder="{{widget.placeholder}}"
+                       placeholder="{{widget.textInput.placeholder}}"
                        class="form-control"/>
-                <textarea ng-if="widget.rows > 1"
+                <textarea ng-if="widget.textInput.rows > 1"
                        name="{{widget.name}}"
-                       rows="{{widget.rows}}"
-                       id="{{widget.id}}"
-                       value="{{widget.text}}"
-                       placeholder="{{widget.placeholder}}"
-                       class="form-control"></textarea>
+                       rows="{{widget.textInput.rows}}"
+                       id="{{widget._id}}"
+                       placeholder="{{widget.textInput.placeholder}}"
+                       class="form-control">{{widget.text}}</textarea>
             </div>
             <div ng-switch-when="BUTTON">
                 <a class="btn btn-default btn-block">

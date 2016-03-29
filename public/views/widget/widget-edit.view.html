@@ -8,8 +8,6 @@
     </div>
 </nav>
 
-{{model.widget}}
-
 Name
 <input ng-model="model.widget.name" class="form-control"/>
 
@@ -17,6 +15,12 @@ Text
 <input ng-model="model.widget.text" class="form-control"/>
 
 <div ng-switch="model.widget.widgetType">
+    <div ng-switch-when="TEXT">
+        Rows
+        <input ng-model="model.widget.textInput.rows" class="form-control"/>
+        Placeholder
+        <input ng-model="model.widget.textInput.placeholder" class="form-control"/>
+    </div>
     <div ng-switch-when="HEADER">
         Size
         <select ng-model="model.widget.header.size" class="form-control">
@@ -45,6 +49,10 @@ Text
 <a ng-click="model.removeWidget(widget)" class="btn btn-danger btn-block">
     Delete
 </a>
+
+<textarea>
+{{model.widget}}
+</textarea>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="navbar-header">
