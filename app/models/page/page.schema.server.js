@@ -13,6 +13,9 @@ module.exports = function () {
             title: String,
             text: {type:String, default:'Text'},
             url: String,
+            link: {
+                url: String
+            },
             image: {
                 url: String,
                 width: String
