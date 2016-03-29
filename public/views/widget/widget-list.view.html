@@ -66,6 +66,9 @@
             <div ng-switch-when="IMAGE">
                 <img ng-src="{{widget.image.url}}" width="{{widget.image.width}}"/>
             </div>
+            <div ng-switch-when="YOUTUBE">
+                <iframe width="100%" ng-src="{{model.safeYouTubeUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
         <div class="col-xs-2 jga-nowrap">
             <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/widget/{{widget._id}}/edit">

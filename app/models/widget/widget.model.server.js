@@ -22,6 +22,9 @@ module.exports = function(applicationModel) {
                     } else if(widget.widgetType === "IMAGE") {
                         widget.image.url = newWidget.image.url;
                         widget.image.width = newWidget.image.width;
+                    } else if(widget.widgetType === "YOUTUBE") {
+                        widget.youTube.url = newWidget.youTube.url;
+                        widget.youTube.width = newWidget.youTube.width;
                     }
                     return application.save();
                 }

@@ -34,6 +34,12 @@ Text
         Width
         <input ng-model="model.widget.image.width" class="form-control"/>
     </div>
+    <div ng-switch-when="YOUTUBE">
+        URL
+        <input ng-model="model.widget.youTube.url" class="form-control"/>
+        Width
+        <input ng-model="model.widget.youTube.width" class="form-control"/>
+    </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
