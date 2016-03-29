@@ -12,7 +12,7 @@
     <div ng-repeat="widget in model.widgets"
          class="row jga-highlight-on-hover">
         <div ng-switch="widget.widgetType"
-             class="jga-widget col-xs-11">
+             class="jga-widget col-xs-10">
             <div ng-switch-when="HEADER">
                 <h1 ng-if="widget.header.size===1">
                     {{widget.text}}
@@ -64,8 +64,8 @@
                 </a>
             </div>
         </div>
-        <div class="col-xs-1 jga-nowrap">
-            <span class="glyphicon glyphicon-pencil"></span>
+        <div class="col-xs-2 jga-nowrap">
+            <span class="glyphicon glyphicon-cog"></span>
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
     </div>

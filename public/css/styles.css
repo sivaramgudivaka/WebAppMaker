@@ -14,8 +14,8 @@
     margin-bottom: 5px;
 }
 
-.btn-default,
-.btn-default:hover {
+.btn-transparent,
+.btn-transparent:hover {
     border-color: transparent;
     background-color: transparent;
 }
