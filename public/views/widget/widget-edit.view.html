@@ -15,6 +15,17 @@ Text
 <input ng-model="model.widget.text" class="form-control"/>
 
 <div ng-switch="model.widget.widgetType">
+    <div ng-switch-when="BUTTON">
+        Style
+        <select ng-model="model.widget.button.style" class="form-control">
+            <option>Default</option>
+            <option>Primary</option>
+            <option>Success</option>
+            <option>Info</option>
+            <option>Warning</option>
+            <option>Danger</option>
+        </select>
+    </div>
     <div ng-switch-when="LINK">
         URL
         <input ng-model="model.widget.link.url" class="form-control"/>

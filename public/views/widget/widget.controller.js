@@ -65,6 +65,7 @@
         vm.pageId        = $routeParams.pageId;
 
         vm.safeYouTubeUrl = safeYouTubeUrl;
+        vm.getButtonClass = getButtonClass;
 
         function init() {
             WidgetService
@@ -79,6 +80,13 @@
                 );
         }
         init();
+
+        function getButtonClass(style) {
+            if(!style) {
+                style = "default";
+            }
+            return "btn-"+style.toLowerCase();
+        }
 
         function safeYouTubeUrl(widget) {
             if(widget) {

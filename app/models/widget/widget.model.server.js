@@ -43,6 +43,8 @@ module.exports = function(applicationModel) {
                     } else if(widget.widgetType === "LINK") {
                         widget.link.url = newWidget.link.url;
                         widget.link.target = newWidget.link.target;
+                    } else if(widget.widgetType === "BUTTON") {
+                        widget.button.style = newWidget.button.style;
                     }
                     return application.save();
                 }

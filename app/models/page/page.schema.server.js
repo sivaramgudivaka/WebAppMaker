@@ -30,7 +30,8 @@ module.exports = function () {
             button: {
                 url: String,
                 pageId: String,
-                icon: String
+                icon: String,
+                style: String
             },
             textInput: {
                 placeholder: String,
