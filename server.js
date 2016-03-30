@@ -14,7 +14,6 @@ var session      = require('express-session');
 
 // install, load, and configure body parser module
 var bodyParser = require('body-parser');
-var multer = require('multer');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

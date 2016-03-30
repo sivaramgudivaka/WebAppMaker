@@ -1,12 +1,55 @@
 module.exports = function (app, applicationModel) {
 
+    var multer  = require('multer');
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
     app.post ("/api/application/:applicationId/page/:pageId/widget", createWidget);
     app.get  ("/api/application/:applicationId/page/:pageId/widget", getWidgets);
     app.get  ("/api/application/:applicationId/page/:pageId/widget/:widgetId", findWidgetById);
     app.put  ("/api/application/:applicationId/page/:pageId/widget/:widgetId", updateWidget);
     app.delete("/api/application/:applicationId/page/:pageId/widget/:widgetId", removeWidget);
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
     var widgetModel = require("../models/widget/widget.model.server.js")(applicationModel);
+
+    function uploadImage(req, res) {
+
+        var username      = req.user.username;
+        var applicationId = req.body.applicationId;
+        var pageId        = req.body.pageId;
+        var widgetId      = req.body.widgetId;
+        var width         = req.body.width;
+        var myFile        = req.file;
+
+        var destination   = myFile.destination;
+        var path          = myFile.path;
+        var originalname  = myFile.originalname;
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+        var filename      = myFile.filename;
+
+        applicationModel.getMongooseModel()
+            .findById(applicationId)
+            .then(
+                function(application) {
+                    var widget = application.pages.id(pageId).widgets.id(widgetId);
+                    widget.image.url = "/uploads/"+filename;//originalname;
+                    widget.image.width = width;
+                    return application.save();
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function(){
+                    res.redirect("/#/developer/"+username+"/application/"+applicationId+"/page/"+pageId+"/widget");
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
 
     function removeWidget(req, res) {
         var applicationId = req.params.applicationId;
