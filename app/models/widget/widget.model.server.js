@@ -5,9 +5,25 @@ module.exports = function(applicationModel) {
     var api = {
         createWidget: createWidget,
         updateWidget: updateWidget,
-        removeWidget: removeWidget
+        removeWidget: removeWidget,
+        sortWidget  : sortWidget
     };
     return api;
+
+    function sortWidget(applicationId, pageId, startIndex, endIndex) {
+        return Application
+            .findById(applicationId)
+            .then(
+                function(application) {
+                    application.pages.id(pageId).widgets.splice(endIndex, 0, application.pages.id(pageId).widgets.splice(startIndex, 1)[0]);
+
+                    // notify mongoose 'pages' field changed
+                    application.markModified("pages");
+
+                    application.save();
+                }
+            );
+    }
 
     function removeWidget(applicationId, pageId, widgetId, newWidget) {
         return Application

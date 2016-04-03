@@ -16,7 +16,7 @@
     </div>
 </nav>
 
-<div jga-sortable>
+<div jga-sortable jga-sortable-callback="model.sortWidget(start, end)">
     <div ng-repeat="widget in model.widgets"
          class="row jga-highlight-on-hover">
         <div ng-switch="widget.widgetType"

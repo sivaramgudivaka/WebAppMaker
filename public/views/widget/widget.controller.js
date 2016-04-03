@@ -66,6 +66,7 @@
 
         vm.safeYouTubeUrl = safeYouTubeUrl;
         vm.getButtonClass = getButtonClass;
+        vm.sortWidget     = sortWidget;
 
         function init() {
             WidgetService
@@ -95,6 +96,18 @@
                 return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+youTubeId);
             }
             return "";
+        }
+
+        function sortWidget(start, end) {
+            WidgetService
+                .sortWidget(vm.applicationId, vm.pageId, start, end)
+                .then(
+                    function (response) {
+                    },
+                    function (err) {
+                        vm.error = err;
+                    }
+                );
         }
     }
 

@@ -9,8 +9,29 @@ module.exports = function (app, applicationModel) {
     app.put  ("/api/application/:applicationId/page/:pageId/widget/:widgetId", updateWidget);
     app.delete("/api/application/:applicationId/page/:pageId/widget/:widgetId", removeWidget);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.put    ("/api/application/:applicationId/page/:pageId/widget", updateWidgets);
 
     var widgetModel = require("../models/widget/widget.model.server.js")(applicationModel);
+
+    function updateWidgets(req, res) {
+        var applicationId = req.params.applicationId;
+        var pageId = req.params.pageId;
+        var startIndex = req.query.startIndex;
+        var endIndex = req.query.endIndex;
+
+        if (startIndex && endIndex) {
+            widgetModel
+                .sortWidget(applicationId, pageId, startIndex, endIndex)
+                .then(
+                    function (stat) {
+                        return res.json(200);
+                    },
+                    function (err) {
+                        res.status(400).send(err);
+                    }
+                );
+        }
+    }
 
     function uploadImage(req, res) {
 

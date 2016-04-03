@@ -9,9 +9,14 @@
             getWidgets: getWidgets,
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
-            removeWidget: removeWidget
+            removeWidget: removeWidget,
+            sortWidget: sortWidget
         };
         return api;
+
+        function sortWidget(applicationId, pageId, startIndex, endIndex) {
+            return $http.put("/api/application/"+applicationId+"/page/"+pageId+"/widget?startIndex="+startIndex+"&endIndex="+endIndex);
+        }
 
         function removeWidget(applicationId, pageId, widgetId) {
             return $http.delete("/api/application/"+applicationId+"/page/"+pageId+"/widget/"+widgetId);
