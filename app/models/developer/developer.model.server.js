@@ -12,9 +12,19 @@ module.exports = function (db) {
         updateDeveloper: updateDeveloper,
         deleteDeveloper: deleteDeveloper,
         findDeveloperByCredentials: findDeveloperByCredentials,
+        findUserByGoogleId: findUserByGoogleId,
+        findUserByFacebookId: findUserByFacebookId,
         findDeveloperById: findDeveloperById
     };
     return api;
+
+    function findUserByFacebookId(facebookId) {
+        return Developer.findOne({'facebook.id': facebookId});
+    }
+
+    function findUserByGoogleId(googleId) {
+        return Developer.findOne({'google.id': googleId});
+    }
 
     function findDeveloperById(userId) {
         return Developer.findById(userId);

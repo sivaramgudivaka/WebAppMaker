@@ -45,8 +45,9 @@
     }
 
     function editDeveloperController (
-        $routeParams, DeveloperService, $location) {
-        var username = $routeParams.username;
+        $routeParams, DeveloperService, $location, $rootScope) {
+        
+        var username = $rootScope.currentUser.username;
 
         var vm = this;
         vm.updateDeveloper = updateDeveloper;

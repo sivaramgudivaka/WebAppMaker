@@ -6,7 +6,15 @@ module.exports = function () {
         password: String,
         email: String,
         firstName: String,
-        lastName: String
+        lastName: String,
+        google:   {
+            id:    String,
+            token: String
+        },
+        facebook:   {
+            id:    String,
+            token: String
+        }
     }, {collection: 'developer'});
     return DeveloperSchema;
 };

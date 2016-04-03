@@ -30,6 +30,12 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
+            .when ("/profile", {
+                templateUrl: "views/developer/developer-edit.view.html",
+                controller: "EditDeveloperController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
 
             // application routes
             .when ("/developer/:username/application", {
