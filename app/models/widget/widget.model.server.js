@@ -49,6 +49,10 @@ module.exports = function(applicationModel) {
                         if(newWidget.header) {
                             widget.header.size = newWidget.header.size || 2;
                         }
+                    } else if(widget.widgetType === "HTML") {
+                        if(newWidget.html) {
+                            widget.html.text = newWidget.html.text;
+                        }
                     } else if(widget.widgetType === "IMAGE") {
                         if(newWidget.image) {
                             widget.image.url = newWidget.image.url;

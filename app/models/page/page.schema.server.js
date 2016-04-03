@@ -8,11 +8,14 @@ module.exports = function () {
         name: String,
         title: String,
         widgets: [{
-            widgetType: {type: String, enum: ["HEADER", "LABEL", "TEXT", "LINK", "BUTTON", "IMAGE", "YOUTUBE"]},
+            widgetType: {type: String, enum: ["HTML", "HEADER", "LABEL", "TEXT", "LINK", "BUTTON", "IMAGE", "YOUTUBE"]},
             name: String,
             title: String,
             text: {type:String, default:'Text'},
             url: String,
+            html: {
+                text: String
+            },
             link: {
                 url: String
             },

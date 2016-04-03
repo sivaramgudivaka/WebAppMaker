@@ -46,6 +46,10 @@
                     {{widget.text}}
                 </label>
             </div>
+            <div ng-switch-when="HTML">
+                <div ng-bind-html="model.trustAsHtml(widget.html.text)">
+                </div>
+            </div>
             <div ng-switch-when="TEXT">
                 <input ng-if="!widget.textInput.rows || widget.textInput.rows===1"
                        name="{{widget.name}}"

@@ -45,6 +45,11 @@ Text
             <option>_top</option>
         </select>
     </div>
+    <div ng-switch-when="HTML">
+        HTML
+        <textarea ng-model="model.widget.html.text"
+                  class="form-control"></textarea>
+    </div>
     <div ng-switch-when="TEXT">
         Rows
         <input ng-model="model.widget.textInput.rows" class="form-control"/>

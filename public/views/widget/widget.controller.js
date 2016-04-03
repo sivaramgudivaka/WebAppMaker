@@ -67,6 +67,7 @@
         vm.safeYouTubeUrl = safeYouTubeUrl;
         vm.getButtonClass = getButtonClass;
         vm.sortWidget     = sortWidget;
+        vm.trustAsHtml    = trustAsHtml;
 
         function init() {
             WidgetService
@@ -81,6 +82,10 @@
                 );
         }
         init();
+
+        function trustAsHtml(html) {
+            return $sce.trustAsHtml(html);
+        }
 
         function getButtonClass(style) {
             if(!style) {
