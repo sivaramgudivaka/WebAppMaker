@@ -125,7 +125,8 @@ module.exports = function (app, applicationModel) {
             .createWidget(applicationId, pageId, widgetType)
             .then(
                 function(application) {
-                    res.send(200);
+                    var widgets = application.pages.id(pageId).widgets;
+                    res.send(widgets[widgets.length - 1]);
                 },
                 function(err) {
                     res.status(400).send(err);

@@ -89,7 +89,7 @@
         }
 
         function safeYouTubeUrl(widget) {
-            if(widget) {
+            if(widget && widget.youTube) {
                 var urlParts = widget.youTube.url.split("/");
                 var youTubeId = urlParts[urlParts.length-1];
                 return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+youTubeId);
@@ -113,7 +113,8 @@
                 .addWidget(vm.applicationId, vm.pageId, widgetType)
                 .then(
                     function(response) {
-                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+vm.pageId+"/widget");
+                        var newWidget = response.data
+                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+vm.pageId+"/widget/" + newWidget._id + "/edit");
                     },
                     function(err) {
                         vm.error = err;

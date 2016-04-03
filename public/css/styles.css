@@ -1,3 +1,7 @@
+a {
+    cursor: pointer;
+}
+
 .jga-widget {
     margin-bottom: 5px;
 }
@@ -10,8 +14,22 @@
     box-shadow: 0px 0px 1px #aaa;
 }
 
-.form-control {
+.form-control, .btn {
     margin-bottom: 5px;
+}
+
+.navbar-header .btn {
+    position: relative;
+    top: 10px;
+}
+
+.navbar-header .btn.pull-right {
+    position: relative;
+    right: 7px;
+}
+
+.navbar-header .btn.pull-left {
+    padding-right: 0px;
 }
 
 .btn-transparent,

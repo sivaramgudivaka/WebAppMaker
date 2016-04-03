@@ -30,21 +30,33 @@ module.exports = function(applicationModel) {
                     widget.name = newWidget.name;
                     widget.text = newWidget.text;
                     if(widget.widgetType === "HEADER") {
-                        widget.header.size = newWidget.header.size;
+                        if(newWidget.header) {
+                            widget.header.size = newWidget.header.size || 2;
+                        }
                     } else if(widget.widgetType === "IMAGE") {
-                        widget.image.url = newWidget.image.url;
-                        widget.image.width = newWidget.image.width;
+                        if(newWidget.image) {
+                            widget.image.url = newWidget.image.url;
+                            widget.image.width = newWidget.image.width;
+                        }
                     } else if(widget.widgetType === "YOUTUBE") {
-                        widget.youTube.url = newWidget.youTube.url;
-                        widget.youTube.width = newWidget.youTube.width;
+                        if(newWidget.youTube) {
+                            widget.youTube.url = newWidget.youTube.url;
+                            widget.youTube.width = newWidget.youTube.width;
+                        }
                     } else if(widget.widgetType === "TEXT") {
-                        widget.textInput.placeholder = newWidget.textInput.placeholder;
-                        widget.textInput.rows = newWidget.textInput.rows;
+                        if(newWidget.textInput) {
+                            widget.textInput.placeholder = newWidget.textInput.placeholder;
+                            widget.textInput.rows = newWidget.textInput.rows;
+                        }
                     } else if(widget.widgetType === "LINK") {
-                        widget.link.url = newWidget.link.url;
-                        widget.link.target = newWidget.link.target;
+                        if(newWidget.link) {
+                            widget.link.url = newWidget.link.url;
+                            widget.link.target = newWidget.link.target;
+                        }
                     } else if(widget.widgetType === "BUTTON") {
-                        widget.button.style = newWidget.button.style;
+                        if(newWidget.button) {
+                            widget.button.style = newWidget.button.style;
+                        }
                     }
                     return application.save();
                 }

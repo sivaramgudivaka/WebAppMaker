@@ -1,10 +1,18 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-header">
+
+        <a href="#/developer/{{model.username}}/application"
+           class="btn btn-default btn-transparent pull-left">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
         <a class="navbar-brand">Pages</a>
+
         <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/new"
-           class="navbar-toggle collapsed">
+           class="btn btn-default btn-transparent pull-right">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
+
     </div>
 </nav>
 
@@ -14,7 +22,7 @@
     {{model.error}}
 </div>
 
-<table class="table table-striped">
+<table class="table table-hover">
     <tbody jga-sortable jga-sortable-callback="model.sortPage">
         <tr ng-repeat="page in model.pages">
             <td with="100%">
@@ -32,7 +40,6 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="navbar-header">
-        <a href="#/developer/{{model.username}}/application" class="navbar-brand">Cancel</a>
         <a href="#/developer/{{currentUser.username}}/edit"
            class="navbar-toggle collapsed">
             <span class="glyphicon glyphicon-home"></span>

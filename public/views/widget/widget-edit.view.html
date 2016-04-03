@@ -1,10 +1,18 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-header">
+
+        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/widget"
+           class="btn btn-default btn-transparent pull-left">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
         <a class="navbar-brand">Widget Edit</a>
+
         <a ng-click="model.updateWidget(model.widget)"
-           class="navbar-toggle collapsed">
+           class="btn btn-default btn-transparent pull-right">
             <span class="glyphicon glyphicon-ok"></span>
         </a>
+
     </div>
 </nav>
 
@@ -88,7 +96,6 @@ Text
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="navbar-header">
-        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/widget" class="navbar-brand">Cancel</a>
         <a href="#/developer/{{currentUser.username}}/edit"
            class="navbar-toggle collapsed">
             <span class="glyphicon glyphicon-home"></span>
