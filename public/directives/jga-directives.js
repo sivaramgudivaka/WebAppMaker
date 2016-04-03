@@ -20,11 +20,14 @@
                         if(start >= end) {
                             start--;
                         }
-                        scope.model.sortPage(start, end);
+                        scope.jgaSortableCallback({start: start, end: end});
                     }
                 });
         }
         return {
+            scope: {
+                jgaSortableCallback: '&'
+            },
             link: link
         };
     }

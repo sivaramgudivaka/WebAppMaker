@@ -23,7 +23,7 @@
 </div>
 
 <table class="table table-hover">
-    <tbody jga-sortable jga-sortable-callback="model.sortPage">
+    <tbody jga-sortable jga-sortable-callback="model.sortPage(start, end)">
         <tr ng-repeat="page in model.pages">
             <td with="100%">
                 <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{page._id}}/widget">

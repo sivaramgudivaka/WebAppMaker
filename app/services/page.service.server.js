@@ -18,15 +18,7 @@ module.exports = function (app, applicationModel) {
                 .sortPage(applicationId, startIndex, endIndex)
                 .then(
                     function(stat) {
-                        return pageModel.findPagesForApplication(applicationId);
-                    },
-                    function(err) {
-                        res.status(400).send(err);
-                    }
-                )
-                .then(
-                    function(application) {
-                        res.json(application.pages);
+                        return res.json(200);
                     },
                     function(err) {
                         res.status(400).send(err);
