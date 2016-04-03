@@ -1,0 +1,91 @@
+<style>
+    body {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .jga-close {
+        z-index: 2;
+        position: absolute;
+        right: 15px;
+        background-color: white;
+        padding-left: 5px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        border-bottom-left-radius: 5px;
+    }
+</style>
+
+<a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/widget"
+   class="jga-close">
+    <span class="glyphicon glyphicon-remove-circle"></span>
+</a>
+
+<div ng-repeat="widget in model.widgets"
+     class="row">
+    <div ng-switch="widget.widgetType"
+         class="jga-widget col-xs-12">
+        <div ng-switch-when="HEADER">
+            <h1 ng-if="widget.header.size===1">
+                {{widget.text}}
+            </h1>
+            <h2 ng-if="!widget.header.size || widget.header.size===2">
+                {{widget.text}}
+            </h2>
+            <h3 ng-if="widget.header.size===3">
+                {{widget.text}}
+            </h3>
+            <h4 ng-if="widget.header.size===4">
+                {{widget.text}}
+            </h4>
+            <h5 ng-if="widget.header.size===5">
+                {{widget.text}}
+            </h5>
+            <h6 ng-if="widget.header.size===6">
+                {{widget.text}}
+            </h6>
+        </div>
+        <div ng-switch-when="LABEL">
+            <label>
+                {{widget.text}}
+            </label>
+        </div>
+        <div ng-switch-when="HTML">
+            <div ng-bind-html="model.trustAsHtml(widget.html.text)">
+            </div>
+        </div>
+        <div ng-switch-when="TEXT">
+            <input ng-if="!widget.textInput.rows || widget.textInput.rows===1"
+                   name="{{widget.name}}"
+                   id="{{widget._id}}"
+                   value="{{widget.text}}"
+                   placeholder="{{widget.textInput.placeholder}}"
+                   class="form-control"/>
+            <textarea ng-if="widget.textInput.rows > 1"
+                   name="{{widget.name}}"
+                   rows="{{widget.textInput.rows}}"
+                   id="{{widget._id}}"
+                   placeholder="{{widget.textInput.placeholder}}"
+                   class="form-control">{{widget.text}}</textarea>
+        </div>
+        <div ng-switch-when="BUTTON">
+            <a class="btn btn-block" ng-class="model.getButtonClass(widget.button.style)">
+                {{widget.text}}
+            </a>
+        </div>
+        <div ng-switch-when="LINK">
+            <a ng-href="{{widget.link.url}}" target="_blank">
+                {{widget.text}}
+            </a>
+        </div>
+        <div ng-switch-when="IMAGE">
+            <img ng-src="{{widget.image.url}}" width="{{widget.image.width}}"/>
+        </div>
+        <div ng-switch-when="YOUTUBE">
+            <iframe ng-src="{{model.safeYouTubeUrl(widget)}}"
+                    width="100%"
+                    frameborder="0"
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>

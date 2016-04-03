@@ -84,6 +84,12 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
+            .when ("/developer/:username/application/:applicationId/page/:pageId/preview", {
+                templateUrl: "views/widget/page-preview.view.html",
+                controller: "WidgetListController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
             .when ("/developer/:username/application/:applicationId/page/:pageId/choose-widget", {
                 templateUrl: "views/widget/widget-choose.view.html",
                 controller: "ChooseWidgetController",
