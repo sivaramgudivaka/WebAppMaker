@@ -20,7 +20,13 @@
     <div ng-repeat="widget in model.widgets"
          class="row jga-highlight-on-hover">
         <div ng-switch="widget.widgetType"
-             class="jga-widget col-xs-10">
+             class="jga-widget col-xs-12">
+            <div class="pull-right jga-widget-list-tools">
+                <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/widget/{{widget._id}}/edit">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
             <div ng-switch-when="HEADER">
                 <h1 ng-if="widget.header.size===1">
                     {{widget.text}}
@@ -83,14 +89,6 @@
                         frameborder="0"
                         allowfullscreen>
                 </iframe>
-            </div>
-        </div>
-        <div class="col-xs-2 jga-nowrap">
-            <div class="pull-right">
-                <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/widget/{{widget._id}}/edit">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <span class="glyphicon glyphicon-align-justify"></span>
             </div>
         </div>
     </div>
