@@ -47,8 +47,10 @@ Text
     </div>
     <div ng-switch-when="HTML">
         HTML
-        <textarea ng-model="model.widget.html.text"
-                  class="form-control"></textarea>
+        <!-- use textangular directive to render a WYSIWYG HTML editor -->
+        <div text-angular
+             ng-model="model.widget.html.text">
+        </div>
     </div>
     <div ng-switch-when="TEXT">
         Rows

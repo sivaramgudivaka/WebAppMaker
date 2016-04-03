@@ -1,5 +1,6 @@
 (function () {
     angular
         .module ("WebAppMakerApp",
-            ["ngRoute", "jgaDirectives"]);
+            ["ngRoute", "jgaDirectives",
+                "textAngular"]); // add textangular dependency
 })();
