@@ -1,3 +1,5 @@
+var mongoose = require("mongoose");
+
 module.exports = function (app, applicationModel) {
     app.post   ("/api/developer/:username/application", createApplication);
     app.get    ("/api/developer/:username/application", findApplicationsForUsername);

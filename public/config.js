@@ -56,7 +56,18 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-
+            .when ("/developer/:username/application/:applicationId/edit", {
+                templateUrl: "views/application/application-edit.view.html",
+                controller: "EditApplicationController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
+            .when ("/developer/:username/application/:applicationId/share", {
+                templateUrl: "views/application/application-share.view.html",
+                controller: "ShareApplicationController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
             // page routes
             .when ("/developer/:username/application/:applicationId/page", {
                 templateUrl: "views/page/page-list.view.html",

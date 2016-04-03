@@ -9,6 +9,7 @@ module.exports = function (app, developerModel) {
     app.get ("/api/developer/:username", findDeveloperByUsername);
     app.put ("/api/developer/:username", updateDeveloper);
     app.delete ("/api/developer/:username", deleteDeveloper);
+    app.get ("/api/developer/search/:username", searchDeveloper);
 
     var auth = authorized;
     app.post  ('/api/login', passport.authenticate('local'), login);
@@ -162,6 +163,20 @@ module.exports = function (app, developerModel) {
                     done(err, null);
                 }
             );
+    }
+
+    function searchDeveloper(req, res) {
+        var username = req.params.username;
+        developerModel
+            .searchDeveloper(username)
+            .then(
+                function(developers){
+                    res.json(developers);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            )
     }
 
     function loggedin(req, res) {

@@ -1,9 +1,79 @@
 (function () {
     angular
         .module ("WebAppMakerApp")
+        .controller ("ShareApplicationController", shareApplicationController)
         .controller ("ApplicationListController", applicationListController)
         .controller ("NewApplicationController", newApplicationController)
         .controller ("EditApplicationController", editApplicationController);
+
+    function shareApplicationController
+        ($routeParams, ApplicationService, $location) {
+
+        var vm = this;
+        vm.username = $routeParams.username;
+        vm.applicationId = $routeParams.applicationId;
+        
+        vm.shareApplication = shareApplication;
+        vm.unshareApplication = unshareApplication;
+
+        function init() {
+            ApplicationService
+                .findDevelopersSharingApplication(vm.applicationId)
+                .then(
+                    function(response) {
+                        vm.developers = response.data;
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
+        }
+        init();
+
+        function unshareApplication(username) {
+            ApplicationService
+                .unshareApplication(vm.applicationId, username)
+                .then(
+                    function(response) {
+                        return ApplicationService
+                            .findDevelopersSharingApplication(vm.applicationId);
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                )
+                .then(
+                    function(response) {
+                        vm.developers = response.data;
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
+        }
+
+        function shareApplication(developer) {
+            ApplicationService
+                .shareApplication(vm.applicationId, developer.username)
+                .then(
+                    function(response) {
+                        return ApplicationService
+                            .findDevelopersSharingApplication(vm.applicationId);
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                )
+                .then(
+                    function(response) {
+                        vm.developers = response.data;
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
+        }
+    }
 
     function editApplicationController
         ($routeParams, ApplicationService, $location) {

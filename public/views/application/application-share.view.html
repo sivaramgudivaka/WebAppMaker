@@ -1,0 +1,53 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+
+        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/edit"
+           class="btn btn-default btn-transparent pull-left">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="navbar-brand">Share</a>
+
+        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/edit"
+           class="btn btn-default btn-transparent pull-right">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+
+    </div>
+</nav>
+
+<div class="input-group">
+
+    <div angucomplete-alt
+         placeholder="Search for other developers"
+         pause="500"
+         selected-object="selectedUser"
+         remote-url="/api/developer/search/"
+         title-field="username"
+         minlength="2"
+         input-class="form-control form-control-small"
+         match-class="highlight">
+    </div>
+
+    <span class="input-group-btn">
+        <button ng-click="model.shareApplication(selectedUser.originalObject)"
+                class="btn btn-default"
+                type="button">
+            <span class="glyphicon glyphicon-plus"
+        </button>
+    </span>
+
+</div>
+
+<div ng-repeat="developer in model.developers"
+     class="row jga-bg-highlight-on-hover" style="padding: 8px">
+    <div class="col-xs-11">
+        {{developer.username}}
+    </div>
+    <div class="col-xs-1">
+        <a  ng-click="model.unshareApplication(developer.username)"
+            class="pull-right">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+    </div>
+</div>

@@ -8,4 +8,7 @@ module.exports = function (app, db) {
     var pageService = require("./services/page.service.server.js")(app, applicationModel);
 
     var widgetService = require("./services/widget.service.server.js")(app, applicationModel);
+
+    var shareModel    = require("./models/application/share.model.server")();
+    var shareService  = require("./services/share.service.server")(app, shareModel, applicationModel);
 };

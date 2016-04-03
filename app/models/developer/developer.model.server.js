@@ -14,9 +14,14 @@ module.exports = function (db) {
         findDeveloperByCredentials: findDeveloperByCredentials,
         findUserByGoogleId: findUserByGoogleId,
         findUserByFacebookId: findUserByFacebookId,
-        findDeveloperById: findDeveloperById
+        findDeveloperById: findDeveloperById,
+        searchDeveloper: searchDeveloper
     };
     return api;
+
+    function searchDeveloper(username) {
+        return Developer.find({'username': {$regex: username, $options: 'i'}});
+    }
 
     function findUserByFacebookId(facebookId) {
         return Developer.findOne({'facebook.id': facebookId});
