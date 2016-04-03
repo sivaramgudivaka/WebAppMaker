@@ -10,6 +10,10 @@ a {
     white-space:nowrap;
 }
 
+.jga-bg-highlight-on-hover:hover {
+    background-color: #f5f5f5;
+}
+
 .jga-highlight-on-hover:hover {
     box-shadow: 0px 0px 1px #aaa;
 }
