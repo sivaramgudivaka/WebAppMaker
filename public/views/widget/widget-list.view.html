@@ -67,6 +67,26 @@
                 <div ng-bind-html="model.trustAsHtml(widget.html.text)">
                 </div>
             </div>
+            <!-- render datatable widget sample -->
+            <div ng-switch-when="DATATABLE">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="field in widget.datatable.fields">
+                                {{field}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 3 sample dummy rows, just to give look and feel -->
+                        <tr ng-repeat="time in [1,2,3]">
+                            <td ng-repeat="field in widget.datatable.fields">
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <div ng-switch-when="TEXT">
                 <input ng-if="!widget.textInput.rows || widget.textInput.rows===1"
                        name="{{widget.name}}"

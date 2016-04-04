@@ -8,7 +8,8 @@ module.exports = function () {
         name: String,
         title: String,
         widgets: [{
-            widgetType: {type: String, enum: ["HTML", "HEADER", "LABEL", "TEXT", "LINK", "BUTTON", "IMAGE", "YOUTUBE"]},
+            widgetType: {type: String, enum: ["HTML", "HEADER", "LABEL", "TEXT", "LINK", "BUTTON", "IMAGE", "YOUTUBE",
+                "DATATABLE"]},
             name: String,
             title: String,
             text: {type:String, default:'Text'},
@@ -29,6 +30,11 @@ module.exports = function () {
             },
             header: {
                 size: Number
+            },
+            // datatable widget collection is name of page, fields are in collection
+            datatable: {
+                collection: String,
+                fields:    [String]
             },
             button: {
                 url: String,

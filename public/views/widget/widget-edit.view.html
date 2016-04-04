@@ -49,6 +49,20 @@ Text
         </select>
 
     </div>
+
+    <!-- datatable widget collection is name of page, fields is comma separated string -->
+    <div ng-switch-when="DATATABLE">
+
+        Collection:
+        <select ng-options="page as page.name for page in model.pages track by page._id"
+                ng-model="model.widget.datatable.collection" class="form-control">
+        </select>
+
+        Fields:
+        <input ng-model="model.widget.datatable.fields"
+               class="form-control"/>
+
+    </div>
     <div ng-switch-when="LINK">
         URL
         <input ng-model="model.widget.link.url" class="form-control"/>

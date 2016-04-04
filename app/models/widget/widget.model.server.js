@@ -68,6 +68,17 @@ module.exports = function(applicationModel) {
                             widget.textInput.placeholder = newWidget.textInput.placeholder;
                             widget.textInput.rows = newWidget.textInput.rows;
                         }
+                    } else if(widget.widgetType === "DATATABLE") {
+                        
+                        // save datatable widget to database
+                        if(newWidget.datatable.collection && newWidget.datatable.collection.name) {
+                            widget.datatable.collection = newWidget.datatable.collection.name;
+                        }
+                        if(newWidget.datatable.fields) {
+                            widget.datatable.fields = newWidget.datatable.fields.split(",");
+                        } else {
+                            widget.datatable.fields = [];
+                        }
                     } else if(widget.widgetType === "LINK") {
                         if(newWidget.link) {
                             widget.link.url = newWidget.link.url;
