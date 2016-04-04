@@ -1,9 +1,55 @@
 (function () {
     angular
         .module ("WebAppMakerApp")
+        .controller ("PageRunController", pageRunController)
         .controller ("PageListController", pageListController)
         .controller ("NewPageController", newPageController)
         .controller ("EditPageController", editPageController);
+
+    function pageRunController ($routeParams, ApplicationService, WidgetService, $sce) {
+        var vm = this;
+        vm.username      = $routeParams.username;
+        vm.applicationId = $routeParams.applicationId;
+        vm.pageId        = $routeParams.pageId;
+
+        vm.safeYouTubeUrl = safeYouTubeUrl;
+        vm.getButtonClass = getButtonClass;
+        vm.trustAsHtml    = trustAsHtml;
+
+        function init() {
+            WidgetService
+                .getWidgets(vm.applicationId, vm.pageId)
+                .then(
+                    function(response) {
+                        vm.widgets = response.data;
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
+        }
+        init();
+
+        function trustAsHtml(html) {
+            return $sce.trustAsHtml(html);
+        }
+
+        function getButtonClass(style) {
+            if(!style) {
+                style = "default";
+            }
+            return "btn-"+style.toLowerCase();
+        }
+
+        function safeYouTubeUrl(widget) {
+            if(widget && widget.youTube) {
+                var urlParts = widget.youTube.url.split("/");
+                var youTubeId = urlParts[urlParts.length-1];
+                return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+youTubeId);
+            }
+            return "";
+        }
+    }
 
     function editPageController ($routeParams, PageService, $location) {
 

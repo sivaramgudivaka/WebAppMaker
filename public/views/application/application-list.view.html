@@ -23,8 +23,12 @@
             <a href="#/developer/{{model.username}}/application/{{application._id}}/page">
                 {{application.name}}
             </a>
+            <a href="#/developer/{{model.username}}/application/{{application._id}}/page/{{application.pages[0]._id}}/run"
+               class="pull-right">
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
             <a href="#/developer/{{model.username}}/application/edit/{{application._id}}"
-                class="pull-right">
+               class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </td>
