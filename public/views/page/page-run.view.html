@@ -68,7 +68,10 @@
                    class="form-control">{{widget.text}}</textarea>
         </div>
         <div ng-switch-when="BUTTON">
-            <a class="btn btn-block" ng-class="model.getButtonClass(widget.button.style)">
+            <!-- button click event handler -->
+            <a ng-click="model.buttonClick(widget)"`
+               ng-class="model.getButtonClass(widget.button.style)"
+               class="btn btn-block">
                 {{widget.text}}
             </a>
         </div>

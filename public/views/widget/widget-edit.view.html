@@ -33,6 +33,12 @@ Text
             <option>Warning</option>
             <option>Danger</option>
         </select>
+        <!-- dropdown to select button navigate property -->
+        Navigate to page
+        <select ng-options="page as page.name for page in model.pages track by page._id"
+                ng-model="model.widget.button.navigate" class="form-control">
+        </select>
+
     </div>
     <div ng-switch-when="LINK">
         URL

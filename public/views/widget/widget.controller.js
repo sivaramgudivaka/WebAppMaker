@@ -5,7 +5,7 @@
         .controller ("WidgetEditController", widgetEditController)
         .controller ("ChooseWidgetController", chooseWidgetController);
 
-    function widgetEditController($routeParams, WidgetService, $location) {
+    function widgetEditController($routeParams, WidgetService, $location, PageService) {
 
         var vm = this;
         vm.username      = $routeParams.username;
@@ -17,6 +17,18 @@
         vm.removeWidget  = removeWidget;
 
         function init() {
+            // populate the page dropdown to select button navigate property
+            PageService
+                .findPagesForApplication(vm.applicationId)
+                .then(
+                    function(response) {
+                        vm.pages = response.data;
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
+
             WidgetService
                 .findWidgetById(vm.applicationId, vm.pageId, vm.widgetId)
                 .then(

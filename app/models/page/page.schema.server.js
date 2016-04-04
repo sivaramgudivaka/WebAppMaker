@@ -34,7 +34,8 @@ module.exports = function () {
                 url: String,
                 pageId: String,
                 icon: String,
-                style: String
+                style: String,
+                navigate: String // holds page id where this button navigates when clicked
             },
             textInput: {
                 placeholder: String,

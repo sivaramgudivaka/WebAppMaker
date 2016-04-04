@@ -6,7 +6,7 @@
         .controller ("NewPageController", newPageController)
         .controller ("EditPageController", editPageController);
 
-    function pageRunController ($routeParams, ApplicationService, WidgetService, $sce) {
+    function pageRunController ($routeParams, ApplicationService, WidgetService, $sce, $location) {
         var vm = this;
         vm.username      = $routeParams.username;
         vm.applicationId = $routeParams.applicationId;
@@ -15,6 +15,7 @@
         vm.safeYouTubeUrl = safeYouTubeUrl;
         vm.getButtonClass = getButtonClass;
         vm.trustAsHtml    = trustAsHtml;
+        vm.buttonClick    = buttonClick;
 
         function init() {
             WidgetService
@@ -29,6 +30,14 @@
                 );
         }
         init();
+
+        // button click event handler
+        function buttonClick(widget) {
+            console.log(widget);
+            if(widget.button && widget.button.navigate) {
+                $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+widget.button.navigate+"/run");
+            }
+        }
 
         function trustAsHtml(html) {
             return $sce.trustAsHtml(html);

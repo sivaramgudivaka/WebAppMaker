@@ -76,6 +76,8 @@ module.exports = function(applicationModel) {
                     } else if(widget.widgetType === "BUTTON") {
                         if(newWidget.button) {
                             widget.button.style = newWidget.button.style;
+                            // save page id button navigates to
+                            widget.button.navigate = newWidget.button.navigate._id;
                         }
                     }
                     return application.save();
