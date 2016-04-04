@@ -35,6 +35,7 @@ module.exports = function () {
                 pageId: String,
                 icon: String,
                 style: String,
+                dbCommand: String, // db command when button is clicked 
                 navigate: String // holds page id where this button navigates when clicked
             },
             textInput: {

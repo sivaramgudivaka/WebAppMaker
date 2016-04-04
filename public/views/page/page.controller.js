@@ -6,7 +6,7 @@
         .controller ("NewPageController", newPageController)
         .controller ("EditPageController", editPageController);
 
-    function pageRunController ($routeParams, ApplicationService, WidgetService, $sce, $location) {
+    function pageRunController (DatabaseService, $routeParams, ApplicationService, WidgetService, PageService, $sce, $location) {
         var vm = this;
         vm.username      = $routeParams.username;
         vm.applicationId = $routeParams.applicationId;
@@ -18,14 +18,13 @@
         vm.buttonClick    = buttonClick;
 
         function init() {
-            WidgetService
-                .getWidgets(vm.applicationId, vm.pageId)
+            PageService
+                .findPage(vm.applicationId, vm.pageId)
                 .then(
                     function(response) {
-                        vm.widgets = response.data;
-                    },
-                    function(err) {
-                        vm.error = err;
+                        // need page for page name and widgets to render the page
+                        vm.page    = response.data;
+                        vm.widgets = vm.page.widgets;
                     }
                 );
         }
@@ -36,6 +35,20 @@
             console.log(widget);
             if(widget.button && widget.button.navigate) {
                 $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+widget.button.navigate+"/run");
+            }
+            // if button has db command, then use service to execute
+            if(widget.button && widget.button.dbCommand) {
+                console.log(vm.fields);
+                DatabaseService
+                    .executeCommand(widget.button.dbCommand, vm.page, vm.fields)
+                    .then(
+                        function(response){
+                            console.log(response);
+                        },
+                        function(err){
+                            vm.errors = err;
+                        }
+                    );
             }
         }
 

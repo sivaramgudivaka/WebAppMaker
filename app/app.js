@@ -11,4 +11,7 @@ module.exports = function (app, db) {
 
     var shareModel    = require("./models/application/share.model.server")();
     var shareService  = require("./services/share.service.server")(app, shareModel, applicationModel);
+
+    // pass express app and db connection to database service
+    var databaseService = require("./services/database.service.server")(app, db);
 };

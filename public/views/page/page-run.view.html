@@ -54,18 +54,21 @@
             </div>
         </div>
         <div ng-switch-when="TEXT">
+            <!-- bind input fields to generic model.fields to post to server -->
             <input ng-if="!widget.textInput.rows || widget.textInput.rows===1"
+                   ng-model="model.fields[widget.name]"
                    name="{{widget.name}}"
                    id="{{widget._id}}"
                    value="{{widget.text}}"
                    placeholder="{{widget.textInput.placeholder}}"
                    class="form-control"/>
             <textarea ng-if="widget.textInput.rows > 1"
-                   name="{{widget.name}}"
-                   rows="{{widget.textInput.rows}}"
-                   id="{{widget._id}}"
-                   placeholder="{{widget.textInput.placeholder}}"
-                   class="form-control">{{widget.text}}</textarea>
+                      ng-model="model.fields[widget.name]"
+                      name="{{widget.name}}"
+                      rows="{{widget.textInput.rows}}"
+                      id="{{widget._id}}"
+                      placeholder="{{widget.textInput.placeholder}}"
+                      class="form-control">{{widget.text}}</textarea>
         </div>
         <div ng-switch-when="BUTTON">
             <!-- button click event handler -->

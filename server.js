@@ -1,7 +1,14 @@
 var express = require('express');
 var app = express();
 var mongoose = require("mongoose");
-var db = mongoose.connect('mongodb://localhost/web-app-maker');
+mongoose.connect('mongodb://localhost/web-app-maker');
+
+// npm install mongojs --save
+// require mongojs
+var mongojs = require('mongojs');
+
+// connect to database
+var db = mongojs('web-app-maker');
 
 // load passport module
 var passport = require('passport');
@@ -30,6 +37,7 @@ app.use(passport.session());
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
+// pass mongojs connection to our server side app
 require ("./app/app.js")(app, db);
 
 app.listen(3000);

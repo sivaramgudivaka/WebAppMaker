@@ -39,6 +39,15 @@ Text
                 ng-model="model.widget.button.navigate" class="form-control">
         </select>
 
+        <!-- choose database action when button is clicked -->
+        Action
+        <select ng-model="model.widget.button.dbCommand" class="form-control">
+            <option>INSERT</option>
+            <option>SELECT</option>
+            <option>UPDATE</option>
+            <option>DELETE</option>
+        </select>
+
     </div>
     <div ng-switch-when="LINK">
         URL
