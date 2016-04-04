@@ -32,10 +32,7 @@
 
         // button click event handler
         function buttonClick(widget) {
-            console.log(widget);
-            if(widget.button && widget.button.navigate) {
-                $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+widget.button.navigate+"/run");
-            }
+
             // if button has db command, then use service to execute
             if(widget.button && widget.button.dbCommand) {
                 console.log(vm.fields);
@@ -43,12 +40,20 @@
                     .executeCommand(widget.button.dbCommand, vm.page, vm.fields)
                     .then(
                         function(response){
-                            console.log(response);
+                            // if button has navigate, then go there
+                            if(widget.button && widget.button.navigate) {
+                                $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+widget.button.navigate+"/run");
+                            }
                         },
                         function(err){
                             vm.errors = err;
                         }
                     );
+            } else {
+                // if button has navigate, then go there
+                if(widget.button && widget.button.navigate) {
+                    $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+widget.button.navigate+"/run");
+                }
             }
         }
 
