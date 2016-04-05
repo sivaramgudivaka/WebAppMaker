@@ -11,6 +11,11 @@
                 controller: "LoginController",
                 controllerAs: "model"
             })
+            .when ("/register", {
+                templateUrl: "views/security/register.view.html",
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
             // developer routes
             .when ("/developer", {
                 templateUrl: "views/developer/developer-list.view.html",

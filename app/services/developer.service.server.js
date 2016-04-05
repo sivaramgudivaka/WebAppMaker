@@ -15,6 +15,7 @@ module.exports = function (app, developerModel) {
     app.post  ('/api/login', passport.authenticate('local'), login);
     app.post  ('/api/logout',         logout);
     app.get   ('/api/loggedin',       loggedin);
+    app.post  ('/api/register',       register);
 
     app.get   ('/auth/google',   passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get   ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
@@ -260,6 +261,40 @@ module.exports = function (app, developerModel) {
                 },
                 function (err) {
                     res.status (400).send ( err);
+                }
+            );
+    }
+
+    function register (req, res) {
+        var developer = req.body;
+        developerModel
+            .findDeveloperByUsername(developer.username)
+            .then(
+                function(user){
+                    if(user) {
+                        res.json(null);
+                    } else {
+                        return developerModel.createDeveloper(developer);
+                    }
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function(user){
+                    if(user){
+                        req.login(user, function(err) {
+                            if(err) {
+                                res.status(400).send(err);
+                            } else {
+                                res.json(user);
+                            }
+                        });
+                    }
+                },
+                function(err){
+                    res.status(400).send(err);
                 }
             );
     }

@@ -1,0 +1,24 @@
+<h2>Register</h2>
+
+<div ng-if="model.error"
+     class="alert alert-danger"
+     role="alert">
+    {{model.error}}
+</div>
+
+<input ng-model="developer.username"
+       placeholder="username"
+       class="form-control"/>
+
+<input ng-model="developer.password"
+       placeholder="password"
+       class="form-control"/>
+
+<input ng-model="developer.password2"
+       placeholder="verify password"
+       class="form-control"/>
+
+<button class="btn btn-primary btn-block"
+        ng-click="model.register(developer)">
+    Register
+</button>

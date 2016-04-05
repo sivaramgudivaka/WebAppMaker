@@ -6,7 +6,8 @@
     function securityService($http) {
         var api = {
             login: login,
-            logout: logout
+            logout: logout,
+            register: register
         };
         return api;
 
@@ -16,6 +17,10 @@
 
         function login(user) {
             return $http.post("/api/login", user);
+        }
+
+        function register(user) {
+            return $http.post("/api/register", user);
         }
     }
 })();
