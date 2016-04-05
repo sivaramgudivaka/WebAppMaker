@@ -25,6 +25,21 @@
                         // need page for page name and widgets to render the page
                         vm.page    = response.data;
                         vm.widgets = vm.page.widgets;
+                        // look for DATATABLE widgets and fetch their data from database
+                        for(var w in vm.widgets) {
+                            if(vm.widgets[w].widgetType=="DATATABLE") {
+                                DatabaseService
+                                    .select(vm.widgets[w].datatable.collection)
+                                    .then(
+                                        function (response) {
+                                            vm.data = response.data;
+                                        },
+                                        function (err) {
+                                            vm.error = err;
+                                        }
+                                    );
+                            }
+                        }
                     }
                 );
         }

@@ -53,6 +53,29 @@
             <div ng-bind-html="model.trustAsHtml(widget.html.text)">
             </div>
         </div>
+        <!-- render datatable widget with real data -->
+        <div ng-switch-when="DATATABLE">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <!-- render the field names as headers -->
+                    <th ng-repeat="field in widget.datatable.fields">
+                        {{field}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- iterate over the records in database. 1 row per record -->
+                <tr ng-repeat="record in model.data">
+                    <!-- iterate over the fields in a record. 1 column per field -->
+                    <td ng-repeat="field in widget.datatable.fields">
+                        <!-- record is map of fields. use field names as key -->
+                        {{record[field]}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
         <div ng-switch-when="TEXT">
             <!-- bind input fields to generic model.fields to post to server -->
             <input ng-if="!widget.textInput.rows || widget.textInput.rows===1"

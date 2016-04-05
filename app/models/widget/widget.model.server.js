@@ -75,7 +75,16 @@ module.exports = function(applicationModel) {
                             widget.datatable.collection = newWidget.datatable.collection.name;
                         }
                         if(newWidget.datatable.fields) {
-                            widget.datatable.fields = newWidget.datatable.fields.split(",");
+                            // split field names into array
+                            if(typeof newWidget.datatable.fields === "string") {
+                                widget.datatable.fields = newWidget.datatable.fields.split(",");
+                            } else if(newWidget.datatable.fields.length > 0) {
+                                if(newWidget.datatable.fields[0].indexOf(",") > -1) {
+                                    widget.datatable.fields = newWidget.datatable.fields[0].split(",");
+                                } else {
+                                    widget.datatable.fields = newWidget.datatable.fields;
+                                }
+                            }
                         } else {
                             widget.datatable.fields = [];
                         }
