@@ -2,6 +2,9 @@ var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+// install and load bcrypt-nodejs module
+// npm install bcrypt-nodejs --save
+var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function (app, developerModel) {
     app.post ("/api/developer", createDeveloper);
@@ -125,13 +128,17 @@ module.exports = function (app, developerModel) {
     }
 
     function localStrategy(username, password, done) {
+        // lookup developer by username only. cant compare password since it's encrypted 
         developerModel
-            .findDeveloperByCredentials({username: username, password: password})
+            .findDeveloperByUsername(username)
             .then(
                 function(user) {
-                    if (!user) { return done(null, false); }
-                    delete user.password;
-                    return done(null, user);
+                    // if the user exists, compare passwords with bcrypt.compareSync
+                    if(user && bcrypt.compareSync(password, user.password)) {
+                        return done(null, user);
+                    } else {
+                        return done(null, false);
+                    }
                 },
                 function(err) {
                     if (err) { return done(err); }
@@ -274,6 +281,8 @@ module.exports = function (app, developerModel) {
                     if(user) {
                         res.json(null);
                     } else {
+                        // encrypt the password when registering
+                        developer.password = bcrypt.hashSync(developer.password);
                         return developerModel.createDeveloper(developer);
                     }
                 },
