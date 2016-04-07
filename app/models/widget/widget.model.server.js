@@ -67,6 +67,7 @@ module.exports = function(applicationModel) {
                         if(newWidget.textInput) {
                             widget.textInput.placeholder = newWidget.textInput.placeholder;
                             widget.textInput.rows = newWidget.textInput.rows;
+                            widget.textInput.formatted = newWidget.textInput.formatted;
                         }
                     } else if(widget.widgetType === "DATATABLE") {
                         

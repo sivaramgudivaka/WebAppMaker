@@ -15,7 +15,8 @@
     }
 </style>
 
-<a href="#/developer/{{model.username}}/application"
+<!-- go back to the page editor when you close page runner -->
+<a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/widget"
    class="jga-close">
     <span class="glyphicon glyphicon-remove-circle"></span>
 </a>
@@ -77,15 +78,21 @@
             </table>
         </div>
         <div ng-switch-when="TEXT">
-            <!-- bind input fields to generic model.fields to post to server -->
-            <input ng-if="!widget.textInput.rows || widget.textInput.rows===1"
+            <!-- use textangular for users to input formatted text -->
+            <div ng-if="widget.textInput.formatted"
+                 text-angular
+                 ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"
+                 placeholder="{{widget.textInput.placeholder}}"
+                 ng-model="model.fields[widget.name]">
+            </div>
+            <input ng-if="!widget.textInput.formatted && (!widget.textInput.rows || widget.textInput.rows===1)"
                    ng-model="model.fields[widget.name]"
                    name="{{widget.name}}"
                    id="{{widget._id}}"
                    value="{{widget.text}}"
                    placeholder="{{widget.textInput.placeholder}}"
                    class="form-control"/>
-            <textarea ng-if="widget.textInput.rows > 1"
+            <textarea ng-if="!widget.textInput.formatted && (widget.textInput.rows > 1)"
                       ng-model="model.fields[widget.name]"
                       name="{{widget.name}}"
                       rows="{{widget.textInput.rows}}"
@@ -95,7 +102,7 @@
         </div>
         <div ng-switch-when="BUTTON">
             <!-- button click event handler -->
-            <a ng-click="model.buttonClick(widget)"`
+            <a ng-click="model.buttonClick(widget)"
                ng-class="model.getButtonClass(widget.button.style)"
                class="btn btn-block">
                 {{widget.text}}

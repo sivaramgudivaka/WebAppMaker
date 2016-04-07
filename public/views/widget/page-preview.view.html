@@ -54,13 +54,13 @@
             </div>
         </div>
         <div ng-switch-when="TEXT">
-            <input ng-if="!widget.textInput.rows || widget.textInput.rows===1"
+            <input ng-if="!widget.textInput.formatted && (!widget.textInput.rows || widget.textInput.rows===1)"
                    name="{{widget.name}}"
                    id="{{widget._id}}"
                    value="{{widget.text}}"
                    placeholder="{{widget.textInput.placeholder}}"
                    class="form-control"/>
-            <textarea ng-if="widget.textInput.rows > 1"
+            <textarea ng-if="widget.textInput.rows > 1 || widget.textInput.formatted"
                    name="{{widget.name}}"
                    rows="{{widget.textInput.rows}}"
                    id="{{widget._id}}"

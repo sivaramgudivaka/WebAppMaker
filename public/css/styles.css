@@ -72,3 +72,11 @@ body {
     padding-bottom: 5px;
     border-bottom-left-radius: 5px;
 }
+
+.jga-white-bg {
+    background-color: white !important;
+}
+
+.jga-margin-bottom-5px {
+    margin-bottom: 5px;
+}

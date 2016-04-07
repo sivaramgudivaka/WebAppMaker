@@ -86,6 +86,17 @@ Text
         <input ng-model="model.widget.textInput.rows" class="form-control"/>
         Placeholder
         <input ng-model="model.widget.textInput.placeholder" class="form-control"/>
+        <!-- checkbox to select formatted text -->
+        <div class="input-group jga-margin-bottom-5px">
+            <input type="text"
+                   readonly
+                   value="Formatted"
+                   class="form-control jga-white-bg"/>
+            <span class="input-group-addon">
+                <input ng-model="model.widget.textInput.formatted"
+                       type="checkbox"/>
+            </span>
+        </div>
     </div>
     <div ng-switch-when="HEADER">
         Size

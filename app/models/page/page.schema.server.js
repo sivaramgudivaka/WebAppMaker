@@ -46,7 +46,8 @@ module.exports = function () {
             },
             textInput: {
                 placeholder: String,
-                rows: Number
+                rows: Number,
+                formatted: Boolean
             }
         }],
         dateCreated: {type: Date, default: Date.now}
