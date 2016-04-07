@@ -54,6 +54,15 @@
             <div ng-bind-html="model.trustAsHtml(widget.html.text)">
             </div>
         </div>
+        <!-- when the REPEATER widget runs, it uses the same trustAsHtml() function as
+             the DATATABLE widget, but it also passes the record, which is the map of
+             fields that will be used to populate the template -->
+        <div ng-switch-when="REPEATER">
+            <div ng-repeat="record in model.data">
+                <div ng-bind-html="model.trustAsHtml(widget.repeater.template, record)">
+                </div>
+            </div>
+        </div>
         <!-- render datatable widget with real data -->
         <div ng-switch-when="DATATABLE">
             <table class="table table-bordered">

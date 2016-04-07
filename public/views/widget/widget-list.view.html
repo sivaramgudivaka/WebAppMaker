@@ -67,6 +67,10 @@
                 <div ng-bind-html="model.trustAsHtml(widget.html.text)">
                 </div>
             </div>
+            <div ng-switch-when="REPEATER">
+                <div ng-bind-html="model.trustAsHtml(widget.repeater.template)">
+                </div>
+            </div>
             <!-- render datatable widget sample -->
             <div ng-switch-when="DATATABLE">
                 <table class="table table-bordered">

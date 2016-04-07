@@ -6,7 +6,8 @@
         .controller ("NewPageController", newPageController)
         .controller ("EditPageController", editPageController);
 
-    function pageRunController (DatabaseService, $routeParams, ApplicationService, WidgetService, PageService, $sce, $location) {
+    function pageRunController (DatabaseService, $routeParams, ApplicationService, WidgetService, PageService, $sce,
+                                $location, $scope) {
         var vm = this;
         vm.username      = $routeParams.username;
         vm.applicationId = $routeParams.applicationId;
@@ -27,9 +28,10 @@
                         vm.widgets = vm.page.widgets;
                         // look for DATATABLE widgets and fetch their data from database
                         for(var w in vm.widgets) {
-                            if(vm.widgets[w].widgetType=="DATATABLE") {
+                            // now both the DATATABLE and the REPEATER widgets need data
+                            if(vm.widgets[w].widgetType=="DATATABLE" || vm.widgets[w].widgetType=="REPEATER" ) {
                                 DatabaseService
-                                    .select(vm.widgets[w].datatable.collection)
+                                    .select(vm.widgets[w].datatable.collection || vm.widgets[w].repeater.collection)
                                     .then(
                                         function (response) {
                                             vm.data = response.data;
@@ -72,7 +74,17 @@
             }
         }
 
-        function trustAsHtml(html) {
+        function trustAsHtml(html, fields) {
+            if(fields) {
+                for(var key in fields) {
+                    if(fields.hasOwnProperty(key)) {
+                        var value = fields[key];
+                        key = "{{"+key+"}}";
+                        html = html.replace(key, value);
+                    }
+                }
+                return $sce.trustAsHtml(html);
+            }
             return $sce.trustAsHtml(html);
         }
 

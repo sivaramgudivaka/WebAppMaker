@@ -70,7 +70,7 @@ module.exports = function(applicationModel) {
                             widget.textInput.formatted = newWidget.textInput.formatted;
                         }
                     } else if(widget.widgetType === "DATATABLE") {
-                        
+
                         // save datatable widget to database
                         if(newWidget.datatable.collection && newWidget.datatable.collection.name) {
                             widget.datatable.collection = newWidget.datatable.collection.name;
@@ -88,6 +88,28 @@ module.exports = function(applicationModel) {
                             }
                         } else {
                             widget.datatable.fields = [];
+                        }
+                    } else if(widget.widgetType === "REPEATER") {
+
+                        // save REPEATER widget to database
+                        // same as DATATABLE with the added property 'template'
+                        widget.repeater.template = newWidget.repeater.template;
+                        if(newWidget.repeater.collection && newWidget.repeater.collection.name) {
+                            widget.repeater.collection = newWidget.repeater.collection.name;
+                        }
+                        if(newWidget.repeater.fields) {
+                            // split field names into array
+                            if(typeof newWidget.repeater.fields === "string") {
+                                widget.repeater.fields = newWidget.repeater.fields.split(",");
+                            } else if(newWidget.repeater.fields.length > 0) {
+                                if(newWidget.repeater.fields[0].indexOf(",") > -1) {
+                                    widget.repeater.fields = newWidget.repeater.fields[0].split(",");
+                                } else {
+                                    widget.repeater.fields = newWidget.repeater.fields;
+                                }
+                            }
+                        } else {
+                            widget.repeater.fields = [];
                         }
                     } else if(widget.widgetType === "LINK") {
                         if(newWidget.link) {

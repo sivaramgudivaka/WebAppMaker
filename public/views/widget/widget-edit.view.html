@@ -63,6 +63,25 @@ Text
                class="form-control"/>
 
     </div>
+    <!-- REPEATER widget is same as DATATABLE widget except that it has a template -->
+    <div ng-switch-when="REPEATER">
+
+        Collection:
+        <select ng-options="page as page.name for page in model.pages track by page._id"
+                ng-model="model.widget.repeater.collection" class="form-control">
+        </select>
+
+        Fields:
+        <input ng-model="model.widget.repeater.fields"
+               class="form-control"/>
+
+        <!-- template allows users to provide HTML to format each record -->
+        Template:
+        <div text-angular
+             ng-model="model.widget.repeater.template">
+        </div>
+
+    </div>
     <div ng-switch-when="LINK">
         URL
         <input ng-model="model.widget.link.url" class="form-control"/>

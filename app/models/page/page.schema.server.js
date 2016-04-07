@@ -9,7 +9,7 @@ module.exports = function () {
         title: String,
         widgets: [{
             widgetType: {type: String, enum: ["HTML", "HEADER", "LABEL", "TEXT", "LINK", "BUTTON", "IMAGE", "YOUTUBE",
-                "DATATABLE"]},
+                "DATATABLE", "REPEATER"]},
             name: String,
             title: String,
             text: {type:String, default:'Text'},
@@ -35,6 +35,12 @@ module.exports = function () {
             datatable: {
                 collection: String,
                 fields:    [String]
+            },
+            repeater: {
+                collection: String,
+                fields:    [String],
+                // same as DATATABLE with added 'template' property
+                template:   String
             },
             button: {
                 url: String,
