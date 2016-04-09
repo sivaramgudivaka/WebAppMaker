@@ -6,13 +6,15 @@ module.exports = function(app, model) {
     var pageModel = model.pageModel;
     
     // receive data as path parameters
-    app.get('/application/:applicationId/page/:pageId', pageController);
+    app.get('/developer/:username/application/:applicationId/page/:pageId', pageController);
 
     // controller handles request
     // renders template view
     function pageController(req, res) {
 
         // extract path parameters from URL
+        // including username too
+        var username      = req.params.username;
         var applicationId = req.params.applicationId;
         var pageId        = req.params.pageId;
 
@@ -23,6 +25,7 @@ module.exports = function(app, model) {
 
                     // create data map
                     var context = {
+                        username      : username,
                         applicationId : applicationId,
                         pageId        : pageId,
                         page          : page // add page to data map for template

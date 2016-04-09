@@ -5,9 +5,33 @@
     <title>Page</title>
     <%- include common/head-link   %>
     <%- include common/head-script %>
+    <%# remove editor styling %>
+    <style>
+        body {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+        .jga-close {
+            z-index: 2;
+            position: absolute;
+            right: 15px;
+            background-color: white;
+            padding-left: 5px;
+            padding-bottom: 5px;
+            padding-top: 5px;
+            border-bottom-left-radius: 5px;
+        }
+    </style>
 </head>
 <body>
+
     <div class="container">
+
+        <!-- go back to the page editor -->
+        <a href="/#/developer/<%= username %>/application/<%= applicationId %>/page/<%= pageId %>/widget"
+           class="jga-close">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+        </a>
 
     <% for(var i in page.widgets) {
         // calculate the name of the template to include
