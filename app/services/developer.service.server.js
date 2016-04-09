@@ -6,7 +6,10 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 // npm install bcrypt-nodejs --save
 var bcrypt = require("bcrypt-nodejs");
 
-module.exports = function (app, developerModel) {
+module.exports = function (app, model) {
+
+    var developerModel = model.developerModel;
+
     app.post ("/api/developer", createDeveloper);
     app.get ("/api/developer", findAllDevelopers);
     app.get ("/api/developer/:username", findDeveloperByUsername);

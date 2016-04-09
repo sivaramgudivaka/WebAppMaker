@@ -1,4 +1,7 @@
-module.exports = function(app, shareModel, applicationModel) {
+module.exports = function(app, model) {
+
+    var shareModel       = model.shareModel;
+    var applicationModel = model.applicationModel;
 
     app.post   ("/api/share/:applicationId/developer/:username", shareApplication)
     app.get    ("/api/share/:applicationId", findSharedApplication)

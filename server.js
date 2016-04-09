@@ -1,14 +1,5 @@
 var express = require('express');
 var app = express();
-var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/web-app-maker');
-
-// npm install mongojs --save
-// require mongojs
-var mongojs = require('mongojs');
-
-// connect to database
-var db = mongojs('web-app-maker');
 
 // set ejs as the view engine
 app.set('view engine', 'ejs');
@@ -41,6 +32,6 @@ app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
 // pass mongojs connection to our server side app
-require ("./app/app.js")(app, db);
+require ("./app/app.js")(app);
 
 app.listen(3000);

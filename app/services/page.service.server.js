@@ -1,4 +1,7 @@
-module.exports = function (app, applicationModel) {
+module.exports = function (app, model) {
+
+    var applicationModel = model.applicationModel;
+
     app.post   ("/api/application/:applicationId/page", createPage);
     app.get    ("/api/application/:applicationId/page", findPagesForApplication);
     app.get    ("/api/application/:applicationId/page/:pageId", findPage);
