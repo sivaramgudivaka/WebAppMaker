@@ -13,5 +13,6 @@ module.exports = function (app, db) {
 
     // load a server side controller to handle page routes,
     // provide data, and render templates 
-    var controllers = require("./controllers/page.controller.server.js")(app);
+    // pass model to the controller
+    var controllers = require("./controllers/page.controller.server.js")(app, model);
 };
