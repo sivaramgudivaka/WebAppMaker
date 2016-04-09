@@ -23,6 +23,7 @@ module.exports = function(app, db) {
         
         // data document is in body
         var fields = req.body;
+        fields.created = Date.now;
         
         // use page name as name of collection
         var pageName = req.params.pageName;
