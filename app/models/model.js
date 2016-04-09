@@ -4,7 +4,7 @@ module.exports = function() {
     var mongojs  = require('mongojs');
 
     mongoose.connect('mongodb://localhost/web-app-maker');
-    mongojs('web-app-maker');
+    var mongo = mongojs('web-app-maker');
 
     var applicationModel = require("./application/application.model.server")();
     var shareModel       = require("./application/share.model.server")(applicationModel);
@@ -17,7 +17,8 @@ module.exports = function() {
         shareModel       : shareModel,
         pageModel        : pageModel,
         widgetMode       : widgetModel,
-        developerModel   : developerModel
+        developerModel   : developerModel,
+        mongo            : mongo
     };
     return model;
 }

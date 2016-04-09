@@ -1,4 +1,6 @@
-module.exports = function(app, db) {
+module.exports = function(app, model) {
+
+    var db = model.mongo;
     
     // listen for incoming insert database commands
     app.post("/api/database/:pageName", insert);

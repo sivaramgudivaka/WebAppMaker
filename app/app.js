@@ -9,7 +9,7 @@ module.exports = function (app, db) {
     var shareService       = require("./services/share.service.server")         (app, model);
 
     // pass express app and db connection to database service
-    var databaseService = require("./services/database.service.server")(app, db);
+    var databaseService = require("./services/database.service.server")(app, model);
 
     // load a server side controller to handle page routes,
     // provide data, and render templates 

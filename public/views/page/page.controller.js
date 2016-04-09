@@ -31,7 +31,8 @@
                             // now both the DATATABLE and the REPEATER widgets need data
                             if(vm.widgets[w].widgetType=="DATATABLE" || vm.widgets[w].widgetType=="REPEATER" ) {
                                 DatabaseService
-                                    .select(vm.widgets[w].datatable.collection || vm.widgets[w].repeater.collection)
+                                    // had to rename 'collection' to 'collectionName' on the schema
+                                    .select(vm.widgets[w].datatable.collectionName || vm.widgets[w].repeater.collectionName)
                                     .then(
                                         function (response) {
                                             vm.data = response.data;

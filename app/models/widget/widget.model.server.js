@@ -51,17 +51,23 @@ module.exports = function(applicationModel) {
                         }
                     } else if(widget.widgetType === "HTML") {
                         if(newWidget.html) {
-                            widget.html.text = newWidget.html.text;
+                            widget.html = {
+                                text: newWidget.html.text
+                            };
                         }
                     } else if(widget.widgetType === "IMAGE") {
                         if(newWidget.image) {
-                            widget.image.url = newWidget.image.url;
-                            widget.image.width = newWidget.image.width;
+                            widget.image = {
+                                url   : newWidget.image.url,
+                                width : newWidget.image.width
+                            };
                         }
                     } else if(widget.widgetType === "YOUTUBE") {
                         if(newWidget.youTube) {
-                            widget.youTube.url = newWidget.youTube.url;
-                            widget.youTube.width = newWidget.youTube.width;
+                            widget.youTube = {
+                                url   : newWidget.youTube.url,
+                                width : newWidget.youTube.width
+                            };
                         }
                     } else if(widget.widgetType === "TEXT") {
                         if(newWidget.textInput) {
@@ -70,10 +76,10 @@ module.exports = function(applicationModel) {
                             widget.textInput.formatted = newWidget.textInput.formatted;
                         }
                     } else if(widget.widgetType === "DATATABLE") {
-
+                        widget.datatable = {};
                         // save datatable widget to database
                         if(newWidget.datatable.collection && newWidget.datatable.collection.name) {
-                            widget.datatable.collection = newWidget.datatable.collection.name;
+                            widget.datatable.collectionName = newWidget.datatable.collection.name;
                         }
                         if(newWidget.datatable.fields) {
                             // split field names into array
@@ -95,7 +101,7 @@ module.exports = function(applicationModel) {
                         // same as DATATABLE with the added property 'template'
                         widget.repeater.template = newWidget.repeater.template;
                         if(newWidget.repeater.collection && newWidget.repeater.collection.name) {
-                            widget.repeater.collection = newWidget.repeater.collection.name;
+                            widget.repeater.collectionName = newWidget.repeater.collection.name;
                         }
                         if(newWidget.repeater.fields) {
                             // split field names into array
@@ -113,8 +119,10 @@ module.exports = function(applicationModel) {
                         }
                     } else if(widget.widgetType === "LINK") {
                         if(newWidget.link) {
-                            widget.link.url = newWidget.link.url;
-                            widget.link.target = newWidget.link.target;
+                            widget.link = {
+                                url    : newWidget.link.url,
+                                target : newWidget.link.target
+                            };
                         }
                     } else if(widget.widgetType === "BUTTON") {
                         if(newWidget.button) {
