@@ -12,6 +12,10 @@
     <%= applicationId %> / <%= pageId %>
 
     <!-- render page JSON from database -->
-    <%= page %>
+    <% for(var i in page.widgets) { %>
+        <div>
+            <%= page.widgets[i] %>
+        </div>
+    <% } %>
 </body>
 </html>
