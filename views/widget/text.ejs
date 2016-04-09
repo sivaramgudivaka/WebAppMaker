@@ -1,3 +1,25 @@
-<div>
-    Text Widget
+<% if(!widget.textInput.formatted && (!widget.textInput.rows || widget.textInput.rows===1)) { %>
+
+<input name="<%= widget.name %>"
+       id="<%= widget._id %>"
+       value="<%= widget.text %>"
+       placeholder="<%= widget.textInput.placeholder %>"
+       class="form-control"/>
+
+<% } else if(!widget.textInput.formatted && (widget.textInput.rows > 1)) { %>
+
+<textarea name="<%= widget.name %>"
+          rows="<%= widget.textInput.rows %>"
+          id="<%= widget._id %>"
+          placeholder="<%= widget.textInput.placeholder %>"
+          class="form-control"><%= widget.text %></textarea>
+<% } else { %>
+
+<div text-angular
+     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"
+     name="<%= widget.name %>">
 </div>
+
+<% } %>
+
+<%= widget %>

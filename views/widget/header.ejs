@@ -1,6 +1,4 @@
-<div>
-    <% if(!header.size) {header.size = 2;}%>
-    <h<%=header.size%>>
-        <%= text %>
-    </h<%=header.size%>>
-</div>
+<% if(!widget.header.size) {widget.header.size = 2;}%>
+<h<%=widget.header.size%>>
+    <%= widget.text %>
+</h<%=widget.header.size%>>

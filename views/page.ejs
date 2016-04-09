@@ -20,9 +20,16 @@
         // actual widget partials are in widget folder
         var widgetTemplate = "widget/"+widgetType;
         var widget = page.widgets[i];
+        var context = {
+            widget: page.widgets[i],
+            pageId: pageId,
+            applicationId: applicationId
+        }
     %>
 <%# pass data to included partial template -%>
-<%- include(widgetTemplate, widget) -%>
+<div>
+<%- include(widgetTemplate, context) -%>
+</div>
     <% } %>
 </body>
 </html>
