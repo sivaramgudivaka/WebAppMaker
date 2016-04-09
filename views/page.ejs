@@ -8,14 +8,21 @@
 <body>
     <h2>Page</h2>
 
-    <!-- render data passed from the controller -->
+    <%# render data passed from the controller -%>
     <%= applicationId %> / <%= pageId %>
 
-    <!-- render page JSON from database -->
-    <% for(var i in page.widgets) { %>
-        <div>
-            <%= page.widgets[i] %>
-        </div>
+    <%# render page JSON from database -%>
+    <% for(var i in page.widgets) {
+        // calculate the name of the template to include
+        // name is based on the type of the widget
+        var widgetType = page.widgets[i].widgetType;
+        widgetType = widgetType.toLowerCase();
+        // actual widget partials are in widget folder
+        var widgetTemplate = "widget/"+widgetType;
+    %>
+<%# include template whose name has been dynamically calcylated -%>
+<%# deliberately un-indent so included HTML is not indented -%>
+<%- include(widgetTemplate) -%>
     <% } %>
 </body>
 </html>
