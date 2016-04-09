@@ -19,10 +19,10 @@
         widgetType = widgetType.toLowerCase();
         // actual widget partials are in widget folder
         var widgetTemplate = "widget/"+widgetType;
+        var widget = page.widgets[i];
     %>
-<%# include template whose name has been dynamically calcylated -%>
-<%# deliberately un-indent so included HTML is not indented -%>
-<%- include(widgetTemplate) -%>
+<%# pass data to included partial template -%>
+<%- include(widgetTemplate, widget) -%>
     <% } %>
 </body>
 </html>

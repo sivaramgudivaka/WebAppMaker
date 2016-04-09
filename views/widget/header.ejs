@@ -1,3 +1,6 @@
 <div>
-    Header Widget
+    <% if(!header.size) {header.size = 2;}%>
+    <h<%=header.size%>>
+        <%= text %>
+    </h<%=header.size%>>
 </div>
