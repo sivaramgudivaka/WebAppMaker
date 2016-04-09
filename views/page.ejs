@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WebAppMakerApp">
 <head>
     <meta charset="UTF-8">
     <title>Page</title>
-    <% include common/head-link.ejs.html %>
+    <%- include common/head-link   %>
+    <%- include common/head-script %>
 </head>
 <body>
-    <h2>Page</h2>
+    <div class="container">
 
-    <%# render data passed from the controller -%>
-    <%= applicationId %> / <%= pageId %>
-
-    <%# render page JSON from database -%>
     <% for(var i in page.widgets) {
         // calculate the name of the template to include
         // name is based on the type of the widget
@@ -31,5 +28,8 @@
 <%- include(widgetTemplate, context) -%>
 </div>
     <% } %>
+
+    </div>
+
 </body>
 </html>
