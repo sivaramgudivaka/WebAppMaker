@@ -2,12 +2,24 @@
 // server side controllers handle page routes 
 module.exports = function(app) {
     
-    // simple page route
-    app.get('/page', pageController);
+    // receive data as path parameters
+    app.get('/application/:applicationId/page/:pageId', pageController);
 
     // controller handles request
     // renders template view
     function pageController(req, res) {
-        res.render('page');
+
+        // extract path parameters from URL
+        var applicationId = req.params.applicationId;
+        var pageId        = req.params.pageId;
+
+        // create data map
+        var context = {
+            applicationId : applicationId,
+            pageId        : pageId
+        };
+
+        // pass data map to template for rendering
+        res.render('page', context);
     }
 }
