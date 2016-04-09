@@ -10,6 +10,9 @@ var mongojs = require('mongojs');
 // connect to database
 var db = mongojs('web-app-maker');
 
+// set ejs as the view engine
+app.set('view engine', 'ejs');
+
 // load passport module
 var passport = require('passport');
 

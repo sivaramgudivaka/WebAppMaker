@@ -14,4 +14,8 @@ module.exports = function (app, db) {
 
     // pass express app and db connection to database service
     var databaseService = require("./services/database.service.server")(app, db);
+
+    // load a server side controller to handle page routes,
+    // provide data, and render templates 
+    var controllers = require("./controllers/page.controller.server.js")(app);
 };
