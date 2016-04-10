@@ -84,3 +84,11 @@ body {
 th {
     text-transform: capitalize;
 }
+
+.jga-margin-right-5px {
+    margin-right: 5px;
+}
+
+.panel {
+    margin-bottom: 0px;
+}

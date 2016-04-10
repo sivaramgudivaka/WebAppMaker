@@ -27,18 +27,31 @@
        placeholder="Script Name"/>
 
 <div jga-sortable>
-    <div ng-repeat="statement in model.script.statements"
-         class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                Panel title
-                <span class="glyphicon glyphicon-align-justify pull-right"></span>
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </h3>
+    <div ng-repeat="statement in model.script.statements">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    {{$index}} -
+                    {{statement.title || 'Statement '+$index }}
+                    <span class="glyphicon glyphicon-align-justify pull-right"></span>
+
+                    <!-- click on cog to edit this statement -->
+                    <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/script/statement/{{statement._id}}">
+                        <span class="glyphicon glyphicon-cog pull-right jga-margin-right-5px"></span>
+                    </a>
+
+                </h3>
+            </div>
+            <div class="panel-body">
+
+            </div>
         </div>
-        <div class="panel-body">
-            {{statement.statementType}}
+
+        <!-- down arrow between statements -->
+        <div class="text-center">
+            <span class="glyphicon glyphicon-arrow-down"></span>
         </div>
+
     </div>
 </div>
 

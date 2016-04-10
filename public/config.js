@@ -149,6 +149,13 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
+            // navigate to statement editor when you click on th cog
+            .when ("/developer/:username/application/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementId", {
+                templateUrl: "views/script/statement-edit.view.html",
+                controller: "EditStatementController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
             .otherwise ({
                 redirectTo: "/"
             });

@@ -1,10 +1,24 @@
 (function(){
     angular
         .module("WebAppMakerApp")
+        .controller("EditStatementController", EditStatementController)
         .controller("ChooseStatementController", ChooseStatementController)
         .controller("EditScriptController", EditScriptController)
         .controller("NewScriptController", NewScriptController)
         .controller("ScriptListController", ScriptListController);
+
+    // controller for the statement editor
+    function EditStatementController($routeParams) {
+        
+        var vm = this;
+
+        // route params
+        vm.username      = $routeParams.username;
+        vm.applicationId = $routeParams.applicationId;
+        vm.pageId        = $routeParams.pageId;
+        vm.widgetId      = $routeParams.widgetId;
+        vm.statementId   = $routeParams.statementId;
+    }
 
     function ChooseStatementController($routeParams, ScriptService, $location) {
 
