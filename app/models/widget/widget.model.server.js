@@ -99,6 +99,7 @@ module.exports = function(applicationModel) {
 
                         // save REPEATER widget to database
                         // same as DATATABLE with the added property 'template'
+                        widget.repeater = {};
                         widget.repeater.template = newWidget.repeater.template;
                         if(newWidget.repeater.collection && newWidget.repeater.collection.name) {
                             widget.repeater.collectionName = newWidget.repeater.collection.name;
