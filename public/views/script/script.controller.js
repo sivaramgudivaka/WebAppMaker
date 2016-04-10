@@ -4,7 +4,7 @@
         .controller("NewScriptController", NewScriptController)
         .controller("ScriptListController", ScriptListController);
 
-    function NewScriptController($routeParams) {
+    function NewScriptController($routeParams, ScriptService) {
 
         var vm = this;
 
@@ -14,10 +14,18 @@
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
 
+        // event handlers
+        vm.createScript  = createScript;
+
         function init() {
 
         }
         init();
+        
+        function createScript(script) {
+            ScriptService
+                .createScript(vm, script);
+        }
     }
 
     function ScriptListController($routeParams) {
