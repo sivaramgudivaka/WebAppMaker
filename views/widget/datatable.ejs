@@ -1,21 +1,27 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <% for(var i in widget.datatable.fields) {%>
-            <th>
-                <%= field %>
-            </th>
-            <% } %>
+            <%  for(var i in widget.datatable.fields) {
+            %>      <th>
+                        <%= widget.datatable.fields[i] %>
+                    </th>
+            <%  }
+            %>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <% for(var i in widget.datatable.fields) {%>
-            <td ng-repeat="field in widget.datatable.fields">
-
-                {{record[field]}}
-            </td>
-            <% } %>
-        </tr>
+        <%  var data = data[collectionName];
+            for(var i in data) {
+                var record = data[i];
+                var fields = widget.datatable.fields;
+        %>      <tr>
+        <%      for(var j in fields) {
+        %>          <td>
+                        <%= record[fields[j]] %>
+                    </td>
+        <%      }
+        %>      </tr>
+        <%  }
+        %>
     </tbody>
 </table>
