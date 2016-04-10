@@ -59,6 +59,9 @@
              fields that will be used to populate the template -->
         <div ng-switch-when="REPEATER">
             <div ng-repeat="record in model.data">
+                <a class="pull-right" ng-click="model.deleteRecord(widget.widgetType, widget.repeater.collectionName, record._id)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
                 <div ng-bind-html="model.trustAsHtml(widget.repeater.template, record)">
                 </div>
             </div>
