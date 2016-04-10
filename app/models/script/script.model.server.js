@@ -1,11 +1,11 @@
 module.exports = function(applicationModel) {
 
     var api = {
-        createScript : createScript
+        saveScript : saveScript
     };
     return api;
 
-    function createScript(scope, script) {
+    function saveScript(scope, script) {
         return applicationModel
             .findApplicationById(scope.applicationId)
             .then(

@@ -137,6 +137,12 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
+            .when ("/developer/:username/application/:applicationId/page/:pageId/widget/:widgetId/script/edit", {
+                templateUrl: "views/script/script-edit.view.html",
+                controller: "EditScriptController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
             .otherwise ({
                 redirectTo: "/"
             });

@@ -1,10 +1,10 @@
 module.exports = function (app, model) {
 
-    app.post ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script", createScript);
+    app.post ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script", saveScript);
 
     var scriptModel = model.scriptModel;
 
-    function createScript(req, res) {
+    function saveScript(req, res) {
 
         // path parameters
         var applicationId = req.params.applicationId;
@@ -15,7 +15,7 @@ module.exports = function (app, model) {
         var script        = req.body;
 
         scriptModel
-            .createScript(req.params, script)
+            .saveScript(req.params, script)
             .then(
                 function() {
                     res.sendStatus(200);

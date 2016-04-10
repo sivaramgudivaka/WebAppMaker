@@ -5,11 +5,12 @@
 
     function scriptService($http) {
         var api = {
-            createScript: createScript
+            createScript: saveScript,
+            saveScript: saveScript
         };
         return api;
 
-        function createScript(scope, script) {
+        function saveScript(scope, script) {
             var url  = "/api";
                 url += "/application/"+scope.applicationId;
                 url += "/page/"+scope.pageId;
