@@ -121,6 +121,13 @@
             .when ("/developer/:username/application/:applicationId/page/:pageId/widget/:widgetId/edit", {
                 templateUrl: "views/widget/widget-edit.view.html",
                 controller: "WidgetEditController",
+                controllerAs: "model"
+            })
+
+            // script routes
+            .when ("/developer/:username/application/:applicationId/page/:pageId/widget/:widgetId/script", {
+                templateUrl: "views/script/script-list.view.html",
+                controller: "ScriptListController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
