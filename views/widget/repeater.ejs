@@ -1,3 +1,18 @@
 <div>
-    <%- widget.repeater.template %>
+    <%  var data = data[collectionName];
+        for(var i in data) {
+            var record = data[i];
+            var html = widget.repeater.template;
+            for(var j in widget.repeater.fields) {
+                html = html.replace(
+                        "{{" + widget.repeater.fields[j] + "}}",
+                        record[widget.repeater.fields[j]]
+                );
+            }
+    %>
+               <%- html %>
+    <%
+        }
+    %>
+
 </div>

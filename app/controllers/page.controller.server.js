@@ -1,10 +1,14 @@
+var q = require("q");
 
 // server side controllers handle page routes 
 module.exports = function(app, model) {
 
     // get page model from model singleton
     var pageModel = model.pageModel;
-    
+
+    // get mongo to query for repeater and datatable
+    var db = model.mongo;
+
     // receive data as path parameters
     app.get('/developer/:username/application/:applicationId/page/:pageId', pageController);
 
@@ -31,9 +35,32 @@ module.exports = function(app, model) {
                         page          : page // add page to data map for template
                     };
 
-                    // pass data map to template for rendering
-                    res.render('page', context);
+                    var dbAccess = false;
+                    var widgetNeedingDbData = null;
+                    for(var i in page.widgets) {
+                        var widget = page.widgets[i];
+                        var widgetType = widget.widgetType;
+                        if(widgetType == "REPEATER" || widgetType == "DATATABLE") {
+                            widgetNeedingDbData = widget;
+                        }
+                    }
+
+                    if(widgetNeedingDbData) {
+                        var collectionName = widgetNeedingDbData.repeater ? widgetNeedingDbData.repeater.collectionName : widgetNeedingDbData.datatable.collectionName;
+                        var collection = db.collection(collectionName.replace(/ /g,"_"));
+                        collection.find(function(err, docs){
+                            docs.reverse();
+                            if(!err) {
+                                context.data = {};
+                                context.collectionName = collectionName;
+                                context.data[collectionName] = docs;
+                                res.render('page', context);
+                            }
+                        });
+                    } else {
+                        res.render('page', context);
+                    }
                 }
-            )
+            );
     }
 }
