@@ -1,4 +1,10 @@
-<% if(!widget.header.size) {widget.header.size = 2;}%>
+<%
+    if(!widget.header) {
+        widget.header = {
+            size: 2
+        };
+    }
+%>
 <h<%=widget.header.size%>>
     <%= widget.text %>
 </h<%=widget.header.size%>>
