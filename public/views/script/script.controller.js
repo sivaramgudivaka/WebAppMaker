@@ -19,7 +19,16 @@
         vm.saveScript  = saveScript;
 
         function init() {
-
+            ScriptService
+                .findScript(vm)
+                .then(
+                    function(response) {
+                        vm.script = response.data
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
         }
         init();
 
