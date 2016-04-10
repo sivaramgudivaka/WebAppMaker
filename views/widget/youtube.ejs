@@ -1,5 +1,14 @@
-<iframe src="<%= widget.youTube.url %>"
-        width="100%"
-        frameborder="0"
-        allowfullscreen>
-</iframe>
+<%
+    if(widget.youTube) {
+        var urlParts        = widget.youTube.url.split("/");
+        var youTubeId       = urlParts[urlParts.length-1];
+        var youTubeEmbedUrl = "https://www.youtube.com/embed/"+youTubeId;
+%>
+        <iframe src="<%= youTubeEmbedUrl %>"
+                width="100%"
+                frameborder="0"
+                allowfullscreen>
+        </iframe>
+<%
+    }
+%>
