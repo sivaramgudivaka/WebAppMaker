@@ -1,0 +1,29 @@
+<!-- allow developers to choose the type of statement -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+
+        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/script/edit"
+           class="btn btn-default btn-transparent pull-left">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="navbar-brand">Choose Operation Type</a>
+
+    </div>
+</nav>
+
+<table class="table">
+    <tbody>
+        <!-- number statements allow arithmetic operations -->
+        <tr><td><a ng-click="model.selectStatement('NUMBER')">Number Operation</a></td></tr>
+    </tbody>
+</table>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-header">
+        <a href="#/developer/{{currentUser.username}}/edit"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-home"></span>
+        </a>
+    </div>
+</nav>

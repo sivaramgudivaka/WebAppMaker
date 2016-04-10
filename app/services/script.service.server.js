@@ -2,24 +2,30 @@ module.exports = function (app, model) {
 
     app.post ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script", saveScript);
     app.get  ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script", findScript);
+    app.post ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementType", addStatement);
 
     var scriptModel = model.scriptModel;
 
-    function findScript(req, res) {
-
-        model.applicationModel
-            .findApplicationById(req.params.applicationId)
+    // handle http request to add a new statement
+    function addStatement(req, res) {
+        scriptModel
+            .addStatement(req.params)
             .then(
-                function(application) {
-                    var widget = application
-                        .pages.id(req.params.pageId)
-                        .widgets.id(req.params.widgetId);
+                function(script) {
+                    res.json(script);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
+    }
 
-                    if (widget.button && widget.button.script) {
-                        res.json(widget.button.script);
-                    } else {
-                        res.json({});
-                    }
+    function findScript(req, res) {
+        scriptModel
+            .findScript(req.params)
+            .then(
+                function(script) {
+                    res.json(script);
                 },
                 function(err) {
                     res.statusCode(400).send(err);

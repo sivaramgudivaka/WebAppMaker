@@ -1,9 +1,39 @@
 (function(){
     angular
         .module("WebAppMakerApp")
+        .controller("ChooseStatementController", ChooseStatementController)
         .controller("EditScriptController", EditScriptController)
         .controller("NewScriptController", NewScriptController)
         .controller("ScriptListController", ScriptListController);
+
+    function ChooseStatementController($routeParams, ScriptService) {
+
+        var vm = this;
+
+        // route params
+        vm.username      = $routeParams.username;
+        vm.applicationId = $routeParams.applicationId;
+        vm.pageId        = $routeParams.pageId;
+        vm.widgetId      = $routeParams.widgetId;
+
+        vm.selectStatement = selectStatement;
+
+        // handle statement type selection
+        function selectStatement(statementType) {
+            // notify Web service of new statement
+            ScriptService
+                .addStatement(vm, statementType)
+                .then(
+                    function() {
+                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+vm.pageId+"/widget/" + newWidget._id + "/edit");
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
+        }
+
+    }
 
     function EditScriptController($routeParams, ScriptService, $location) {
 

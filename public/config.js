@@ -143,6 +143,12 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
+            .when ("/developer/:username/application/:applicationId/page/:pageId/widget/:widgetId/script/choose", {
+                templateUrl: "views/script/statement-choose.view.html",
+                controller: "ChooseStatementController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
             .otherwise ({
                 redirectTo: "/"
             });

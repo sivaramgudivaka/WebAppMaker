@@ -8,6 +8,12 @@
 
         <a class="navbar-brand">Script Editor</a>
 
+        <!-- click on + to navigate to statement type choose -->
+        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/script/choose"
+           class="btn btn-default btn-transparent pull-right">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+
         <a ng-click="model.saveScript(model.script)"
            class="btn btn-default btn-transparent pull-right">
             <span class="glyphicon glyphicon-ok"></span>

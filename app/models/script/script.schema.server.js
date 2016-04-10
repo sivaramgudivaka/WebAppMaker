@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 module.exports = function() {
 
-    var StatementSchema = require("./statement.schema.server.js");
+    var StatementSchema = require("./statement.schema.server.js")();
 
     var ScriptSchema = mongoose.Schema({
         name       :  String,
