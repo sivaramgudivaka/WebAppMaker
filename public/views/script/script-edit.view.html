@@ -26,6 +26,23 @@
        class="form-control"
        placeholder="Script Name"/>
 
+<div jga-sortable>
+    <div ng-repeat="statement in model.script.statements"
+         class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Panel title
+                <span class="glyphicon glyphicon-align-justify pull-right"></span>
+                <span class="glyphicon glyphicon-cog pull-right"></span>
+            </h3>
+        </div>
+        <div class="panel-body">
+            {{statement.statementType}}
+        </div>
+    </div>
+</div>
+
+
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="navbar-header">
         <a href="#/developer/{{currentUser.username}}/edit"

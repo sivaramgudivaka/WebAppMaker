@@ -6,7 +6,7 @@
         .controller("NewScriptController", NewScriptController)
         .controller("ScriptListController", ScriptListController);
 
-    function ChooseStatementController($routeParams, ScriptService) {
+    function ChooseStatementController($routeParams, ScriptService, $location) {
 
         var vm = this;
 
@@ -25,7 +25,7 @@
                 .addStatement(vm, statementType)
                 .then(
                     function() {
-                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+vm.pageId+"/widget/" + newWidget._id + "/edit");
+                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+vm.pageId+"/widget/" + vm.widgetId + "/script/edit");
                     },
                     function(err) {
                         vm.error = err;
