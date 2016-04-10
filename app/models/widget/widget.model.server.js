@@ -76,7 +76,10 @@ module.exports = function(applicationModel) {
                             widget.textInput.formatted = newWidget.textInput.formatted;
                         }
                     } else if(widget.widgetType === "DATATABLE") {
-                        widget.datatable = {};
+                        widget.datatable = {
+                            // save deletable in database
+                            deletable: newWidget.datatable.deletable
+                        };
                         // save datatable widget to database
                         if(newWidget.datatable.collection && newWidget.datatable.collection.name) {
                             widget.datatable.collectionName = newWidget.datatable.collection.name;
@@ -99,7 +102,10 @@ module.exports = function(applicationModel) {
 
                         // save REPEATER widget to database
                         // same as DATATABLE with the added property 'template'
-                        widget.repeater = {};
+                        widget.repeater = {
+                            // save deletable in database
+                            deletable: newWidget.repeater.deletable
+                        };
                         widget.repeater.template = newWidget.repeater.template;
                         if(newWidget.repeater.collection && newWidget.repeater.collection.name) {
                             widget.repeater.collectionName = newWidget.repeater.collection.name;

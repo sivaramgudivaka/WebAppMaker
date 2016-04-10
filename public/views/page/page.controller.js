@@ -17,6 +17,7 @@
         vm.getButtonClass = getButtonClass;
         vm.trustAsHtml    = trustAsHtml;
         vm.buttonClick    = buttonClick;
+        vm.deleteRecord   = deleteRecord;
 
         function init() {
             PageService
@@ -49,6 +50,27 @@
                 );
         }
         init();
+
+        // handle delete button event
+        function deleteRecord(widgetType, collectionName, recordId) {
+            DatabaseService
+                .delete(vm.applicationId, collectionName, recordId)
+                .then(
+                    function(){
+                        DatabaseService
+                            .select(collectionName)
+                            .then(
+                                function (response) {
+                                    response.data.reverse();
+                                    vm.data = response.data;
+                                },
+                                function (err) {
+                                    vm.error = err;
+                                }
+                            );
+                    }
+                );
+        }
 
         // button click event handler
         function buttonClick(widget) {

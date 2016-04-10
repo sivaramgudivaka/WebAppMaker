@@ -7,9 +7,15 @@
 
         var api = {
             executeCommand: executeCommand,
-            select: select
+            select: select,
+            delete: remove
         };
         return api;
+
+        // send delete request to database Web service
+        function remove(applicationId, pageName, recordId) {
+            return $http.delete("/api/database/"+pageName+"/"+recordId);
+        }
 
         // client service to retrieve data from database.
         // use page name as collection

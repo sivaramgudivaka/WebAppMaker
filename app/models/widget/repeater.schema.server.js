@@ -5,7 +5,8 @@ module.exports = function () {
     var RepeaterSchema = mongoose.Schema({
         collectionName :  String,
         fields         : [String],
-        template       :  String
+        template       :  String,
+        deletable      :  Boolean // added deletable
     });
 
     return RepeaterSchema;

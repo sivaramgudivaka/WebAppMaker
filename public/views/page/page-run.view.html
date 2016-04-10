@@ -72,6 +72,9 @@
                     <th ng-repeat="field in widget.datatable.fields">
                         {{field}}
                     </th>
+                    <th ng-if="widget.datatable.deletable">
+                        &nbsp;
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -81,6 +84,13 @@
                     <td ng-repeat="field in widget.datatable.fields">
                         <!-- record is map of fields. use field names as key -->
                         {{record[field]}}
+                    </td>
+                    <!-- show delete button if deletable -->
+                    <!-- notify controller -->
+                    <td ng-if="widget.datatable.deletable">
+                        <a class="pull-right" ng-click="model.deleteRecord(widget.widgetType, widget.datatable.collectionName, record._id)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
                     </td>
                 </tr>
                 </tbody>

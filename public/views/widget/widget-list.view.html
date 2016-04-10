@@ -80,6 +80,9 @@
                             <th ng-repeat="field in widget.datatable.fields">
                                 {{field}}
                             </th>
+                            <th ng-if="widget.datatable.deletable">
+                                &nbsp;
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,6 +90,12 @@
                         <tr ng-repeat="time in [1,2,3]">
                             <td ng-repeat="field in widget.datatable.fields">
                                 &nbsp;
+                            </td>
+                            <!-- show remove button if deletable -->
+                            <td ng-if="widget.datatable.deletable">
+                                <a class="pull-right">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
                             </td>
                         </tr>
                     </tbody>
