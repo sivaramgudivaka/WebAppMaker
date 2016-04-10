@@ -3,8 +3,23 @@ module.exports = function (app, model) {
     app.post ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script", saveScript);
     app.get  ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script", findScript);
     app.post ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementType", addStatement);
+    app.get  ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementId", findStatement);
 
     var scriptModel = model.scriptModel;
+
+    // handle http request for statement
+    function findStatement(req, res) {
+        scriptModel
+            .findStatement(req.params)
+            .then(
+                function(statement) {
+                    res.json(statement);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
+    }
 
     // handle http request to add a new statement
     function addStatement(req, res) {

@@ -8,7 +8,7 @@
         .controller("ScriptListController", ScriptListController);
 
     // controller for the statement editor
-    function EditStatementController($routeParams) {
+    function EditStatementController($routeParams, ScriptService) {
         
         var vm = this;
 
@@ -18,6 +18,21 @@
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
         vm.statementId   = $routeParams.statementId;
+
+        // retrieve statement on load
+        function init() {
+            ScriptService
+                .findStatement(vm)
+                .then(
+                    function(response) {
+                        vm.statement = response.data;
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
+        }
+        init();
     }
 
     function ChooseStatementController($routeParams, ScriptService, $location) {

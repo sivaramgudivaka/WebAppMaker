@@ -8,9 +8,17 @@
             createScript : saveScript,
             saveScript   : saveScript,
             findScript   : findScript,
-            addStatement : addStatement
+            addStatement : addStatement,
+            findStatement: findStatement
         };
         return api;
+
+        // retrieve statement
+        function findStatement(scope) {
+            var url  = apiBaseUrl(scope);
+                url += "/script/statement/" + scope.statementId;
+            return $http.get(url);
+        }
 
         // notify server of new statement
         function addStatement(scope, statementType) {
@@ -38,6 +46,14 @@
                 url += "/widget/"+scope.widgetId;
                 url += "/script";
             return $http.post(url, script);
+        }
+
+        function apiBaseUrl(scope) {
+            var url  = "/api";
+                url += "/application/"+scope.applicationId;
+                url += "/page/"+scope.pageId;
+                url += "/widget/"+scope.widgetId;
+            return url;
         }
     }
 })();

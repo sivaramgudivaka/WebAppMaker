@@ -12,9 +12,29 @@ module.exports = function(applicationModel) {
     var api = {
         saveScript : saveScript,
         findScript : findScript,
-        addStatement : addStatement
+        addStatement : addStatement,
+        findStatement: findStatement
     };
     return api;
+
+    // retrieve statement from database
+    function findStatement(scope) {
+
+        var deferred = q.defer();
+
+        findScript(scope)
+            .then(
+                function(script) {
+                    var statement = script.statements.id(scope.statementId);
+                    deferred.resolve(statement);
+                },
+                function (err) {
+                    deferred.reject(err);
+                }
+            );
+
+        return deferred.promise;
+    }
 
     function addStatement(scope) {
         
