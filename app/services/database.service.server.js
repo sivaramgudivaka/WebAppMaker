@@ -25,6 +25,7 @@ module.exports = function(app, model) {
         
         // data document is in body
         var fields = req.body;
+        var callbackUrl = fields["callback-url"];
         fields.created = Date.now;
         
         // use page name as name of collection
@@ -37,7 +38,11 @@ module.exports = function(app, model) {
             fields,
             function (err, doc) {
                 if(!err) {
-                    res.json(doc);
+                    if(callbackUrl) {
+                        res.redirect(callbackUrl);
+                    } else {
+                        res.json(doc);
+                    }
                 } else {
                     res.status(400).send(err);
                 }

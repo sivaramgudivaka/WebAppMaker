@@ -25,6 +25,8 @@
 </head>
 <body>
 
+    <form action="/api/database/<%= page.name.replace(/ /g,'_') %>" method="post">
+
     <div class="container">
 
         <!-- go back to the page editor -->
@@ -55,5 +57,6 @@
 
     </div>
 
+    </form>
 </body>
 </html>

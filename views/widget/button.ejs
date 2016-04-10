@@ -1,4 +1,15 @@
-<a href="/application/<%=applicationId%>/page/<%=widget.button.navigate%>"
-   class="btn btn-block btn-<%= widget.button.style.toLowerCase() %>">
-    <%= widget.text %>
-</a>
+<%  if(widget.button.dbCommand) {
+%>      <button type="submit"
+                class="btn btn-block btn-<%= widget.button.style.toLowerCase() %>">
+            <%= widget.text %>
+        </button>
+        <input type="hidden"
+               name="callback-url"
+               value="/developer/<%=username%>/application/<%=applicationId%>/page/<%=widget.button.navigate%>"/>
+<%  } else {
+%>      <a href="/developer/<%=username%>/application/<%=applicationId%>/page/<%=widget.button.navigate%>"
+           class="btn btn-block btn-<%= widget.button.style.toLowerCase() %>">
+            <%= widget.text %>
+        </a>
+<%  }
+%>
