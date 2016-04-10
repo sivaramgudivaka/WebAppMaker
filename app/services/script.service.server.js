@@ -2,7 +2,7 @@ module.exports = function (app, model) {
 
     app.post ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script", createScript);
 
-    var applicationModel = model.applicationModel;
+    var scriptModel = model.scriptModel;
 
     function createScript(req, res) {
 
@@ -14,8 +14,15 @@ module.exports = function (app, model) {
         // body data
         var script        = req.body;
 
-        console.log([applicationId, pageId, widgetId, script]);
-
-        res.sendStatus(200);
+        scriptModel
+            .createScript(req.params, script)
+            .then(
+                function() {
+                    res.sendStatus(200);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
     }
 }
