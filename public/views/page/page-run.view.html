@@ -58,7 +58,7 @@
              the DATATABLE widget, but it also passes the record, which is the map of
              fields that will be used to populate the template -->
         <div ng-switch-when="REPEATER">
-            <div ng-repeat="record in model.data | orderBy : created : true">
+            <div ng-repeat="record in model.data">
                 <div ng-bind-html="model.trustAsHtml(widget.repeater.template, record)">
                 </div>
             </div>

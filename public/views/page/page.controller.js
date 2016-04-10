@@ -30,12 +30,13 @@
                         for(var w in vm.widgets) {
                             // now both the DATATABLE and the REPEATER widgets need data
                             if(vm.widgets[w].widgetType=="DATATABLE" || vm.widgets[w].widgetType=="REPEATER" ) {
-                                var collectionName = vm.widgets[w].datatable ? vm.widgets[w].datatable.collectionName : vm.widgets[w].repeater.collectionName;
+                                var collectionName = vm.widgets[w].widgetType=="DATATABLE" ? vm.widgets[w].datatable.collectionName : vm.widgets[w].repeater.collectionName;
                                 DatabaseService
                                     // had to rename 'collection' to 'collectionName' on the schema
                                     .select(collectionName)
                                     .then(
                                         function (response) {
+                                            response.data.reverse();
                                             vm.data = response.data;
                                         },
                                         function (err) {
