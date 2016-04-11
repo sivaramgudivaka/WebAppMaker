@@ -8,6 +8,7 @@ module.exports = function() {
     var StatementSchema = mongoose.Schema({
         statementType   : {type : String, enum : ["NUMBER", "STRING", "DATE", "OBJECT", "DATABASE", "LOGIC", "DECISION"]},
         variables: [String],
+        title: String,
         numberStatement : NumberStatementSchema
     });
 
