@@ -17,15 +17,42 @@ module.exports = function(applicationModel) {
     };
     return api;
 
-    // retrieve statement from database
     function findStatement(scope) {
 
         var deferred = q.defer();
 
-        findScript(scope)
+        // retrieve application since we need all variables in the application
+        applicationModel
+            .findApplicationById(scope.applicationId)
             .then(
-                function(script) {
-                    var statement = script.statements.id(scope.statementId);
+                function(application) {
+                    
+                    // get all variables from the application
+                    // TODO: modularize retrieving all variables
+                    var variables = [];
+                    var pages = application.pages;
+                    for(var i in pages) {
+                        var page = pages[i];
+                        var widgets = page.widgets;
+                        for(var j in widgets) {
+                            var widget = widgets[j];
+                            if(widget.name) {
+                                variables.push(widget.name);
+                            }
+                        }
+                    }
+
+                    // get the statement
+                    var statement = application
+                        .pages.id(scope.pageId)
+                        .widgets.id(scope.widgetId)
+                        .button.script
+                        .statements.id(scope.statementId);
+
+                    // add the variables to the statement
+                    // so we can render them in the dropdowns
+                    statement.variables = variables;
+                    
                     deferred.resolve(statement);
                 },
                 function (err) {

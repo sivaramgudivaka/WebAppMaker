@@ -70,6 +70,9 @@ module.exports = function(applicationModel) {
                             };
                         }
                     } else if(widget.widgetType === "TEXT") {
+                        if(!widget.textInput) {
+                            widget.textInput = {};
+                        }
                         if(newWidget.textInput) {
                             widget.textInput.placeholder = newWidget.textInput.placeholder;
                             widget.textInput.rows = newWidget.textInput.rows;
