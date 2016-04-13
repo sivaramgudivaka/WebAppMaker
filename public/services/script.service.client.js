@@ -9,9 +9,16 @@
             saveScript   : saveScript,
             findScript   : findScript,
             addStatement : addStatement,
-            findStatement: findStatement
+            findStatement: findStatement,
+            updateStatement: updateStatement
         };
         return api;
+
+        function updateStatement(scope, statement) {
+            var url  = apiBaseUrl(scope);
+            url += "/script/statement/" + scope.statementId;
+            return $http.put(url, statement);
+        }
 
         // retrieve statement
         function findStatement(scope) {

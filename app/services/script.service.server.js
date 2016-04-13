@@ -2,10 +2,25 @@ module.exports = function (app, model) {
 
     app.post ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script", saveScript);
     app.get  ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script", findScript);
+
     app.post ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementType", addStatement);
     app.get  ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementId", findStatement);
+    app.put  ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementId", updateStatement);
 
     var scriptModel = model.scriptModel;
+
+    function updateStatement(req, res) {
+        scriptModel
+            .updateStatement(req.params, req.body)
+            .then(
+                function(statement) {
+                    res.sendStatus(200);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
+    }
 
     // handle http request for statement
     function findStatement(req, res) {

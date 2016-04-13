@@ -13,9 +13,37 @@ module.exports = function(applicationModel) {
         saveScript : saveScript,
         findScript : findScript,
         addStatement : addStatement,
-        findStatement: findStatement
+        findStatement: findStatement,
+        updateStatement: updateStatement
     };
     return api;
+
+    function updateStatement(scope, newStatement) {
+        return applicationModel
+            .findApplicationById(scope.applicationId)
+            .then(
+                function(application) {
+                    var statement = application
+                        .pages.id(scope.pageId)
+                        .widgets.id(scope.widgetId)
+                        .button.script
+                        .statements.id(scope.statementId);
+
+                    if(statement.statementType == "NUMBER") {
+                        if(!statement.numberStatement) {
+                            statement.numberStatement = {};
+                        }
+                        statement.numberStatement.input1 = newStatement.numberStatement.input1;
+                        statement.numberStatement.input2 = newStatement.numberStatement.input2;
+                        statement.numberStatement.output = newStatement.numberStatement.output;
+                        statement.numberStatement.operationType = newStatement.numberStatement.operationType;
+                    }
+
+                    return application.save();
+                });
+    }
+
+
 
     function findStatement(scope) {
 
