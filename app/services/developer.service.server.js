@@ -18,7 +18,7 @@ module.exports = function (app, model) {
     app.get ("/api/developer/search/:username", searchDeveloper);
 
     var auth = authorized;
-    app.post  ('/api/login', passport.authenticate('local'), login);
+    app.post  ('/api/login', passport.authenticate('web-app-maker'), login);
     app.post  ('/api/logout',         logout);
     app.get   ('/api/loggedin',       loggedin);
     app.post  ('/api/register',       register);
@@ -51,7 +51,7 @@ module.exports = function (app, model) {
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
-    passport.use(new LocalStrategy(localStrategy));
+    passport.use('web-app-maker', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
