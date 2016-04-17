@@ -1,0 +1,42 @@
+<link href="/css/bootstrap.css" rel="stylesheet"/>
+<div class="container">
+    <form method="post"
+          action="/uml/<%= entity.name %>/<%= doc._id %>/update">
+        <h1>
+            <a href="/uml/<%= entity.name %>">
+                <span class="glyphicon glyphicon-chevron-left"></span></a>
+
+            Edit <%= entity.label %>
+
+            <button type="submit"
+                    class="btn btn-primary pull-right">
+                <span class="glyphicon glyphicon-ok"></span>
+            </button>
+        </h1>
+
+        <%  for(var i in entity.views.edit.fields) {
+                var fieldName = entity.views.edit.fields[i];
+                var field = entity.fields[fieldName];
+        %>      <div>
+                    <%= field.label %>
+                </div>
+                <div>
+                    <%  if(field.type == "String") {
+                            if(field.rows > 1) {
+                    %>          <textarea placeholder="<%=field.placeholder%>"
+                                          name="<%= field.name %>"
+                                          class="form-control"
+                                          rows="<%=field.rows%>"><%=  doc[field.name] %></textarea>
+                    <%      } else {
+                    %>          <input name="<%= field.name %>"
+                                       value="<%=  doc[field.name] %>"
+                                       class="form-control"
+                                       placeholder="<%= field.placeholder %>"/>
+                    <%      }
+                    }
+                    %>
+                </div>
+        <%  }
+        %>
+    </form>
+</div>

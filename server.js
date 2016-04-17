@@ -34,4 +34,6 @@ app.use(express.static(__dirname + '/public'));
 // pass mongojs connection to our server side app
 require ("./app/app.js")(app);
 
+require ("./uml/app.js")(app);
+
 app.listen(3000);

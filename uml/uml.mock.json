@@ -1,0 +1,73 @@
+{
+  "start" : "trip",
+  "trip" : {
+    "parent" : null,
+    "label" : "Trip",
+    "name"  : "trip",
+    "views" : {
+      "list" : {
+        "fields" : ["name", "description"],
+        "deletable": true,
+        "editable": true
+      },
+      "edit" : {
+        "fields" : ["name", "description"]
+      },
+      "new" : {}
+    },
+    "fields" : {
+      "name" : {
+        "type" : "String",
+        "label" : "Trip Name",
+        "placeholder" : "Name",
+        "name" : "name"
+      },
+      "description" : {
+        "type" : "String",
+        "label" : "Long Description",
+        "rows" : 5,
+        "placeholder" : "Description",
+        "name" : "description"
+      }
+    }
+  },
+  "fish" : {
+    "parent" : null,
+    "label" : "Fish",
+    "name"  : "fish",
+    "views" : {
+      "list" : {
+        "fields" : ["name", "description", "weight"],
+        "deletable": false,
+        "editable": true
+      },
+      "edit" : {
+        "fields" : ["name", "description", "weight"]
+      },
+      "new" : {
+        "fields" : ["name", "weight", "description"]
+      }
+    },
+    "fields" : {
+      "weight" : {
+        "type" : "String",
+        "label" : "Weight",
+        "placeholder" : "1lb",
+        "name" : "weight"
+      },
+      "name" : {
+        "type" : "String",
+        "label" : "Name",
+        "placeholder" : "Name",
+        "name" : "name"
+      },
+      "description" : {
+        "type" : "String",
+        "label" : "Description",
+        "rows" : 5,
+        "placeholder" : "Description",
+        "name" : "description"
+      }
+    }
+  }
+}

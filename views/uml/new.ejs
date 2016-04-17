@@ -1,0 +1,38 @@
+<link href="/css/bootstrap.css" rel="stylesheet"/>
+<div class="container">
+    <form method="post"
+          action="/uml/<%= entity.name %>">
+        <h1>
+            <a href="/uml/<%= entity.name %>">
+                <span class="glyphicon glyphicon-chevron-left"></span></a>
+
+            New <%= entity.label %>
+
+            <button type="submit"
+                    class="btn btn-primary pull-right">
+                <span class="glyphicon glyphicon-ok"></span>
+            </button>
+        </h1>
+        <%  for(var name in entity.fields) {
+            var field = entity.fields[name];
+        %>      <div>
+            <%= field.label %>
+        </div>
+        <div>
+            <%  if(field.type == "String") {
+                    if(field.rows > 1) {
+            %>          <textarea placeholder="<%=field.placeholder%>"
+                                  name="<%= field.name %>"
+                                  class="form-control"
+                                  rows="<%=field.rows%>"></textarea>
+            <%      } else {
+            %>          <input name="<%= field.name %>"
+                               class="form-control"
+                               placeholder="<%= field.placeholder %>"/>
+            <%      }
+            }
+            %>
+        </div>
+        <%  } %>
+    </form>
+</div>

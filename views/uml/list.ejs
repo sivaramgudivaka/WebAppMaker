@@ -1,0 +1,54 @@
+<link href="/css/bootstrap.css" rel="stylesheet"/>
+<div class="container">
+    <h1>
+        List of <%= entity.label %>s
+        <a href="/uml/<%= entity.name %>/new" class="pull-right">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </h1>
+
+    <%  if(docs) {%>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <%  for(var f in entity.views.list.fields) {
+                                var fieldName = entity.views.list.fields[f];
+                                var field = entity.fields[fieldName];
+                        %>      <th><%= field.label %></th>
+                        <%  }
+                        %>
+                        <%  if(entity.views.list.deletable || entity.views.list.editable) {
+                        %>      <th>&nbsp;</th>
+                        <%  }
+                        %>
+                    </tr>
+                </thead>
+                <tbody>
+            <%  for(var i in docs) {
+                    var doc = docs[i];
+            %>      <tr>
+            <%      for(var f in entity.views.list.fields) {
+                        var fieldName = entity.views.list.fields[f];
+            %>          <td><%= doc[fieldName] %></td>
+            <%      }
+                    if(entity.views.list.deletable || entity.views.list.editable) {
+            %>          <td>
+            <%          if(entity.views.list.editable) {
+            %>              <a href="/uml/<%= entity.name %>/<%= doc['_id'] %>/edit" class="pull-right">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+            <%          }
+                        if(entity.views.list.deletable) {
+            %>              <a href="/uml/<%= entity.name %>/<%= doc['_id'] %>/delete" class="pull-right">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+            <%          }
+            %>          </td>
+            <%      }
+            %>      </tr>
+            <%  }
+            %>  </tbody>
+            </table>
+    <%  }
+    %>
+</div>
