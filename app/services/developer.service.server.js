@@ -28,13 +28,13 @@ module.exports = function (app, model) {
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: '/#/profile',
-            failureRedirect: '/#/login'
+            successRedirect: '/ide/#/profile',
+            failureRedirect: '/ide/#/login'
         }));
     app.get   ('/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: '/#/profile',
-            failureRedirect: '/#/login'
+            successRedirect: '/ide/#/profile',
+            failureRedirect: '/ide/#/login'
         }));
 
     var googleConfig = {
