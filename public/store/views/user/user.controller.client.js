@@ -4,13 +4,13 @@
         .controller("RegisterController", registerController)
         .controller("LoginController", loginController);
 
-    function registerController(SecurityService, $rootScope, $location) {
+    function registerController(UserService, $rootScope, $location) {
         var vm = this;
         vm.register = register;
 
         function register(developer) {
             delete developer.password2;
-            SecurityService
+            UserService
                 .register(developer)
                 .then(
                     function(response) {
@@ -26,12 +26,12 @@
         }
     }
 
-    function loginController(SecurityService, $rootScope, $location) {
+    function loginController(UserService, $rootScope, $location) {
         var vm = this;
         vm.login = login;
 
         function login(developer) {
-            SecurityService
+            UserService
                 .login(developer)
                 .then(
                     function(response) {
