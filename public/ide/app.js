@@ -1,7 +1,7 @@
 (function () {
     angular
         .module ("WebAppMakerApp",
-            ["ngRoute", "jgaDirectives",
+            ["ngRoute", "ngTouch", "jgaDirectives",
                 "textAngular",
                 "angucomplete-alt"]); // add autocomplete dependency
 })();

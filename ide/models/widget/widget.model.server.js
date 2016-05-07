@@ -136,10 +136,14 @@ module.exports = function(applicationModel) {
                         }
                     } else if(widget.widgetType === "BUTTON") {
                         if(newWidget.button) {
-                            widget.button.style     = newWidget.button.style;
+                            widget.button = {
+                                style: newWidget.button.style,
+                                dbCommand: newWidget.button.dbCommand
+                            };
+                            // widget.button.style     = newWidget.button.style;
                             
                             // save database command for when button is clicked
-                            widget.button.dbCommand = newWidget.button.dbCommand;
+                            // widget.button.dbCommand = newWidget.button.dbCommand;
                             // save page id button navigates to
                             if(newWidget.button.navigate) {
                                 widget.button.navigate = newWidget.button.navigate._id;

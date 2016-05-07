@@ -13,18 +13,6 @@
             <span class="glyphicon glyphicon-plus"></span>
         </a>
 
-        <!-- pass data to server side page controller, including username -->
-        <a href="/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}"
-           class="btn btn-default btn-transparent pull-right">
-            <span class="glyphicon glyphicon-eye-open"></span>
-        </a>
-
-        <!-- click on RUN link to run this page -->
-        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/run"
-           class="btn btn-default btn-transparent pull-right">
-            <span class="glyphicon glyphicon-play"></span>
-        </a>
-
     </div>
 </nav>
 
@@ -141,9 +129,22 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="navbar-header">
+
         <a href="#/developer/{{currentUser.username}}/edit"
            class="navbar-toggle collapsed">
-            <span class="glyphicon glyphicon-home"></span>
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+
+        <!-- click on RUN link to run this page -->
+        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/run"
+           class="btn btn-default btn-transparent pull-left">
+            <span class="glyphicon glyphicon-play"></span>
+        </a>
+
+        <!-- pass data to server side page controller, including username -->
+        <a href="/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}"
+           class="btn btn-default btn-transparent pull-left">
+            <span class="glyphicon glyphicon-eye-open"></span>
         </a>
     </div>
 </nav>
