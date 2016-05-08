@@ -47,7 +47,7 @@ module.exports = function(applicationModel) {
                     widget.text = newWidget.text;
                     if(widget.widgetType === "HEADER") {
                         if(newWidget.header) {
-                            widget.header.size = newWidget.header.size || 2;
+                            widget.header = newWidget.header;
                         }
                     } else if(widget.widgetType === "HTML") {
                         if(newWidget.html) {
