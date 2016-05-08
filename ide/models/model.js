@@ -3,8 +3,19 @@ module.exports = function() {
     var mongoose = require("mongoose");
     var mongojs  = require('mongojs');
 
-    mongoose.connect('mongodb://localhost/web-app-maker');
-    var mongo = mongojs('web-app-maker');
+    var connectionString = 'mongodb://127.0.0.1:27017/web-app-maker';
+    var dbName = process.env.OPENSHIFT_APP_NAME || 'web-app-maker';
+
+    if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+        connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+            process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+            process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+            process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+            process.env.OPENSHIFT_APP_NAME;
+    }
+
+    mongoose.connect(connectionString);
+    var mongo = mongojs(dbName);
 
     var applicationModel = require("./application/application.model.server")();
     var shareModel       = require("./application/share.model.server")(applicationModel);
