@@ -36,4 +36,7 @@ require ("./ide/app.js")(app);
 
 require ("./uml/app.js")(app);
 
-app.listen(3000);
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 4000;
+
+app.listen(port, ipaddress);
