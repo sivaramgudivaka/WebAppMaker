@@ -72,7 +72,7 @@
                 .deleteDeveloper(developer)
                 .then (
                     function (response) {
-                        $location.url("/developer");
+                        $location.url("/developer/" + username + "/edit");
                     },
                     function (err) {
                         vm.error = err;
@@ -85,7 +85,7 @@
                 .updateDeveloper(developer)
                 .then (
                     function (response) {
-                        $location.url("/developer");
+                        $location.url("/developer/" + username + "/edit");
                     },
                     function (err) {
                         vm.error = err;
