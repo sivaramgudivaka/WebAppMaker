@@ -61,6 +61,7 @@ module.exports = function (db) {
 
     function updateDeveloper (username, developer) {
         var deferred = q.defer();
+        delete developer._id;
         Developer
             .update (
                 {username: username},
