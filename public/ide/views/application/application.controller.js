@@ -82,6 +82,7 @@
         vm.username = $routeParams.username;
         vm.applicationId = $routeParams.applicationId;
         vm.removeApplication = removeApplication;
+        vm.updateApplication = updateApplication;
 
         function init () {
             ApplicationService
@@ -100,6 +101,19 @@
         function removeApplication(application) {
             ApplicationService
                 .removeApplication(application)
+                .then(
+                    function(response) {
+                        $location.url ("/developer/"+vm.username+"/application");
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
+        }
+
+        function updateApplication(application) {
+            ApplicationService
+                .updateApplication(application)
                 .then(
                     function(response) {
                         $location.url ("/developer/"+vm.username+"/application");

@@ -6,6 +6,7 @@
     function applicationService ($http) {
         var api = {
             createApplication: createApplication,
+            updateApplication: updateApplication,
             findApplicationsForUsername: findApplicationsForUsername,
             findApplicationById: findApplicationById,
             removeApplication: removeApplication,
@@ -25,6 +26,10 @@
 
         function shareApplication(applicationId, username) {
             return $http.post("/api/share/"+applicationId+"/developer/"+username);
+        }
+
+        function updateApplication(application) {
+            return $http.put ("/api/application/"+application._id, application);
         }
 
         function removeApplication(application) {

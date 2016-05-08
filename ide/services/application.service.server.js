@@ -8,6 +8,22 @@ module.exports = function (app, model) {
     app.get    ("/api/developer/:username/application", findApplicationsForUsername);
     app.get    ("/api/application/:applicationId", findApplicationById);
     app.delete ("/api/application/:applicationId", removeApplication);
+    app.put    ("/api/application/:applicationId", updateApplication);
+
+    function updateApplication (req, res) {
+        var application = req.body;
+        var applicationId = req.params.applicationId;
+        applicationModel
+            .updateApplication(applicationId, application)
+            .then(
+                function(response) {
+                    res.json(response.result);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
 
     function removeApplication (req, res) {
         var applicationId = req.params.applicationId;

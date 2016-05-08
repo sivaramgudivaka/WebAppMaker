@@ -8,6 +8,7 @@ module.exports = function () {
         createApplication: createApplication,
         findApplicationsForUsername: findApplicationsForUsername,
         findApplicationById: findApplicationById,
+        updateApplication: updateApplication,
         removeApplication: removeApplication,
         getMongooseModel: getMongooseModel
     };
@@ -15,6 +16,13 @@ module.exports = function () {
 
     function getMongooseModel() {
         return Application;
+    }
+
+    function updateApplication(applicationId, application) {
+        return Application.update(
+            {_id: applicationId},
+            {$set: application}
+        );
     }
 
     function removeApplication(applicationId) {
