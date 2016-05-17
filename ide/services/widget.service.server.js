@@ -3,7 +3,7 @@ module.exports = function (app, model) {
     var applicationModel = model.applicationModel;
 
     var multer  = require('multer');
-    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+    var upload = multer({ dest: __dirname+'/../../../data' });
 
     app.post ("/api/application/:applicationId/page/:pageId/widget", createWidget);
     app.get  ("/api/application/:applicationId/page/:pageId/widget", getWidgets);
