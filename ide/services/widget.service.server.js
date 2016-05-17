@@ -56,8 +56,10 @@ module.exports = function (app, model) {
             .then(
                 function(application) {
                     var widget = application.pages.id(pageId).widgets.id(widgetId);
-                    widget.image.url = "/uploads/"+filename;//originalname;
-                    widget.image.width = width;
+                    widget.image = {
+                        url: "/uploads/" + filename,
+                        width: width
+                    }
                     return application.save();
                 },
                 function(err) {
@@ -66,7 +68,7 @@ module.exports = function (app, model) {
             )
             .then(
                 function(){
-                    res.redirect("/#/developer/"+username+"/application/"+applicationId+"/page/"+pageId+"/widget");
+                    res.redirect("/ide/#/developer/"+username+"/application/"+applicationId+"/page/"+pageId+"/widget");
                 },
                 function(err) {
                     res.status(400).send(err);
