@@ -2,12 +2,12 @@ module.exports = function (app, model) {
 
     var applicationModel = model.applicationModel;
 
-    app.post   ("/api/application/:applicationId/page", createPage);
-    app.get    ("/api/application/:applicationId/page", findPagesForApplication);
-    app.get    ("/api/application/:applicationId/page/:pageId", findPage);
-    app.delete ("/api/application/:applicationId/page/:pageId", removePage);
-    app.put    ("/api/application/:applicationId/page/:pageId", updatePage);
-    app.put    ("/api/application/:applicationId/page", updatePages);
+    app.post   ("/api/website/:applicationId/page", createPage);
+    app.get    ("/api/website/:applicationId/page", findPagesForApplication);
+    app.get    ("/api/website/:applicationId/page/:pageId", findPage);
+    app.delete ("/api/website/:applicationId/page/:pageId", removePage);
+    app.put    ("/api/website/:applicationId/page/:pageId", updatePage);
+    app.put    ("/api/website/:applicationId/page", updatePages);
 
     var pageModel   = require("../models/page/page.model.server.js")(applicationModel);
 

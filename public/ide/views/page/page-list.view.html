@@ -1,14 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-header">
 
-        <a href="#/developer/{{model.username}}/application"
+        <a href="#/developer/{{model.username}}/website"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
 
         <a class="navbar-brand">Pages</a>
 
-        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/new"
+        <a href="#/developer/{{model.username}}/website/{{model.applicationId}}/new"
            class="btn btn-default btn-transparent pull-right">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
@@ -27,12 +27,12 @@
     <div ng-repeat="page in model.pages"
          class="row jga-bg-highlight-on-hover" style="padding: 8px">
         <div class="col-xs-10">
-            <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{page._id}}/widget">
+            <a href="#/developer/{{model.username}}/website/{{model.applicationId}}/page/{{page._id}}/widget">
                 {{page.name}}
             </a>
         </div>
         <div class="col-xs-2">
-            <a  href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{page._id}}/edit"
+            <a  href="#/developer/{{model.username}}/website/{{model.applicationId}}/page/{{page._id}}/edit"
                 class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>

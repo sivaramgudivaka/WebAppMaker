@@ -84,7 +84,7 @@
                         function(response){
                             // if button has navigate, then go there
                             if(widget.button && widget.button.navigate) {
-                                $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+widget.button.navigate+"/run");
+                                $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+widget.button.navigate+"/run");
                             }
                         },
                         function(err){
@@ -94,7 +94,7 @@
             } else {
                 // if button has navigate, then go there
                 if(widget.button && widget.button.navigate) {
-                    $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+widget.button.navigate+"/run");
+                    $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+widget.button.navigate+"/run");
                 }
             }
         }
@@ -159,7 +159,7 @@
                 .updatePage(vm.applicationId, page)
                 .then(
                     function (response) {
-                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page");
                     },
                     function (err) {
                         vm.error = err;
@@ -172,7 +172,7 @@
                 .removePage(vm.applicationId, vm.pageId)
                 .then(
                     function (response) {
-                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page");
                     },
                     function (err) {
                         vm.error = err;
@@ -228,7 +228,7 @@
                 .createPage(vm.applicationId, page)
                 .then(
                     function(response) {
-                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page");
                     }
                 )
         }

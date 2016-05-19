@@ -42,51 +42,51 @@
                 resolve: { loggedin: checkLoggedin }
             })
 
-            // application routes
-            .when ("/developer/:username/application", {
-                templateUrl: "views/application/application-list.view.html",
+            // website routes
+            .when ("/developer/:username/website", {
+                templateUrl: "views/website/website-list.view.html",
                 controller: "ApplicationListController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/new", {
-                templateUrl: "views/application/application-new.view.html",
+            .when ("/developer/:username/website/new", {
+                templateUrl: "views/website/website-new.view.html",
                 controller: "NewApplicationController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/edit/:applicationId", {
-                templateUrl: "views/application/application-edit.view.html",
+            .when ("/developer/:username/website/edit/:applicationId", {
+                templateUrl: "views/website/website-edit.view.html",
                 controller: "EditApplicationController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/:applicationId/edit", {
-                templateUrl: "views/application/application-edit.view.html",
+            .when ("/developer/:username/website/:applicationId/edit", {
+                templateUrl: "views/website/website-edit.view.html",
                 controller: "EditApplicationController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/:applicationId/share", {
-                templateUrl: "views/application/application-share.view.html",
+            .when ("/developer/:username/website/:applicationId/share", {
+                templateUrl: "views/website/website-share.view.html",
                 controller: "ShareApplicationController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
             // page routes
-            .when ("/developer/:username/application/:applicationId/page", {
+            .when ("/developer/:username/website/:applicationId/page", {
                 templateUrl: "views/page/page-list.view.html",
                 controller: "PageListController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/:applicationId/new", {
+            .when ("/developer/:username/website/:applicationId/new", {
                 templateUrl: "views/page/page-new.view.html",
                 controller: "NewPageController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/:applicationId/page/:pageId/edit", {
+            .when ("/developer/:username/website/:applicationId/page/:pageId/edit", {
                 templateUrl: "views/page/page-edit.view.html",
                 controller: "EditPageController",
                 controllerAs: "model",
@@ -94,63 +94,63 @@
             })
 
             // widget routes
-            .when ("/developer/:username/application/:applicationId/page/:pageId/widget", {
+            .when ("/developer/:username/website/:applicationId/page/:pageId/widget", {
                 templateUrl: "views/widget/widget-list.view.html",
                 controller: "WidgetListController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/:applicationId/page/:pageId/run", {
+            .when ("/developer/:username/website/:applicationId/page/:pageId/run", {
                 templateUrl: "views/page/page-run.view.html",
                 controller: "PageRunController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/:applicationId/page/:pageId/preview", {
+            .when ("/developer/:username/website/:applicationId/page/:pageId/preview", {
                 templateUrl: "views/widget/page-preview.view.html",
                 controller: "WidgetListController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/:applicationId/page/:pageId/choose-widget", {
+            .when ("/developer/:username/website/:applicationId/page/:pageId/choose-widget", {
                 templateUrl: "views/widget/widget-choose.view.html",
                 controller: "ChooseWidgetController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/:applicationId/page/:pageId/widget/:widgetId/edit", {
+            .when ("/developer/:username/website/:applicationId/page/:pageId/widget/:widgetId/edit", {
                 templateUrl: "views/widget/widget-edit.view.html",
                 controller: "WidgetEditController",
                 controllerAs: "model"
             })
 
             // script routes
-            .when ("/developer/:username/application/:applicationId/page/:pageId/widget/:widgetId/script", {
+            .when ("/developer/:username/website/:applicationId/page/:pageId/widget/:widgetId/script", {
                 templateUrl: "views/script/script-list.view.html",
                 controller: "ScriptListController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/:applicationId/page/:pageId/widget/:widgetId/script/new", {
+            .when ("/developer/:username/website/:applicationId/page/:pageId/widget/:widgetId/script/new", {
                 templateUrl: "views/script/script-new.view.html",
                 controller: "NewScriptController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/:applicationId/page/:pageId/widget/:widgetId/script/edit", {
+            .when ("/developer/:username/website/:applicationId/page/:pageId/widget/:widgetId/script/edit", {
                 templateUrl: "views/script/script-edit.view.html",
                 controller: "EditScriptController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/application/:applicationId/page/:pageId/widget/:widgetId/script/choose", {
+            .when ("/developer/:username/website/:applicationId/page/:pageId/widget/:widgetId/script/choose", {
                 templateUrl: "views/script/statement-choose.view.html",
                 controller: "ChooseStatementController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
             // navigate to statement editor when you click on th cog
-            .when ("/developer/:username/application/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementId", {
+            .when ("/developer/:username/website/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementId", {
                 templateUrl: "views/script/statement-edit.view.html",
                 controller: "EditStatementController",
                 controllerAs: "model",

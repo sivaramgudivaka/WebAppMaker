@@ -1,11 +1,11 @@
 module.exports = function (app, model) {
 
-    app.post ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script", saveScript);
-    app.get  ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script", findScript);
+    app.post ("/api/website/:applicationId/page/:pageId/widget/:widgetId/script", saveScript);
+    app.get  ("/api/website/:applicationId/page/:pageId/widget/:widgetId/script", findScript);
 
-    app.post ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementType", addStatement);
-    app.get  ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementId", findStatement);
-    app.put  ("/api/application/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementId", updateStatement);
+    app.post ("/api/website/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementType", addStatement);
+    app.get  ("/api/website/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementId", findStatement);
+    app.put  ("/api/website/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementId", updateStatement);
 
     var scriptModel = model.scriptModel;
 

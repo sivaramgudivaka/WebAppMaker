@@ -29,23 +29,23 @@
         }
 
         function updateApplication(application) {
-            return $http.put ("/api/application/"+application._id, application);
+            return $http.put ("/api/website/"+application._id, application);
         }
 
         function removeApplication(application) {
-            return $http.delete ("/api/application/"+application._id);
+            return $http.delete ("/api/website/"+application._id);
         }
 
         function findApplicationById (applicationId) {
-            return $http.get ("/api/application/"+applicationId);
+            return $http.get ("/api/website/"+applicationId);
         }
 
         function findApplicationsForUsername (username) {
-            return $http.get ("/api/developer/"+username+"/application");
+            return $http.get ("/api/developer/"+username+"/website");
         }
 
         function  createApplication (application) {
-            return $http.post ("/api/developer/"+application.developerUsername+"/application", application);
+            return $http.post ("/api/developer/"+application.developerUsername+"/website", application);
         }
     }
 })();

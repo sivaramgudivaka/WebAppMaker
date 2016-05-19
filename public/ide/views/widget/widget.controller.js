@@ -47,7 +47,7 @@
                 .removeWidget(vm.applicationId, vm.pageId, vm.widgetId)
                 .then(
                     function(response) {
-                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+vm.pageId+"/widget");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+vm.pageId+"/widget");
                     },
                     function(error) {
                         vm.error = error;
@@ -60,7 +60,7 @@
                 .updateWidget(vm.applicationId, vm.pageId, vm.widgetId, widget)
                 .then(
                     function(response) {
-                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+vm.pageId+"/widget");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+vm.pageId+"/widget");
                     },
                     function(error) {
                         vm.error = error;
@@ -144,7 +144,7 @@
                 .then(
                     function(response) {
                         var newWidget = response.data
-                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+vm.pageId+"/widget/" + newWidget._id + "/edit");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+vm.pageId+"/widget/" + newWidget._id + "/edit");
                     },
                     function(err) {
                         vm.error = err;

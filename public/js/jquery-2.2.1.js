@@ -8275,7 +8275,7 @@ jQuery.extend( {
 		global: true,
 		processData: true,
 		async: true,
-		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		contentType: "website/x-www-form-urlencoded; charset=UTF-8",
 		/*
 		timeout: 0,
 		data: null,
@@ -8292,8 +8292,8 @@ jQuery.extend( {
 			"*": allTypes,
 			text: "text/plain",
 			html: "text/html",
-			xml: "application/xml, text/xml",
-			json: "application/json, text/javascript"
+			xml: "website/xml, text/xml",
+			json: "website/json, text/javascript"
 		},
 
 		contents: {
@@ -9197,8 +9197,8 @@ jQuery.ajaxTransport( function( options ) {
 // Install script dataType
 jQuery.ajaxSetup( {
 	accepts: {
-		script: "text/javascript, application/javascript, " +
-			"application/ecmascript, application/x-ecmascript"
+		script: "text/javascript, website/javascript, " +
+			"website/ecmascript, website/x-ecmascript"
 	},
 	contents: {
 		script: /\b(?:java|ecma)script\b/
@@ -9279,7 +9279,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			"url" :
 			typeof s.data === "string" &&
 				( s.contentType || "" )
-					.indexOf( "application/x-www-form-urlencoded" ) === 0 &&
+					.indexOf( "website/x-www-form-urlencoded" ) === 0 &&
 				rjsonp.test( s.data ) && "data"
 		);
 

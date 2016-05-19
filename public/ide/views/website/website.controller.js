@@ -103,7 +103,7 @@
                 .removeApplication(application)
                 .then(
                     function(response) {
-                        $location.url ("/developer/"+vm.username+"/application");
+                        $location.url ("/developer/"+vm.username+"/website");
                     },
                     function(err) {
                         vm.error = err;
@@ -116,7 +116,7 @@
                 .updateApplication(application)
                 .then(
                     function(response) {
-                        $location.url ("/developer/"+vm.username+"/application");
+                        $location.url ("/developer/"+vm.username+"/website");
                     },
                     function(err) {
                         vm.error = err;
@@ -159,7 +159,7 @@
                 .createApplication (application)
                 .then (
                     function (response) {
-                        $location.url ("/developer/"+vm.username+"/application");
+                        $location.url ("/developer/"+vm.username+"/website");
                     },
                     function (err) {
                         vm.error = err;

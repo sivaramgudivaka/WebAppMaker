@@ -1,14 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-header">
 
-        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page"
+        <a href="#/developer/{{model.username}}/website/{{model.applicationId}}/page"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
 
         <a class="navbar-brand">Widgets</a>
 
-        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/choose-widget"
+        <a href="#/developer/{{model.username}}/website/{{model.applicationId}}/page/{{model.pageId}}/choose-widget"
            class="btn btn-default btn-transparent pull-right">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
@@ -22,7 +22,7 @@
         <div ng-switch="widget.widgetType"
              class="jga-widget col-xs-12">
             <div class="pull-right jga-widget-list-tools">
-                <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/widget/{{widget._id}}/edit">
+                <a href="#/developer/{{model.username}}/website/{{model.applicationId}}/page/{{model.pageId}}/widget/{{widget._id}}/edit">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
                 <span class="glyphicon glyphicon-align-justify"></span>
@@ -136,13 +136,13 @@
         </a>
 
         <!-- click on RUN link to run this page -->
-        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}/run"
+        <a href="#/developer/{{model.username}}/website/{{model.applicationId}}/page/{{model.pageId}}/run"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-play"></span>
         </a>
 
         <!-- pass data to server side page controller, including username -->
-        <a href="/developer/{{model.username}}/application/{{model.applicationId}}/page/{{model.pageId}}"
+        <a href="/developer/{{model.username}}/website/{{model.applicationId}}/page/{{model.pageId}}"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-eye-open"></span>
         </a>

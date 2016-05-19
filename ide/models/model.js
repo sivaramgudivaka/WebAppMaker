@@ -17,8 +17,8 @@ module.exports = function() {
     mongoose.connect(connectionString);
     var mongo = mongojs(connectionString);
 
-    var applicationModel = require("./application/application.model.server")();
-    var shareModel       = require("./application/share.model.server")(applicationModel);
+    var applicationModel = require("./website/website.model.server")();
+    var shareModel       = require("./website/share.model.server")(applicationModel);
     var pageModel        = require("./page/page.model.server")(applicationModel);
     var widgetModel      = require("./widget/widget.model.server")(applicationModel);
     var developerModel   = require("./developer/developer.model.server")();

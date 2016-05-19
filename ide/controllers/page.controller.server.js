@@ -10,7 +10,7 @@ module.exports = function(app, model) {
     var db = model.mongo;
 
     // receive data as path parameters
-    app.get('/developer/:username/application/:applicationId/page/:pageId', pageController);
+    app.get('/developer/:username/website/:applicationId/page/:pageId', pageController);
 
     // controller handles request
     // renders template view

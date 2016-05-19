@@ -30,7 +30,7 @@
         // notify server of new statement
         function addStatement(scope, statementType) {
             var url  = "/api";
-                url += "/application/"+scope.applicationId;
+                url += "/website/"+scope.applicationId;
                 url += "/page/"+scope.pageId;
                 url += "/widget/"+scope.widgetId;
                 url += "/script/statement/"+statementType;
@@ -39,7 +39,7 @@
         
         function findScript(scope) {
             var url  = "/api";
-                url += "/application/"+scope.applicationId;
+                url += "/website/"+scope.applicationId;
                 url += "/page/"+scope.pageId;
                 url += "/widget/"+scope.widgetId;
                 url += "/script";
@@ -48,7 +48,7 @@
 
         function saveScript(scope, script) {
             var url  = "/api";
-                url += "/application/"+scope.applicationId;
+                url += "/website/"+scope.applicationId;
                 url += "/page/"+scope.pageId;
                 url += "/widget/"+scope.widgetId;
                 url += "/script";
@@ -57,7 +57,7 @@
 
         function apiBaseUrl(scope) {
             var url  = "/api";
-                url += "/application/"+scope.applicationId;
+                url += "/website/"+scope.applicationId;
                 url += "/page/"+scope.pageId;
                 url += "/widget/"+scope.widgetId;
             return url;

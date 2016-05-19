@@ -5,13 +5,13 @@ module.exports = function (app, model) {
     var multer  = require('multer');
     var upload = multer({ dest: __dirname+'/../../../data' });
 
-    app.post ("/api/application/:applicationId/page/:pageId/widget", createWidget);
-    app.get  ("/api/application/:applicationId/page/:pageId/widget", getWidgets);
-    app.get  ("/api/application/:applicationId/page/:pageId/widget/:widgetId", findWidgetById);
-    app.put  ("/api/application/:applicationId/page/:pageId/widget/:widgetId", updateWidget);
-    app.delete("/api/application/:applicationId/page/:pageId/widget/:widgetId", removeWidget);
+    app.post ("/api/website/:applicationId/page/:pageId/widget", createWidget);
+    app.get  ("/api/website/:applicationId/page/:pageId/widget", getWidgets);
+    app.get  ("/api/website/:applicationId/page/:pageId/widget/:widgetId", findWidgetById);
+    app.put  ("/api/website/:applicationId/page/:pageId/widget/:widgetId", updateWidget);
+    app.delete("/api/website/:applicationId/page/:pageId/widget/:widgetId", removeWidget);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
-    app.put    ("/api/application/:applicationId/page/:pageId/widget", updateWidgets);
+    app.put    ("/api/website/:applicationId/page/:pageId/widget", updateWidgets);
 
     var widgetModel = require("../models/widget/widget.model.server.js")(applicationModel);
 
@@ -68,7 +68,7 @@ module.exports = function (app, model) {
             )
             .then(
                 function(){
-                    res.redirect("/ide/#/developer/"+username+"/application/"+applicationId+"/page/"+pageId+"/widget");
+                    res.redirect("/ide/#/developer/"+username+"/website/"+applicationId+"/page/"+pageId+"/widget");
                 },
                 function(err) {
                     res.status(400).send(err);
