@@ -10,9 +10,16 @@
             findScript   : findScript,
             addStatement : addStatement,
             findStatement: findStatement,
+            deleteStatement: deleteStatement,
             updateStatement: updateStatement
         };
         return api;
+
+        function deleteStatement(scope) {
+            var url  = apiBaseUrl(scope);
+            url += "/script/statement/" + scope.statementId;
+            return $http.delete(url);
+        }
 
         function updateStatement(scope, statement) {
             var url  = apiBaseUrl(scope);

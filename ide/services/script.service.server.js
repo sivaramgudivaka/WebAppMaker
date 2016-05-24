@@ -1,13 +1,27 @@
 module.exports = function (app, model) {
 
-    app.post ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script", saveScript);
-    app.get  ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script", findScript);
+    app.post   ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script", saveScript);
+    app.get    ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script", findScript);
 
-    app.post ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementType", addStatement);
-    app.get  ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementId", findStatement);
-    app.put  ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementId", updateStatement);
+    app.post   ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementType", addStatement);
+    app.get    ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementId", findStatement);
+    app.put    ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementId", updateStatement);
+    app.delete ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementId", deleteStatement);
 
     var scriptModel = model.scriptModel;
+
+    function deleteStatement(req, res) {
+        scriptModel
+            .deleteStatement(req.params)
+            .then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
+    }
 
     function updateStatement(req, res) {
         scriptModel

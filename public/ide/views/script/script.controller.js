@@ -13,14 +13,15 @@
         var vm = this;
 
         // route params
-        vm.username      = $routeParams.username;
-        vm.websiteId = $routeParams.websiteId;
-        vm.pageId        = $routeParams.pageId;
-        vm.widgetId      = $routeParams.widgetId;
-        vm.statementId   = $routeParams.statementId;
+        vm.username    = $routeParams.username;
+        vm.websiteId   = $routeParams.websiteId;
+        vm.pageId      = $routeParams.pageId;
+        vm.widgetId    = $routeParams.widgetId;
+        vm.statementId = $routeParams.statementId;
 
         // event handlers
         vm.updateStatement = updateStatement;
+        vm.deleteStatement = deleteStatement;
 
         // retrieve statement on load
         function init() {
@@ -36,6 +37,19 @@
                 );
         }
         init();
+
+        function deleteStatement() {
+            ScriptService
+                .deleteStatement(vm)
+                .then(
+                    function() {
+                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widgetId+"/script/edit");
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
+        }
 
         function updateStatement() {
             console.log(vm.statement);
@@ -89,12 +103,12 @@
 
         // route params
         vm.username      = $routeParams.username;
-        vm.websiteId = $routeParams.websiteId;
+        vm.websiteId     = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
 
         // event handlers
-        vm.saveScript  = saveScript;
+        vm.saveScript      = saveScript;
 
         function init() {
             ScriptService

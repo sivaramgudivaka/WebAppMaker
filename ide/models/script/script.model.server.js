@@ -14,9 +14,26 @@ module.exports = function(websiteModel) {
         findScript : findScript,
         addStatement : addStatement,
         findStatement: findStatement,
+        deleteStatement: deleteStatement,
         updateStatement: updateStatement
     };
     return api;
+
+    function deleteStatement(scope) {
+        return websiteModel
+            .findWebsiteById(scope.websiteId)
+            .then(
+                function (website) {
+                    var statement = website
+                        .pages.id(scope.pageId)
+                        .widgets.id(scope.widgetId)
+                        .button.script
+                        .statements.id(scope.statementId)
+                        .remove();
+                    return website.save();
+
+                });
+    }
 
     function updateStatement(scope, newStatement) {
         return websiteModel

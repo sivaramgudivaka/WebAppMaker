@@ -1,8 +1,13 @@
 var express = require('express');
 var app = express();
 
+// install, load, and configure body parser module
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 // set ejs as the view engine
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
 
 // load passport module
 var passport = require('passport');
@@ -12,11 +17,6 @@ var cookieParser = require('cookie-parser');
 
 // load session support
 var session      = require('express-session');
-
-// install, load, and configure body parser module
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // configure cookie parser - needed for oauth
 app.use(cookieParser());
@@ -34,7 +34,7 @@ app.use(express.static(__dirname + '/public'));
 // pass mongojs connection to our server side app
 require ("./ide/app.js")(app);
 
-require ("./uml/app.js")(app);
+// require ("./uml/app.js")(app);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
