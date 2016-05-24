@@ -17,15 +17,15 @@ module.exports = function() {
     mongoose.connect(connectionString);
     var mongo = mongojs(connectionString);
 
-    var applicationModel = require("./website/website.model.server")();
-    var shareModel       = require("./website/share.model.server")(applicationModel);
-    var pageModel        = require("./page/page.model.server")(applicationModel);
-    var widgetModel      = require("./widget/widget.model.server")(applicationModel);
+    var websiteModel = require("./website/website.model.server")();
+    var shareModel       = require("./website/share.model.server")(websiteModel);
+    var pageModel        = require("./page/page.model.server")(websiteModel);
+    var widgetModel      = require("./widget/widget.model.server")(websiteModel);
     var developerModel   = require("./developer/developer.model.server")();
-    var scriptModel      = require("./script/script.model.server")(applicationModel);
+    var scriptModel      = require("./script/script.model.server")(websiteModel);
 
     var model = {
-        applicationModel : applicationModel,
+        websiteModel : websiteModel,
         shareModel       : shareModel,
         pageModel        : pageModel,
         widgetMode       : widgetModel,

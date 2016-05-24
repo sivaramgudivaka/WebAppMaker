@@ -1,7 +1,7 @@
 var q = require("q");
 var mongoose = require("mongoose");
 
-module.exports = function(applicationModel) {
+module.exports = function(websiteModel) {
 
     var StatementSchema = require("./statement.schema.server.js")();
     var StatementModel  = mongoose.model("StatementModel", StatementSchema);
@@ -19,11 +19,11 @@ module.exports = function(applicationModel) {
     return api;
 
     function updateStatement(scope, newStatement) {
-        return applicationModel
-            .findApplicationById(scope.applicationId)
+        return websiteModel
+            .findApplicationById(scope.websiteId)
             .then(
-                function(application) {
-                    var statement = application
+                function(website) {
+                    var statement = website
                         .pages.id(scope.pageId)
                         .widgets.id(scope.widgetId)
                         .button.script
@@ -39,7 +39,7 @@ module.exports = function(applicationModel) {
                         statement.numberStatement.operationType = newStatement.numberStatement.operationType;
                     }
 
-                    return application.save();
+                    return website.save();
                 });
     }
 
@@ -50,15 +50,15 @@ module.exports = function(applicationModel) {
         var deferred = q.defer();
 
         // retrieve website since we need all variables in the website
-        applicationModel
-            .findApplicationById(scope.applicationId)
+        websiteModel
+            .findApplicationById(scope.websiteId)
             .then(
-                function(application) {
+                function(website) {
                     
                     // get all variables from the website
                     // TODO: modularize retrieving all variables
                     var variables = [];
-                    var pages = application.pages;
+                    var pages = website.pages;
                     for(var i in pages) {
                         var page = pages[i];
                         var widgets = page.widgets;
@@ -71,7 +71,7 @@ module.exports = function(applicationModel) {
                     }
 
                     // get the statement
-                    var statement = application
+                    var statement = website
                         .pages.id(scope.pageId)
                         .widgets.id(scope.widgetId)
                         .button.script
@@ -97,11 +97,11 @@ module.exports = function(applicationModel) {
         // we want to resolve the script, not the website
         var deferred = q.defer();
 
-        applicationModel
-            .findApplicationById(scope.applicationId)
+        websiteModel
+            .findApplicationById(scope.websiteId)
             .then(
-                function(application) {
-                    var widget = application
+                function(website) {
+                    var widget = website
                         .pages.id(scope.pageId)
                         .widgets.id(scope.widgetId);
 
@@ -117,15 +117,15 @@ module.exports = function(applicationModel) {
 
                     widget.button.script.statements.push(statement);
 
-                    return application.save();
+                    return website.save();
                 },
                 function(err) {
                     deferred.reject(err);
                 }
             )
             .then(
-                function(application) {
-                    var widget = application
+                function(website) {
+                    var widget = website
                         .pages.id(scope.pageId)
                         .widgets.id(scope.widgetId);
                     deferred.resolve(widget);
@@ -139,11 +139,11 @@ module.exports = function(applicationModel) {
     }
 
     function saveScript(scope, script) {
-        return applicationModel
-            .findApplicationById(scope.applicationId)
+        return websiteModel
+            .findApplicationById(scope.websiteId)
             .then(
-                function(application) {
-                    var widget = application
+                function(website) {
+                    var widget = website
                         .pages.id(scope.pageId)
                         .widgets.id(scope.widgetId);
 
@@ -152,7 +152,7 @@ module.exports = function(applicationModel) {
                     }
 
                     widget.button.script = script;
-                    application.save();
+                    website.save();
                 }
             );
     }
@@ -161,11 +161,11 @@ module.exports = function(applicationModel) {
 
         var deferred = q.defer();
 
-        applicationModel
-            .findApplicationById(scope.applicationId)
+        websiteModel
+            .findApplicationById(scope.websiteId)
             .then(
-                function(application) {
-                    var widget = application
+                function(website) {
+                    var widget = website
                         .pages.id(scope.pageId)
                         .widgets.id(scope.widgetId);
 

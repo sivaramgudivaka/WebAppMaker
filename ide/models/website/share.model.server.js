@@ -1,29 +1,29 @@
 var mongoose = require("mongoose");
 
-module.exports = function (applicationModel) {
+module.exports = function (websiteModel) {
 
     var ShareSchema = require("./share.schema.server.js")();
     var ShareModel = mongoose.model("ShareModel", ShareSchema);
 
     var api = {
-        shareApplication: shareApplication,
-        unshareApplication: unshareApplication,
-        findSharedApplication: findSharedApplication
+        shareWebsite: shareWebsite,
+        unshareWebsite: unshareWebsite,
+        findSharedWebsite: findSharedWebsite
     };
     return api;
 
-    function unshareApplication(applicationId, username) {
-        return ShareModel.remove({applicationId: applicationId, username: username});
+    function unshareWebsite(websiteId, username) {
+        return ShareModel.remove({websiteId: websiteId, username: username});
     }
 
-    function shareApplication(applicationId, username) {
+    function shareWebsite(websiteId, username) {
         var share = new ShareModel();
-        share.applicationId = applicationId;
+        share.websiteId = websiteId;
         share.username      = username;
         return share.save();
     }
 
-    function findSharedApplication(applicationId) {
-        return ShareModel.find({applicationId: applicationId});
+    function findSharedWebsite(websiteId) {
+        return ShareModel.find({websiteId: websiteId});
     }
 };

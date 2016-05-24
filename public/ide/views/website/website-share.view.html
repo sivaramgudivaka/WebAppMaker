@@ -1,14 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-header">
 
-        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/edit"
+        <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/edit"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
 
         <a class="navbar-brand">Share</a>
 
-        <a href="#/developer/{{model.username}}/application/{{model.applicationId}}/edit"
+        <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/edit"
            class="btn btn-default btn-transparent pull-right">
             <span class="glyphicon glyphicon-ok"></span>
         </a>
@@ -30,7 +30,7 @@
     </div>
 
     <span class="input-group-btn">
-        <button ng-click="model.shareApplication(selectedUser.originalObject)"
+        <button ng-click="model.shareWebsite(selectedUser.originalObject)"
                 class="btn btn-default"
                 type="button">
             <span class="glyphicon glyphicon-plus"
@@ -45,7 +45,7 @@
         {{developer.username}}
     </div>
     <div class="col-xs-1">
-        <a  ng-click="model.unshareApplication(developer.username)"
+        <a  ng-click="model.unshareWebsite(developer.username)"
             class="pull-right">
             <span class="glyphicon glyphicon-remove"></span>
         </a>

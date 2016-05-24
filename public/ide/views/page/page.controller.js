@@ -6,11 +6,11 @@
         .controller ("NewPageController", newPageController)
         .controller ("EditPageController", editPageController);
 
-    function pageRunController (DatabaseService, $routeParams, ApplicationService, WidgetService, PageService, $sce,
+    function pageRunController (DatabaseService, $routeParams, WebsiteService, WidgetService, PageService, $sce,
                                 $location, $scope) {
         var vm = this;
         vm.username      = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
+        vm.websiteId = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
 
         vm.safeYouTubeUrl = safeYouTubeUrl;
@@ -21,7 +21,7 @@
 
         function init() {
             PageService
-                .findPage(vm.applicationId, vm.pageId)
+                .findPage(vm.websiteId, vm.pageId)
                 .then(
                     function(response) {
                         // need page for page name and widgets to render the page
@@ -54,7 +54,7 @@
         // handle delete button event
         function deleteRecord(widgetType, collectionName, recordId) {
             DatabaseService
-                .delete(vm.applicationId, collectionName, recordId)
+                .delete(vm.websiteId, collectionName, recordId)
                 .then(
                     function(){
                         DatabaseService
@@ -84,7 +84,7 @@
                         function(response){
                             // if button has navigate, then go there
                             if(widget.button && widget.button.navigate) {
-                                $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+widget.button.navigate+"/run");
+                                $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+widget.button.navigate+"/run");
                             }
                         },
                         function(err){
@@ -94,7 +94,7 @@
             } else {
                 // if button has navigate, then go there
                 if(widget.button && widget.button.navigate) {
-                    $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+widget.button.navigate+"/run");
+                    $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+widget.button.navigate+"/run");
                 }
             }
         }
@@ -134,7 +134,7 @@
 
         var vm = this;
         vm.username      = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
+        vm.websiteId = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
 
         vm.removePage    = removePage;
@@ -142,7 +142,7 @@
 
         function init() {
             PageService
-                .findPage(vm.applicationId, vm.pageId)
+                .findPage(vm.websiteId, vm.pageId)
                 .then(
                     function (response) {
                         vm.page = response.data;
@@ -156,10 +156,10 @@
 
         function updatePage(page) {
             PageService
-                .updatePage(vm.applicationId, page)
+                .updatePage(vm.websiteId, page)
                 .then(
                     function (response) {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page");
                     },
                     function (err) {
                         vm.error = err;
@@ -169,10 +169,10 @@
 
         function removePage(page) {
             PageService
-                .removePage(vm.applicationId, vm.pageId)
+                .removePage(vm.websiteId, vm.pageId)
                 .then(
                     function (response) {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page");
                     },
                     function (err) {
                         vm.error = err;
@@ -185,13 +185,13 @@
 
         var vm = this;
         vm.username      = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
+        vm.websiteId = $routeParams.websiteId;
 
         vm.sortPage      = sortPage;
 
         function init() {
             PageService
-                .findPagesForApplication(vm.applicationId)
+                .findPagesForWebsite(vm.websiteId)
                 .then(
                     function (response) {
                         vm.pages = response.data;
@@ -205,7 +205,7 @@
 
         function sortPage(start, end) {
             PageService
-                .sortPage(vm.applicationId, start, end)
+                .sortPage(vm.websiteId, start, end)
                 .then(
                     function (response) {
                     },
@@ -219,16 +219,16 @@
     function newPageController($routeParams, PageService, $location) {
 
         var vm = this;
-        vm.applicationId = $routeParams.applicationId;
+        vm.websiteId = $routeParams.websiteId;
         vm.username      = $routeParams.username;
         vm.createPage = createPage;
 
         function createPage(page) {
             PageService
-                .createPage(vm.applicationId, page)
+                .createPage(vm.websiteId, page)
                 .then(
                     function(response) {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page");
                     }
                 )
         }

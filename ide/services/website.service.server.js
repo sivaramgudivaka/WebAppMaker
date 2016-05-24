@@ -2,19 +2,19 @@ var mongoose = require("mongoose");
 
 module.exports = function (app, model) {
 
-    var applicationModel = model.applicationModel;
+    var websiteModel = model.websiteModel;
 
     app.post   ("/api/developer/:username/website", createApplication);
     app.get    ("/api/developer/:username/website", findApplicationsForUsername);
-    app.get    ("/api/website/:applicationId", findApplicationById);
-    app.delete ("/api/website/:applicationId", removeApplication);
-    app.put    ("/api/website/:applicationId", updateApplication);
+    app.get    ("/api/website/:websiteId", findApplicationById);
+    app.delete ("/api/website/:websiteId", removeApplication);
+    app.put    ("/api/website/:websiteId", updateApplication);
 
     function updateApplication (req, res) {
-        var application = req.body;
-        var applicationId = req.params.applicationId;
-        applicationModel
-            .updateApplication(applicationId, application)
+        var website = req.body;
+        var websiteId = req.params.websiteId;
+        websiteModel
+            .updateApplication(websiteId, website)
             .then(
                 function(response) {
                     res.json(response.result);
@@ -26,9 +26,9 @@ module.exports = function (app, model) {
     }
 
     function removeApplication (req, res) {
-        var applicationId = req.params.applicationId;
-        applicationModel
-            .removeApplication(applicationId)
+        var websiteId = req.params.websiteId;
+        websiteModel
+            .removeApplication(websiteId)
             .then(
                 function(response) {
                     res.json(response.result);
@@ -40,12 +40,12 @@ module.exports = function (app, model) {
     }
 
     function findApplicationById (req, res) {
-        var applicationId = req.params.applicationId;
-        applicationModel
-            .findApplicationById(applicationId)
+        var websiteId = req.params.websiteId;
+        websiteModel
+            .findApplicationById(websiteId)
             .then(
-                function(application) {
-                    res.json(application);
+                function(website) {
+                    res.json(website);
                 },
                 function(err) {
                     res.status(400).send(err);
@@ -55,11 +55,11 @@ module.exports = function (app, model) {
 
     function findApplicationsForUsername (req, res) {
         var username = req.params.username;
-        applicationModel
+        websiteModel
             .findApplicationsForUsername (username)
             .then (
-                function (applications) {
-                    res.json (applications);
+                function (websites) {
+                    res.json (websites);
                 },
                 function (err) {
                     res.status(400).send(err);
@@ -69,12 +69,12 @@ module.exports = function (app, model) {
 
     function createApplication (req, res) {
         var username = req.params.username;
-        var application = req.body;
-        applicationModel
-            .createApplication (application)
+        var website = req.body;
+        websiteModel
+            .createApplication (website)
             .then (
-                function (application) {
-                    res.json (application);
+                function (website) {
+                    res.json (website);
                 },
                 function (err) {
                     res.status(400).send(err);

@@ -4,13 +4,13 @@ module.exports = function () {
 
     var PageSchema = require("../page/page.schema.server.js")();
 
-    var ApplicationSchema = mongoose.Schema({
+    var WebsiteSchema = mongoose.Schema({
         developerUsername: String,
-        name: {type: String, default: "Application Name"},
+        name: {type: String, default: "Website Name"},
         description: String,
         dateCreated: {type: Date, default: Date.now},
         pages: [PageSchema]
-    }, {collection: "application"});
+    }, {collection: "website"});
 
-    return ApplicationSchema;
+    return WebsiteSchema;
 };

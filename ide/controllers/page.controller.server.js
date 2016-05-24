@@ -10,7 +10,7 @@ module.exports = function(app, model) {
     var db = model.mongo;
 
     // receive data as path parameters
-    app.get('/developer/:username/website/:applicationId/page/:pageId', pageController);
+    app.get('/developer/:username/website/:websiteId/page/:pageId', pageController);
 
     // controller handles request
     // renders template view
@@ -19,18 +19,18 @@ module.exports = function(app, model) {
         // extract path parameters from URL
         // including username too
         var username      = req.params.username;
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var pageId        = req.params.pageId;
 
         // use model to retrieve page object
-        pageModel.findPage(applicationId, pageId)
+        pageModel.findPage(websiteId, pageId)
             .then(
                 function(page) {
 
                     // create data map
                     var context = {
                         username      : username,
-                        applicationId : applicationId,
+                        websiteId : websiteId,
                         pageId        : pageId,
                         page          : page // add page to data map for template
                     };
