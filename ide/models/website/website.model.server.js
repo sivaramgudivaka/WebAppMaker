@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var q = require("q");
 module.exports = function () {
-    var ApplicationSchema = require("./application.schema.server.js")();
+    var ApplicationSchema = require("./website.schema.server.js")();
     var Application = mongoose.model("Application", ApplicationSchema);
 
     var api = {

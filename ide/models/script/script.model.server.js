@@ -49,13 +49,13 @@ module.exports = function(applicationModel) {
 
         var deferred = q.defer();
 
-        // retrieve application since we need all variables in the application
+        // retrieve website since we need all variables in the website
         applicationModel
             .findApplicationById(scope.applicationId)
             .then(
                 function(application) {
                     
-                    // get all variables from the application
+                    // get all variables from the website
                     // TODO: modularize retrieving all variables
                     var variables = [];
                     var pages = application.pages;
@@ -94,7 +94,7 @@ module.exports = function(applicationModel) {
     function addStatement(scope) {
         
         // use q because we want to control exactly we want to resolve
-        // we want to resolve the script, not the application
+        // we want to resolve the script, not the website
         var deferred = q.defer();
 
         applicationModel

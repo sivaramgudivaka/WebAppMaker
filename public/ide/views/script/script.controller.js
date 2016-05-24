@@ -43,7 +43,7 @@
                 .updateStatement(vm, vm.statement)
                 .then(
                     function() {
-                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+vm.pageId+"/widget/"+vm.widgetId+"/script/edit");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+vm.pageId+"/widget/"+vm.widgetId+"/script/edit");
                     },
                     function(err) {
                         vm.error = err;
@@ -71,7 +71,7 @@
                 .addStatement(vm, statementType)
                 .then(
                     function() {
-                        $location.url("/developer/"+vm.username+"/application/"+vm.applicationId+"/page/"+vm.pageId+"/widget/" + vm.widgetId + "/script/edit");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+vm.pageId+"/widget/" + vm.widgetId + "/script/edit");
                     },
                     function(err) {
                         vm.error = err;
@@ -114,7 +114,7 @@
                 .then(
                     function(){
                         var url  = "/developer/" + vm.username;
-                            url += "/application/" + vm.applicationId;
+                            url += "/website/" + vm.applicationId;
                             url += "/page/" + vm.pageId;
                             url += "/widget/" + vm.widgetId;
                             url += "/edit";

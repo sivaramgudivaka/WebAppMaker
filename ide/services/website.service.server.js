@@ -4,11 +4,11 @@ module.exports = function (app, model) {
 
     var applicationModel = model.applicationModel;
 
-    app.post   ("/api/developer/:username/application", createApplication);
-    app.get    ("/api/developer/:username/application", findApplicationsForUsername);
-    app.get    ("/api/application/:applicationId", findApplicationById);
-    app.delete ("/api/application/:applicationId", removeApplication);
-    app.put    ("/api/application/:applicationId", updateApplication);
+    app.post   ("/api/developer/:username/website", createApplication);
+    app.get    ("/api/developer/:username/website", findApplicationsForUsername);
+    app.get    ("/api/website/:applicationId", findApplicationById);
+    app.delete ("/api/website/:applicationId", removeApplication);
+    app.put    ("/api/website/:applicationId", updateApplication);
 
     function updateApplication (req, res) {
         var application = req.body;

@@ -3,7 +3,7 @@ module.exports = function (app, db) {
     var model = require("./models/model.js")();
 
     var developerService   = require("./services/developer.service.server.js")  (app, model);
-    var applicationService = require("./services/application.service.server.js")(app, model);
+    var applicationService = require("./services/website.service.server.js")(app, model);
     var pageService        = require("./services/page.service.server.js")       (app, model);
     var widgetService      = require("./services/widget.service.server.js")     (app, model);
     var scriptService      = require("./services/script.service.server.js")     (app, model);

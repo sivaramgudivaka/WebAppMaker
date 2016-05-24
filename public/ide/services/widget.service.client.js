@@ -15,27 +15,27 @@
         return api;
 
         function sortWidget(applicationId, pageId, startIndex, endIndex) {
-            return $http.put("/api/application/"+applicationId+"/page/"+pageId+"/widget?startIndex="+startIndex+"&endIndex="+endIndex);
+            return $http.put("/api/website/"+applicationId+"/page/"+pageId+"/widget?startIndex="+startIndex+"&endIndex="+endIndex);
         }
 
         function removeWidget(applicationId, pageId, widgetId) {
-            return $http.delete("/api/application/"+applicationId+"/page/"+pageId+"/widget/"+widgetId);
+            return $http.delete("/api/website/"+applicationId+"/page/"+pageId+"/widget/"+widgetId);
         }
 
         function updateWidget(applicationId, pageId, widgetId, widget) {
-            return $http.put("/api/application/"+applicationId+"/page/"+pageId+"/widget/"+widgetId, widget);
+            return $http.put("/api/website/"+applicationId+"/page/"+pageId+"/widget/"+widgetId, widget);
         }
 
         function findWidgetById(applicationId, pageId, widgetId) {
-            return $http.get("/api/application/"+applicationId+"/page/"+pageId+"/widget/"+widgetId);
+            return $http.get("/api/website/"+applicationId+"/page/"+pageId+"/widget/"+widgetId);
         }
 
         function getWidgets(applicationId, pageId) {
-            return $http.get("/api/application/"+applicationId+"/page/"+pageId+"/widget");
+            return $http.get("/api/website/"+applicationId+"/page/"+pageId+"/widget");
         }
 
         function addWidget(applicationId, pageId, widgetType) {
-            return $http.post("/api/application/"+applicationId+"/page/"+pageId+"/widget?widgetType="+widgetType);
+            return $http.post("/api/website/"+applicationId+"/page/"+pageId+"/widget?widgetType="+widgetType);
         }
     }
 })();
