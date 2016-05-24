@@ -70,8 +70,10 @@
             ScriptService
                 .addStatement(vm, statementType)
                 .then(
-                    function() {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/" + vm.widgetId + "/script/edit");
+                    function(response) {
+                        var statements = response.data.button.script.statements;
+                        var lastStatement = statements[statements.length - 1];
+                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/" + vm.widgetId + "/script/statement/" + lastStatement._id);
                     },
                     function(err) {
                         vm.error = err;
