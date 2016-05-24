@@ -1,24 +1,24 @@
 (function () {
     angular
         .module ("WebAppMakerApp")
-        .controller ("ShareApplicationController", shareApplicationController)
-        .controller ("ApplicationListController", applicationListController)
-        .controller ("NewApplicationController", newApplicationController)
-        .controller ("EditApplicationController", editApplicationController);
+        .controller ("ShareWebiteController", shareWebiteController)
+        .controller ("WebiteListController", webiteListController)
+        .controller ("NewWebiteController", newWebiteController)
+        .controller ("EditWebiteController", editWebiteController);
 
-    function shareApplicationController
-        ($routeParams, ApplicationService, $location) {
+    function shareWebiteController
+        ($routeParams, WebiteService, $location) {
 
         var vm = this;
         vm.username = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
+        vm.webiteId = $routeParams.webiteId;
         
-        vm.shareApplication = shareApplication;
-        vm.unshareApplication = unshareApplication;
+        vm.shareWebite = shareWebite;
+        vm.unshareWebite = unshareWebite;
 
         function init() {
-            ApplicationService
-                .findDevelopersSharingApplication(vm.applicationId)
+            WebiteService
+                .findDevelopersSharingWebite(vm.webiteId)
                 .then(
                     function(response) {
                         vm.developers = response.data;
@@ -30,13 +30,13 @@
         }
         init();
 
-        function unshareApplication(username) {
-            ApplicationService
-                .unshareApplication(vm.applicationId, username)
+        function unshareWebite(username) {
+            WebiteService
+                .unshareWebite(vm.webiteId, username)
                 .then(
                     function(response) {
-                        return ApplicationService
-                            .findDevelopersSharingApplication(vm.applicationId);
+                        return WebiteService
+                            .findDevelopersSharingWebite(vm.webiteId);
                     },
                     function(err) {
                         vm.error = err;
@@ -52,13 +52,13 @@
                 );
         }
 
-        function shareApplication(developer) {
-            ApplicationService
-                .shareApplication(vm.applicationId, developer.username)
+        function shareWebite(developer) {
+            WebiteService
+                .shareWebite(vm.webiteId, developer.username)
                 .then(
                     function(response) {
-                        return ApplicationService
-                            .findDevelopersSharingApplication(vm.applicationId);
+                        return WebiteService
+                            .findDevelopersSharingWebite(vm.webiteId);
                     },
                     function(err) {
                         vm.error = err;
@@ -75,21 +75,21 @@
         }
     }
 
-    function editApplicationController
-        ($routeParams, ApplicationService, $location) {
+    function editWebiteController
+        ($routeParams, WebiteService, $location) {
 
         var vm = this;
         vm.username = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
-        vm.removeApplication = removeApplication;
-        vm.updateApplication = updateApplication;
+        vm.webiteId = $routeParams.webiteId;
+        vm.removeWebite = removeWebite;
+        vm.updateWebite = updateWebite;
 
         function init () {
-            ApplicationService
-                .findApplicationById($routeParams.applicationId)
+            WebiteService
+                .findWebiteById($routeParams.webiteId)
                 .then(
                     function(response) {
-                        vm.application = response.data;
+                        vm.webite = response.data;
                     },
                     function(err) {
                         vm.error = err;
@@ -98,9 +98,9 @@
         }
         init ();
 
-        function removeApplication(application) {
-            ApplicationService
-                .removeApplication(application)
+        function removeWebite(webite) {
+            WebiteService
+                .removeWebite(webite)
                 .then(
                     function(response) {
                         $location.url ("/developer/"+vm.username+"/website");
@@ -111,9 +111,9 @@
                 );
         }
 
-        function updateApplication(application) {
-            ApplicationService
-                .updateApplication(application)
+        function updateWebite(webite) {
+            WebiteService
+                .updateWebite(webite)
                 .then(
                     function(response) {
                         $location.url ("/developer/"+vm.username+"/website");
@@ -125,18 +125,18 @@
         }
     }
 
-    function applicationListController (
-        $routeParams, ApplicationService) {
+    function webiteListController (
+        $routeParams, WebiteService) {
 
         var vm = this;
         vm.username = $routeParams.username;
 
         function init () {
-            ApplicationService
-                .findApplicationsForUsername (vm.username)
+            WebiteService
+                .findWebitesForUsername (vm.username)
                 .then (
                     function (response) {
-                        vm.applications = response.data;
+                        vm.webites = response.data;
                     },
                     function (err) {
                         vm.error = err;
@@ -146,17 +146,17 @@
         init ();
     }
 
-    function newApplicationController (
-        $routeParams, ApplicationService, $location) {
+    function newWebiteController (
+        $routeParams, WebiteService, $location) {
 
         var vm = this;
         vm.username = $routeParams.username;
-        vm.createApplication = createApplication;
+        vm.createWebite = createWebite;
 
-        function createApplication (application) {
-            application.developerUsername = vm.username;
-            ApplicationService
-                .createApplication (application)
+        function createWebite (webite) {
+            webite.developerUsername = vm.username;
+            WebiteService
+                .createWebite (webite)
                 .then (
                     function (response) {
                         $location.url ("/developer/"+vm.username+"/website");

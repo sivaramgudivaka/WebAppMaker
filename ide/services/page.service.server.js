@@ -1,24 +1,24 @@
 module.exports = function (app, model) {
 
-    var applicationModel = model.applicationModel;
+    var websiteModel = model.websiteModel;
 
-    app.post   ("/api/website/:applicationId/page", createPage);
-    app.get    ("/api/website/:applicationId/page", findPagesForApplication);
-    app.get    ("/api/website/:applicationId/page/:pageId", findPage);
-    app.delete ("/api/website/:applicationId/page/:pageId", removePage);
-    app.put    ("/api/website/:applicationId/page/:pageId", updatePage);
-    app.put    ("/api/website/:applicationId/page", updatePages);
+    app.post   ("/api/website/:websiteId/page", createPage);
+    app.get    ("/api/website/:websiteId/page", findPagesForWebsite);
+    app.get    ("/api/website/:websiteId/page/:pageId", findPage);
+    app.delete ("/api/website/:websiteId/page/:pageId", removePage);
+    app.put    ("/api/website/:websiteId/page/:pageId", updatePage);
+    app.put    ("/api/website/:websiteId/page", updatePages);
 
-    var pageModel   = require("../models/page/page.model.server.js")(applicationModel);
+    var pageModel   = require("../models/page/page.model.server.js")(websiteModel);
 
     function updatePages (req, res) {
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var startIndex = req.query.startIndex;
         var endIndex = req.query.endIndex;
 
         if(startIndex && endIndex) {
             pageModel
-                .sortPage(applicationId, startIndex, endIndex)
+                .sortPage(websiteId, startIndex, endIndex)
                 .then(
                     function(stat) {
                         return res.json(200);
@@ -31,10 +31,10 @@ module.exports = function (app, model) {
     }
 
     function updatePage (req, res) {
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var page = req.body;
         pageModel
-            .updatePage(applicationId, page)
+            .updatePage(websiteId, page)
             .then(
                 function(stat) {
                     res.send(200);
@@ -46,10 +46,10 @@ module.exports = function (app, model) {
     }
 
     function removePage (req, res) {
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var pageId = req.params.pageId;
         pageModel
-            .removePage(applicationId, pageId)
+            .removePage(websiteId, pageId)
             .then(
                 function(stat) {
                     res.send(200);
@@ -61,10 +61,10 @@ module.exports = function (app, model) {
     }
 
     function findPage(req, res) {
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var pageId = req.params.pageId;
         pageModel
-            .findPage(applicationId, pageId)
+            .findPage(websiteId, pageId)
             .then(
                 function(page) {
                     res.json(page);
@@ -75,13 +75,13 @@ module.exports = function (app, model) {
             );
     }
 
-    function findPagesForApplication(req, res) {
-        var applicationId = req.params.applicationId;
+    function findPagesForWebsite(req, res) {
+        var websiteId = req.params.websiteId;
         pageModel
-            .findPagesForApplication(applicationId)
+            .findPagesForWebsite(websiteId)
             .then(
-                function(application) {
-                    res.json(application.pages);
+                function(website) {
+                    res.json(website.pages);
                 },
                 function(err) {
                     res.status(400).send(err);
@@ -90,13 +90,13 @@ module.exports = function (app, model) {
     }
 
     function createPage(req, res) {
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var page = req.body;
         pageModel
-            .createPage(applicationId, page)
+            .createPage(websiteId, page)
             .then(
-                function(application) {
-                    res.json(application);
+                function(website) {
+                    res.json(website);
                 },
                 function(err) {
                     res.status(400).send(err);

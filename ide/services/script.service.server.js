@@ -1,11 +1,11 @@
 module.exports = function (app, model) {
 
-    app.post ("/api/website/:applicationId/page/:pageId/widget/:widgetId/script", saveScript);
-    app.get  ("/api/website/:applicationId/page/:pageId/widget/:widgetId/script", findScript);
+    app.post ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script", saveScript);
+    app.get  ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script", findScript);
 
-    app.post ("/api/website/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementType", addStatement);
-    app.get  ("/api/website/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementId", findStatement);
-    app.put  ("/api/website/:applicationId/page/:pageId/widget/:widgetId/script/statement/:statementId", updateStatement);
+    app.post ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementType", addStatement);
+    app.get  ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementId", findStatement);
+    app.put  ("/api/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementId", updateStatement);
 
     var scriptModel = model.scriptModel;
 
@@ -66,7 +66,7 @@ module.exports = function (app, model) {
     function saveScript(req, res) {
 
         // path parameters
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var pageId        = req.params.pageId;
         var widgetId      = req.params.widgetId;
 

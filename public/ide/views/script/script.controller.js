@@ -14,7 +14,7 @@
 
         // route params
         vm.username      = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
+        vm.websiteId = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
         vm.statementId   = $routeParams.statementId;
@@ -43,7 +43,7 @@
                 .updateStatement(vm, vm.statement)
                 .then(
                     function() {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+vm.pageId+"/widget/"+vm.widgetId+"/script/edit");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widgetId+"/script/edit");
                     },
                     function(err) {
                         vm.error = err;
@@ -58,7 +58,7 @@
 
         // route params
         vm.username      = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
+        vm.websiteId = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
 
@@ -71,7 +71,7 @@
                 .addStatement(vm, statementType)
                 .then(
                     function() {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+vm.pageId+"/widget/" + vm.widgetId + "/script/edit");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/" + vm.widgetId + "/script/edit");
                     },
                     function(err) {
                         vm.error = err;
@@ -87,7 +87,7 @@
 
         // route params
         vm.username      = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
+        vm.websiteId = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
 
@@ -114,7 +114,7 @@
                 .then(
                     function(){
                         var url  = "/developer/" + vm.username;
-                            url += "/website/" + vm.applicationId;
+                            url += "/website/" + vm.websiteId;
                             url += "/page/" + vm.pageId;
                             url += "/widget/" + vm.widgetId;
                             url += "/edit";
@@ -133,7 +133,7 @@
 
         // route params
         vm.username      = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
+        vm.websiteId = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
 
@@ -157,7 +157,7 @@
 
         // route params
         vm.username      = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
+        vm.websiteId = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
 

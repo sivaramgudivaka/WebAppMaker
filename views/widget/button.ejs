@@ -5,9 +5,9 @@
         </button>
         <input type="hidden"
                name="callback-url"
-               value="/developer/<%=username%>/website/<%=applicationId%>/page/<%=widget.button.navigate%>"/>
+               value="/developer/<%=username%>/website/<%=websiteId%>/page/<%=widget.button.navigate%>"/>
 <%  } else {
-%>      <a href="/developer/<%=username%>/website/<%=applicationId%>/page/<%=widget.button.navigate%>"
+%>      <a href="/developer/<%=username%>/website/<%=websiteId%>/page/<%=widget.button.navigate%>"
            class="btn btn-block btn-<%= widget.button.style.toLowerCase() %>">
             <%= widget.text %>
         </a>

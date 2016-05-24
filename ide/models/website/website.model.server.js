@@ -1,46 +1,46 @@
 var mongoose = require("mongoose");
 var q = require("q");
 module.exports = function () {
-    var ApplicationSchema = require("./website.schema.server.js")();
-    var Application = mongoose.model("Application", ApplicationSchema);
+    var WebsiteSchema = require("./website.schema.server.js")();
+    var Website = mongoose.model("Website", WebsiteSchema);
 
     var api = {
-        createApplication: createApplication,
-        findApplicationsForUsername: findApplicationsForUsername,
-        findApplicationById: findApplicationById,
-        updateApplication: updateApplication,
-        removeApplication: removeApplication,
+        createWebsite: createWebsite,
+        findWebsitesForUsername: findWebsitesForUsername,
+        findWebsiteById: findWebsiteById,
+        updateWebsite: updateWebsite,
+        removeWebsite: removeWebsite,
         getMongooseModel: getMongooseModel
     };
     return api;
 
     function getMongooseModel() {
-        return Application;
+        return Website;
     }
 
-    function updateApplication(applicationId, application) {
-        return Application.update(
-            {_id: applicationId},
-            {$set: application}
+    function updateWebsite(websiteId, website) {
+        return Website.update(
+            {_id: websiteId},
+            {$set: website}
         );
     }
 
-    function removeApplication(applicationId) {
-        return Application.remove().where("_id").equals(applicationId);
+    function removeWebsite(websiteId) {
+        return Website.remove().where("_id").equals(websiteId);
     }
 
-    function findApplicationById (applicationId) {
-        return Application.findById (applicationId);
+    function findWebsiteById (websiteId) {
+        return Website.findById (websiteId);
     }
 
-    function findApplicationsForUsername (username) {
+    function findWebsitesForUsername (username) {
         var deferred = q.defer();
-        Application
+        Website
             .find(
                 {developerUsername: username},
-                function (err, applications) {
+                function (err, websites) {
                     if (!err) {
-                        deferred.resolve (applications);
+                        deferred.resolve (websites);
                     } else {
                         deferred.reject (err);
                     }
@@ -49,12 +49,12 @@ module.exports = function () {
         return deferred.promise;
     }
 
-    function createApplication (application) {
+    function createWebsite (website) {
         var deferred = q.defer();
-        Application.create (application,
-            function (err, application) {
+        Website.create (website,
+            function (err, website) {
                 if (!err) {
-                    deferred.resolve(application);
+                    deferred.resolve(website);
                 } else {
                     deferred.reject(err);
                 }

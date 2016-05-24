@@ -1,51 +1,51 @@
 (function () {
     angular
         .module ("WebAppMakerApp")
-        .factory ("ApplicationService", applicationService);
+        .factory ("WebsiteService", websiteService);
 
-    function applicationService ($http) {
+    function websiteService ($http) {
         var api = {
-            createApplication: createApplication,
-            updateApplication: updateApplication,
-            findApplicationsForUsername: findApplicationsForUsername,
-            findApplicationById: findApplicationById,
-            removeApplication: removeApplication,
-            shareApplication: shareApplication,
-            unshareApplication: unshareApplication,
-            findDevelopersSharingApplication: findDevelopersSharingApplication
+            createWebsite: createWebsite,
+            updateWebsite: updateWebsite,
+            findWebsitesForUsername: findWebsitesForUsername,
+            findWebsiteById: findWebsiteById,
+            removeWebsite: removeWebsite,
+            shareWebsite: shareWebsite,
+            unshareWebsite: unshareWebsite,
+            findDevelopersSharingWebsite: findDevelopersSharingWebsite
         };
         return api;
 
-        function findDevelopersSharingApplication(applicationId) {
-            return $http.get("/api/share/"+applicationId);
+        function findDevelopersSharingWebsite(websiteId) {
+            return $http.get("/api/share/"+websiteId);
         }
 
-        function unshareApplication(applicationId, username) {
-            return $http.delete("/api/share/"+applicationId+"/developer/"+username);
+        function unshareWebsite(websiteId, username) {
+            return $http.delete("/api/share/"+websiteId+"/developer/"+username);
         }
 
-        function shareApplication(applicationId, username) {
-            return $http.post("/api/share/"+applicationId+"/developer/"+username);
+        function shareWebsite(websiteId, username) {
+            return $http.post("/api/share/"+websiteId+"/developer/"+username);
         }
 
-        function updateApplication(application) {
-            return $http.put ("/api/website/"+application._id, application);
+        function updateWebsite(website) {
+            return $http.put ("/api/website/"+website._id, website);
         }
 
-        function removeApplication(application) {
-            return $http.delete ("/api/website/"+application._id);
+        function removeWebsite(website) {
+            return $http.delete ("/api/website/"+website._id);
         }
 
-        function findApplicationById (applicationId) {
-            return $http.get ("/api/website/"+applicationId);
+        function findWebsiteById (websiteId) {
+            return $http.get ("/api/website/"+websiteId);
         }
 
-        function findApplicationsForUsername (username) {
+        function findWebsitesForUsername (username) {
             return $http.get ("/api/developer/"+username+"/website");
         }
 
-        function  createApplication (application) {
-            return $http.post ("/api/developer/"+application.developerUsername+"/website", application);
+        function  createWebsite (website) {
+            return $http.post ("/api/developer/"+website.developerUsername+"/website", website);
         }
     }
 })();

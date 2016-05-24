@@ -13,7 +13,7 @@
         return api;
 
         // send delete request to database Web service
-        function remove(applicationId, pageName, recordId) {
+        function remove(websiteId, pageName, recordId) {
             return $http.delete("/api/database/"+pageName+"/"+recordId);
         }
 

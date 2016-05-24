@@ -14,28 +14,28 @@
         };
         return api;
 
-        function sortWidget(applicationId, pageId, startIndex, endIndex) {
-            return $http.put("/api/website/"+applicationId+"/page/"+pageId+"/widget?startIndex="+startIndex+"&endIndex="+endIndex);
+        function sortWidget(websiteId, pageId, startIndex, endIndex) {
+            return $http.put("/api/website/"+websiteId+"/page/"+pageId+"/widget?startIndex="+startIndex+"&endIndex="+endIndex);
         }
 
-        function removeWidget(applicationId, pageId, widgetId) {
-            return $http.delete("/api/website/"+applicationId+"/page/"+pageId+"/widget/"+widgetId);
+        function removeWidget(websiteId, pageId, widgetId) {
+            return $http.delete("/api/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
         }
 
-        function updateWidget(applicationId, pageId, widgetId, widget) {
-            return $http.put("/api/website/"+applicationId+"/page/"+pageId+"/widget/"+widgetId, widget);
+        function updateWidget(websiteId, pageId, widgetId, widget) {
+            return $http.put("/api/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId, widget);
         }
 
-        function findWidgetById(applicationId, pageId, widgetId) {
-            return $http.get("/api/website/"+applicationId+"/page/"+pageId+"/widget/"+widgetId);
+        function findWidgetById(websiteId, pageId, widgetId) {
+            return $http.get("/api/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
         }
 
-        function getWidgets(applicationId, pageId) {
-            return $http.get("/api/website/"+applicationId+"/page/"+pageId+"/widget");
+        function getWidgets(websiteId, pageId) {
+            return $http.get("/api/website/"+websiteId+"/page/"+pageId+"/widget");
         }
 
-        function addWidget(applicationId, pageId, widgetType) {
-            return $http.post("/api/website/"+applicationId+"/page/"+pageId+"/widget?widgetType="+widgetType);
+        function addWidget(websiteId, pageId, widgetType) {
+            return $http.post("/api/website/"+websiteId+"/page/"+pageId+"/widget?widgetType="+widgetType);
         }
     }
 })();

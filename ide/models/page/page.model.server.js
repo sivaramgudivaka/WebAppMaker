@@ -1,10 +1,10 @@
-module.exports = function(applicationModel) {
+module.exports = function(websiteModel) {
 
-    var Application = applicationModel.getMongooseModel();
+    var Website = websiteModel.getMongooseModel();
 
     var api = {
         createPage: createPage,
-        findPagesForApplication: findPagesForApplication,
+        findPagesForWebsite: findPagesForWebsite,
         findPage: findPage,
         removePage: removePage,
         updatePage: updatePage,
@@ -12,66 +12,66 @@ module.exports = function(applicationModel) {
     };
     return api;
 
-    function sortPage(applicationId, startIndex, endIndex) {
-        return Application
-            .findById(applicationId)
+    function sortPage(websiteId, startIndex, endIndex) {
+        return Website
+            .findById(websiteId)
             .then(
-                function(application) {
-                    application.pages.splice(endIndex, 0, application.pages.splice(startIndex, 1)[0]);
+                function(website) {
+                    website.pages.splice(endIndex, 0, website.pages.splice(startIndex, 1)[0]);
 
                     // notify mongoose 'pages' field changed
-                    application.markModified("pages");
+                    website.markModified("pages");
 
-                    application.save();
+                    website.save();
                 }
             );
     }
 
-    function updatePage(applicationId, pageObj) {
-        return Application
-            .findById(applicationId)
+    function updatePage(websiteId, pageObj) {
+        return Website
+            .findById(websiteId)
             .then(
-                function(application){
-                    var page   = application.pages.id(pageObj._id);
+                function(website){
+                    var page   = website.pages.id(pageObj._id);
                     page.name  = pageObj.name;
                     page.title = pageObj.title;
-                    return application.save();
+                    return website.save();
                 }
             );
     }
 
-    function removePage(applicationId, pageId) {
-        return Application
-            .findById(applicationId)
+    function removePage(websiteId, pageId) {
+        return Website
+            .findById(websiteId)
             .then(
-                function(application){
-                    application.pages.id(pageId).remove();
-                    return application.save();
+                function(website){
+                    website.pages.id(pageId).remove();
+                    return website.save();
                 }
             );
     }
 
-    function findPage(applicationId, pageId) {
-        return Application
-            .findById(applicationId)
+    function findPage(websiteId, pageId) {
+        return Website
+            .findById(websiteId)
             .then(
-                function(application){
-                    return application.pages.id(pageId);
+                function(website){
+                    return website.pages.id(pageId);
                 }
             );
     }
 
-    function findPagesForApplication(applicationId) {
+    function findPagesForWebsite(websiteId) {
         // use select() to retrieve a particular field
-        return Application.findById(applicationId).select("pages");
+        return Website.findById(websiteId).select("pages");
     }
 
-    function createPage(applicationId, page) {
-        return Application.findById(applicationId)
+    function createPage(websiteId, page) {
+        return Website.findById(websiteId)
             .then(
-                function(application) {
-                    application.pages.push(page);
-                    return application.save();
+                function(website) {
+                    website.pages.push(page);
+                    return website.save();
                 }
             );
     }

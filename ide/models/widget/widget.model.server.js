@@ -1,6 +1,6 @@
-module.exports = function(applicationModel) {
+module.exports = function(websiteModel) {
 
-    var Application = applicationModel.getMongooseModel();
+    var Website = websiteModel.getMongooseModel();
 
     var api = {
         createWidget: createWidget,
@@ -10,39 +10,39 @@ module.exports = function(applicationModel) {
     };
     return api;
 
-    function sortWidget(applicationId, pageId, startIndex, endIndex) {
-        return Application
-            .findById(applicationId)
+    function sortWidget(websiteId, pageId, startIndex, endIndex) {
+        return Website
+            .findById(websiteId)
             .then(
-                function(application) {
-                    application.pages.id(pageId).widgets.splice(endIndex, 0, application.pages.id(pageId).widgets.splice(startIndex, 1)[0]);
+                function(website) {
+                    website.pages.id(pageId).widgets.splice(endIndex, 0, website.pages.id(pageId).widgets.splice(startIndex, 1)[0]);
 
                     // notify mongoose 'pages' field changed
-                    application.markModified("pages");
+                    website.markModified("pages");
 
-                    application.save();
+                    website.save();
                 }
             );
     }
 
-    function removeWidget(applicationId, pageId, widgetId, newWidget) {
-        return Application
-            .findById(applicationId)
+    function removeWidget(websiteId, pageId, widgetId, newWidget) {
+        return Website
+            .findById(websiteId)
             .then(
-                function(application) {
-                    application.pages.id(pageId).widgets.remove(widgetId);
-                    return application.save();
+                function(website) {
+                    website.pages.id(pageId).widgets.remove(widgetId);
+                    return website.save();
                 }
             );
     }
 
-    function updateWidget(applicationId, pageId, widgetId, newWidget) {
+    function updateWidget(websiteId, pageId, widgetId, newWidget) {
         delete newWidget._id;
-        return Application
-            .findById(applicationId)
+        return Website
+            .findById(websiteId)
             .then(
-                function(application) {
-                    var widget = application.pages.id(pageId).widgets.id(widgetId);
+                function(website) {
+                    var widget = website.pages.id(pageId).widgets.id(widgetId);
                     widget.name = newWidget.name;
                     widget.text = newWidget.text;
                     if(widget.widgetType === "HEADER") {
@@ -150,23 +150,23 @@ module.exports = function(applicationModel) {
                             }
                         }
                     }
-                    return application.save();
+                    return website.save();
                 }
             );
     }
 
-    function createWidget(applicationId, pageId, widgetType) {
-        return Application.findById(applicationId)
+    function createWidget(websiteId, pageId, widgetType) {
+        return Website.findById(websiteId)
             .then(
-                function(application) {
+                function(website) {
 
                     var widget = {
                         widgetType: widgetType
                     };
 
-                    application.pages.id(pageId).widgets.push(widget);
+                    website.pages.id(pageId).widgets.push(widget);
 
-                    return application.save();
+                    return website.save();
                 }
             );
     }

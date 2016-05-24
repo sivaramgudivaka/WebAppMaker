@@ -1,17 +1,17 @@
 module.exports = function(app, model) {
 
     var shareModel       = model.shareModel;
-    var applicationModel = model.applicationModel;
+    var websiteModel = model.websiteModel;
 
-    app.post   ("/api/share/:applicationId/developer/:username", shareApplication)
-    app.get    ("/api/share/:applicationId", findSharedApplication)
-    app.delete ("/api/share/:applicationId/developer/:username", unshareApplication)
+    app.post   ("/api/share/:websiteId/developer/:username", shareWebsite)
+    app.get    ("/api/share/:websiteId", findSharedWebsite)
+    app.delete ("/api/share/:websiteId/developer/:username", unshareWebsite)
 
-    function unshareApplication(req, res) {
-        var applicationId = req.params.applicationId;
+    function unshareWebsite(req, res) {
+        var websiteId = req.params.websiteId;
         var username = req.params.username;
         shareModel
-            .unshareApplication(applicationId, username)
+            .unshareWebsite(websiteId, username)
             .then(
                 function(share) {
                     res.send(200);
@@ -22,11 +22,11 @@ module.exports = function(app, model) {
             );
     }
 
-    function shareApplication(req, res) {
-        var applicationId = req.params.applicationId;
+    function shareWebsite(req, res) {
+        var websiteId = req.params.websiteId;
         var username = req.params.username;
         shareModel
-            .shareApplication(applicationId, username)
+            .shareWebsite(websiteId, username)
             .then(
                 function(share) {
                     res.send(200);
@@ -37,10 +37,10 @@ module.exports = function(app, model) {
             );
     }
 
-    function findSharedApplication(req, res) {
-        var applicationId = req.params.applicationId;
+    function findSharedWebsite(req, res) {
+        var websiteId = req.params.websiteId;
         shareModel
-            .findSharedApplication(applicationId)
+            .findSharedWebsite(websiteId)
             .then(
                 function(shares) {
                     var developers = [];

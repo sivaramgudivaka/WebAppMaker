@@ -8,7 +8,7 @@
 
         <a class="navbar-brand">Edit Website</a>
 
-        <a ng-click="model.updateApplication (model.application)"
+        <a ng-click="model.updateWebsite (model.website)"
            class="btn btn-default btn-transparent pull-right">
             <span class="glyphicon glyphicon-ok"></span>
         </a>
@@ -20,18 +20,18 @@
     {{model.error}}
 </div>
 
-Application Name
-<input ng-model="model.application.name"
+Website Name
+<input ng-model="model.website.name"
        class="form-control"
        placeholder="Name"/>
 
-Application Description
-<textarea ng-model="model.application.description"
+Website Description
+<textarea ng-model="model.website.description"
           rows="5"
        class="form-control"
        placeholder="Description"></textarea>
 
-<button ng-click="model.removeApplication(model.application)"
+<button ng-click="model.removeWebsite(model.website)"
         class="btn btn-danger btn-block">
     Delete
 </button>
@@ -43,7 +43,7 @@ Application Description
             <span class="glyphicon glyphicon-user"></span>
         </a>
 
-        <a href="#/developer/{{currentUser.username}}/website/{{model.applicationId}}/share"
+        <a href="#/developer/{{currentUser.username}}/website/{{model.websiteId}}/share"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-share-alt"></span>
         </a>

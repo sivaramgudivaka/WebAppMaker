@@ -31,7 +31,7 @@
     <div class="container">
 
         <!-- go back to the page editor -->
-        <a href="/#/developer/<%= username %>/website/<%= applicationId %>/page/<%= pageId %>/widget"
+        <a href="/#/developer/<%= username %>/website/<%= websiteId %>/page/<%= pageId %>/widget"
            class="jga-close">
             <span class="glyphicon glyphicon-remove-circle"></span>
         </a>
@@ -47,7 +47,7 @@
         var context = {
             widget: page.widgets[i],
             pageId: pageId,
-            applicationId: applicationId
+            websiteId: websiteId
         }
     %>
 <%# pass data to included partial template -%>

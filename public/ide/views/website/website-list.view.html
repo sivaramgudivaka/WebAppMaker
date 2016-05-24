@@ -18,16 +18,16 @@
 </div>
 
 <table class="table table-hover">
-    <tr ng-repeat="application in model.applications">
+    <tr ng-repeat="website in model.websites">
         <td>
-            <a href="#/developer/{{model.username}}/website/{{application._id}}/page">
-                {{application.name}}
+            <a href="#/developer/{{model.username}}/website/{{website._id}}/page">
+                {{website.name}}
             </a>
-            <a href="#/developer/{{model.username}}/website/{{application._id}}/page/{{application.pages[0]._id}}/run"
+            <a href="#/developer/{{model.username}}/website/{{website._id}}/page/{{website.pages[0]._id}}/run"
                class="pull-right">
                 <span class="glyphicon glyphicon-play"></span>
             </a>
-            <a href="#/developer/{{model.username}}/website/edit/{{application._id}}"
+            <a href="#/developer/{{model.username}}/website/edit/{{website._id}}"
                class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>

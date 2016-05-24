@@ -1,29 +1,29 @@
 module.exports = function (app, model) {
 
-    var applicationModel = model.applicationModel;
+    var websiteModel = model.websiteModel;
 
     var multer  = require('multer');
     var upload = multer({ dest: __dirname+'/../../../data' });
 
-    app.post ("/api/website/:applicationId/page/:pageId/widget", createWidget);
-    app.get  ("/api/website/:applicationId/page/:pageId/widget", getWidgets);
-    app.get  ("/api/website/:applicationId/page/:pageId/widget/:widgetId", findWidgetById);
-    app.put  ("/api/website/:applicationId/page/:pageId/widget/:widgetId", updateWidget);
-    app.delete("/api/website/:applicationId/page/:pageId/widget/:widgetId", removeWidget);
+    app.post ("/api/website/:websiteId/page/:pageId/widget", createWidget);
+    app.get  ("/api/website/:websiteId/page/:pageId/widget", getWidgets);
+    app.get  ("/api/website/:websiteId/page/:pageId/widget/:widgetId", findWidgetById);
+    app.put  ("/api/website/:websiteId/page/:pageId/widget/:widgetId", updateWidget);
+    app.delete("/api/website/:websiteId/page/:pageId/widget/:widgetId", removeWidget);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
-    app.put    ("/api/website/:applicationId/page/:pageId/widget", updateWidgets);
+    app.put    ("/api/website/:websiteId/page/:pageId/widget", updateWidgets);
 
-    var widgetModel = require("../models/widget/widget.model.server.js")(applicationModel);
+    var widgetModel = require("../models/widget/widget.model.server.js")(websiteModel);
 
     function updateWidgets(req, res) {
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var pageId = req.params.pageId;
         var startIndex = req.query.startIndex;
         var endIndex = req.query.endIndex;
 
         if (startIndex && endIndex) {
             widgetModel
-                .sortWidget(applicationId, pageId, startIndex, endIndex)
+                .sortWidget(websiteId, pageId, startIndex, endIndex)
                 .then(
                     function (stat) {
                         return res.json(200);
@@ -38,7 +38,7 @@ module.exports = function (app, model) {
     function uploadImage(req, res) {
 
         var username      = req.user.username;
-        var applicationId = req.body.applicationId;
+        var websiteId = req.body.websiteId;
         var pageId        = req.body.pageId;
         var widgetId      = req.body.widgetId;
         var width         = req.body.width;
@@ -51,16 +51,16 @@ module.exports = function (app, model) {
         var mimetype      = myFile.mimetype;
         var filename      = myFile.filename;
 
-        applicationModel.getMongooseModel()
-            .findById(applicationId)
+        websiteModel.getMongooseModel()
+            .findById(websiteId)
             .then(
-                function(application) {
-                    var widget = application.pages.id(pageId).widgets.id(widgetId);
+                function(website) {
+                    var widget = website.pages.id(pageId).widgets.id(widgetId);
                     widget.image = {
                         url: "/uploads/" + filename,
                         width: width
                     }
-                    return application.save();
+                    return website.save();
                 },
                 function(err) {
                     res.status(400).send(err);
@@ -68,7 +68,7 @@ module.exports = function (app, model) {
             )
             .then(
                 function(){
-                    res.redirect("/ide/#/developer/"+username+"/website/"+applicationId+"/page/"+pageId+"/widget");
+                    res.redirect("/ide/#/developer/"+username+"/website/"+websiteId+"/page/"+pageId+"/widget");
                 },
                 function(err) {
                     res.status(400).send(err);
@@ -77,11 +77,11 @@ module.exports = function (app, model) {
     }
 
     function removeWidget(req, res) {
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var pageId = req.params.pageId;
         var widgetId = req.params.widgetId;
         widgetModel
-            .removeWidget(applicationId, pageId, widgetId)
+            .removeWidget(websiteId, pageId, widgetId)
             .then(
                 function(response) {
                     res.send(200);
@@ -93,12 +93,12 @@ module.exports = function (app, model) {
     }
 
     function updateWidget(req, res) {
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var pageId = req.params.pageId;
         var widgetId = req.params.widgetId;
         var widget = req.body;
         widgetModel
-            .updateWidget(applicationId, pageId, widgetId, widget)
+            .updateWidget(websiteId, pageId, widgetId, widget)
             .then(
                 function(response) {
                     res.send(200);
@@ -112,14 +112,14 @@ module.exports = function (app, model) {
     }
 
     function findWidgetById(req, res) {
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var pageId = req.params.pageId;
         var widgetId = req.params.widgetId;
-        applicationModel
-            .findApplicationById(applicationId)
+        websiteModel
+            .findWebsiteById(websiteId)
             .then(
-                function(application) {
-                    res.json(application.pages.id(pageId).widgets.id(widgetId));
+                function(website) {
+                    res.json(website.pages.id(pageId).widgets.id(widgetId));
                 },
                 function(err) {
                     res.status(400).send(err);
@@ -128,13 +128,13 @@ module.exports = function (app, model) {
     }
 
     function getWidgets(req, res) {
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var pageId = req.params.pageId;
-        applicationModel
-            .findApplicationById(applicationId)
+        websiteModel
+            .findWebsiteById(websiteId)
             .then(
-                function(application) {
-                    res.json(application.pages.id(pageId).widgets);
+                function(website) {
+                    res.json(website.pages.id(pageId).widgets);
                 },
                 function(err) {
                     res.status(400).send(err);
@@ -143,14 +143,14 @@ module.exports = function (app, model) {
     }
 
     function createWidget(req, res) {
-        var applicationId = req.params.applicationId;
+        var websiteId = req.params.websiteId;
         var pageId = req.params.pageId;
         var widgetType = req.query.widgetType;
         widgetModel
-            .createWidget(applicationId, pageId, widgetType)
+            .createWidget(websiteId, pageId, widgetType)
             .then(
-                function(application) {
-                    var widgets = application.pages.id(pageId).widgets;
+                function(website) {
+                    var widgets = website.pages.id(pageId).widgets;
                     res.send(widgets[widgets.length - 1]);
                 },
                 function(err) {

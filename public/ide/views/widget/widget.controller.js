@@ -9,7 +9,7 @@
 
         var vm = this;
         vm.username      = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
+        vm.websiteId = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
 
@@ -19,7 +19,7 @@
         function init() {
             // populate the page dropdown to select button navigate property
             PageService
-                .findPagesForApplication(vm.applicationId)
+                .findPagesForApplication(vm.websiteId)
                 .then(
                     function(response) {
                         vm.pages = response.data;
@@ -30,7 +30,7 @@
                 );
 
             WidgetService
-                .findWidgetById(vm.applicationId, vm.pageId, vm.widgetId)
+                .findWidgetById(vm.websiteId, vm.pageId, vm.widgetId)
                 .then(
                     function(response){
                         vm.widget = response.data;
@@ -44,10 +44,10 @@
 
         function removeWidget(widget) {
             WidgetService
-                .removeWidget(vm.applicationId, vm.pageId, vm.widgetId)
+                .removeWidget(vm.websiteId, vm.pageId, vm.widgetId)
                 .then(
                     function(response) {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+vm.pageId+"/widget");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
                     },
                     function(error) {
                         vm.error = error;
@@ -57,10 +57,10 @@
 
         function updateWidget(widget) {
             WidgetService
-                .updateWidget(vm.applicationId, vm.pageId, vm.widgetId, widget)
+                .updateWidget(vm.websiteId, vm.pageId, vm.widgetId, widget)
                 .then(
                     function(response) {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+vm.pageId+"/widget");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
                     },
                     function(error) {
                         vm.error = error;
@@ -73,7 +73,7 @@
 
         var vm = this;
         vm.username      = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
+        vm.websiteId = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
 
         vm.safeYouTubeUrl = safeYouTubeUrl;
@@ -83,7 +83,7 @@
 
         function init() {
             WidgetService
-                .getWidgets(vm.applicationId, vm.pageId)
+                .getWidgets(vm.websiteId, vm.pageId)
                 .then(
                     function(response) {
                         vm.widgets = response.data;
@@ -117,7 +117,7 @@
 
         function sortWidget(start, end) {
             WidgetService
-                .sortWidget(vm.applicationId, vm.pageId, start, end)
+                .sortWidget(vm.websiteId, vm.pageId, start, end)
                 .then(
                     function (response) {
                     },
@@ -133,18 +133,18 @@
         var vm = this;
 
         vm.username = $routeParams.username;
-        vm.applicationId = $routeParams.applicationId;
+        vm.websiteId = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
 
         vm.selectWidget = selectWidget;
 
         function selectWidget(widgetType) {
             WidgetService
-                .addWidget(vm.applicationId, vm.pageId, widgetType)
+                .addWidget(vm.websiteId, vm.pageId, widgetType)
                 .then(
                     function(response) {
                         var newWidget = response.data
-                        $location.url("/developer/"+vm.username+"/website/"+vm.applicationId+"/page/"+vm.pageId+"/widget/" + newWidget._id + "/edit");
+                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/" + newWidget._id + "/edit");
                     },
                     function(err) {
                         vm.error = err;

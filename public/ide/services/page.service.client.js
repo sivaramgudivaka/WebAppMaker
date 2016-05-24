@@ -6,7 +6,7 @@
     function pageService ($http) {
         var api = {
             createPage: createPage,
-            findPagesForApplication: findPagesForApplication,
+            findPagesForWebsite: findPagesForWebsite,
             findPage: findPage,
             removePage: removePage,
             updatePage: updatePage,
@@ -14,29 +14,29 @@
         };
         return api;
 
-        function sortPage(applicationId, startIndex, endIndex) {
-            return $http.put("/api/website/"+applicationId+"/page?startIndex="+startIndex+"&endIndex="+endIndex);
+        function sortPage(websiteId, startIndex, endIndex) {
+            return $http.put("/api/website/"+websiteId+"/page?startIndex="+startIndex+"&endIndex="+endIndex);
         }
 
-        function updatePage(applicationId, page) {
-            return $http.put("/api/website/"+applicationId+"/page/"+page._id, page);
+        function updatePage(websiteId, page) {
+            return $http.put("/api/website/"+websiteId+"/page/"+page._id, page);
         }
 
-        function removePage(applicationId, pageId) {
-            return $http.delete("/api/website/"+applicationId+"/page/"+pageId);
+        function removePage(websiteId, pageId) {
+            return $http.delete("/api/website/"+websiteId+"/page/"+pageId);
         }
 
 
-        function findPage(applicationId, pageId) {
-            return $http.get("/api/website/"+applicationId+"/page/"+pageId);
+        function findPage(websiteId, pageId) {
+            return $http.get("/api/website/"+websiteId+"/page/"+pageId);
         }
 
-        function findPagesForApplication(applicationId) {
-            return $http.get("/api/website/"+applicationId+"/page");
+        function findPagesForWebsite(websiteId) {
+            return $http.get("/api/website/"+websiteId+"/page");
         }
 
-        function createPage(applicationId, page) {
-            return $http.post("/api/website/"+applicationId+"/page", page);
+        function createPage(websiteId, page) {
+            return $http.post("/api/website/"+websiteId+"/page", page);
         }
     }
 })();
