@@ -28,6 +28,19 @@ Title
        class="form-control"/>
 
 <div ng-switch="model.statement.statementType">
+
+    <div ng-switch-when="BOOLEAN">
+        Boolean
+    </div>
+
+    <div ng-switch-when="DATE">
+        Date
+    </div>
+
+    <div ng-switch-when="STRING">
+        String
+    </div>
+
     <div ng-switch-when="NUMBER">
 
         <div class="row">
