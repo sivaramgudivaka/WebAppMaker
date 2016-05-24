@@ -20,7 +20,7 @@ module.exports = function(websiteModel) {
 
     function updateStatement(scope, newStatement) {
         return websiteModel
-            .findApplicationById(scope.websiteId)
+            .findWebsiteById(scope.websiteId)
             .then(
                 function(website) {
                     var statement = website
@@ -51,7 +51,7 @@ module.exports = function(websiteModel) {
 
         // retrieve website since we need all variables in the website
         websiteModel
-            .findApplicationById(scope.websiteId)
+            .findWebsiteById(scope.websiteId)
             .then(
                 function(website) {
                     
@@ -98,7 +98,7 @@ module.exports = function(websiteModel) {
         var deferred = q.defer();
 
         websiteModel
-            .findApplicationById(scope.websiteId)
+            .findWebsiteById(scope.websiteId)
             .then(
                 function(website) {
                     var widget = website
@@ -140,7 +140,7 @@ module.exports = function(websiteModel) {
 
     function saveScript(scope, script) {
         return websiteModel
-            .findApplicationById(scope.websiteId)
+            .findWebsiteById(scope.websiteId)
             .then(
                 function(website) {
                     var widget = website
@@ -162,7 +162,7 @@ module.exports = function(websiteModel) {
         var deferred = q.defer();
 
         websiteModel
-            .findApplicationById(scope.websiteId)
+            .findWebsiteById(scope.websiteId)
             .then(
                 function(website) {
                     var widget = website

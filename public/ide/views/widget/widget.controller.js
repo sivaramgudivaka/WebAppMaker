@@ -9,7 +9,7 @@
 
         var vm = this;
         vm.username      = $routeParams.username;
-        vm.websiteId = $routeParams.websiteId;
+        vm.websiteId     = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
 
@@ -19,7 +19,7 @@
         function init() {
             // populate the page dropdown to select button navigate property
             PageService
-                .findPagesForApplication(vm.websiteId)
+                .findPagesForWebsite(vm.websiteId)
                 .then(
                     function(response) {
                         vm.pages = response.data;
