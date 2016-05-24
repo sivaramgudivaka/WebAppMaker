@@ -38,6 +38,7 @@ module.exports = function () {
         Website
             .find(
                 {developerUsername: username},
+                '_id dateCreated developerUsername name',
                 function (err, websites) {
                     if (!err) {
                         deferred.resolve (websites);

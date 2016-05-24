@@ -1,24 +1,24 @@
 (function () {
     angular
         .module ("WebAppMakerApp")
-        .controller ("ShareWebiteController", shareWebiteController)
-        .controller ("WebiteListController", webiteListController)
-        .controller ("NewWebiteController", newWebiteController)
-        .controller ("EditWebiteController", editWebiteController);
+        .controller ("ShareWebsiteController", shareWebsiteController)
+        .controller ("WebsiteListController", websiteListController)
+        .controller ("NewWebsiteController", newWebsiteController)
+        .controller ("EditWebsiteController", editWebsiteController);
 
-    function shareWebiteController
-        ($routeParams, WebiteService, $location) {
+    function shareWebsiteController
+        ($routeParams, WebsiteService, $location) {
 
         var vm = this;
         vm.username = $routeParams.username;
-        vm.webiteId = $routeParams.webiteId;
+        vm.websiteId = $routeParams.websiteId;
         
-        vm.shareWebite = shareWebite;
-        vm.unshareWebite = unshareWebite;
+        vm.shareWebsite = shareWebsite;
+        vm.unshareWebsite = unshareWebsite;
 
         function init() {
-            WebiteService
-                .findDevelopersSharingWebite(vm.webiteId)
+            WebsiteService
+                .findDevelopersSharingWebsite(vm.websiteId)
                 .then(
                     function(response) {
                         vm.developers = response.data;
@@ -30,13 +30,13 @@
         }
         init();
 
-        function unshareWebite(username) {
-            WebiteService
-                .unshareWebite(vm.webiteId, username)
+        function unshareWebsite(username) {
+            WebsiteService
+                .unshareWebsite(vm.websiteId, username)
                 .then(
                     function(response) {
-                        return WebiteService
-                            .findDevelopersSharingWebite(vm.webiteId);
+                        return WebsiteService
+                            .findDevelopersSharingWebsite(vm.websiteId);
                     },
                     function(err) {
                         vm.error = err;
@@ -52,13 +52,13 @@
                 );
         }
 
-        function shareWebite(developer) {
-            WebiteService
-                .shareWebite(vm.webiteId, developer.username)
+        function shareWebsite(developer) {
+            WebsiteService
+                .shareWebsite(vm.websiteId, developer.username)
                 .then(
                     function(response) {
-                        return WebiteService
-                            .findDevelopersSharingWebite(vm.webiteId);
+                        return WebsiteService
+                            .findDevelopersSharingWebsite(vm.websiteId);
                     },
                     function(err) {
                         vm.error = err;
@@ -75,21 +75,21 @@
         }
     }
 
-    function editWebiteController
-        ($routeParams, WebiteService, $location) {
+    function editWebsiteController
+        ($routeParams, WebsiteService, $location) {
 
         var vm = this;
         vm.username = $routeParams.username;
-        vm.webiteId = $routeParams.webiteId;
-        vm.removeWebite = removeWebite;
-        vm.updateWebite = updateWebite;
+        vm.websiteId = $routeParams.websiteId;
+        vm.removeWebsite = removeWebsite;
+        vm.updateWebsite = updateWebsite;
 
         function init () {
-            WebiteService
-                .findWebiteById($routeParams.webiteId)
+            WebsiteService
+                .findWebsiteById($routeParams.websiteId)
                 .then(
                     function(response) {
-                        vm.webite = response.data;
+                        vm.website = response.data;
                     },
                     function(err) {
                         vm.error = err;
@@ -98,9 +98,9 @@
         }
         init ();
 
-        function removeWebite(webite) {
-            WebiteService
-                .removeWebite(webite)
+        function removeWebsite(website) {
+            WebsiteService
+                .removeWebsite(website)
                 .then(
                     function(response) {
                         $location.url ("/developer/"+vm.username+"/website");
@@ -111,9 +111,9 @@
                 );
         }
 
-        function updateWebite(webite) {
-            WebiteService
-                .updateWebite(webite)
+        function updateWebsite(website) {
+            WebsiteService
+                .updateWebsite(website)
                 .then(
                     function(response) {
                         $location.url ("/developer/"+vm.username+"/website");
@@ -125,18 +125,18 @@
         }
     }
 
-    function webiteListController (
-        $routeParams, WebiteService) {
+    function websiteListController (
+        $routeParams, WebsiteService) {
 
         var vm = this;
         vm.username = $routeParams.username;
 
         function init () {
-            WebiteService
-                .findWebitesForUsername (vm.username)
+            WebsiteService
+                .findWebsitesForUsername (vm.username)
                 .then (
                     function (response) {
-                        vm.webites = response.data;
+                        vm.websites = response.data;
                     },
                     function (err) {
                         vm.error = err;
@@ -146,17 +146,17 @@
         init ();
     }
 
-    function newWebiteController (
-        $routeParams, WebiteService, $location) {
+    function newWebsiteController (
+        $routeParams, WebsiteService, $location) {
 
         var vm = this;
         vm.username = $routeParams.username;
-        vm.createWebite = createWebite;
+        vm.createWebsite = createWebsite;
 
-        function createWebite (webite) {
-            webite.developerUsername = vm.username;
-            WebiteService
-                .createWebite (webite)
+        function createWebsite (website) {
+            website.developerUsername = vm.username;
+            WebsiteService
+                .createWebsite (website)
                 .then (
                     function (response) {
                         $location.url ("/developer/"+vm.username+"/website");

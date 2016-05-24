@@ -4,17 +4,17 @@ module.exports = function (app, model) {
 
     var websiteModel = model.websiteModel;
 
-    app.post   ("/api/developer/:username/website", createApplication);
-    app.get    ("/api/developer/:username/website", findApplicationsForUsername);
-    app.get    ("/api/website/:websiteId", findApplicationById);
-    app.delete ("/api/website/:websiteId", removeApplication);
-    app.put    ("/api/website/:websiteId", updateApplication);
+    app.post   ("/api/developer/:username/website", createWebsite);
+    app.get    ("/api/developer/:username/website", findWebsitesForUsername);
+    app.get    ("/api/website/:websiteId", findWebsiteById);
+    app.delete ("/api/website/:websiteId", removeWebsite);
+    app.put    ("/api/website/:websiteId", updateWebsite);
 
-    function updateApplication (req, res) {
+    function updateWebsite (req, res) {
         var website = req.body;
         var websiteId = req.params.websiteId;
         websiteModel
-            .updateApplication(websiteId, website)
+            .updateWebsite(websiteId, website)
             .then(
                 function(response) {
                     res.json(response.result);
@@ -25,10 +25,10 @@ module.exports = function (app, model) {
             );
     }
 
-    function removeApplication (req, res) {
+    function removeWebsite (req, res) {
         var websiteId = req.params.websiteId;
         websiteModel
-            .removeApplication(websiteId)
+            .removeWebsite(websiteId)
             .then(
                 function(response) {
                     res.json(response.result);
@@ -39,10 +39,10 @@ module.exports = function (app, model) {
             );
     }
 
-    function findApplicationById (req, res) {
+    function findWebsiteById (req, res) {
         var websiteId = req.params.websiteId;
         websiteModel
-            .findApplicationById(websiteId)
+            .findWebsiteById(websiteId)
             .then(
                 function(website) {
                     res.json(website);
@@ -53,10 +53,10 @@ module.exports = function (app, model) {
             );
     }
 
-    function findApplicationsForUsername (req, res) {
+    function findWebsitesForUsername (req, res) {
         var username = req.params.username;
         websiteModel
-            .findApplicationsForUsername (username)
+            .findWebsitesForUsername (username)
             .then (
                 function (websites) {
                     res.json (websites);
@@ -67,11 +67,11 @@ module.exports = function (app, model) {
             );
     }
 
-    function createApplication (req, res) {
+    function createWebsite (req, res) {
         var username = req.params.username;
         var website = req.body;
         websiteModel
-            .createApplication (website)
+            .createWebsite (website)
             .then (
                 function (website) {
                     res.json (website);

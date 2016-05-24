@@ -49,8 +49,8 @@ module.exports = function (app, model) {
         callbackURL     : process.env.FACEBOOK_CALLBACK_URL
     };
 
-    //passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
-    //passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
     passport.use('web-app-maker', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
