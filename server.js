@@ -3,8 +3,8 @@ var app = express();
 
 // install, load, and configure body parser module
 var bodyParser = require('body-parser');
+app.use(bodyParser.json({type: 'application/json'}));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 // set ejs as the view engine
 // app.set('view engine', 'ejs');

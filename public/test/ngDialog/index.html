@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="NgDialogApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="ngDialog.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div ng-controller="MainCtrl">
+        <a href="#" ng-click="clickToOpen()">Open</a>
+    </div>
+
+    <script type="text/ng-template" id="notifyTimingOutTemplate">
+        <div class="ngdialog-message">
+            <h3>Time Out Notice</h3>
+            <p>Your session is about to expire due to inactivity.</p>
+            <p>'Please confirm by clicking <b>Continue</b>. or log out by clicking <b>Logout</b></p>
+        </div>
+        <div class="ngdialog-buttons">
+            <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('Cancel')">Logout</button>
+            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('Save')">Continue</button>
+        </div>
+    </script>
+</body>
+</html>

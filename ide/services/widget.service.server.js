@@ -38,7 +38,7 @@ module.exports = function (app, model) {
     function uploadImage(req, res) {
 
         var username      = req.user.username;
-        var websiteId = req.body.websiteId;
+        var websiteId     = req.body.websiteId;
         var pageId        = req.body.pageId;
         var widgetId      = req.body.widgetId;
         var width         = req.body.width;

@@ -4,7 +4,7 @@ module.exports = function() {
     var mongojs  = require('mongojs');
 
     var connectionString = 'mongodb://127.0.0.1:27017/web-app-maker';
-    var dbName = process.env.OPENSHIFT_APP_NAME || 'web-app-maker';
+    var dbName = process.env.OPENSHIFT_APP_NAME || 'web-app-maker-3';
 
     if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +

@@ -123,6 +123,16 @@
                 controller: "WidgetEditController",
                 controllerAs: "model"
             })
+            .when ("/developer/:username/website/:websiteId/page/:pageId/widget/:widgetId/flickr", {
+                templateUrl: "views/widget/flickr/widget-image-search.view.client.html",
+                controller: "FlickrSearchController",
+                controllerAs: "model"
+            })
+            .when ("/widget/:widgetId/flickr", {
+                templateUrl: "views/widget/flickr/widget-image-search.view.client.html",
+                controller: "FlickrSearchController",
+                controllerAs: "model"
+            })
 
             // script routes
             .when ("/developer/:username/website/:websiteId/page/:pageId/widget/:widgetId/script", {
