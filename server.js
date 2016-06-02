@@ -1,10 +1,6 @@
 var express = require('express');
 var app = express();
-
-// install, load, and configure body parser module
 var bodyParser = require('body-parser');
-app.use(bodyParser.json({type: 'application/json'}));
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // set ejs as the view engine
 // app.set('view engine', 'ejs');
@@ -30,6 +26,12 @@ app.use(passport.session());
 
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
+
+// install, load, and configure body parser module
+app.use(bodyParser.json({type: 'application/json'}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 // pass mongojs connection to our server side app
 require ("./ide/app.js")(app);

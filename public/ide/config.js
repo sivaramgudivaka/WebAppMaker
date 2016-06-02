@@ -3,7 +3,19 @@
         .module ("WebAppMakerApp")
         .config (Configure);
 
-    function Configure ($routeProvider) {
+    function Configure ($routeProvider, $httpProvider) {
+        $httpProvider
+            .defaults
+            .headers
+            .post = {
+            'Content-Type': 'application/json'
+        };
+        $httpProvider
+            .defaults
+            .headers
+            .put = {
+            'Content-Type': 'application/json'
+        };
         $routeProvider
             // authentication routes
             .when ("/", {
