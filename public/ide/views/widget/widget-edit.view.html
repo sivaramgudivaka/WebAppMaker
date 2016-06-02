@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top jga">
     <div class="navbar-header">
 
         <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
@@ -19,11 +19,12 @@
 Name
 <input ng-model="model.widget.name" class="form-control"/>
 
-Text
-<input ng-model="model.widget.text" class="form-control"/>
 
 <div ng-switch="model.widget.widgetType">
     <div ng-switch-when="BUTTON">
+        Text
+        <input ng-model="model.widget.text" class="form-control"/>
+
         Style
         <select ng-model="model.widget.button.style" class="form-control">
             <option>Default</option>
@@ -111,6 +112,8 @@ Text
 
     </div>
     <div ng-switch-when="LINK">
+        Text
+        <input ng-model="model.widget.text" class="form-control"/>
         URL
         <input ng-model="model.widget.link.url" class="form-control"/>
         Target
@@ -125,12 +128,15 @@ Text
         HTML
         <!-- use textangular directive to render a WYSIWYG HTML editor -->
         <div text-angular
+             ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"
              ng-model="model.widget.html.text">
         </div>
     </div>
     <div ng-switch-when="TEXT">
+        Text
+        <input ng-model="model.widget.text" class="form-control"/>
         Rows
-        <input ng-model="model.widget.textInput.rows" class="form-control"/>
+        <input ng-model="model.widget.textInput.rows" class="form-control" type="number"/>
         Placeholder
         <input ng-model="model.widget.textInput.placeholder" class="form-control"/>
         <!-- checkbox to select formatted text -->
@@ -146,6 +152,8 @@ Text
         </div>
     </div>
     <div ng-switch-when="HEADER">
+        Text
+        <input ng-model="model.widget.text" class="form-control"/>
         Size
         <select ng-model="model.widget.header.size" class="form-control">
             <option>1</option>
@@ -191,7 +199,7 @@ Text
     Delete
 </a>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
         <a href="#/developer/{{currentUser.username}}/edit"
            class="navbar-toggle collapsed">

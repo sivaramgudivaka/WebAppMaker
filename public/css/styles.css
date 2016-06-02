@@ -3,7 +3,8 @@
     color: #fff;
 }
 
-.navbar-default.jga a {
+.navbar-default.jga a,
+.navbar-default.jga a:hover {
     color: #fff;
 }
 
