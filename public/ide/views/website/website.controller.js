@@ -154,6 +154,8 @@
         vm.createWebsite = createWebsite;
 
         function createWebsite (website) {
+            if(!website)
+                return;
             website.developerUsername = vm.username;
             WebsiteService
                 .createWebsite (website)

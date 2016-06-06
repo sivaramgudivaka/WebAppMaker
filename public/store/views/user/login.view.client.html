@@ -1,18 +1,28 @@
 <h2>Login</h2>
 
-<input ng-model="developer.username"
-       placeholder="username"
-       class="form-control"/>
+<form name="loginForm">
 
-<input ng-model="developer.password"
-       placeholder="password"
-       class="form-control"/>
+    <input ng-model="developer.username"
+           placeholder="username"
+           required
+           name="username"
+           class="form-control"/>
+    <span ng-show="loginForm.username.$invalid">
+        Username is required
+    </span>
 
-<button class="btn btn-primary btn-block"
-        ng-click="model.login(developer)">
-    Login
-</button>
+    <input ng-model="developer.password"
+           placeholder="password"
+           required
+           class="form-control"/>
 
+    <button type="submit"
+            class="btn btn-primary btn-block"
+            ng-click="model.login(developer)">
+        Login
+    </button>
+
+</form>
 <a href="#/register"
    class="btn btn-success btn-block">
     Register

@@ -6,26 +6,45 @@
     {{model.error}}
 </div>
 
-<input ng-model="developer.username"
-       placeholder="username"
-       autocorrect="off"
-       autocapitalize="off"
-       class="form-control"/>
+<div ng-show="registerForm.$submitted && registerForm.$invalid" class="alert alert-danger">
+    Error
+</div>
 
-<input ng-model="developer.password"
-       placeholder="password"
-       type="password"
-       class="form-control"/>
+<form name="registerForm" id="registerForm" novalidate>
+    <input ng-model="developer.username"
+           placeholder="username"
+           autocorrect="off"
+           autocapitalize="off"
+           required
+           name="username"
+           class="form-control"/>
 
-<input ng-model="developer.password2"
-       placeholder="verify password"
-       type="password"
-       class="form-control"/>
+    <div ng-show="registerForm.$submitted && registerForm.username.$invalid">
+        Username is required
+    </div>
 
-<button class="btn btn-primary btn-block"
-        ng-click="model.register(developer)">
-    Register
-</button>
+    <input ng-model="developer.password"
+           placeholder="password"
+           type="password"
+           name="password"
+           class="form-control"/>
+
+    <input ng-model="developer.password2"
+           placeholder="verify password"
+           type="password"
+           name="password2"
+           class="form-control"/>
+
+    <div ng-show="registerForm.$submitted && registerForm.password != registerForm.password2">
+        Passwords must match
+    </div>
+
+    <button class="btn btn-primary btn-block"
+            type="submit"
+            ng-click="model.register(developer)">
+        Register
+    </button>
+</form>
 
 <a href="#/login"
    class="btn btn-danger btn-block">

@@ -9,6 +9,8 @@
         vm.register = register;
 
         function register(developer) {
+            if(!developer || !developer.username || !developer.password || !developer.password2)
+                return;
             delete developer.password2;
             SecurityService
                 .register(developer)

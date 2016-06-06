@@ -27,7 +27,10 @@ module.exports = function () {
         datatable : DataTableSchema,
         repeater  : RepeaterSchema,
         button    : ButtonSchema,
-        textInput : TextInputSchema
+        textInput : TextInputSchema,
+        placeholder : String,
+        rows        : Number,
+        formatted   : Boolean
     });
 
     return WidgetSchema;

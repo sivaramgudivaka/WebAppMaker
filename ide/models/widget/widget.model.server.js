@@ -43,6 +43,7 @@ module.exports = function(websiteModel) {
             .then(
                 function(website) {
                     var widget = website.pages.id(pageId).widgets.id(widgetId);
+
                     widget.name = newWidget.name;
                     widget.text = newWidget.text;
                     if(widget.widgetType === "HEADER") {
