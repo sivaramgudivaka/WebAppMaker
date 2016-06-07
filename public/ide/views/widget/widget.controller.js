@@ -17,20 +17,29 @@
         vm.removeWidget  = removeWidget;
 
         function init() {
+            // PageService
+            //     .findPagesFromWidgetId(vm.widgetId)
+            //     .then(
+            //         function(response) {
+            //             vm.pages = response.data;
+            //         },
+            //         function(error) {
+            //             vm.error = error;
+            //         }
+            //     );
             // populate the page dropdown to select button navigate property
             PageService
                 .findPagesForWebsite(vm.websiteId)
                 .then(
                     function(response) {
                         vm.pages = response.data;
+                        return WidgetService
+                            .findWidgetById(vm.websiteId, vm.pageId, vm.widgetId);
                     },
                     function(err) {
                         vm.error = err;
                     }
-                );
-
-            WidgetService
-                .findWidgetById(vm.websiteId, vm.pageId, vm.widgetId)
+                )
                 .then(
                     function(response){
                         vm.widget = response.data;
@@ -47,7 +56,7 @@
                 .removeWidget(vm.websiteId, vm.pageId, vm.widgetId)
                 .then(
                     function(response) {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                        $location.url("/page/"+vm.widget._page+"/widget");
                     },
                     function(error) {
                         vm.error = error;
@@ -60,7 +69,7 @@
                 .updateWidget(vm.websiteId, vm.pageId, vm.widgetId, widget)
                 .then(
                     function(response) {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                        $location.url("/page/"+widget._page+"/widget");
                     },
                     function(error) {
                         vm.error = error;
@@ -69,12 +78,12 @@
         }
     }
 
-    function widgetListController ($routeParams, WidgetService, $sce) {
+    function widgetListController ($routeParams, PageService, WidgetService, $sce) {
 
         var vm = this;
-        vm.username      = $routeParams.username;
-        vm.websiteId = $routeParams.websiteId;
-        vm.pageId        = $routeParams.pageId;
+        vm.username       = $routeParams.username;
+        vm.websiteId      = $routeParams.websiteId;
+        vm.pageId         = $routeParams.pageId;
 
         vm.safeYouTubeUrl = safeYouTubeUrl;
         vm.getButtonClass = getButtonClass;
@@ -82,8 +91,17 @@
         vm.trustAsHtml    = trustAsHtml;
 
         function init() {
-            WidgetService
-                .getWidgets(vm.websiteId, vm.pageId)
+            PageService
+                .findPageById(vm.pageId)
+                .then(
+                    function(response) {
+                        vm.page = response.data;
+                        return WidgetService.getWidgets(vm.websiteId, vm.pageId);
+                    },
+                    function(error) {
+                        vm.error = error;
+                    }
+                )
                 .then(
                     function(response) {
                         vm.widgets = response.data;
@@ -128,23 +146,33 @@
         }
     }
 
-    function chooseWidgetController ($routeParams, WidgetService, $location) {
+    function chooseWidgetController ($routeParams, WidgetService, PageService, $location) {
 
         var vm = this;
 
-        vm.username = $routeParams.username;
+        vm.username  = $routeParams.username;
         vm.websiteId = $routeParams.websiteId;
-        vm.pageId        = $routeParams.pageId;
+        vm.pageId    = $routeParams.pageId;
 
         vm.selectWidget = selectWidget;
 
         function selectWidget(widgetType) {
-            WidgetService
-                .addWidget(vm.websiteId, vm.pageId, widgetType)
+            PageService
+                .findPageById(vm.pageId)
+                .then(
+                    function(response) {
+                        vm.page = response.data;
+                        return WidgetService
+                            .addWidget(vm.page._website, vm.page._id, widgetType)
+                    },
+                    function(error) {
+                        vm.error = error;
+                    }
+                )
                 .then(
                     function(response) {
                         var newWidget = response.data
-                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/" + newWidget._id + "/edit");
+                        $location.url("/website/"+vm.page._website+"/page/"+vm.page._id+"/widget/" + newWidget._id);
                     },
                     function(err) {
                         vm.error = err;

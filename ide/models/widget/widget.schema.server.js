@@ -13,11 +13,12 @@ module.exports = function () {
     var HtmlSchema      = require("./html.schema.server.js")();
 
     var WidgetSchema = mongoose.Schema({
+        _page: { type: mongoose.Schema.Types.ObjectId, ref: 'Page' },
         widgetType: {type: String, enum: ["HTML", "HEADER", "LABEL", "TEXT",
             "LINK", "BUTTON", "IMAGE", "YOUTUBE","DATATABLE", "REPEATER"]},
         name      : String,
         title     : String,
-        text      : {type:String, default:'Text'},
+        text      : String,
         url       : String,
         html      : HtmlSchema,
         link      : LinkSchema,
@@ -29,8 +30,9 @@ module.exports = function () {
         button    : ButtonSchema,
         textInput : TextInputSchema,
         placeholder : String,
-        rows        : Number,
-        formatted   : Boolean
+        rows      : Number,
+        formatted : Boolean,
+        order     : { type: Number, default: 0 }
     });
 
     return WidgetSchema;

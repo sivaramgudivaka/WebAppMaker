@@ -1,12 +1,12 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top jga">
     <div class="navbar-header">
 
-        <a href="#/developer/{{model.username}}/website"
+        <a href="#/developer/{{model.developerId}}/website"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
 
-        <a class="navbar-brand">Edit Website</a>
+        <a class="navbar-brand">{{model.website.name}} - Edit Website</a>
 
         <a ng-click="model.updateWebsite (model.website)"
            class="btn btn-default btn-transparent pull-right">
@@ -36,7 +36,7 @@ Website Description
     Delete
 </button>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
         <a href="#/developer/{{currentUser.username}}/edit"
            class="navbar-toggle collapsed">

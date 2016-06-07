@@ -1,16 +1,47 @@
+var mongoose = require("mongoose");
+
 module.exports = function(websiteModel) {
 
-    var Website = websiteModel.getMongooseModel();
+    // var Website = websiteModel.getMongooseModel();
+    var WidgetSchema = require("./widget.schema.server")();
+    var Widget = mongoose.model("Widget", WidgetSchema);
 
     var api = {
         createWidget: createWidget,
+        findWidgetsForPage: findWidgetsForPage,
+        findWidgetById: findWidgetById,
         updateWidget: updateWidget,
         removeWidget: removeWidget,
         sortWidget  : sortWidget
     };
     return api;
 
+    function findWidgetById(widgetId) {
+        return Widget.findById(widgetId);
+    }
+
+    function findWidgetsForPage(pageId) {
+        return Widget.find({_page: pageId});
+    }
+
     function sortWidget(websiteId, pageId, startIndex, endIndex) {
+
+        return Widget
+            .find()
+            .then(
+                function(widgets) {
+                    widgets
+                        .forEach(
+                            function(widget){
+
+                            }
+                        );
+                },
+                function(err) {
+
+                }
+            );
+
         return Website
             .findById(websiteId)
             .then(
@@ -26,23 +57,24 @@ module.exports = function(websiteModel) {
     }
 
     function removeWidget(websiteId, pageId, widgetId, newWidget) {
-        return Website
-            .findById(websiteId)
-            .then(
-                function(website) {
-                    website.pages.id(pageId).widgets.remove(widgetId);
-                    return website.save();
-                }
-            );
+        return Widget.findById(widgetId).remove();
+        // return Website
+        //     .findById(websiteId)
+        //     .then(
+        //         function(website) {
+        //             website.pages.id(pageId).widgets.remove(widgetId);
+        //             return website.save();
+        //         }
+        //     );
     }
 
     function updateWidget(websiteId, pageId, widgetId, newWidget) {
         delete newWidget._id;
-        return Website
-            .findById(websiteId)
+        return Widget
+            .findById(widgetId)
             .then(
-                function(website) {
-                    var widget = website.pages.id(pageId).widgets.id(widgetId);
+                function(widget) {
+                    // var widget = website.pages.id(pageId).widgets.id(widgetId);
 
                     widget.name = newWidget.name;
                     widget.text = newWidget.text;
@@ -151,24 +183,43 @@ module.exports = function(websiteModel) {
                             }
                         }
                     }
-                    return website.save();
+                    return widget.save();
                 }
             );
     }
 
     function createWidget(websiteId, pageId, widgetType) {
-        return Website.findById(websiteId)
+
+        return Widget
+            .findOne({_page: pageId})
+            .sort('-order')
             .then(
-                function(website) {
+                function(lastWidget) {
+                    var widget = new Widget();
+                    widget.widgetType = widgetType;
+                    widget._page = pageId;
+                    if(lastWidget) {
+                        widget.order = ++lastWidget.order;
+                    }
+                    return Widget.create(widget);
+                },
+                function(error) {
 
-                    var widget = {
-                        widgetType: widgetType
-                    };
-
-                    website.pages.id(pageId).widgets.push(widget);
-
-                    return website.save();
                 }
             );
+
+        // return Website.findById(websiteId)
+        //     .then(
+        //         function(website) {
+        //
+        //             var widget = {
+        //                 widgetType: widgetType
+        //             };
+        //
+        //             website.pages.id(pageId).widgets.push(widget);
+        //
+        //             return website.save();
+        //         }
+        //     );
     }
 }

@@ -25,10 +25,10 @@
         }
 
         // post database insert command to server. page name is collection, fields contains document 
-        function executeCommand(dbCommand, page, fields) {
-            console.log([dbCommand, page, fields]);
+        function executeCommand(dbCommand, pageName, fields) {
+            console.log([dbCommand, pageName, fields]);
             if(dbCommand === "INSERT") {
-                    return $http.post("/api/database/"+page.name, fields);
+                    return $http.post("/api/database/"+pageName, fields);
             }
         }
 

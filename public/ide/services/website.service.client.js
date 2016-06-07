@@ -7,7 +7,7 @@
         var api = {
             createWebsite: createWebsite,
             updateWebsite: updateWebsite,
-            findWebsitesForUsername: findWebsitesForUsername,
+            findWebsitesForDeveloperId: findWebsitesForDeveloperId,
             findWebsiteById: findWebsiteById,
             removeWebsite: removeWebsite,
             shareWebsite: shareWebsite,
@@ -40,8 +40,8 @@
             return $http.get ("/api/website/"+websiteId);
         }
 
-        function findWebsitesForUsername (username) {
-            return $http.get ("/api/developer/"+username+"/website");
+        function findWebsitesForDeveloperId (developerId) {
+            return $http.get ("/api/developer/"+developerId+"/website");
         }
 
         function  createWebsite (website) {

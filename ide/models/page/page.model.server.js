@@ -1,16 +1,34 @@
+var mongoose = require("mongoose");
+
 module.exports = function(websiteModel) {
+
+    var PageSchema = require("./page.schema.server")();
+    var Page       = mongoose.model("Page", PageSchema);
 
     var Website = websiteModel.getMongooseModel();
 
     var api = {
-        createPage: createPage,
-        findPagesForWebsite: findPagesForWebsite,
-        findPage: findPage,
-        removePage: removePage,
-        updatePage: updatePage,
-        sortPage: sortPage
+        createPage          : createPage,
+        findPagesForWebsite : findPagesForWebsite,
+        findPage            : findPage,
+        findPageById        : findPage,
+        removePage          : removePage,
+        updatePage          : updatePage,
+        sortPage            : sortPage
+        // findPagesFromWidgetId: findPagesFromWidgetId
     };
     return api;
+
+    // function findPagesFromWidgetId(widgetId) {
+    //     Widget
+    //         .findById(widgetId)
+    //         .populate("_page", "_website")
+    //         .then(
+    //             function(page) {
+    //                 return page.populate("_website");
+    //             }
+    //         )
+    // }
 
     function sortPage(websiteId, startIndex, endIndex) {
         return Website
@@ -27,52 +45,24 @@ module.exports = function(websiteModel) {
             );
     }
 
-    function updatePage(websiteId, pageObj) {
-        return Website
-            .findById(websiteId)
-            .then(
-                function(website){
-                    var page   = website.pages.id(pageObj._id);
-                    page.name  = pageObj.name;
-                    page.title = pageObj.title;
-                    return website.save();
-                }
-            );
+    function updatePage(pageId, pageObj) {
+        return Page.findById(pageId).update(pageObj);
     }
 
-    function removePage(websiteId, pageId) {
-        return Website
-            .findById(websiteId)
-            .then(
-                function(website){
-                    website.pages.id(pageId).remove();
-                    return website.save();
-                }
-            );
+    function removePage(pageId) {
+        return Page.findById(pageId).remove();
     }
 
-    function findPage(websiteId, pageId) {
-        return Website
-            .findById(websiteId)
-            .then(
-                function(website){
-                    return website.pages.id(pageId);
-                }
-            );
+    function findPage(pageId) {
+        return Page.findById(pageId)
     }
 
     function findPagesForWebsite(websiteId) {
-        // use select() to retrieve a particular field
-        return Website.findById(websiteId).select("pages");
+        return Page.find({_website: websiteId});
     }
 
     function createPage(websiteId, page) {
-        return Website.findById(websiteId)
-            .then(
-                function(website) {
-                    website.pages.push(page);
-                    return website.save();
-                }
-            );
+        page._website = websiteId;
+        return Page.create(page);
     }
 };

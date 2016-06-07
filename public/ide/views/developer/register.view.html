@@ -1,0 +1,52 @@
+<h2>Register</h2>
+
+<div ng-if="model.error"
+     class="alert alert-danger"
+     role="alert">
+    {{model.error}}
+</div>
+
+<div ng-show="registerForm.$submitted && registerForm.$invalid" class="alert alert-danger">
+    Error
+</div>
+
+<form name="registerForm" id="registerForm" novalidate>
+    <input ng-model="developer.username"
+           placeholder="username"
+           autocorrect="off"
+           autocapitalize="off"
+           required
+           name="username"
+           class="form-control"/>
+
+    <div ng-show="registerForm.$submitted && registerForm.username.$invalid">
+        Username is required
+    </div>
+
+    <input ng-model="developer.password"
+           placeholder="password"
+           type="password"
+           name="password"
+           class="form-control"/>
+
+    <input ng-model="developer.password2"
+           placeholder="verify password"
+           type="password"
+           name="password2"
+           class="form-control"/>
+
+    <div ng-show="registerForm.$submitted && registerForm.password != registerForm.password2">
+        Passwords must match
+    </div>
+
+    <button class="btn btn-primary btn-block"
+            type="submit"
+            ng-click="model.register(developer)">
+        Register
+    </button>
+</form>
+
+<a href="#/login"
+   class="btn btn-danger btn-block">
+    Cancel
+</a>

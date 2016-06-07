@@ -1,14 +1,14 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top jga">
     <div class="navbar-header">
 
-        <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page"
+        <a href="#/website/{{model.page._website}}/page"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
 
-        <a class="navbar-brand">Widgets</a>
+        <a class="navbar-brand">{{model.page.name}} - Widgets</a>
 
-        <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/choose-widget"
+        <a href="#/page/{{model.pageId}}/choose-widget"
            class="btn btn-default btn-transparent pull-right">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
@@ -22,7 +22,7 @@
         <div ng-switch="widget.widgetType"
              class="jga-widget col-xs-12">
             <div class="pull-right jga-widget-list-tools">
-                <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/edit">
+                <a href="#/website/{{model.page._website}}/page/{{model.page._id}}/widget/{{widget._id}}">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
                 <span class="glyphicon glyphicon-align-justify"></span>
@@ -127,22 +127,22 @@
     </div>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
 
-        <a href="#/developer/{{currentUser.username}}/edit"
+        <a href="#/developer/{{currentUser._id}}"
            class="navbar-toggle collapsed">
             <span class="glyphicon glyphicon-user"></span>
         </a>
 
         <!-- click on RUN link to run this page -->
-        <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/run"
+        <a href="#/developer/{{currentUser._id}}/website/{{model.page._website}}/page/{{model.pageId}}/run"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-play"></span>
         </a>
 
         <!-- pass data to server side page controller, including username -->
-        <a href="/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}"
+        <a href="/developer/{{currentUser._id}}/website/{{model.page._website}}/page/{{model.pageId}}"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-eye-open"></span>
         </a>

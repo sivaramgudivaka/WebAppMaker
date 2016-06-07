@@ -1,16 +1,16 @@
 (function () {
     angular
         .module ("WebAppMakerApp")
-        .controller ("PageRunController", pageRunController)
+        .controller ("PageRunController",  pageRunController)
         .controller ("PageListController", pageListController)
-        .controller ("NewPageController", newPageController)
+        .controller ("NewPageController",  newPageController)
         .controller ("EditPageController", editPageController);
 
     function pageRunController (DatabaseService, $routeParams, WebsiteService, WidgetService, PageService, $sce,
-                                $location, $scope) {
+                                $location, $scope, $rootScope) {
         var vm = this;
         vm.username      = $routeParams.username;
-        vm.websiteId = $routeParams.websiteId;
+        vm.websiteId     = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
 
         vm.safeYouTubeUrl = safeYouTubeUrl;
@@ -21,20 +21,26 @@
 
         function init() {
             PageService
-                .findPage(vm.websiteId, vm.pageId)
+                .findPageById(vm.pageId)
+                .then(
+                    function(response) {
+                        vm.page = response.data;
+                        return  WidgetService.getWidgets(vm.websiteId, vm.pageId);
+                    }
+                )
                 .then(
                     function(response) {
                         // need page for page name and widgets to render the page
-                        vm.page    = response.data;
-                        vm.widgets = vm.page.widgets;
+                        vm.widgets    = response.data;
+                        // vm.widgets = vm.page.widgets;
                         // look for DATATABLE widgets and fetch their data from database
                         for(var w in vm.widgets) {
                             // now both the DATATABLE and the REPEATER widgets need data
                             if(vm.widgets[w].widgetType=="DATATABLE" || vm.widgets[w].widgetType=="REPEATER" ) {
-                                var collectionName = vm.widgets[w].widgetType=="DATATABLE" ? vm.widgets[w].datatable.collectionName : vm.widgets[w].repeater.collectionName;
+                                vm.collectionName = vm.widgets[w].widgetType=="DATATABLE" ? vm.widgets[w].datatable.collectionName : vm.widgets[w].repeater.collectionName;
                                 DatabaseService
                                     // had to rename 'collection' to 'collectionName' on the schema
-                                    .select(collectionName)
+                                    .select(vm.collectionName)
                                     .then(
                                         function (response) {
                                             response.data.reverse();
@@ -79,12 +85,19 @@
             if(widget.button && widget.button.dbCommand) {
                 console.log(vm.fields);
                 DatabaseService
-                    .executeCommand(widget.button.dbCommand, vm.page, vm.fields)
+                    .executeCommand(widget.button.dbCommand, vm.page.name, vm.fields)
                     .then(
                         function(response){
                             // if button has navigate, then go there
                             if(widget.button && widget.button.navigate) {
-                                $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+widget.button.navigate+"/run");
+                                var currentUrl = $location.url();
+                                var nextUrl = "/developer/"+$rootScope.currentUser._id+"/website/"+vm.websiteId+"/page/"+widget.button.navigate+"/run";
+                                if(currentUrl != nextUrl) {
+                                    $location.url("/developer/"+$rootScope.currentUser._id+"/website/"+vm.websiteId+"/page/"+widget.button.navigate+"/run");
+                                } else
+                                {
+                                    init();
+                                }
                             }
                         },
                         function(err){
@@ -94,7 +107,7 @@
             } else {
                 // if button has navigate, then go there
                 if(widget.button && widget.button.navigate) {
-                    $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page/"+widget.button.navigate+"/run");
+                    $location.url("/developer/"+$rootScope.currentUser._id+"/website/"+vm.websiteId+"/page/"+widget.button.navigate+"/run");
                 }
             }
         }
@@ -156,10 +169,10 @@
 
         function updatePage(page) {
             PageService
-                .updatePage(vm.websiteId, page)
+                .updatePage(page._id, page)
                 .then(
                     function (response) {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page");
+                        $location.url("/website/"+vm.websiteId+"/page");
                     },
                     function (err) {
                         vm.error = err;
@@ -169,10 +182,10 @@
 
         function removePage(page) {
             PageService
-                .removePage(vm.websiteId, vm.pageId)
+                .removePage(vm.pageId)
                 .then(
                     function (response) {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page");
+                        $location.url("/website/"+vm.websiteId+"/page");
                     },
                     function (err) {
                         vm.error = err;
@@ -181,17 +194,26 @@
         }
     }
 
-    function pageListController ($routeParams, PageService) {
+    function pageListController ($routeParams, PageService, WebsiteService) {
 
         var vm = this;
-        vm.username      = $routeParams.username;
         vm.websiteId = $routeParams.websiteId;
 
         vm.sortPage      = sortPage;
 
         function init() {
-            PageService
-                .findPagesForWebsite(vm.websiteId)
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .then(
+                    function(response){
+                        vm.website = response.data;
+                        return PageService
+                            .findPagesForWebsite(vm.websiteId);
+                    },
+                    function(error){
+                        vm.error = error;
+                    }
+                )
                 .then(
                     function (response) {
                         vm.pages = response.data;
@@ -220,7 +242,6 @@
 
         var vm = this;
         vm.websiteId = $routeParams.websiteId;
-        vm.username      = $routeParams.username;
         vm.createPage = createPage;
 
         function createPage(page) {
@@ -228,7 +249,8 @@
                 .createPage(vm.websiteId, page)
                 .then(
                     function(response) {
-                        $location.url("/developer/"+vm.username+"/website/"+vm.websiteId+"/page");
+                        var page = response;
+                        $location.url("/website/"+vm.websiteId+"/page");
                     }
                 )
         }

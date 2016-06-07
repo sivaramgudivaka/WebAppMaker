@@ -4,6 +4,7 @@
 }
 
 .navbar-default.jga a,
+.navbar-default.jga button,
 .navbar-default.jga a:hover {
     color: #fff;
 }
@@ -120,4 +121,8 @@ th {
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.wam-capitalize {
+    text-transform: capitalize;
 }

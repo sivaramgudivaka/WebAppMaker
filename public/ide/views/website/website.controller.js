@@ -79,7 +79,7 @@
         ($routeParams, WebsiteService, $location) {
 
         var vm = this;
-        vm.username = $routeParams.username;
+        vm.developerId = $routeParams.developerId;
         vm.websiteId = $routeParams.websiteId;
         vm.removeWebsite = removeWebsite;
         vm.updateWebsite = updateWebsite;
@@ -103,7 +103,7 @@
                 .removeWebsite(website)
                 .then(
                     function(response) {
-                        $location.url ("/developer/"+vm.username+"/website");
+                        $location.url ("/developer/"+website._developer+"/website");
                     },
                     function(err) {
                         vm.error = err;
@@ -116,7 +116,7 @@
                 .updateWebsite(website)
                 .then(
                     function(response) {
-                        $location.url ("/developer/"+vm.username+"/website");
+                        $location.url ("/developer/"+website._developer+"/website");
                     },
                     function(err) {
                         vm.error = err;
@@ -129,11 +129,11 @@
         $routeParams, WebsiteService) {
 
         var vm = this;
-        vm.username = $routeParams.username;
+        vm.developerId = $routeParams.developerId;
 
         function init () {
             WebsiteService
-                .findWebsitesForUsername (vm.username)
+                .findWebsitesForDeveloperId ($routeParams.developerId)
                 .then (
                     function (response) {
                         vm.websites = response.data;
@@ -150,18 +150,19 @@
         $routeParams, WebsiteService, $location) {
 
         var vm = this;
-        vm.username = $routeParams.username;
+        vm.developerId = $routeParams.developerId;
         vm.createWebsite = createWebsite;
 
         function createWebsite (website) {
             if(!website)
                 return;
-            website.developerUsername = vm.username;
+            website._developer = vm.developerId;
+            // website.developerUsername = vm.username;
             WebsiteService
                 .createWebsite (website)
                 .then (
                     function (response) {
-                        $location.url ("/developer/"+vm.username+"/website");
+                        $location.url ("/developer/"+vm.developerId+"/website");
                     },
                     function (err) {
                         vm.error = err;

@@ -10,9 +10,14 @@
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
             removeWidget: removeWidget,
-            sortWidget: sortWidget
+            sortWidget: sortWidget,
+            findPagesFromWidgetId: findPagesFromWidgetId
         };
         return api;
+
+        function findPagesFromWidgetId(widgetId) {
+            return $http.get("/api/widget/"+widgetId+"/page");
+        }
 
         function sortWidget(websiteId, pageId, startIndex, endIndex) {
             return $http.put("/api/website/"+websiteId+"/page/"+pageId+"/widget?startIndex="+startIndex+"&endIndex="+endIndex);

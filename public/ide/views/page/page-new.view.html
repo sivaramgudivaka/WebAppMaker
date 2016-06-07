@@ -1,7 +1,7 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top jga">
     <div class="navbar-header">
 
-        <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page"
+        <a href="#/website/{{model.websiteId}}/page"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -26,9 +26,9 @@ Title
        class="form-control"
        placeholder="Page Title"/>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
-        <a href="#/developer/{{currentUser.username}}/edit"
+        <a href="#/developer/{{currentUser._id}}/edit"
            class="navbar-toggle collapsed">
             <span class="glyphicon glyphicon-user"></span>
         </a>

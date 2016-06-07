@@ -1,19 +1,34 @@
 module.exports = function (app, model) {
 
     var websiteModel = model.websiteModel;
+    var widgetModel = model.widgetModel;
 
     var multer  = require('multer');
     var upload = multer({ dest: __dirname+'/../../../data' });
 
     app.post ("/api/website/:websiteId/page/:pageId/widget", createWidget);
-    app.get  ("/api/website/:websiteId/page/:pageId/widget", getWidgets);
+    app.get  ("/api/website/:websiteId/page/:pageId/widget", findWidgetsForPage);
     app.get  ("/api/website/:websiteId/page/:pageId/widget/:widgetId", findWidgetById);
     app.put  ("/api/website/:websiteId/page/:pageId/widget/:widgetId", updateWidget);
     app.delete("/api/website/:websiteId/page/:pageId/widget/:widgetId", removeWidget);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
     app.put    ("/api/website/:websiteId/page/:pageId/widget", updateWidgets);
+    app.get   ("/api/widget/:widgetId/page", findPagesFromWidgetId);
 
-    var widgetModel = require("../models/widget/widget.model.server.js")(websiteModel);
+    function findPagesFromWidgetId(req, res) {
+        var widgetId = req.params.widgetId;
+
+        widgetModel
+            .findPagesFromWidgetId(widgetId)
+            .then(
+                function(pages) {
+                    res.json(pages);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
+    }
 
     function updateWidgets(req, res) {
         var websiteId = req.params.websiteId;
@@ -87,7 +102,7 @@ module.exports = function (app, model) {
                     res.send(200);
                 },
                 function(err) {
-                    res.status(400).send(err);
+                    res.status(404).send(err);
                 }
             );
     }
@@ -104,7 +119,7 @@ module.exports = function (app, model) {
                     res.send(200);
                 },
                 function(err) {
-                    res.status(400).send(err);
+                    res.status(404).send(err);
                 }
             );
 
@@ -115,26 +130,37 @@ module.exports = function (app, model) {
         var websiteId = req.params.websiteId;
         var pageId = req.params.pageId;
         var widgetId = req.params.widgetId;
-        websiteModel
-            .findWebsiteById(websiteId)
+        widgetModel
+            .findWidgetById(widgetId)
             .then(
-                function(website) {
-                    res.json(website.pages.id(pageId).widgets.id(widgetId));
+                function(widget) {
+                    res.json(widget);
                 },
                 function(err) {
-                    res.status(400).send(err);
+                    res.status(404).send(err);
                 }
             );
+
+        // websiteModel
+        //     .findWebsiteById(websiteId)
+        //     .then(
+        //         function(website) {
+        //             res.json(website.pages.id(pageId).widgets.id(widgetId));
+        //         },
+        //         function(err) {
+        //             res.status(400).send(err);
+        //         }
+        //     );
     }
 
-    function getWidgets(req, res) {
+    function findWidgetsForPage(req, res) {
         var websiteId = req.params.websiteId;
         var pageId = req.params.pageId;
-        websiteModel
-            .findWebsiteById(websiteId)
+        widgetModel
+            .findWidgetsForPage(pageId)
             .then(
-                function(website) {
-                    res.json(website.pages.id(pageId).widgets);
+                function(widgets) {
+                    res.json(widgets);
                 },
                 function(err) {
                     res.status(400).send(err);
@@ -149,9 +175,8 @@ module.exports = function (app, model) {
         widgetModel
             .createWidget(websiteId, pageId, widgetType)
             .then(
-                function(website) {
-                    var widgets = website.pages.id(pageId).widgets;
-                    res.send(widgets[widgets.length - 1]);
+                function(widget) {
+                    res.send(widget);
                 },
                 function(err) {
                     res.status(400).send(err);

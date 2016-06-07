@@ -17,6 +17,8 @@ module.exports = function() {
     mongoose.connect(connectionString);
     var mongo = mongojs(connectionString);
 
+    var model = {};
+
     var websiteModel     = require("./website/website.model.server")();
     var shareModel       = require("./website/share.model.server")(websiteModel);
     var pageModel        = require("./page/page.model.server")(websiteModel);
@@ -24,14 +26,14 @@ module.exports = function() {
     var developerModel   = require("./developer/developer.model.server")();
     var scriptModel      = require("./script/script.model.server")(websiteModel);
 
-    var model = {
-        websiteModel : websiteModel,
-        shareModel       : shareModel,
-        pageModel        : pageModel,
-        widgetMode       : widgetModel,
-        developerModel   : developerModel,
-        scriptModel      : scriptModel,
-        mongo            : mongo
+    model = {
+        websiteModel   : websiteModel,
+        shareModel     : shareModel,
+        pageModel      : pageModel,
+        widgetModel    : widgetModel,
+        developerModel : developerModel,
+        scriptModel    : scriptModel,
+        mongo          : mongo
     };
     return model;
 }

@@ -4,8 +4,8 @@ module.exports = function (app, model) {
 
     var websiteModel = model.websiteModel;
 
-    app.post   ("/api/developer/:username/website", createWebsite);
-    app.get    ("/api/developer/:username/website", findWebsitesForUsername);
+    app.post   ("/api/developer/:developerId/website", createWebsite);
+    app.get    ("/api/developer/:developerId/website", findWebsitesForDeveloperId);
     app.get    ("/api/website/:websiteId", findWebsiteById);
     app.delete ("/api/website/:websiteId", removeWebsite);
     app.put    ("/api/website/:websiteId", updateWebsite);
@@ -53,10 +53,10 @@ module.exports = function (app, model) {
             );
     }
 
-    function findWebsitesForUsername (req, res) {
-        var username = req.params.username;
+    function findWebsitesForDeveloperId (req, res) {
+        var developerId = req.params.developerId;
         websiteModel
-            .findWebsitesForUsername (username)
+            .findWebsitesForDeveloperId (developerId)
             .then (
                 function (websites) {
                     res.json (websites);
@@ -68,7 +68,7 @@ module.exports = function (app, model) {
     }
 
     function createWebsite (req, res) {
-        var username = req.params.username;
+        var developerId = req.params.developerId;
         var website = req.body;
         websiteModel
             .createWebsite (website)

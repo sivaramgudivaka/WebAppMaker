@@ -1,12 +1,14 @@
 var mongoose = require("mongoose");
 var q = require("q");
+
 module.exports = function () {
+    
     var WebsiteSchema = require("./website.schema.server.js")();
     var Website = mongoose.model("Website", WebsiteSchema);
 
     var api = {
         createWebsite: createWebsite,
-        findWebsitesForUsername: findWebsitesForUsername,
+        findWebsitesForDeveloperId: findWebsitesForDeveloperId,
         findWebsiteById: findWebsiteById,
         updateWebsite: updateWebsite,
         removeWebsite: removeWebsite,
@@ -34,11 +36,11 @@ module.exports = function () {
         return Website.findById (websiteId);
     }
 
-    function findWebsitesForUsername (username) {
+    function findWebsitesForDeveloperId (developerId) {
         var deferred = q.defer();
         Website
             .find(
-                {developerUsername: username},
+                {_developer: developerId},
                 '_id dateCreated developerUsername name',
                 function (err, websites) {
                     if (!err) {

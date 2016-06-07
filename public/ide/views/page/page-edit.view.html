@@ -1,12 +1,12 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top jga">
     <div class="navbar-header">
 
-        <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page"
+        <a href="#/website/{{model.websiteId}}/page"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
 
-        <a class="navbar-brand">Edit Page</a>
+        <a class="navbar-brand">{{model.page.name}}</a>
 
         <a ng-click="model.updatePage (model.page)"
            class="btn btn-default btn-transparent pull-right">

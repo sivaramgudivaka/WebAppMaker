@@ -8,6 +8,7 @@
             createPage: createPage,
             findPagesForWebsite: findPagesForWebsite,
             findPage: findPage,
+            findPageById: findPageById,
             removePage: removePage,
             updatePage: updatePage,
             sortPage: sortPage
@@ -18,17 +19,21 @@
             return $http.put("/api/website/"+websiteId+"/page?startIndex="+startIndex+"&endIndex="+endIndex);
         }
 
-        function updatePage(websiteId, page) {
-            return $http.put("/api/website/"+websiteId+"/page/"+page._id, page);
+        function updatePage(pageId, page) {
+            return $http.put("/api/page/"+pageId, page);
         }
 
-        function removePage(websiteId, pageId) {
-            return $http.delete("/api/website/"+websiteId+"/page/"+pageId);
+        function removePage( pageId) {
+            return $http.delete("/api/page/"+pageId);
         }
 
 
         function findPage(websiteId, pageId) {
             return $http.get("/api/website/"+websiteId+"/page/"+pageId);
+        }
+
+        function findPageById(pageId) {
+            return $http.get("/api/page/"+pageId);
         }
 
         function findPagesForWebsite(websiteId) {
