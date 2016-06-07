@@ -21,15 +21,19 @@
     {{model.error}}
 </div>
 
-Name
+<div class="form-group">
+    <label for="pageEditName">Name</label>
 <input ng-model="model.page.name"
-       class="form-control"
+       id="pageEditName" class="form-control"
        placeholder="Page Name"/>
+</div>
 
-Title
+<div class="form-group">
+    <label for="pageEditTitle">Title</label>
 <input ng-model="model.page.title"
-       class="form-control"
+       id="pageEditTitle" class="form-control"
        placeholder="Page Title"/>
+</div>
 
 <button ng-click="model.removePage(model.page)"
         class="btn btn-danger btn-block">

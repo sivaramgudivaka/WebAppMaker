@@ -20,16 +20,23 @@
     {{model.error}}
 </div>
 
-Website Name
-<input ng-model="model.website.name"
-       class="form-control"
-       placeholder="Name"/>
+<div class="form-group">
+    <label for="websiteName">Website Name</label>
+    <input ng-model="model.website.name"
+           class="form-control"
+           id="websiteName"
+           placeholder="Name"
+           type="text" />
+</div>
 
-Website Description
+<div class="form-group">
+    <label for="websiteDescription">Website Description</label>
 <textarea ng-model="model.website.description"
           rows="5"
+          id="websiteDescription"
        class="form-control"
        placeholder="Description"></textarea>
+</div>
 
 <button ng-click="model.removeWebsite(model.website)"
         class="btn btn-danger btn-block">

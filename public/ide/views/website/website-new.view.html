@@ -19,21 +19,22 @@
 </nav>
 
 <form name="websiteForm" id="websiteForm" novalidate>
-
-    Name
+    <div class="form-group">
+        <label for="name">Name</label>
     <input ng-model="model.website.name"
-           class="form-control"
+           class="form-control" id="name"
            placeholder="Name" name="name" required/>
+        </div>
     <div ng-show="websiteForm.$submitted && websiteForm.name.$invalid">
         Website name is required
     </div>
-
-    Description
+    <div class="form-group">
+        <label for="description">Description</label>
     <textarea ng-model="model.website.description"
-           rows="5"
+           rows="5" id="description"
            class="form-control"
            placeholder="Description"></textarea>
-
+</div>
 </form>
 
 <nav class="navbar navbar-default navbar-fixed-bottom jga">

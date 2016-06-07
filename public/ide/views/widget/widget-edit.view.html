@@ -17,23 +17,27 @@
 </nav>
 
 <form name="widgetForm" id="widgetForm" novalidate>
-
-    Name
-    <input ng-model="model.widget.name" class="form-control"/>
-
-    Bootstrap Class
-    <input ng-model="model.widget.bootClass" class="form-control"/>
-
+    <div class="form-group">
+        <label for="widgetName">Name</label>
+    <input ng-model="model.widget.name" id="widgetName" class="form-control"/>
+</div>
+    <div class="form-group">
+        <label for="bootstrapClass">Bootstrap Class</label>
+    <input ng-model="model.widget.bootClass" id="bootstrapClass" class="form-control"/>
+</div>
     <div ng-switch="model.widget.widgetType">
 
         <div ng-switch-when="HEADER">
-            Text
-            <input ng-model="model.widget.text" class="form-control" name="text" required/>
+            <div class="form-group">
+                <label for="widgetHeaderText">Text</label>
+            <input ng-model="model.widget.text" class="form-control" id="widgetHeaderText" name="text" required/>
+                </div>
             <span ng-show="widgetForm.text.$invalid && widgetForm.$submitted">
                 Text is required
             </span>
-            Size
-            <select ng-model="model.widget.header.size" class="form-control">
+            <div class="form-group">
+                <label for="widgetHeaderSize">Size</label>
+            <select ng-model="model.widget.header.size" id="widgetHeaderSize" class="form-control">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -41,14 +45,17 @@
                 <option>5</option>
                 <option>6</option>
             </select>
+                </div>
         </div>
 
         <div ng-switch-when="BUTTON">
-            Text
-            <input ng-model="model.widget.text" class="form-control"/>
-
-            Style
-            <select ng-model="model.widget.button.style" class="form-control">
+            <div class="form-group">
+                <label for="widgetButtonText">Text</label>
+            <input ng-model="model.widget.text" id="widgetButtonText" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="widgetButtonStyle">Style</label>
+            <select ng-model="model.widget.button.style" id="widgetButtonStyle" class="form-control">
                 <option>Default</option>
                 <option>Primary</option>
                 <option>Success</option>
@@ -56,20 +63,24 @@
                 <option>Warning</option>
                 <option>Danger</option>
             </select>
+                </div>
             <!-- dropdown to select button navigate property -->
-            Navigate to page
+            <div class="form-group">
+                <label for="widgetButtonNavi">Navigate to page</label>
             <select ng-options="page as page.name for page in model.pages track by page._id"
-                    ng-model="model.widget.button.navigate" class="form-control">
+                    ng-model="model.widget.button.navigate" id="widgetButtonNavi"class="form-control">
             </select>
-
+            </div>
             <!-- choose database action when button is clicked -->
-            Action
-            <select ng-model="model.widget.button.dbCommand" class="form-control">
+            <div class="form-group">
+                <label for="widgetButtonAction">Action</label>
+            <select ng-model="model.widget.button.dbCommand" id="widgetButtonAction" class="form-control">
                 <option>INSERT</option>
                 <option>SELECT</option>
                 <option>UPDATE</option>
                 <option>DELETE</option>
             </select>
+            </div>
 
             <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/script/edit"
                class="btn btn-block btn-success">
@@ -80,15 +91,17 @@
         <!-- datatable widget collection is name of page, fields is comma separated string -->
         <div ng-switch-when="DATATABLE">
 
-            Collection:
+            <div class="form-group">
+                <label for="widgetCollection">Collection:</label>
             <select ng-options="page as page.name for page in model.pages track by page._id"
-                    ng-model="model.widget.datatable.collection" class="form-control">
+                    ng-model="model.widget.datatable.collection"id="widgetCollection" class="form-control">
             </select>
-
-            Fields:
+            </div>
+            <div class="form-group">
+                <label for="widgetFields">Fields:</label>
             <input ng-model="model.widget.datatable.fields"
-                   class="form-control"/>
-
+                   id="widgetFields" class="form-control"/>
+            </div>
             <!-- configure deletable for datatable -->
             <div class="input-group jga-margin-bottom-5px">
                 <input type="text"
@@ -104,16 +117,18 @@
         </div>
         <!-- REPEATER widget is same as DATATABLE widget except that it has a template -->
         <div ng-switch-when="REPEATER">
-
-            Collection:
+            <div class="form-group">
+                <label for="widgetRepeaterCollection">Collection:</label>
             <select ng-options="page as page.name for page in model.pages track by page._id"
-                    ng-model="model.widget.repeater.collection" class="form-control">
+                    ng-model="model.widget.repeater.collection" id="widgetRepeaterCollection" class="form-control">
             </select>
+                </div>
 
-            Fields:
+            <div class="form-group">
+                <label for="widgetRepeaterFields">Fields:</label>
             <input ng-model="model.widget.repeater.fields"
-                   class="form-control"/>
-
+                   id="widgetRepeaterFields" class="form-control"/>
+            </div>
             <!-- configure deletable for repeater -->
             <div class="input-group jga-margin-bottom-5px">
                 <input type="text"
@@ -134,33 +149,46 @@
 
         </div>
         <div ng-switch-when="LINK">
-            Text
-            <input ng-model="model.widget.text" class="form-control"/>
-            URL
-            <input ng-model="model.widget.link.url" class="form-control"/>
-            Target
-            <select ng-model="model.widget.link.target" class="form-control">
+            <div class="form-group">
+                <label for="widgetLinkText">Text</label>
+            <input ng-model="model.widget.text" id="widgetLinkText" class="form-control"/>
+              </div>
+            <div class="form-group">
+                <label for="widgetLinkURL">URL</label>
+            <input ng-model="model.widget.link.url" id="widgetLinkURL" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="widgetTarget">Target</label>
+            <select ng-model="model.widget.link.target" id="widgetTarget" class="form-control">
                 <option>_blank</option>
                 <option>_self</option>
                 <option>_parent</option>
                 <option>_top</option>
             </select>
+                </div>
         </div>
         <div ng-switch-when="HTML">
-            HTML
+            <div class="form-group">
+                <label for="widgetHTMLHead">HTML</label>
             <!-- use textangular directive to render a WYSIWYG HTML editor -->
-            <div text-angular
+            <div text-angular id="widgetHTMLHead"
                  ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"
                  ng-model="model.widget.html.text">
             </div>
         </div>
         <div ng-switch-when="TEXT">
-            Text
-            <input ng-model="model.widget.text" class="form-control"/>
-            Rows
-            <input ng-model="model.widget.textInput.rows" class="form-control" type="number"/>
-            Placeholder
-            <input ng-model="model.widget.textInput.placeholder" class="form-control"/>
+            <div class="form-group">
+                <label for="widgetTextText">Text</label>
+            <input ng-model="model.widget.text" id="widgetTextText" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="widgetTextRows">Rows</label>
+            <input ng-model="model.widget.textInput.rows" id="widgetTextRows" class="form-control" type="number"/>
+                    </div>
+                <div class="form-group">
+                    <label for="widgetTextPlaceholder">Placeholder</label>
+            <input ng-model="model.widget.textInput.placeholder" id="widgetTextPlaceholder" class="form-control"/>
+                </div>
             <!-- checkbox to select formatted text -->
             <div class="input-group jga-margin-bottom-5px">
                 <input type="text"
@@ -174,11 +202,16 @@
             </div>
         </div>
         <div ng-switch-when="IMAGE">
-            URL
-            <input ng-model="model.widget.image.url" class="form-control"/>
-            Width
-            <input ng-model="model.widget.image.width" class="form-control"/>
-            Upload
+            <div class="form-group">
+                <label for="widgetImageURL">URL</label>
+            <input ng-model="model.widget.image.url" id="widgetImageURL" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="widgetImageWidth">Width</label>
+            <input ng-model="model.widget.image.width" id="widgetImageWidth" class="form-control"/>
+                </div>
+            <div class="form-group">
+                <label for="widgetImageUpload">Upload</label>
             <form action="/api/upload"
                   method="post"
                   enctype="multipart/form-data">
@@ -186,21 +219,26 @@
                 <input name="pageId" value="{{model.pageId}}" style="display: none"/>
                 <input name="widgetId" value="{{model.widgetId}}" style="display: none"/>
                 <input name="width" value="{{model.widget.image.width}}" style="display: none"/>
-                <input  type="file" name="myFile" class="form-control"/>
+                <input  type="file" name="myFile" id="widgetImageUpload" class="form-control"/>
                 <button type="submit" class="btn btn-block btn-primary">
                     Upload Image
                 </button>
             </form>
+            </div>
 
             <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/flickr" class="btn btn-success btn-block">
                 Flickr
             </a>
         </div>
         <div ng-switch-when="YOUTUBE">
-            URL
-            <input ng-model="model.widget.youTube.url" class="form-control"/>
-            Width
-            <input ng-model="model.widget.youTube.width" class="form-control"/>
+            <div class="form-group">
+                <label for="widgetYouTubeURL">URL</label>
+            <input ng-model="model.widget.youTube.url" id="widgetYouTubeURL" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="widgetYoutubeWidth">Width</label>
+            <input ng-model="model.widget.youTube.width" id="widgetYoutubeWidth" class="form-control"/>
+                </div>
         </div>
     </div>
 

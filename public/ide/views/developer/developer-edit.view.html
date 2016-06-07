@@ -14,25 +14,33 @@
    {{model.error}}
 </div>
 
-Usename
+<div class="form-group">
+   <label for="devUserName">Username</label>
 <input ng-model="model.developer.username"
-       class="form-control"
+       id="devUserName" class="form-control"
        placeholder="username"/>
+</div>
 
-Email
+<div class="form-group">
+   <label for="devEmail">Email</label>
 <input ng-model="model.developer.email"
-       class="form-control"
+       id="devEmail" class="form-control"
        placeholder="email"/>
+</div>
 
-First Name
+<div class="form-group">
+   <label for="devFirstName">First Name</label>
 <input ng-model="model.developer.firstName"
-       class="form-control"
+       id="devFirstName" class="form-control"
        placeholder="First Name"/>
+</div>
 
-Last Name
+<div class="form-group">
+   <label for="devLastName">Last Name</label>
 <input ng-model="model.developer.lastName"
-       class="form-control"
+       id="devLastName" class="form-control"
        placeholder="Last Name"/>
+</div>
 
 <a href="#/developer/{{model.developer._id}}/website"
         class="btn btn-primary btn-block">
