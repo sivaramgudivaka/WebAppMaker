@@ -20,8 +20,15 @@
         vm.deleteRecord   = deleteRecord;
 
         function init() {
-            PageService
-                .findPageById(vm.pageId)
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .then(
+                    function(response){
+                        vm.website = response.data;
+                        return PageService
+                            .findPageById(vm.pageId);
+                    }
+                )
                 .then(
                     function(response) {
                         vm.page = response.data;
@@ -40,7 +47,7 @@
                                 vm.collectionName = vm.widgets[w].widgetType=="DATATABLE" ? vm.widgets[w].datatable.collectionName : vm.widgets[w].repeater.collectionName;
                                 DatabaseService
                                     // had to rename 'collection' to 'collectionName' on the schema
-                                    .select(vm.collectionName)
+                                    .select($rootScope.currentUser.username, vm.website.name, vm.collectionName)
                                     .then(
                                         function (response) {
                                             response.data.reverse();
@@ -60,11 +67,11 @@
         // handle delete button event
         function deleteRecord(widgetType, collectionName, recordId) {
             DatabaseService
-                .delete(vm.websiteId, collectionName, recordId)
+                .delete(vm.websiteId, $rootScope.currentUser.username, vm.website.name, collectionName, recordId)
                 .then(
                     function(){
                         DatabaseService
-                            .select(collectionName)
+                            .select($rootScope.currentUser.username, vm.website.name, collectionName)
                             .then(
                                 function (response) {
                                     response.data.reverse();
@@ -85,7 +92,7 @@
             if(widget.button && widget.button.dbCommand) {
                 console.log(vm.fields);
                 DatabaseService
-                    .executeCommand(widget.button.dbCommand, vm.page.name, vm.fields)
+                    .executeCommand(widget.button.dbCommand, $rootScope.currentUser.username, vm.website.name, vm.page.name, vm.fields)
                     .then(
                         function(response){
                             // if button has navigate, then go there

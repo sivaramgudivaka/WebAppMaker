@@ -22,18 +22,17 @@ module.exports = function() {
     var websiteModel     = require("./website/website.model.server")();
     var shareModel       = require("./website/share.model.server")(websiteModel);
     var pageModel        = require("./page/page.model.server")(websiteModel);
-    var widgetModel      = require("./widget/widget.model.server")(websiteModel);
+    var widgetModel      = require("./widget/widget.model.server")(model);
     var developerModel   = require("./developer/developer.model.server")();
     var scriptModel      = require("./script/script.model.server")(websiteModel);
 
-    model = {
-        websiteModel   : websiteModel,
-        shareModel     : shareModel,
-        pageModel      : pageModel,
-        widgetModel    : widgetModel,
-        developerModel : developerModel,
-        scriptModel    : scriptModel,
-        mongo          : mongo
-    };
+    model.websiteModel   = websiteModel;
+    model.shareModel     = shareModel;
+    model.pageModel      = pageModel;
+    model.widgetModel    = widgetModel;
+    model.developerModel = developerModel;
+    model.scriptModel    = scriptModel;
+    model.mongo          = mongo;
+
     return model;
 }

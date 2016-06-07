@@ -16,11 +16,11 @@
     </div>
 </nav>
 
-<div jga-sortable jga-sortable-callback="model.sortWidget(start, end)">
-    <div ng-repeat="widget in model.widgets"
-         class="row jga-highlight-on-hover">
-        <div ng-switch="widget.widgetType"
-             class="jga-widget col-xs-12">
+<div class="container-fluid">
+    <div jga-sortable jga-sortable-callback="model.sortWidget(start, end)" class="row">
+        <div ng-repeat="widget in model.widgets | orderBy : 'order'"
+             ng-class="widget.bootClass"
+             ng-switch="widget.widgetType">
             <div class="pull-right jga-widget-list-tools">
                 <a href="#/website/{{model.page._website}}/page/{{model.page._id}}/widget/{{widget._id}}">
                     <span class="glyphicon glyphicon-cog"></span>

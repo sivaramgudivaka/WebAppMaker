@@ -14,7 +14,8 @@ module.exports = function(websiteModel) {
         findPageById        : findPage,
         removePage          : removePage,
         updatePage          : updatePage,
-        sortPage            : sortPage
+        sortPage            : sortPage,
+        addWidget           : addWidget
         // findPagesFromWidgetId: findPagesFromWidgetId
     };
     return api;
@@ -29,6 +30,14 @@ module.exports = function(websiteModel) {
     //             }
     //         )
     // }
+
+    function addWidget(widget) {
+        return Page
+            .update(
+                {_id: widget._page},
+                {$pushAll : { widgets : [widget._id]}}
+            );
+    }
 
     function sortPage(websiteId, startIndex, endIndex) {
         return Website

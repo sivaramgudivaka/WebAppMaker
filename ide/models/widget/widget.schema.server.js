@@ -31,6 +31,7 @@ module.exports = function () {
         textInput : TextInputSchema,
         placeholder : String,
         rows      : Number,
+        bootClass : {type: String, default: 'col-xs-12'},
         formatted : Boolean,
         order     : { type: Number, default: 0 }
     });

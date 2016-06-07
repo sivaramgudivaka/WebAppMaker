@@ -13,22 +13,22 @@
         return api;
 
         // send delete request to database Web service
-        function remove(websiteId, pageName, recordId) {
-            return $http.delete("/api/database/"+pageName+"/"+recordId);
+        function remove(websiteId, username, websitename, pagename, recordId) {
+            return $http.delete("/api/database/"+username+"/"+websitename+"/"+pagename+"/"+recordId);
         }
 
         // client service to retrieve data from database.
         // use page name as collection
         // use input widget names as fields
-        function select(pageName) {
-            return $http.get("/api/database/"+pageName);
+        function select(username, websitename, pagename) {
+            return $http.get("/api/database/"+username+"/"+websitename+"/"+pagename);
         }
 
         // post database insert command to server. page name is collection, fields contains document 
-        function executeCommand(dbCommand, pageName, fields) {
-            console.log([dbCommand, pageName, fields]);
+        function executeCommand(dbCommand, username, websitename, pagename, fields) {
+            console.log([dbCommand, pagename, fields]);
             if(dbCommand === "INSERT") {
-                    return $http.post("/api/database/"+pageName, fields);
+                    return $http.post("/api/database/"+username+"/"+websitename+"/"+pagename, fields);
             }
         }
 

@@ -9,7 +9,6 @@
             var end   = null;
             $(element)
                 .sortable({
-                    axis: "y",
                     sort: function(event, ui) {
                         //ui.helper.find("a").hide();
                         start = ui.item.index();

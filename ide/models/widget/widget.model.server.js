@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-module.exports = function(websiteModel) {
+module.exports = function(model) {
 
     // var Website = websiteModel.getMongooseModel();
     var WidgetSchema = require("./widget.schema.server")();
@@ -25,7 +25,8 @@ module.exports = function(websiteModel) {
     }
 
     function sortWidget(websiteId, pageId, startIndex, endIndex) {
-
+        startIndex = parseInt(startIndex);
+        endIndex = parseInt(endIndex);
         return Widget
             .find()
             .then(
@@ -33,7 +34,31 @@ module.exports = function(websiteModel) {
                     widgets
                         .forEach(
                             function(widget){
+                                if(startIndex < endIndex) {
+                                    if(widget.order < startIndex) {
 
+                                    } else if(widget.order === startIndex) {
+                                        widget.order = endIndex;
+                                        widget.save(function(err,doc){});
+                                    } else if(widget.order > startIndex && widget.order <= endIndex) {
+                                        widget.order--;
+                                        widget.save(function(err,doc){});
+                                    } else if(widget.order > endIndex) {
+
+                                    }
+                                } else {
+                                    if(widget.order < endIndex) {
+
+                                    } else if(widget.order === startIndex) {
+                                        widget.order = endIndex;
+                                        widget.save(function(err,doc){});
+                                    } else if(widget.order < startIndex && widget.order >= endIndex) {
+                                        widget.order++;
+                                        widget.save(function(err,doc){});
+                                    } else if(widget.order > startIndex) {
+
+                                    }
+                                }
                             }
                         );
                 },
@@ -42,18 +67,18 @@ module.exports = function(websiteModel) {
                 }
             );
 
-        return Website
-            .findById(websiteId)
-            .then(
-                function(website) {
-                    website.pages.id(pageId).widgets.splice(endIndex, 0, website.pages.id(pageId).widgets.splice(startIndex, 1)[0]);
-
-                    // notify mongoose 'pages' field changed
-                    website.markModified("pages");
-
-                    website.save();
-                }
-            );
+        // return Website
+        //     .findById(websiteId)
+        //     .then(
+        //         function(website) {
+        //             website.pages.id(pageId).widgets.splice(endIndex, 0, website.pages.id(pageId).widgets.splice(startIndex, 1)[0]);
+        //
+        //             // notify mongoose 'pages' field changed
+        //             website.markModified("pages");
+        //
+        //             website.save();
+        //         }
+        //     );
     }
 
     function removeWidget(websiteId, pageId, widgetId, newWidget) {
@@ -76,6 +101,7 @@ module.exports = function(websiteModel) {
                 function(widget) {
                     // var widget = website.pages.id(pageId).widgets.id(widgetId);
 
+                    widget.bootClass = newWidget.bootClass;
                     widget.name = newWidget.name;
                     widget.text = newWidget.text;
                     if(widget.widgetType === "HEADER") {
@@ -204,7 +230,7 @@ module.exports = function(websiteModel) {
                     return Widget.create(widget);
                 },
                 function(error) {
-
+                    console.log(error);
                 }
             );
 
