@@ -1,7 +1,8 @@
 var mongoose = require("mongoose");
 var q = require("q");
 
-module.exports = function (db) {
+module.exports = function (model) {
+    
     var DeveloperSchema = require("./developer.schema.server.js")();
     var Developer = mongoose.model("Developer", DeveloperSchema);
 

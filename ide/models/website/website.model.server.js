@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var q = require("q");
 
-module.exports = function () {
+module.exports = function (model) {
     
     var WebsiteSchema = require("./website.schema.server.js")();
     var Website = mongoose.model("Website", WebsiteSchema);
@@ -54,15 +54,24 @@ module.exports = function () {
     }
 
     function createWebsite (website) {
-        var deferred = q.defer();
-        Website.create (website,
-            function (err, website) {
-                if (!err) {
-                    deferred.resolve(website);
-                } else {
-                    deferred.reject(err);
+        return Website.create (website)
+            .then(
+                function(website) {
+                    model.developerModel
+                        .findDeveloperById(website._developer)
+                        .update({$pushAll: {websites: [website._id]}})
+                        .then(
+                            function(stat) {
+                                console.log(stat);
+                            },
+                            function(error) {
+                                console.log(error);
+                            }
+                        )
+                },
+                function(error) {
+                    console.log(error);
                 }
-        });
-        return deferred.promise;
+            );
     }
 };

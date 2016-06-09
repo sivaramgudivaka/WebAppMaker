@@ -19,11 +19,11 @@ module.exports = function() {
 
     var model = {};
 
-    var websiteModel     = require("./website/website.model.server")();
+    var developerModel   = require("./developer/developer.model.server")(model);
+    var websiteModel     = require("./website/website.model.server")(model);
     var shareModel       = require("./website/share.model.server")(websiteModel);
     var pageModel        = require("./page/page.model.server")(websiteModel);
     var widgetModel      = require("./widget/widget.model.server")(model);
-    var developerModel   = require("./developer/developer.model.server")();
     var scriptModel      = require("./script/script.model.server")(websiteModel);
 
     model.websiteModel   = websiteModel;

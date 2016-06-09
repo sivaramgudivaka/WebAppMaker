@@ -14,7 +14,8 @@ module.exports = function () {
         facebook:   {
             id:    String,
             token: String
-        }
+        },
+        websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Website'}]
     }, {collection: 'developer'});
     return DeveloperSchema;
 };
