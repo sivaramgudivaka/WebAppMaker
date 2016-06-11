@@ -101,8 +101,8 @@
         vm.register = register;
 
         function register(developer) {
-            if(!developer || !developer.username || !developer.password || !developer.password2)
-                return;
+            // if(!developer || !developer.username || !developer.password || !developer.password2)
+            //     return;
             delete developer.password2;
             SecurityService
                 .register(developer)
@@ -110,7 +110,7 @@
                     function(response) {
                         if(response.data) {
                             $rootScope.currentUser = response.data;
-                            $location.url("/developer/"+developer.username+"/edit");
+                            $location.url("/developer/"+developer._id);
                         }
                     },
                     function(err) {

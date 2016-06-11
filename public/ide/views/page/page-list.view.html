@@ -8,7 +8,7 @@
 
         <a class="navbar-brand">{{model.website.name}} - Pages</a>
 
-        <a href="#/website/{{model.websiteId}}/page/new"
+        <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/new"
            class="btn btn-default btn-transparent pull-right">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
@@ -27,12 +27,12 @@
     <div ng-repeat="page in model.pages"
          class="row jga-bg-highlight-on-hover" style="padding: 8px">
         <div class="col-xs-10">
-            <a href="#/page/{{page._id}}/widget">
+            <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
                 {{page.name}}
             </a>
         </div>
         <div class="col-xs-2">
-            <a  href="#/website/{{model.websiteId}}/page/{{page._id}}"
+            <a  href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{page._id}}"
                 class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>

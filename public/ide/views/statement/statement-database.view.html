@@ -1,0 +1,207 @@
+Select Database Operation
+<select name="databaseOperation"
+        ng-options="statement.label for statement in model.databaseOperations track by statement.label"
+        ng-model="model.databaseOperation" class="form-control">
+</select>
+
+<span ng-show="model.databaseOperation.label==='Select'">
+    Select from
+</span>
+<span ng-show="model.databaseOperation.label==='Insert'">
+    Insert into
+</span>
+<span ng-show="model.databaseOperation.label==='Update'">
+    Update
+</span>
+<span ng-show="model.databaseOperation.label==='Delete'">
+    Remove from
+</span>
+collection
+<select name="collection"
+        ng-options="statement.label for statement in model.collections track by statement.label"
+        ng-model="model.collection" class="form-control">
+</select>
+
+<div class="panel panel-default wam-margin-bottom-5px" ng-show="model.databaseOperation.label==='Update' || model.databaseOperation.label==='Insert'">
+    <div class="panel-heading" data-toggle="collapse" data-target="#set-collapse">
+        <h3 class="panel-title">
+            Set
+        </h3>
+    </div>
+    <div id="set-collapse" class="collapse">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-4 wam-no-padding-right">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.variables track by statement.label"
+                            ng-model="model.variable10"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-2 wam-no-padding-left-right text-center wam-font-size-double wam-nugde-6px-up">
+                    =
+                </div>
+                <div class="col-xs-4 wam-no-padding-left">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.variables track by statement.label"
+                            ng-model="model.variable11"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-2 wam-no-padding-left">
+                    <a class="btn btn-danger btn-block">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4 wam-no-padding-right">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.variables track by statement.label"
+                            ng-model="model.variable11"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-2 wam-no-padding-left-right text-center wam-font-size-double wam-nugde-6px-up">
+                    =
+                </div>
+                <div class="col-xs-4 wam-no-padding-left">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.variables track by statement.label"
+                            ng-model="model.variable12"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-2 wam-no-padding-left">
+                    <a class="btn btn-danger btn-block">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4 wam-no-padding-right">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.variables track by statement.label"
+                            ng-model="model.variable13"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-2 wam-no-padding-left-right text-center wam-font-size-double wam-nugde-6px-up">
+                    =
+                </div>
+                <div class="col-xs-4 wam-no-padding-left">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.variables track by statement.label"
+                            ng-model="model.variable14"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-2 wam-no-padding-left">
+                    <a class="btn btn-success btn-block">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default wam-margin-bottom-5px" ng-show="model.databaseOperation.label!='Insert'">
+    <div class="panel-heading" data-toggle="collapse" data-target="#where-collapse">
+        <h3 class="panel-title">
+            Where
+        </h3>
+    </div>
+    <div id="where-collapse" class="collapse">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-4">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.variables track by statement.label"
+                            ng-model="model.variable1"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-2 wam-no-padding-left-right">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.comparators track by statement.label"
+                            ng-model="model.comparator0"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-4">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.variables track by statement.label"
+                            ng-model="model.variable2"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-2 wam-no-padding-left">
+                    <a class="btn btn-danger btn-block">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.variables track by statement.label"
+                            ng-model="model.variable3"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-2 wam-no-padding-left-right">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.comparators track by statement.label"
+                            ng-model="model.comparator1"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-4">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.variables track by statement.label"
+                            ng-model="model.variable4"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-2 wam-no-padding-left">
+                    <a class="btn btn-danger btn-block">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.variables track by statement.label"
+                            ng-model="model.variabl5"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-2 wam-no-padding-left-right">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.comparators track by statement.label"
+                            ng-model="model.comparator2"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-4">
+                    <select name="variable"
+                            ng-options="statement.label for statement in model.variables track by statement.label"
+                            ng-model="model.variable6"
+                            class="form-control">
+                    </select>
+                </div>
+                <div class="col-xs-2 wam-no-padding-left">
+                    <a class="btn btn-success btn-block">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

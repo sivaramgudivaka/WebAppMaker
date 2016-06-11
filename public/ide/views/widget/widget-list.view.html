@@ -1,14 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top jga">
     <div class="navbar-header">
 
-        <a href="#/website/{{model.page._website}}/page"
+        <a href="#/developer/{{model.developerId}}/website/{{model.page._website}}/page"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
 
         <a class="navbar-brand">{{model.page.name}} - Widgets</a>
 
-        <a href="#/page/{{model.pageId}}/choose-widget"
+        <a href="#/developer/{{model.developerId}}/website/{{model.page._website}}/page/{{model.pageId}}/choose-widget"
            class="btn btn-default btn-transparent pull-right">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
@@ -22,7 +22,7 @@
              ng-class="widget.bootClass"
              ng-switch="widget.widgetType">
             <div class="pull-right jga-widget-list-tools">
-                <a href="#/website/{{model.page._website}}/page/{{model.page._id}}/widget/{{widget._id}}">
+                <a href="#/developer/{{model.developerId}}/website/{{model.page._website}}/page/{{model.page._id}}/widget/{{widget._id}}">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
                 <span class="glyphicon glyphicon-align-justify"></span>

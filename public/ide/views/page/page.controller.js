@@ -9,6 +9,7 @@
     function pageRunController (DatabaseService, $routeParams, WebsiteService, WidgetService, PageService, $sce,
                                 $location, $scope, $rootScope) {
         var vm = this;
+        vm.developerId   = $routeParams.developerId;
         vm.username      = $routeParams.username;
         vm.websiteId     = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
@@ -154,7 +155,8 @@
 
         var vm = this;
         vm.username      = $routeParams.username;
-        vm.websiteId = $routeParams.websiteId;
+        vm.developerId   = $routeParams.developerId;
+        vm.websiteId     = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
 
         vm.removePage    = removePage;
@@ -179,7 +181,7 @@
                 .updatePage(page._id, page)
                 .then(
                     function (response) {
-                        $location.url("/website/"+vm.websiteId+"/page");
+                        $location.url("/developer/"+vm.developerId+"/website/"+vm.websiteId+"/page");
                     },
                     function (err) {
                         vm.error = err;
@@ -192,7 +194,7 @@
                 .removePage(vm.pageId)
                 .then(
                     function (response) {
-                        $location.url("/website/"+vm.websiteId+"/page");
+                        $location.url("/developer/"+vm.developerId+"/website/"+vm.websiteId+"/page");
                     },
                     function (err) {
                         vm.error = err;
@@ -204,6 +206,7 @@
     function pageListController ($routeParams, PageService, WebsiteService) {
 
         var vm = this;
+        vm.developerId = $routeParams.developerId;
         vm.websiteId = $routeParams.websiteId;
 
         vm.sortPage      = sortPage;
@@ -248,6 +251,7 @@
     function newPageController($routeParams, PageService, $location) {
 
         var vm = this;
+        vm.developerId = $routeParams.developerId;
         vm.websiteId = $routeParams.websiteId;
         vm.createPage = createPage;
 
@@ -257,7 +261,7 @@
                 .then(
                     function(response) {
                         var page = response;
-                        $location.url("/website/"+vm.websiteId+"/page");
+                        $location.url("/developer/"+vm.developerId+"/website/"+vm.websiteId+"/page");
                     }
                 )
         }

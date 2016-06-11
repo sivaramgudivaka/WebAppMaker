@@ -9,6 +9,7 @@
 
         var vm = this;
         vm.username      = $routeParams.username;
+        vm.developerId   = $routeParams.developerId;
         vm.websiteId     = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
@@ -17,17 +18,6 @@
         vm.removeWidget  = removeWidget;
 
         function init() {
-            // PageService
-            //     .findPagesFromWidgetId(vm.widgetId)
-            //     .then(
-            //         function(response) {
-            //             vm.pages = response.data;
-            //         },
-            //         function(error) {
-            //             vm.error = error;
-            //         }
-            //     );
-            // populate the page dropdown to select button navigate property
             PageService
                 .findPagesForWebsite(vm.websiteId)
                 .then(
@@ -56,7 +46,7 @@
                 .removeWidget(vm.websiteId, vm.pageId, vm.widgetId)
                 .then(
                     function(response) {
-                        $location.url("/page/"+vm.widget._page+"/widget");
+                        $location.url("/developer/"+vm.developerId+"/website/"+vm.websiteId+"/page/"+vm.widget._page+"/widget");
                     },
                     function(error) {
                         vm.error = error;
@@ -69,7 +59,7 @@
                 .updateWidget(vm.websiteId, vm.pageId, vm.widgetId, widget)
                 .then(
                     function(response) {
-                        $location.url("/page/"+widget._page+"/widget");
+                        $location.url("/developer/"+vm.developerId+"/website/"+vm.websiteId+"/page/"+widget._page+"/widget");
                     },
                     function(error) {
                         vm.error = error;
@@ -82,6 +72,7 @@
 
         var vm = this;
         vm.username       = $routeParams.username;
+        vm.developerId   = $routeParams.developerId;
         vm.websiteId      = $routeParams.websiteId;
         vm.pageId         = $routeParams.pageId;
 
@@ -151,6 +142,7 @@
         var vm = this;
 
         vm.username  = $routeParams.username;
+        vm.developerId   = $routeParams.developerId;
         vm.websiteId = $routeParams.websiteId;
         vm.pageId    = $routeParams.pageId;
 
@@ -172,7 +164,7 @@
                 .then(
                     function(response) {
                         var newWidget = response.data
-                        $location.url("/website/"+vm.page._website+"/page/"+vm.page._id+"/widget/" + newWidget._id);
+                        $location.url("/developer/"+vm.developerId+"/website/"+vm.websiteId+"/page/"+vm.page._id+"/widget/" + newWidget._id);
                     },
                     function(err) {
                         vm.error = err;

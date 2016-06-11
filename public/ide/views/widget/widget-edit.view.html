@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top jga">
     <div class="navbar-header">
 
-        <a href="#/page/{{model.widget._page}}/widget"
+        <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.widget._page}}/widget"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -71,7 +71,7 @@
                 <option>DELETE</option>
             </select>
 
-            <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/script/edit"
+            <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/script/edit"
                class="btn btn-block btn-success">
                 Run Script
             </a>
@@ -192,7 +192,7 @@
                 </button>
             </form>
 
-            <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/flickr" class="btn btn-success btn-block">
+            <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/flickr" class="btn btn-success btn-block">
                 Flickr
             </a>
         </div>
@@ -212,7 +212,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
-        <a href="#/developer/{{currentUser.username}}/edit"
+        <a href="#/developer/{{model.developerId}}"
            class="navbar-toggle collapsed">
             <span class="glyphicon glyphicon-user"></span>
         </a>

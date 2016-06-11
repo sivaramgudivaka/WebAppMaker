@@ -1,0 +1,36 @@
+
+Numeric
+<div class="row">
+    <div class="col-xs-3">
+        <select ng-model="model.statement.numberStatement.output"
+                class="form-control">
+            <option value="">Select Output</option>
+            <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
+        </select>
+        <span class="pull-right" style="position: relative;top:-35px;left:20px">=</span>
+    </div>
+    <div class="col-xs-3">
+        <select ng-model="model.statement.numberStatement.input1"
+                class="form-control">
+            <option value="">Select Input 1</option>
+            <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
+        </select>
+    </div>
+    <div class="col-xs-3">
+        <select ng-model="model.statement.numberStatement.operationType"
+                class="form-control">
+            <option value="">Select Operation</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="x">x</option>
+            <option value="/">/</option>
+        </select>
+    </div>
+    <div class="col-xs-3">
+        <select ng-model="model.statement.numberStatement.input2"
+                class="form-control">
+            <option value="">Select Input 2</option>
+            <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
+        </select>
+    </div>
+</div>

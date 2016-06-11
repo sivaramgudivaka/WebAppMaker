@@ -87,19 +87,19 @@
             })
             // page routes
             // .when ("/developer/:username/website/:websiteId/page", {
-            .when ("/website/:websiteId/page", {
+            .when ("/developer/:developerId/website/:websiteId/page", {
                 templateUrl: "views/page/page-list.view.html",
                 controller: "PageListController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/website/:websiteId/page/new", {
+            .when ("/developer/:developerId/website/:websiteId/page/new", {
                 templateUrl: "views/page/page-new.view.html",
                 controller: "NewPageController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/website/:websiteId/page/:pageId", {
+            .when ("/developer/:developerId/website/:websiteId/page/:pageId", {
                 templateUrl: "views/page/page-edit.view.html",
                 controller: "EditPageController",
                 controllerAs: "model",
@@ -107,7 +107,7 @@
             })
 
             // widget routes
-            .when ("/page/:pageId/widget", {
+            .when ("/developer/:developerId/website/:websiteId/page/:pageId/widget", {
                 templateUrl: "views/widget/widget-list.view.html",
                 controller: "WidgetListController",
                 controllerAs: "model",
@@ -125,13 +125,13 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/page/:pageId/choose-widget", {
+            .when ("/developer/:developerId/website/:websiteId/page/:pageId/choose-widget", {
                 templateUrl: "views/widget/widget-choose.view.html",
                 controller: "ChooseWidgetController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/website/:websiteId/page/:pageId/widget/:widgetId", {
+            .when ("/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId", {
                 templateUrl: "views/widget/widget-edit.view.html",
                 controller: "WidgetEditController",
                 controllerAs: "model"
@@ -148,32 +148,32 @@
             })
 
             // script routes
-            .when ("/developer/:username/website/:websiteId/page/:pageId/widget/:widgetId/script", {
-                templateUrl: "views/script/script-list.view.html",
-                controller: "ScriptListController",
-                controllerAs: "model",
-                resolve: { loggedin: checkLoggedin }
-            })
-            .when ("/developer/:username/website/:websiteId/page/:pageId/widget/:widgetId/script/new", {
+            // .when ("/developer/:username/website/:websiteId/page/:pageId/widget/:widgetId/script", {
+            //     templateUrl: "views/script/script-list.view.html",
+            //     controller: "ScriptListController",
+            //     controllerAs: "model",
+            //     resolve: { loggedin: checkLoggedin }
+            // })
+            .when ("/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/script/new", {
                 templateUrl: "views/script/script-new.view.html",
                 controller: "NewScriptController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/website/:websiteId/page/:pageId/widget/:widgetId/script/edit", {
+            .when ("/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/script", {
                 templateUrl: "views/script/script-edit.view.html",
                 controller: "EditScriptController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:username/website/:websiteId/page/:pageId/widget/:widgetId/script/choose", {
+            .when ("/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/script/choose", {
                 templateUrl: "views/script/statement-choose.view.html",
                 controller: "ChooseStatementController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
             // navigate to statement editor when you click on th cog
-            .when ("/developer/:username/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementId", {
+            .when ("/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementId", {
                 templateUrl: "views/script/statement-edit.view.html",
                 controller: "EditStatementController",
                 controllerAs: "model",

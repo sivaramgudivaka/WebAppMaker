@@ -58,8 +58,8 @@ module.exports = function (app, model) {
         websiteModel
             .findWebsitesForDeveloperId (developerId)
             .then (
-                function (websites) {
-                    res.json (websites);
+                function (developer) {
+                    res.json (developer.websites);
                 },
                 function (err) {
                     res.status(400).send(err);

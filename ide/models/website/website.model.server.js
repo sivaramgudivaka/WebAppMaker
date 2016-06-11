@@ -37,20 +37,25 @@ module.exports = function (model) {
     }
 
     function findWebsitesForDeveloperId (developerId) {
-        var deferred = q.defer();
-        Website
-            .find(
-                {_developer: developerId},
-                '_id dateCreated developerUsername name',
-                function (err, websites) {
-                    if (!err) {
-                        deferred.resolve (websites);
-                    } else {
-                        deferred.reject (err);
-                    }
-                }
-            );
-        return deferred.promise;
+        return model.developerModel.findDeveloperById(developerId);
+        // var deferred = q.defer();
+        // Website
+        //     .find(
+        //         {_developer: developerId},
+        //         '_id dateCreated developerUsername name',
+        //         function (err, websites) {
+        //             websites
+        //                 .populate("_developer", "username")
+        //                 .exex(function(err, websites){
+        //                     if (!err) {
+        //                         deferred.resolve (websites);
+        //                     } else {
+        //                         deferred.reject (err);
+        //                     }
+        //                 });
+        //         }
+        //     );
+        // return deferred.promise;
     }
 
     function createWebsite (website) {

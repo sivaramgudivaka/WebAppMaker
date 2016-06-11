@@ -128,3 +128,29 @@ th {
 .wam-capitalize {
     text-transform: capitalize;
 }
+
+.wam-no-padding-left-right {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.wam-no-padding-left {
+    padding-left: 0px;
+}
+
+.wam-no-padding-right {
+    padding-right: 0px;
+}
+
+.wam-font-size-double {
+    font-size: 2em;
+}
+
+.wam-nugde-6px-up {
+    position: relative;
+    top: -6px;
+}
+
+.wam-margin-bottom-5px {
+    margin-bottom: 5px;
+}

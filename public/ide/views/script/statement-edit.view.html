@@ -2,10 +2,10 @@
      we'll show the correct editor based on the
      type of the statement
  -->
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top jga">
     <div class="navbar-header">
 
-        <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/script/edit"
+        <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/script"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -20,104 +20,51 @@
     </div>
 </nav>
 
+Select Operation Type
 
-Title
-<input ng-model="model.statement.title"
-       ng-value="model.statement.numberStatement.output + ' = ' + model.statement.numberStatement.input1 + ' '+model.statement.numberStatement.operationType+' ' + model.statement.numberStatement.input2"
-       placeholder="Statement Title"
-       class="form-control"/>
+<select name="statementType"
+        ng-options="statement.label for statement in model.statementTypes track by statement.label"
+        ng-model="model.statementType" class="form-control">
+    <option ng-value="null">Select Operation</option>
+</select>
 
-<div ng-switch="model.statement.statementType">
+<!--Title-->
+<!--<input ng-model="model.statement.title"-->
+       <!--ng-value="model.statement.numberStatement.output + ' = ' + model.statement.numberStatement.input1 + ' '+model.statement.numberStatement.operationType+' ' + model.statement.numberStatement.input2"-->
+       <!--placeholder="Statement Title"-->
+       <!--class="form-control"/>-->
 
-    <div ng-switch-when="BOOLEAN">
-        <div class="row">
-            <div class="col-xs-3">
-                <select ng-model="model.statement.numberStatement.output"
-                        class="form-control">
-                    <option value="">Select Output</option>
-                    <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
-                </select>
-                <span class="pull-right" style="position: relative;top:-35px;left:20px">=</span>
-            </div>
-            <div class="col-xs-3">
-                <select ng-model="model.statement.numberStatement.input1"
-                        class="form-control">
-                    <option value="">Select Input 1</option>
-                    <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
-                </select>
-            </div>
-            <div class="col-xs-3">
-                <select ng-model="model.statement.numberStatement.operationType"
-                        class="form-control">
-                    <option value="">Select Operation</option>
-                    <option value="AND">AND</option>
-                    <option value="OR">OR</option>
-                </select>
-            </div>
-            <div class="col-xs-3">
-                <select ng-model="model.statement.numberStatement.input2"
-                        class="form-control">
-                    <option value="">Select Input 2</option>
-                    <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
-                </select>
-            </div>
-        </div>
+<div ng-switch="model.statementType.label">
+
+    <div ng-switch-when="Boolean">
+        <ng-include src="'views/statement/statement-boolean.view.html'"></ng-include>
     </div>
 
-    <div ng-switch-when="DATE">
-        Date
+    <div ng-switch-when="Date">
+        <ng-include src="'views/statement/statement-date.view.html'"></ng-include>
     </div>
 
-    <div ng-switch-when="STRING">
-        String
+    <div ng-switch-when="String">
+        <ng-include src="'views/statement/statement-string.view.html'"></ng-include>
     </div>
 
-    <div ng-switch-when="NUMBER">
+    <div ng-switch-when="Numeric">
+        <ng-include src="'views/statement/statement-numeric.view.html'"></ng-include>
+    </div>
 
-        <div class="row">
-            <div class="col-xs-3">
-                <select ng-model="model.statement.numberStatement.output"
-                        class="form-control">
-                    <option value="">Select Output</option>
-                    <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
-                </select>
-                <span class="pull-right" style="position: relative;top:-35px;left:20px">=</span>
-            </div>
-            <div class="col-xs-3">
-                <select ng-model="model.statement.numberStatement.input1"
-                        class="form-control">
-                    <option value="">Select Input 1</option>
-                    <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
-                </select>
-            </div>
-            <div class="col-xs-3">
-                <select ng-model="model.statement.numberStatement.operationType"
-                        class="form-control">
-                    <option value="">Select Operation</option>
-                    <option value="+">+</option>
-                    <option value="-">-</option>
-                    <option value="x">x</option>
-                    <option value="/">/</option>
-                </select>
-            </div>
-            <div class="col-xs-3">
-                <select ng-model="model.statement.numberStatement.input2"
-                        class="form-control">
-                    <option value="">Select Input 2</option>
-                    <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
-                </select>
-            </div>
-        </div>
+    <div ng-switch-when="Database">
+        <ng-include src="'views/statement/statement-database.view.html'"></ng-include>
     </div>
 </div>
 
-<button ng-click="model.deleteStatement()" class="btn btn-danger btn-block">
+<button ng-click="model.deleteStatement()" ng-hide="model.statementId == 'new'"
+        class="btn btn-danger btn-block">
     Delete
 </button>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
-        <a href="#/developer/{{currentUser.username}}/edit"
+        <a href="#/developer/{{model.developerId}}"
            class="navbar-toggle collapsed">
             <span class="glyphicon glyphicon-user"></span>
         </a>

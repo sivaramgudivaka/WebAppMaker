@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var q = require("q");
 
 module.exports = function (model) {
-    
+
     var DeveloperSchema = require("./developer.schema.server.js")();
     var Developer = mongoose.model("Developer", DeveloperSchema);
 
@@ -33,7 +33,7 @@ module.exports = function (model) {
     }
 
     function findDeveloperById(userId) {
-        return Developer.findById(userId);
+        return Developer.findById(userId).populate("websites");
     }
 
     function findDeveloperByCredentials(credentials) {

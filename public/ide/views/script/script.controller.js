@@ -8,12 +8,56 @@
         .controller("ScriptListController", ScriptListController);
 
     // controller for the statement editor
-    function EditStatementController($routeParams, ScriptService, $location) {
-        
+    function EditStatementController($routeParams, ScriptService, $location, $scope) {
+
         var vm = this;
+
+        vm.statementId = $routeParams.statementId;
+
+        vm.statementTypes = [
+            {label: 'Numeric'},
+            {label: 'String'},
+            {label: 'Boolean'},
+            {label: 'Conditional'},
+            {label: 'Navigation'},
+            {label: 'Date'},
+            {label: 'Database'}
+        ];
+        vm.statementType = vm.statementTypes[6];
+
+        vm.databaseOperations = [
+            {label: 'Select'},
+            {label: 'Insert'},
+            {label: 'Update'},
+            {label: 'Delete'}
+        ];
+        vm.databaseOperation = vm.databaseOperations[0];
+
+        vm.collections = [
+            {label: 'Collection 1'},
+            {label: 'Collection 2'},
+            {label: 'Collection 3'}
+        ];
+
+        vm.variables = [
+            {label: 'Var 1'},
+            {label: 'Var 2'},
+            {label: 'Var 3'}
+        ];
+
+        vm.comparators = [
+            {label: '='},
+            {label: '>'},
+            {label: '>='},
+            {label: '<'},
+            {label: '<='}
+        ];
+
+        // vm.statementType = vm.statementTypes[2];
 
         // route params
         vm.username    = $routeParams.username;
+        vm.developerId = $routeParams.developerId;
         vm.websiteId   = $routeParams.websiteId;
         vm.pageId      = $routeParams.pageId;
         vm.widgetId    = $routeParams.widgetId;
@@ -72,7 +116,8 @@
 
         // route params
         vm.username      = $routeParams.username;
-        vm.websiteId = $routeParams.websiteId;
+        vm.developerId   = $routeParams.developerId;
+        vm.websiteId     = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
 
@@ -103,6 +148,7 @@
 
         // route params
         vm.username      = $routeParams.username;
+        vm.developerId   = $routeParams.developerId;
         vm.websiteId     = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
@@ -149,7 +195,8 @@
 
         // route params
         vm.username      = $routeParams.username;
-        vm.websiteId = $routeParams.websiteId;
+        vm.developerId   = $routeParams.developerId;
+        vm.websiteId     = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
 
@@ -173,7 +220,8 @@
 
         // route params
         vm.username      = $routeParams.username;
-        vm.websiteId = $routeParams.websiteId;
+        vm.developerId   = $routeParams.developerId;
+        vm.websiteId     = $routeParams.websiteId;
         vm.pageId        = $routeParams.pageId;
         vm.widgetId      = $routeParams.widgetId;
 
