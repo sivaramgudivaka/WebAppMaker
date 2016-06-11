@@ -8,7 +8,7 @@
         .controller("ScriptListController", ScriptListController);
 
     // controller for the statement editor
-    function EditStatementController($routeParams, ScriptService, $location, $scope) {
+    function EditStatementController($routeParams, ScriptService, WidgetService, $location, $scope) {
 
         var vm = this;
 
@@ -69,6 +69,16 @@
 
         // retrieve statement on load
         function init() {
+            WidgetService
+                .findWidgetsForWebsite(vm.websiteId)
+                .then(
+                    function(response) {
+                        vm.widgets = response.data;
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                )
             ScriptService
                 .findStatement(vm)
                 .then(

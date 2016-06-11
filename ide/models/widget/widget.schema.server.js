@@ -13,7 +13,9 @@ module.exports = function () {
     var HtmlSchema      = require("./html.schema.server.js")();
 
     var WidgetSchema = mongoose.Schema({
+        _developer: { type: mongoose.Schema.Types.ObjectId, ref: 'Developer' },
         _page: { type: mongoose.Schema.Types.ObjectId, ref: 'Page' },
+        _website: { type: mongoose.Schema.Types.ObjectId, ref: 'Website' },
         widgetType: {type: String, enum: ["HTML", "HEADER", "LABEL", "TEXT",
             "LINK", "BUTTON", "IMAGE", "YOUTUBE","DATATABLE", "REPEATER"]},
         name      : String,

@@ -8,12 +8,17 @@
             addWidget: addWidget,
             getWidgets: getWidgets,
             findWidgetById: findWidgetById,
+            findWidgetsForWebsite: findWidgetsForWebsite,
             updateWidget: updateWidget,
             removeWidget: removeWidget,
             sortWidget: sortWidget,
             findPagesFromWidgetId: findPagesFromWidgetId
         };
         return api;
+
+        function findWidgetsForWebsite(websiteId) {
+            return $http.get("/api/website/"+websiteId+"/widget");
+        }
 
         function findPagesFromWidgetId(widgetId) {
             return $http.get("/api/widget/"+widgetId+"/page");

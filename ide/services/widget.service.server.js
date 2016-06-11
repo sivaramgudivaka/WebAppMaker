@@ -8,12 +8,27 @@ module.exports = function (app, model) {
 
     app.post ("/api/website/:websiteId/page/:pageId/widget", createWidget);
     app.get  ("/api/website/:websiteId/page/:pageId/widget", findWidgetsForPage);
+    app.get  ("/api/website/:websiteId/widget", findWidgetsForWebsite);
+    app.get  ("/api/widget", findAllWidgets);
     app.get  ("/api/website/:websiteId/page/:pageId/widget/:widgetId", findWidgetById);
     app.put  ("/api/website/:websiteId/page/:pageId/widget/:widgetId", updateWidget);
     app.delete("/api/website/:websiteId/page/:pageId/widget/:widgetId", removeWidget);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
     app.put    ("/api/website/:websiteId/page/:pageId/widget", updateWidgets);
     app.get   ("/api/widget/:widgetId/page", findPagesFromWidgetId);
+
+    function findAllWidgets(req, res) {
+        widgetModel
+            .findAllWidgets()
+            .then(
+                function(widgets) {
+                    res.json(widgets);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
+    }
 
     function findPagesFromWidgetId(req, res) {
         var widgetId = req.params.widgetId;
@@ -158,6 +173,20 @@ module.exports = function (app, model) {
         var pageId = req.params.pageId;
         widgetModel
             .findWidgetsForPage(pageId)
+            .then(
+                function(widgets) {
+                    res.json(widgets);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function findWidgetsForWebsite(req, res) {
+        var websiteId = req.params.websiteId;
+        widgetModel
+            .findNamedWidgetsForWebsite(websiteId)
             .then(
                 function(widgets) {
                     res.json(widgets);

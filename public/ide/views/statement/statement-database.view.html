@@ -205,3 +205,12 @@ collection
         </div>
     </div>
 </div>
+
+<select name="variable"
+        ng-options="statement.name for statement in model.widgets track by statement.name"
+        ng-model="model.variable123"
+        class="form-control">
+</select>
+
+
+{{model.widgets}}

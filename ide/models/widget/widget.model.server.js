@@ -8,7 +8,10 @@ module.exports = function(model) {
 
     var api = {
         createWidget: createWidget,
+        findAllWidgets: findAllWidgets,
         findWidgetsForPage: findWidgetsForPage,
+        findWidgetsForWebsite: findWidgetsForWebsite,
+        findNamedWidgetsForWebsite: findNamedWidgetsForWebsite,
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
         removeWidget: removeWidget,
@@ -22,6 +25,24 @@ module.exports = function(model) {
 
     function findWidgetsForPage(pageId) {
         return Widget.find({_page: pageId});
+    }
+
+    function findWidgetsForWebsite(websiteId) {
+        return Widget
+            .find({_website: websiteId})
+            .populate("_page");
+    }
+
+    function findNamedWidgetsForWebsite(websiteId) {
+        return Widget
+            .find({_website: websiteId, name: {$ne: null}})
+            .populate("_page");
+    }
+
+    function findAllWidgets() {
+        return Widget
+            .find()
+            .populate("_page _website");
     }
 
     function sortWidget(websiteId, pageId, startIndex, endIndex) {
@@ -224,6 +245,7 @@ module.exports = function(model) {
                     var widget = new Widget();
                     widget.widgetType = widgetType;
                     widget._page = pageId;
+                    widget._website = websiteId;
                     if(lastWidget) {
                         widget.order = ++lastWidget.order;
                     }
