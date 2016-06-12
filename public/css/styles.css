@@ -154,3 +154,8 @@ th {
 .wam-margin-bottom-5px {
     margin-bottom: 5px;
 }
+
+.dropdown-menu.wam-left {
+    right: 0px;
+    left:  auto;
+}

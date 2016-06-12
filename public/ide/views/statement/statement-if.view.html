@@ -1,0 +1,98 @@
+
+<div class="row">
+    <div class="col-xs-3">
+        <h4>If</h4>
+    </div>
+    <div class="col-xs-9">
+        <div class="input-group">
+            <input ng-model="model.selectedWidget.name" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget = widget">
+                        <a>{{widget.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-3">
+        <h4>Is</h4>
+    </div>
+    <div class="col-xs-9">
+        <select name="variable"
+                ng-options="statement.label for statement in model.verboseComparators track by statement.label"
+                ng-model="model.comparator0"
+                class="form-control">
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-3">
+        <h4>Than</h4>
+    </div>
+    <div class="col-xs-9">
+        <div class="input-group">
+            <input ng-model="model.selectedWidget2.name" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget2 = widget">
+                        <a>{{widget.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-3">
+        <h4>Then</h4>
+    </div>
+    <div class="col-xs-9">
+        <select name="then"
+                ng-options="then.label for then in model.ifThen track by then.label"
+                ng-model="model.then"
+                class="form-control">
+        </select>
+    </div>
+</div>
+
+<div ng-show="model.then.label==='Go to statement'" class="row">
+    <div class="col-xs-3">
+        <h4>Go to</h4>
+    </div>
+    <div class="col-xs-9">
+        <select name="page"
+                ng-options="statement.name for statement in model.statements track by statement.name"
+                ng-model="model.statement"
+                class="form-control">
+        </select>
+    </div>
+</div>
+
+<div ng-show="model.then.label==='Navigate to page'" class="row">
+    <div class="col-xs-3">
+        <h4>Navigate</h4>
+    </div>
+    <div class="col-xs-9">
+        <select name="page"
+                ng-options="page.name for page in model.pages track by page.name"
+                ng-model="model.page"
+                class="form-control">
+        </select>
+    </div>
+</div>

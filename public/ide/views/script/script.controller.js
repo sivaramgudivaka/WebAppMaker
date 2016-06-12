@@ -8,7 +8,7 @@
         .controller("ScriptListController", ScriptListController);
 
     // controller for the statement editor
-    function EditStatementController($routeParams, ScriptService, WidgetService, $location, $scope) {
+    function EditStatementController($routeParams, PageService, ScriptService, WidgetService, $location, $scope) {
 
         var vm = this;
 
@@ -18,12 +18,12 @@
             {label: 'Numeric'},
             {label: 'String'},
             {label: 'Boolean'},
-            {label: 'Conditional'},
+            {label: 'If'},
             {label: 'Navigation'},
             {label: 'Date'},
             {label: 'Database'}
         ];
-        vm.statementType = vm.statementTypes[6];
+        vm.statementType = vm.statementTypes[3];
 
         vm.databaseOperations = [
             {label: 'Select'},
@@ -53,7 +53,18 @@
             {label: '<='}
         ];
 
-        // vm.statementType = vm.statementTypes[2];
+        vm.verboseComparators = [
+            {label: 'Equal to'},
+            {label: 'Greater than'},
+            {label: 'Greater than or equal'},
+            {label: 'Less than'},
+            {label: 'Less than or equal'}
+        ];
+
+        vm.ifThen = [
+            {label: 'Go to statement'},
+            {label: 'Navigate to page'}
+        ];
 
         // route params
         vm.username    = $routeParams.username;
@@ -74,6 +85,16 @@
                 .then(
                     function(response) {
                         vm.widgets = response.data;
+                        return PageService
+                            .findPagesForWebsite(vm.websiteId);
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                )
+                .then(
+                    function(response) {
+                        vm.pages = response.data;
                     },
                     function(err) {
                         vm.error = err;

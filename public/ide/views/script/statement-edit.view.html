@@ -36,6 +36,10 @@ Select Operation Type
 
 <div ng-switch="model.statementType.label">
 
+    <div ng-switch-when="If">
+        <ng-include src="'views/statement/statement-if.view.html'"></ng-include>
+    </div>
+
     <div ng-switch-when="Boolean">
         <ng-include src="'views/statement/statement-boolean.view.html'"></ng-include>
     </div>
