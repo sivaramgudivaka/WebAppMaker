@@ -3,13 +3,12 @@ var mongoose = require("mongoose");
 
 module.exports = function() {
 
-    var NumberStatementSchema = require("./number-statement.schema.server")();
-
     var StatementSchema = mongoose.Schema({
         statementType   : {type : String, enum : ["NUMBER", "STRING", "DATE", "OBJECT", "ARRAY", "DATABASE", "BOOLEAN", "DECISION"]},
         variables: [String],
         title: String,
-        numberStatement : NumberStatementSchema
+        numberStatement : require("./date-statement.schema.server")(),
+        dateStatement : require("./date-statement.schema.server")()
     });
 
     return StatementSchema;

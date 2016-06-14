@@ -23,7 +23,7 @@
             {label: 'Date'},
             {label: 'Database'}
         ];
-        vm.statementType = vm.statementTypes[3];
+        vm.statementType = vm.statementTypes[5];
 
         vm.databaseOperations = [
             {label: 'Select'},
@@ -32,6 +32,15 @@
             {label: 'Delete'}
         ];
         vm.databaseOperation = vm.databaseOperations[0];
+
+        vm.dateOperations = [
+            {label: 'Create From String'},
+            {label: 'Get Date'},
+            {label: 'Get Day'},
+            {label: 'Get Full Year'},
+            {label: 'Get Hours'}
+        ];
+        vm.dateOperation = vm.dateOperations[0];
 
         vm.collections = [
             {label: 'Collection 1'},

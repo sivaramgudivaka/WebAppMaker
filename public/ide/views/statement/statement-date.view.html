@@ -1,1 +1,52 @@
-<h2>Date</h2>
+Select Date Operation
+<select name="dateOperation"
+        ng-options="operation.label for operation in model.dateOperations track by operation.label"
+        ng-model="model.dateOperation" class="form-control">
+</select>
+
+<div ng-show="model.dateOperation.label==='Create From String'">
+    Provide String
+    <div class="input-group">
+        <input ng-model="model.selectedWidget2.name" type="text" class="form-control">
+        <div class="input-group-btn">
+            <button type="button"
+                    class="btn btn-default dropdown-toggle"
+                    data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right wam-left">
+                <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget2 = widget">
+                    <a>{{widget.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    Format
+    <input class="form-control" placeholder="format" value="yyyy/mm/dd"/>
+</div>
+
+<div ng-hide="model.dateOperation.label==='Create From String'">
+    Select Date Variable
+    <select name="variable"
+            ng-options="widget.name for widget in model.widgets track by widget.name"
+            ng-model="model.variable10"
+            class="form-control">
+    </select>
+</div>
+
+Put Result in Variable
+<div class="input-group">
+    <input ng-model="model.selectedWidget2.name" type="text" class="form-control">
+    <div class="input-group-btn">
+        <button type="button"
+                class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right wam-left">
+            <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget2 = widget">
+                <a>{{widget.name}}</a>
+            </li>
+        </ul>
+    </div>
+</div>
