@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 module.exports = function() {
 
     var StatementSchema = mongoose.Schema({
+        _script : {type: mongoose.Schema.ObjectId, ref: 'Script'},
         statementType   : {type : String, enum : ["NUMBER", "STRING", "DATE", "OBJECT", "ARRAY", "DATABASE", "BOOLEAN", "DECISION"]},
         variables: [String],
         title: String,

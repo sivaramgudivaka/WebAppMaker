@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 module.exports = function() {
 
     var DateStatementSchema = mongoose.Schema({
-        operationType  : {type : String, enum : ["Create From String", "Get Date", 'Get Day', 'Get Full Year', 'Get Hours']},
+        dateOperation  : {type : String, enum : ["Create From String", "Get Date", 'Get Day', 'Get Full Year', 'Get Hours']},
         string         : String,
         format         : String,
         dateVariable   : String,

@@ -166,15 +166,9 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when ("/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/script/choose", {
-                templateUrl: "views/script/statement-choose.view.html",
-                controller: "ChooseStatementController",
-                controllerAs: "model",
-                resolve: { loggedin: checkLoggedin }
-            })
             // navigate to statement editor when you click on th cog
-            .when ("/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/script/statement/:statementId", {
-                templateUrl: "views/script/statement-edit.view.html",
+            .when ("/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/script/:scriptId/statement/:statementId", {
+                templateUrl: "views/statement/statement-edit.view.html",
                 controller: "EditStatementController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }

@@ -25,6 +25,7 @@ module.exports = function() {
     var pageModel        = require("./page/page.model.server")(websiteModel);
     var widgetModel      = require("./widget/widget.model.server")(model);
     var scriptModel      = require("./script/script.model.server")(websiteModel);
+    var statementModel   = require("./statement/statement.model.server")(model);
 
     model.websiteModel   = websiteModel;
     model.shareModel     = shareModel;
@@ -32,6 +33,7 @@ module.exports = function() {
     model.widgetModel    = widgetModel;
     model.developerModel = developerModel;
     model.scriptModel    = scriptModel;
+    model.statementModel = statementModel;
     model.mongo          = mongo;
 
     return model;

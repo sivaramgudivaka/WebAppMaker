@@ -7,6 +7,7 @@ module.exports = function (app, db) {
     var pageService        = require("./services/page.service.server.js")       (app, model);
     var widgetService      = require("./services/widget.service.server.js")     (app, model);
     var scriptService      = require("./services/script.service.server.js")     (app, model);
+    var statementService   = require("./services/statement.service.server.js")  (app, model);
     var shareService       = require("./services/share.service.server.js")      (app, model);
 
     // pass express app and db connection to database service
