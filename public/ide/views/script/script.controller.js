@@ -201,7 +201,10 @@
                 .findScript(vm)
                 .then(
                     function(response) {
-                        vm.script = response.data
+                        vm.script = response.data;
+                        if(!vm.script || vm.script == 'null') {
+                            vm.script = {};
+                        }
                     },
                     function(err) {
                         vm.error = err;
@@ -214,12 +217,11 @@
             ScriptService
                 .saveScript(vm, script)
                 .then(
-                    function(){
-                        var url  = "/developer/" + vm.username;
+                    function(script){
+                        var url  = "/developer/" + vm.developerId;
                             url += "/website/" + vm.websiteId;
                             url += "/page/" + vm.pageId;
                             url += "/widget/" + vm.widgetId;
-                            url += "/edit";
                         $location.url(url);
                     },
                     function(err){
@@ -250,7 +252,15 @@
 
         function createScript(script) {
             ScriptService
-                .createScript(vm, script);
+                .createScript(vm, script)
+                .then(
+                    function(response){
+                        $location.url("/developer/"+vm.developerId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widgetId);
+                    },
+                    function(error){
+                        vm.error = error;
+                    }
+                )
         }
     }
 

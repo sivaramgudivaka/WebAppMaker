@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 
 module.exports = function(websiteModel) {
 
-    var StatementSchema = require("./statement.schema.server.js")();
+    var StatementSchema = require("../statement/statement.schema.server.js")();
     var StatementModel  = mongoose.model("StatementModel", StatementSchema);
 
     var ScriptSchema = require("./script.schema.server.js")();
@@ -156,47 +156,52 @@ module.exports = function(websiteModel) {
     }
 
     function saveScript(scope, script) {
-        return websiteModel
-            .findWebsiteById(scope.websiteId)
-            .then(
-                function(website) {
-                    var widget = website
-                        .pages.id(scope.pageId)
-                        .widgets.id(scope.widgetId);
-
-                    if(!widget.button) {
-                        widget.button = {};
-                    }
-
-                    widget.button.script = script;
-                    website.save();
-                }
-            );
+        script._widget = scope.widgetId;
+        return ScriptModel
+            .findOneAndUpdate({_widget: scope.widgetId}, script, {upsert:true});
+        // return websiteModel
+        //     .findWebsiteById(scope.websiteId)
+        //     .then(
+        //         function(website) {
+        //             var widget = website
+        //                 .pages.id(scope.pageId)
+        //                 .widgets.id(scope.widgetId);
+        //
+        //             if(!widget.button) {
+        //                 widget.button = {};
+        //             }
+        //
+        //             widget.button.script = script;
+        //             website.save();
+        //         }
+        //     );
     }
 
     function findScript(scope) {
-
-        var deferred = q.defer();
-
-        websiteModel
-            .findWebsiteById(scope.websiteId)
-            .then(
-                function(website) {
-                    var widget = website
-                        .pages.id(scope.pageId)
-                        .widgets.id(scope.widgetId);
-
-                    if (widget.button && widget.button.script) {
-                        deferred.resolve(widget.button.script);
-                    } else {
-                        deferred.resolve({});
-                    }
-                },
-                function(err) {
-                    deferred.reject(err);
-                }
-            );
-
-        return deferred.promise;
+        return ScriptModel
+            .findOne({_widget: scope.widgetId});
+        //
+        // var deferred = q.defer();
+        //
+        // websiteModel
+        //     .findWebsiteById(scope.websiteId)
+        //     .then(
+        //         function(website) {
+        //             var widget = website
+        //                 .pages.id(scope.pageId)
+        //                 .widgets.id(scope.widgetId);
+        //
+        //             if (widget.button && widget.button.script) {
+        //                 deferred.resolve(widget.button.script);
+        //             } else {
+        //                 deferred.resolve({});
+        //             }
+        //         },
+        //         function(err) {
+        //             deferred.reject(err);
+        //         }
+        //     );
+        //
+        // return deferred.promise;
     }
 }

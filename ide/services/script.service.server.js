@@ -90,8 +90,8 @@ module.exports = function (app, model) {
         scriptModel
             .saveScript(req.params, script)
             .then(
-                function() {
-                    res.sendStatus(200);
+                function(script) {
+                    res.json(script);
                 },
                 function(err) {
                     res.statusCode(400).send(err);

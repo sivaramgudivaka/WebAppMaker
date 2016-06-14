@@ -8,8 +8,8 @@ module.exports = function() {
         variables: [String],
         title: String,
         numberStatement : require("./date-statement.schema.server")(),
-        dateStatement : require("./date-statement.schema.server")()
-    });
+        dateStatement   : require("./date-statement.schema.server")()
+    }, {collection: 'statement'});
 
     return StatementSchema;
 };
