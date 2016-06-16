@@ -29,15 +29,21 @@
                 controllerAs: "model"
             })
             // developer routes
-            .when ("/developer", {
-                templateUrl: "views/developer/developer-list.view.html",
-                controller: "DeveloperListController",
-                controllerAs: "model",
-                resolve: { loggedin: checkLoggedin }
-            })
+            // .when ("/developer", {
+            //     templateUrl: "views/developer/developer-list.view.html",
+            //     controller: "DeveloperListController",
+            //     controllerAs: "model",
+            //     resolve: { loggedin: checkLoggedin }
+            // })
             .when ("/developer/new", {
                 templateUrl: "views/developer/developer-new.view.html",
                 controller: "NewDeveloperController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
+            .when ("/developer", {
+                templateUrl: "views/developer/developer-edit.view.html",
+                controller: "EditDeveloperController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })

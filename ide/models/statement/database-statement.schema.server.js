@@ -4,8 +4,8 @@ module.exports = function() {
 
     var DatabaseStatementSchema = mongoose.Schema({
         operationType : {type : String, enum : ["Select", "Insert", "Update", "Delete"]},
-        collection    : String
+        collectionName    : String
     });
 
-    return NumberStatementSchema;
+    return DatabaseStatementSchema;
 };
