@@ -147,7 +147,7 @@
 
             // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
 
-            
+
 
             StatementService
                 .saveStatement(vm, vm.statement)
