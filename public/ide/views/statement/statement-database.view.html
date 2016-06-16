@@ -17,10 +17,21 @@ Select Database Operation
     Remove from
 </span>
 collection
-<select name="collection"
-        ng-options="statement.label for statement in model.collections track by statement.label"
-        ng-model="model.collection" class="form-control">
-</select>
+<div class="input-group">
+    <input ng-model="model.databaseStatement.collection" type="text" class="form-control">
+    <div class="input-group-btn">
+        <button type="button"
+                class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right wam-left">
+            <li ng-repeat="collection in model.collections" ng-click="model.databaseStatement.collection = collection.name">
+                <a>{{collection.name}}</a>
+            </li>
+        </ul>
+    </div>
+</div>
 
 <div class="panel panel-default wam-margin-bottom-5px" ng-show="model.databaseOperation.label==='Update' || model.databaseOperation.label==='Insert'">
     <div class="panel-heading" data-toggle="collapse" data-target="#set-collapse">
@@ -116,94 +127,7 @@ collection
     </div>
     <div id="where-collapse" class="collapse">
         <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-4">
-                    <select name="variable"
-                            ng-options="statement.label for statement in model.variables track by statement.label"
-                            ng-model="model.variable1"
-                            class="form-control">
-                    </select>
-                </div>
-                <div class="col-xs-2 wam-no-padding-left-right">
-                    <select name="variable"
-                            ng-options="statement.label for statement in model.comparators track by statement.label"
-                            ng-model="model.comparator0"
-                            class="form-control">
-                    </select>
-                </div>
-                <div class="col-xs-4">
-                    <select name="variable"
-                            ng-options="statement.label for statement in model.variables track by statement.label"
-                            ng-model="model.variable2"
-                            class="form-control">
-                    </select>
-                </div>
-                <div class="col-xs-2 wam-no-padding-left">
-                    <a class="btn btn-danger btn-block">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-4">
-                    <select name="variable"
-                            ng-options="statement.label for statement in model.variables track by statement.label"
-                            ng-model="model.variable3"
-                            class="form-control">
-                    </select>
-                </div>
-                <div class="col-xs-2 wam-no-padding-left-right">
-                    <select name="variable"
-                            ng-options="statement.label for statement in model.comparators track by statement.label"
-                            ng-model="model.comparator1"
-                            class="form-control">
-                    </select>
-                </div>
-                <div class="col-xs-4">
-                    <select name="variable"
-                            ng-options="statement.label for statement in model.variables track by statement.label"
-                            ng-model="model.variable4"
-                            class="form-control">
-                    </select>
-                </div>
-                <div class="col-xs-2 wam-no-padding-left">
-                    <a class="btn btn-danger btn-block">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-4">
-                    <select name="variable"
-                            ng-options="statement.label for statement in model.variables track by statement.label"
-                            ng-model="model.variabl5"
-                            class="form-control">
-                    </select>
-                </div>
-                <div class="col-xs-2 wam-no-padding-left-right">
-                    <select name="variable"
-                            ng-options="statement.label for statement in model.comparators track by statement.label"
-                            ng-model="model.comparator2"
-                            class="form-control">
-                    </select>
-                </div>
-                <div class="col-xs-4">
-                    <select name="variable"
-                            ng-options="statement.label for statement in model.variables track by statement.label"
-                            ng-model="model.variable6"
-                            class="form-control">
-                    </select>
-                </div>
-                <div class="col-xs-2 wam-no-padding-left">
-                    <a class="btn btn-success btn-block">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </a>
-                </div>
-            </div>
+            <wam-filter filters="model.filters" variables="model.widgets"></wam-filter>
         </div>
     </div>
 </div>
-
-{{model.widgets}}
