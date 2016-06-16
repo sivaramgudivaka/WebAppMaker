@@ -10,14 +10,25 @@
 
         vm.statementId = $routeParams.statementId;
 
+        //AW: method to repopulate the selected types
+        function getType(typeArray, value) {
+            for(i in typeArray)
+            {
+                if(typeArray[i].value === value)
+                    return typeArray[i];
+            }
+            return null;
+        }
+
+        //AW: Values are needed for cross-referencing
         vm.statementTypes = [
-            {label: 'Numeric'},
-            {label: 'String'},
-            {label: 'Boolean'},
-            {label: 'If'},
+            {label: 'Numeric',  value: 'NUMBER'},
+            {label: 'String',   value: 'STRING'},
+            {label: 'Boolean',  value: 'BOOLEAN'},
+            {label: 'If',       value: 'DECISION'},
             {label: 'Navigation'},
-            {label: 'Date'},
-            {label: 'Database'}
+            {label: 'Date',     value: 'DATE'},
+            {label: 'Database', value: 'DATABASE'}
         ];
         vm.statementType = vm.statementTypes[0];
 
@@ -36,13 +47,13 @@
         vm.databaseOperation = vm.databaseOperations[0];
 
         vm.dateOperations = [
-            {label: 'Create From String'},
-            {label: 'Get Date'},
-            {label: 'Get Day'},
-            {label: 'Get Full Year'},
-            {label: 'Get Hours'}
+            {label: 'Add'},
+            {label: 'Subtract'},
+            {label: 'Create Date from String'},
+            {label: 'Create Date from milliseconds'},
+            {label: 'Create Date from selecting in calendar'},
+            {label: 'Create Date by providing each parameter'}
         ];
-        vm.dateOperation = vm.dateOperations[0];
 
         vm.collections = [
             {label: 'Collection 1'},
@@ -76,6 +87,26 @@
             {label: 'Go to statement'},
             {label: 'Navigate to page'}
         ];
+
+        vm.stringOperations = [
+            {label: 'Substring',    value: 'SUBSTRING'},
+            {label: 'Concatenate',  value: 'CONCATENATE'},
+            {label: 'Length',       value: 'LENGTH'},
+            {label: 'Char At',      value: 'CHARAT'},
+            {label: 'Index Of',     value: 'INDEXOF'},
+            {label: 'Last Index Of',value: 'LASTINDEXOF'},
+            {label: 'Search',       value: 'SEARCH'},
+            {label: 'Repeat',       value: 'REPEAT'},
+            {label: 'Replace',      value: 'REPLACE'},
+            {label: 'Lowercase',    value: 'LOWERCASE'},
+            {label: 'Uppercase',    value: 'UPPERCASE'},
+            {label: 'Trim',         value: 'TRIM'},
+            {label: 'Starts With',  value: 'STARTSWITH'},
+            {label: 'Ends With',    value: 'ENDSWITH'}
+        ];
+
+        //$(".input-date#date1").datepicker();
+        //$("#date2").datepicker();
 
         // route params
         vm.username    = $routeParams.username;
@@ -120,17 +151,50 @@
                     .then(
                         function(response) {
                             vm.statement = response.data;
+                            //AW: Selected types are repopulated from the retrieved statement
+                            if(vm.statement != null) {
+                                vm.statementType = getType(vm.statementTypes, vm.statement.statementType);
+                                vm.stringOperation = getType(vm.stringOperations, vm.statement.stringStatement.operationType);
+                            }
                         },
                         function(err) {
                             vm.error = err;
                         }
                     );
             }
+            StatementService
+                .findAllStatements(vm)
+                .then(
+                    function(response) {
+                        vm.statements = response.data;
+                        vm.stmtvariables =[];
+                        for(var stmt in vm.statements){
+                            var st = vm.statements[stmt];
+                            if (st.stringStatement && st.stringStatement.output){
+                                vm.stmtvariables.push(st.stringStatement.output)
+                            }
+                            if (st.booleanStatement && st.booleanStatement.output){
+                                vm.stmtvariables.push(st.booleanStatement.output)
+                            }
+                            if (st.numberStatement && st.numberStatement.output){
+                                vm.stmtvariables.push(st.numberStatement.output)
+                            }
+                            if (st.dateStatement && st.dateStatement.resultVariable){
+                                vm.stmtvariables.push(st.dateStatement.resultVariable)
+                            }
+                            for(var variable in st.variables){
+                                vm.stmtvariables.push(st.variables[variable]);
+                            }
+                        }
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
         }
         init();
-
         function deleteStatement() {
-            ScriptService
+            StatementService
                 .deleteStatement(vm)
                 .then(
                     function() {
@@ -143,11 +207,24 @@
         }
 
         function saveStatement() {
-            console.log(vm.statement);
 
+            // console.log(vm.statement);
+            vm.statement.name= vm.statementName;
             // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
+            vm.statement.statementType = vm.statementType.value;
 
-            
+            //AW: Specific to String statements
+            if(vm.statement.statementType === "STRING")
+                vm.statement.stringStatement.operationType = vm.stringOperation.value;
+
+            if (vm.statementType.label === "If")
+                vm.statement.ifStatement.comparator = vm.statement.ifStatement.comparator.label;
+
+
+            /*if (vm.statementType.label === "Boolean"){
+             if(vm.statement.booleanStatement.input1 === 'NOT'){
+             }
+             }*/
 
             StatementService
                 .saveStatement(vm, vm.statement)
@@ -160,6 +237,7 @@
                     }
                 );
         }
+
     }
 
     function ChooseStatementController($routeParams, ScriptService, $location) {

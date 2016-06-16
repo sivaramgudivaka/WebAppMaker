@@ -18,7 +18,11 @@ Select Database Operation
 </span>
 collection
 <div class="input-group">
+<<<<<<< 55c1b05bfbbe6d43ee06503271a13b3a930ad105
     <input ng-model="model.statement.databaseStatement.collectionName" type="text" class="form-control">
+=======
+    <input ng-model="model.databaseStatement.collection" type="text" class="form-control">
+>>>>>>> Mergemaster
     <div class="input-group-btn">
         <button type="button"
                 class="btn btn-default dropdown-toggle"
@@ -26,7 +30,11 @@ collection
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right wam-left">
+<<<<<<< 55c1b05bfbbe6d43ee06503271a13b3a930ad105
             <li ng-repeat="collection in model.collections" ng-click="model.statement.databaseStatement.collectionName     = collection.name">
+=======
+            <li ng-repeat="collection in model.collections" ng-click="model.databaseStatement.collection = collection.name">
+>>>>>>> Mergemaster
                 <a>{{collection.name}}</a>
             </li>
         </ul>
