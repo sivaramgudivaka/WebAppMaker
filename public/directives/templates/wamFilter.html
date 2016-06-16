@@ -1,0 +1,97 @@
+<div class="row" ng-repeat="filter in filters">
+    <div class="col-xs-4">
+        <div class="input-group">
+            <input ng-model="filter.variable1" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li ng-repeat="variable in variables" ng-click="filter.variable1 = variable.name">
+                        <a>{{variable.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-2 wam-no-padding-left-right">
+        <select name="variable"
+                ng-options="comparator.label for comparator in comparators track by comparator.label"
+                ng-model="filter.comparator"
+                class="form-control">
+        </select>
+    </div>
+    <div class="col-xs-4">
+        <div class="input-group">
+            <input ng-model="filter.variable2" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="variable in variables" ng-click="filter.variable2 = variable.name">
+                        <a>{{variable.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-2 wam-no-padding-left">
+        <a ng-click="filters.splice($index, 1)" class="btn btn-danger btn-block">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-4">
+        <div class="input-group">
+            <input ng-model="variable1" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li ng-repeat="variable in variables" ng-click="variable1 = variable.name">
+                        <a>{{variable.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-2 wam-no-padding-left-right">
+        <select name="variable"
+                ng-options="comparator.label for comparator in comparators track by comparator.label"
+                ng-model="comparator"
+                class="form-control">
+        </select>
+    </div>
+    <div class="col-xs-4">
+        <div class="input-group">
+            <input ng-model="variable2" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li ng-repeat="variable in variables" ng-click="variable2 = variable.name">
+                        <a>{{variable.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-2 wam-no-padding-left">
+        <a ng-click="filters.push({variable1: variable1, comparator: comparator, variable2: variable2})" class="btn btn-success btn-block">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+</div>

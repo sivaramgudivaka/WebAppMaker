@@ -8,7 +8,8 @@ module.exports = function() {
         statementType   : {type : String, enum : ["NUMBER", "STRING", "DATE", "OBJECT", "ARRAY", "DATABASE", "BOOLEAN", "DECISION"]},
         variables: [String],
         title: String,
-        numberStatement : require("./date-statement.schema.server")(),
+        databaseStatement : require("./database-statement.schema.server")(),
+        numberStatement : require("./number-statement.schema.server")(),
         dateStatement   : require("./date-statement.schema.server")()
     }, {collection: 'statement'});
 

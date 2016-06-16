@@ -24,16 +24,16 @@ module.exports = function (app, model) {
     app.post  ('/api/register',       register);
 
     app.get   ('/auth/google',   passport.authenticate('google', { scope : ['profile', 'email'] }));
-    app.get   ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get   ('/auth/facebook', passport.authenticate('facebook', { scope : ['email', 'user_friends', 'user_posts', 'public_profile'] }));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: '/ide/#/profile',
+            successRedirect: '/ide/#/developer',
             failureRedirect: '/ide/#/login'
         }));
     app.get   ('/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: '/ide/#/profile',
+            successRedirect: '/ide/#/developer',
             failureRedirect: '/ide/#/login'
         }));
 

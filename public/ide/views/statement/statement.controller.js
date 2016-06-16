@@ -19,7 +19,13 @@
             {label: 'Date'},
             {label: 'Database'}
         ];
-        vm.statementType = vm.statementTypes[5];
+        vm.statementType = vm.statementTypes[6];
+
+        vm.filters = [
+            {variable1: "var 1", value1: "", comparator: "=", variable2: "var 2", value2: ""},
+            {variable1: "var 3", value1: "", comparator: ">", variable2: "var 3", value2: ""},
+            {variable1: null, value1: "value 4", comparator: "<", variable2: null, value2: "value 5"}
+        ];
 
         vm.databaseOperations = [
             {label: 'Select'},
@@ -100,7 +106,7 @@
                 )
                 .then(
                     function(response) {
-                        vm.pages = response.data;
+                        vm.collections = response.data;
                     },
                     function(err) {
                         vm.error = err;
