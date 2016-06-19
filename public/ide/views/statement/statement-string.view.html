@@ -2,10 +2,26 @@ Choose kind of operation
 <select name="stringOperation"
         ng-options="operation.label for operation in model.stringOperations track by operation.label"
         ng-model="model.stringOperation" class="form-control">
+    <option value="">Select Operation</option>
 </select>
 
 <div ng-show="model.stringOperation.label==='Substring'">
     String
+    <div class="input-group">
+        <input ng-model="model.variable1.name" type="text" class="form-control">
+        <div class="input-group-btn">
+            <button type="button"
+                    class="btn btn-default dropdown-toggle"
+                    data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right wam-left">
+                <li ng-repeat="widget in model.widgets" ng-click="model.variable1 = widget">
+                    <a>{{widget.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 <div ng-show="model.stringOperation.label==='Concatenate'">
     First String
