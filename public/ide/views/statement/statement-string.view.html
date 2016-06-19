@@ -1,5 +1,15 @@
 Choose kind of operation
 <select name="stringOperation"
         ng-options="operation.label for operation in model.stringOperations track by operation.label"
-        ng-model="model.statement.stringStatement.stringOperation" class="form-control">
+        ng-model="model.stringOperation" class="form-control">
 </select>
+
+<div ng-show="model.stringOperation.label==='Substring'">
+    String
+</div>
+<div ng-show="model.stringOperation.label==='Concatenate'">
+    First String
+</div>
+<div ng-show="model.stringOperation.label==='Length'">
+    String
+</div>
