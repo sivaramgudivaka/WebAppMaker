@@ -82,7 +82,6 @@
             {label: 'Concatenate'},
             {label: 'Length'}
         ];
-        vm.stringOperation = vm.stringOperations[0];
 
         // route params
         vm.username    = $routeParams.username;
