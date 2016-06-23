@@ -63,7 +63,7 @@
             <!-- render datatable widget sample -->
             <div ng-switch-when="DATATABLE">
                 <div class="alert alert-info">
-                    <p>Sort Type: {{ model.orderByField }} Sort Reverse: {{ model.reverseSort }} Search Data: {{ model.search }}</p>
+                    <p>Sort Type: {{ model.orderByField }} Sort Reverse: {{ model.reverseSort }} Search Data: {{ model.search }} Filters Saved: {{ model.filters}}</p>
                 </div>
                 <table class="table table-bordered">
                     <thead>
@@ -78,7 +78,7 @@
                         <th ng-if="!widget.datatable.sortable" ng-repeat="field in widget.datatable.fields">
                             {{field}}
                         </th>
-                        <th ng-if="widget.datatable.deletable">
+                        <th ng-if="widget.datatable.deletable || widget.datatable.filterable">
                             &nbsp;
                         </th>
                     </tr>
@@ -88,7 +88,10 @@
                                 <input type="text" class="form-control" autofocus placeholder="Search {{field}}" ng-model=model.search[field]>
                             </div>
                         </td>
-                        <td ng-if="widget.datatable.deletable">
+                        <td ng-if="widget.datatable.deletable || widget.datatable.filterable">
+                            <a ng-if="widget.datatable.filterable" class="pull-right">
+                                <span class="glyphicon glyphicon-filter"></span>
+                            </a>
                             &nbsp;
                         </td>
                     </tr>
@@ -100,10 +103,11 @@
                             {{column}}
                         </td>
                         <!-- show remove button if deletable -->
-                        <td ng-if="widget.datatable.deletable">
-                            <a class="pull-right">
+                        <td ng-if="widget.datatable.deletable || widget.datatable.filterable">
+                            <a ng-if="widget.datatable.deletable" class="pull-right">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
+                            &nbsp;
                         </td>
                     </tr>
                     </tbody>
