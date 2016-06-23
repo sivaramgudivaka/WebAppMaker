@@ -87,7 +87,32 @@
 
             Fields:
             <input ng-model="model.widget.datatable.fields"
+                   placeholder="Ex: field1, field2, ...."
                    class="form-control"/>
+
+            <!-- configure sortable for datatable -->
+            <div class="input-group jga-margin-bottom-5px">
+                <input type="text"
+                       readonly
+                       value="Sortable"
+                       class="form-control jga-white-bg"/>
+                <span class="input-group-addon">
+                    <input ng-model="model.widget.datatable.sortable"
+                           type="checkbox"/>
+                </span>
+            </div>
+
+            <!-- configure filterable for datatable -->
+            <div class="input-group jga-margin-bottom-5px">
+                <input type="text"
+                       readonly
+                       value="Filterable"
+                       class="form-control jga-white-bg"/>
+                <span class="input-group-addon">
+                    <input ng-model="model.widget.datatable.filterable"
+                           type="checkbox"/>
+                </span>
+            </div>
 
             <!-- configure deletable for datatable -->
             <div class="input-group jga-margin-bottom-5px">

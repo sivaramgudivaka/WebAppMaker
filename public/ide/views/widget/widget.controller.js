@@ -81,6 +81,19 @@
         vm.sortWidget     = sortWidget;
         vm.trustAsHtml    = trustAsHtml;
 
+
+        vm.sushi = [
+            { name: 'Cali Roll', fish: 'Crab', tastiness: 2 },
+            { name: 'Philly', fish: 'Tuna', tastiness: 4 },
+            { name: 'Tiger', fish: 'Eel', tastiness: 7 },
+            { name: 'Rainbow', fish: 'Variety', tastiness: 6 }
+        ];
+        
+        vm.filters = {};
+        vm.orderByField = '';
+        vm.reverseSort = false;
+        vm.search = {};
+
         function init() {
             PageService
                 .findPageById(vm.pageId)
