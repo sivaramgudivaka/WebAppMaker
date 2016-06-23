@@ -1,8 +1,9 @@
-Select Database Operation
-<select name="databaseOperation"
-        ng-options="statement.label for statement in model.databaseOperations track by statement.label"
-        ng-model="model.statement.databaseStatement.databaseOperation" class="form-control">
-</select>
+<div class="form-group">
+    <label for="databaseOperation">Select Database Operation</label>
+    <select name="databaseOperation"
+            ng-options="statement.label for statement in model.databaseOperations track by statement.label"
+            ng-model="model.statement.databaseStatement.databaseOperation" class="form-control" id="databaseOperation">
+    </select>
 
 <span ng-show="model.statement.databaseOperation.label==='Select'">
     Select from
@@ -16,28 +17,23 @@ Select Database Operation
 <span ng-show="model.statement.databaseOperation.label==='Delete'">
     Remove from
 </span>
-collection
-<div class="input-group">
-<<<<<<< 55c1b05bfbbe6d43ee06503271a13b3a930ad105
-    <input ng-model="model.statement.databaseStatement.collectionName" type="text" class="form-control">
-=======
-    <input ng-model="model.databaseStatement.collection" type="text" class="form-control">
->>>>>>> Mergemaster
-    <div class="input-group-btn">
-        <button type="button"
-                class="btn btn-default dropdown-toggle"
-                data-toggle="dropdown">
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right wam-left">
-<<<<<<< 55c1b05bfbbe6d43ee06503271a13b3a930ad105
-            <li ng-repeat="collection in model.collections" ng-click="model.statement.databaseStatement.collectionName     = collection.name">
-=======
-            <li ng-repeat="collection in model.collections" ng-click="model.databaseStatement.collection = collection.name">
->>>>>>> Mergemaster
-                <a>{{collection.name}}</a>
-            </li>
-        </ul>
+</div>
+<div class="form-group">
+    <label for="databaseCollection">collection</label>
+    <div class="input-group">
+        <input ng-model="model.statement.databaseStatement.collectionName" type="text" class="form-control" id="databaseCollection">
+        <div class="input-group-btn">
+            <button type="button"
+                    class="btn btn-default dropdown-toggle"
+                    data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right wam-left">
+                <li ng-repeat="collection in model.collections" ng-click="model.statement.databaseStatement.collectionName     = collection.name">
+                    <a>{{collection.name}}</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -52,9 +48,9 @@ collection
             <div class="row">
                 <div class="col-xs-4 wam-no-padding-right">
                     <select name="variable"
-                        ng-options="widget.name for widget in model.widgets track by widget.name"
-                        ng-model="model.variable10"
-                        class="form-control">
+                            ng-options="widget.name for widget in model.widgets track by widget.name"
+                            ng-model="model.variable10"
+                            class="form-control">
                     </select>
                 </div>
                 <div class="col-xs-2 wam-no-padding-left-right text-center wam-font-size-double wam-nugde-6px-up">
