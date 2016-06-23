@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ValidationApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="ValidationController as model">
+        <h1>Angular Validation</h1>
+
+        <form name="sampleForm" novalidate>
+            <input name="username" ng-model="username" class="form-control" ng-required="true"/>
+            <input name="email" ng-model="email" type="email" class="form-control" ng-required="true"/>
+            <input name="age" ng-model="age" type="number" min="10" max="20" class="form-control"/>
+            <input name="range" type="range" min="0" max="30" class="form-control" ng-model="volume"/>
+            <input ng-model="volume" min="5" max="25" name="volume" class="form-control"/>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+
+        {{sampleForm.$valid}}
+        <ul>
+            <li>
+                {{sampleForm.username.$valid}}
+            </li>
+            <li>
+                {{sampleForm.email.$valid}}
+            </li>
+            <li>
+                {{sampleForm.age.$valid}}
+            </li>
+            <li>
+                {{sampleForm.volume.$valid}}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

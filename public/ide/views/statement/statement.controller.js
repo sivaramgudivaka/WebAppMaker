@@ -19,7 +19,7 @@
             {label: 'Date'},
             {label: 'Database'}
         ];
-        vm.statementType = vm.statementTypes[6];
+        vm.statementType = vm.statementTypes[0];
 
         vm.filters = [
             {variable1: "var 1", value1: "", comparator: "=", variable2: "var 2", value2: ""},
@@ -145,7 +145,9 @@
         function saveStatement() {
             console.log(vm.statement);
 
-            vm.statement.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
+            // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
+
+            
 
             StatementService
                 .saveStatement(vm, vm.statement)

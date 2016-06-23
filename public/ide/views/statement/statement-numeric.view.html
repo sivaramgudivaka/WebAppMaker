@@ -1,20 +1,120 @@
-
 Numeric
+
+<div class="hidden-xs">
+    <div class="row">
+        <div class="col-xs-12">
+            Input 1
+            <div class="input-group">
+                <input ng-model="model.selectedWidget1.input1" type="text" class="form-control">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget1 = widget">
+                            <a>{{widget.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            Operation
+            <select ng-model="model.statement.numberStatement.operationType"
+                    class="form-control">
+                <option value="">Select Operation</option>
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="x">x</option>
+                <option value="/">/</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            Input 2
+            <div class="input-group">
+                <input ng-model="model.selectedWidget2.input2" type="text" class="form-control">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget2 = widget">
+                            <a>{{widget.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            Output
+            <div class="input-group">
+                <input ng-model="model.selectedWidget2.input2" type="text" class="form-control">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget2 = widget">
+                            <a>{{widget.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="hidden-md">
 <div class="row">
     <div class="col-xs-3">
-        <select ng-model="model.statement.numberStatement.output"
-                class="form-control">
-            <option value="">Select Output</option>
-            <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
-        </select>
+        <div class="input-group">
+            <input ng-model="model.selectedWidget1.input1" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget1 = widget">
+                        <a>{{widget.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <span class="pull-right" style="position: relative;top:-35px;left:20px">=</span>
     </div>
     <div class="col-xs-3">
-        <select ng-model="model.statement.numberStatement.input1"
-                class="form-control">
-            <option value="">Select Input 1</option>
-            <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
-        </select>
+        <div class="input-group">
+            <input ng-model="model.selectedWidget1.input1" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget1 = widget">
+                        <a>{{widget.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="col-xs-3">
         <select ng-model="model.statement.numberStatement.operationType"
@@ -27,10 +127,21 @@ Numeric
         </select>
     </div>
     <div class="col-xs-3">
-        <select ng-model="model.statement.numberStatement.input2"
-                class="form-control">
-            <option value="">Select Input 2</option>
-            <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
-        </select>
+        <div class="input-group">
+            <input ng-model="model.selectedWidget1.input1" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget1 = widget">
+                        <a>{{widget.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
+</div>
 </div>

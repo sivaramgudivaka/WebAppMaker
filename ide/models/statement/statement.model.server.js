@@ -13,10 +13,17 @@ module.exports = function(models) {
         statement._script = scope.scriptId;
         if(scope.statementId === 'new') {
             return Statement
-                .create(statement);
+                .create(statement)
+                .then(
+                    function(statement) {
+                        return statement
+                            .populate('_script');
+                    }
+                );
         } else {
             return Statement
-                .findByIdAndUpdate(statement._id, statement);
+                .findByIdAndUpdate(statement._id, statement)
+                .populate('_script');
         }
     }
 };
