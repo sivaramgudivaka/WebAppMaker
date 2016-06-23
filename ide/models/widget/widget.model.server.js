@@ -161,7 +161,9 @@ module.exports = function(model) {
                     } else if(widget.widgetType === "DATATABLE") {
                         widget.datatable = {
                             // save deletable in database
-                            deletable: newWidget.datatable.deletable
+                            deletable: newWidget.datatable.deletable,
+                            sortable: newWidget.datatable.sortable,
+                            filterable: newWidget.datatable.filterable
                         };
                         // save datatable widget to database
                         if(newWidget.datatable.collection && newWidget.datatable.collection.name) {

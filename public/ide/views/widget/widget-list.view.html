@@ -62,30 +62,50 @@
             </div>
             <!-- render datatable widget sample -->
             <div ng-switch-when="DATATABLE">
+                <div class="alert alert-info">
+                    <p>Sort Type: {{ model.orderByField }} Sort Reverse: {{ model.reverseSort }} Search Data: {{ model.search }}</p>
+                </div>
                 <table class="table table-bordered">
                     <thead>
-                        <tr>
-                            <th ng-repeat="field in widget.datatable.fields">
+                    <tr>
+                        <th ng-if="widget.datatable.sortable" ng-repeat="field in widget.datatable.fields">
+                            <a ng-click="model.orderByField = field; model.reverseSort = !model.reverseSort">
                                 {{field}}
-                            </th>
-                            <th ng-if="widget.datatable.deletable">
-                                &nbsp;
-                            </th>
-                        </tr>
+                                <span ng-show="model.orderByField == field && !model.reverseSort" class="fa fa-caret-down"></span>
+                                <span ng-show="model.orderByField == field && model.reverseSort" class="fa fa-caret-up"></span>
+                            </a>
+                        </th>
+                        <th ng-if="!widget.datatable.sortable" ng-repeat="field in widget.datatable.fields">
+                            {{field}}
+                        </th>
+                        <th ng-if="widget.datatable.deletable">
+                            &nbsp;
+                        </th>
+                    </tr>
+                    <tr ng-hide="!widget.datatable.filterable">
+                        <td ng-repeat="field in widget.datatable.fields">
+                            <div class="input-group">
+                                <input type="text" class="form-control" autofocus placeholder="Search {{field}}" ng-model=model.search[field]>
+                            </div>
+                        </td>
+                        <td ng-if="widget.datatable.deletable">
+                            &nbsp;
+                        </td>
+                    </tr>
                     </thead>
                     <tbody>
-                        <!-- 3 sample dummy rows, just to give look and feel -->
-                        <tr ng-repeat="time in [1,2,3]">
-                            <td ng-repeat="field in widget.datatable.fields">
-                                &nbsp;
-                            </td>
-                            <!-- show remove button if deletable -->
-                            <td ng-if="widget.datatable.deletable">
-                                <a class="pull-right">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </a>
-                            </td>
-                        </tr>
+                    <!-- 3 sample dummy rows, just to give look and feel -->
+                    <tr ng-repeat="s in model.sushi | filter:model.search | orderBy:model.orderByField:model.reverseSort">
+                        <td ng-repeat="column in s">
+                            {{column}}
+                        </td>
+                        <!-- show remove button if deletable -->
+                        <td ng-if="widget.datatable.deletable">
+                            <a class="pull-right">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -97,11 +117,11 @@
                        placeholder="{{widget.textInput.placeholder}}"
                        class="form-control"/>
                 <textarea ng-if="widget.textInput.rows > 1 || widget.textInput.formatted"
-                       name="{{widget.name}}"
-                       rows="{{widget.textInput.rows}}"
-                       id="{{widget._id}}"
-                       placeholder="{{widget.textInput.placeholder}}"
-                       class="form-control">{{widget.text}}</textarea>
+                          name="{{widget.name}}"
+                          rows="{{widget.textInput.rows}}"
+                          id="{{widget._id}}"
+                          placeholder="{{widget.textInput.placeholder}}"
+                          class="form-control">{{widget.text}}</textarea>
             </div>
             <div ng-switch-when="BUTTON">
                 <a class="btn btn-block" ng-class="model.getButtonClass(widget.button.style)">
