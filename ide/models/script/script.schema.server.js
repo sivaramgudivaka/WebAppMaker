@@ -8,7 +8,7 @@ module.exports = function() {
         _widget    : {type: mongoose.Schema.ObjectId, ref: 'Script'},
         name       :  String,
         scope      :  Object,
-        statements : [StatementSchema]
+        statements : [{type: mongoose.Schema.ObjectId, ref: 'Statement'}]
     }, {collection: 'script'});
 
     return ScriptSchema;

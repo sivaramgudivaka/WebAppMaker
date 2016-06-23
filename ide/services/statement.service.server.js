@@ -6,6 +6,7 @@ module.exports = function (app, model) {
     app.delete ("/api/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/script/:scriptId/statement/:statementId", deleteStatement);
 
     var statementModel = model.statementModel;
+    var scriptModel    = model.scriptModel;
 
     function deleteStatement(req, res) {
         scriptModel
@@ -25,10 +26,23 @@ module.exports = function (app, model) {
             .saveStatement(req.params, req.body)
             .then(
                 function(statement) {
-                    res.sendStatus(200);
+                    if(!statement._script.statements) {
+                        statement._script.statements = [];
+                    }
+                    statement._script.statements.push(statement._id);
+                    scriptModel
+                        .saveScript(req.params, statement._script)
+                        .then(
+                            function(){
+                                res.send(200);
+                            },
+                            function(err) {
+                                res.send(400);
+                            }
+                        );
                 },
                 function(err) {
-                    res.statusCode(400).send(err);
+                    res.status(400).send(err);
                 }
             );
     }

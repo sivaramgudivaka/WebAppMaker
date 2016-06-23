@@ -1,24 +1,24 @@
 Select Database Operation
 <select name="databaseOperation"
         ng-options="statement.label for statement in model.databaseOperations track by statement.label"
-        ng-model="model.databaseOperation" class="form-control">
+        ng-model="model.statement.databaseStatement.databaseOperation" class="form-control">
 </select>
 
-<span ng-show="model.databaseOperation.label==='Select'">
+<span ng-show="model.statement.databaseOperation.label==='Select'">
     Select from
 </span>
-<span ng-show="model.databaseOperation.label==='Insert'">
+<span ng-show="model.statement.databaseOperation.label==='Insert'">
     Insert into
 </span>
-<span ng-show="model.databaseOperation.label==='Update'">
+<span ng-show="model.statement.databaseOperation.label==='Update'">
     Update
 </span>
-<span ng-show="model.databaseOperation.label==='Delete'">
+<span ng-show="model.statement.databaseOperation.label==='Delete'">
     Remove from
 </span>
 collection
 <div class="input-group">
-    <input ng-model="model.databaseStatement.collection" type="text" class="form-control">
+    <input ng-model="model.statement.databaseStatement.collectionName" type="text" class="form-control">
     <div class="input-group-btn">
         <button type="button"
                 class="btn btn-default dropdown-toggle"
@@ -26,7 +26,7 @@ collection
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right wam-left">
-            <li ng-repeat="collection in model.collections" ng-click="model.databaseStatement.collection = collection.name">
+            <li ng-repeat="collection in model.collections" ng-click="model.statement.databaseStatement.collectionName     = collection.name">
                 <a>{{collection.name}}</a>
             </li>
         </ul>
