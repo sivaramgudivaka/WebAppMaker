@@ -79,7 +79,93 @@ Choose kind of operation
 </div>
 <div ng-show="model.stringOperation.label==='Concatenate'">
     First String
+    <!-- model.input1.name: TODO: To store which widget attributes in db-->
+    <div class="input-group">
+        <input ng-model="model.input1.name" type="text" class="form-control">
+        <div class="input-group-btn">
+            <button type="button"
+                    class="btn btn-default dropdown-toggle"
+                    data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right wam-left">
+                <li ng-repeat="widget in model.widgets" ng-click="model.input1 = widget">
+                    <a>{{widget.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div ng-show="model.input1">
+        Second String
+        <div class="input-group">
+            <input ng-model="model.input2.name" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="widget in model.widgets" ng-click="model.input2 = widget">
+                        <a>{{widget.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div ng-show="model.input2">
+        Output
+        <div class="input-group">
+            <input ng-model="model.output.name" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="widget in model.widgets" ng-click="model.output = widget">
+                        <a>{{widget.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 <div ng-show="model.stringOperation.label==='Length'">
     String
+    <!-- model.input1.name: TODO: To store which widget attributes in db-->
+    <div class="input-group">
+        <input ng-model="model.input1.name" type="text" class="form-control">
+        <div class="input-group-btn">
+            <button type="button"
+                    class="btn btn-default dropdown-toggle"
+                    data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right wam-left">
+                <li ng-repeat="widget in model.widgets" ng-click="model.input1 = widget">
+                    <a>{{widget.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div ng-show="model.input1">
+        Output
+        <div class="input-group">
+            <input ng-model="model.output.name" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="widget in model.widgets" ng-click="model.output = widget">
+                        <a>{{widget.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
