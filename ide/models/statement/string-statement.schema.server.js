@@ -7,8 +7,8 @@ module.exports = function() {
         input1        : String,
         input2        : String,
         output        : String,
-        length        : Number,
-        start         : Number
+        length        : String,
+        start         : String
     });
 
     return StringStatementSchema;
