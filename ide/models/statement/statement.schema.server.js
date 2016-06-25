@@ -12,6 +12,7 @@ module.exports = function() {
         numberStatement : require("./number-statement.schema.server")(),
         dateStatement   : require("./date-statement.schema.server")(),
         stringStatement   : require("./string-statement.schema.server")()
+        ifStatement: require("./if-statement.schema.server")()
     }, {collection: 'statement'});
 
     return StatementSchema;
