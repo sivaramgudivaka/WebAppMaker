@@ -24,6 +24,7 @@ module.exports = function(models) {
                 }
             );
     }
+<<<<<<< ae2d46846ca1e1ef88fc86a4d01adb320cbc647f
 
     function deleteStatement(scope) {
         return Statement
@@ -70,6 +71,8 @@ module.exports = function(models) {
                 }
             );
     }
+=======
+>>>>>>> added findAllStatements functionality for the script in the scope.
 
     function findAllStatements(scope){
         var scriptId = scope.scriptId;
