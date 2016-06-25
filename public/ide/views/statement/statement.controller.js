@@ -150,12 +150,18 @@
         }
 
         function saveStatement() {
-            console.log(vm.statement);
-
-            // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
 
 
+            //AW: TODO: Remove this commenting
+            //vm.statement.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
+            vm.statement.statementType = vm.statementType.label.toUpperCase();
+            delete vm.statementType;
 
+
+            //AW: Specific to String statements
+            if(vm.statement.statementType === "STRING")
+                vm.statement.stringStatement.operationType = vm.stringOperation.label.toUpperCase();
+            
             StatementService
                 .saveStatement(vm, vm.statement)
                 .then(
