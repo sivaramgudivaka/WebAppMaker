@@ -1,76 +1,81 @@
-<div>
-    What do you have to compare?
-</div>
-<div>
-    <div class="input-group">
-        <input ng-model="model.statement.ifStatement.leftOperand" type="text" class="form-control">
-        <div class="input-group-btn">
-            <button type="button"
-                    class="btn btn-default dropdown-toggle"
-                    data-toggle="dropdown">
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right wam-left">
-                <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.ifStatement.leftOperand = variable">
-                    <a>{{variable}}</a>
-                </li>
-            </ul>
+<div class="form-group">
+    <label for="ifStatement">What do you have to compare?</label>
+
+    <div>
+        <div class="input-group">
+            <input ng-model="model.statement.ifStatement.leftOperand" type="text" class="form-control" id="ifStatement">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.ifStatement.leftOperand = variable">
+                        <a>{{variable}}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
-<div>Which comparison you want to do?</div>
-<div>
+<div class="form-group">
+    <label for="comparison">Which comparison you want to do?</label>
     <div>
-        <select name="variable"
-                ng-options="operation.label for operation in model.verboseComparators track by operation.label"
-                ng-model="model.statement.ifStatement.comparator"
-                class="form-control">
+        <div>
+            <select name="variable"
+                    ng-options="operation.label for operation in model.verboseComparators track by operation.label"
+                    ng-model="model.statement.ifStatement.comparator"
+                    class="form-control" id="comparison">
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="compInput">With what do you wish to compare?</label>
+    <div>
+        <div class="input-group">
+            <input ng-model="model.statement.ifStatement.rightOperand" type="text" class="form-control" id="compInput">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.ifStatement.rightOperand = variable">
+                        <a>{{variable}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="form-group">
+    <label for="jumpSt">Jump to statement if True</label>
+    <div>
+        <select name="then"
+                ng-options="statement.name for statement in model.statements track by statement.name"
+                ng-model="model.statement.ifStatement.then"
+                class="form-control" id="jumpSt">
+            <option value="">No Jump</option>
         </select>
     </div>
-</div>
-
-<div>With what do you wish to compare?</div>
-<div>
-    <div class="input-group">
-        <input ng-model="model.statement.ifStatement.rightOperand" type="text" class="form-control">
-        <div class="input-group-btn">
-            <button type="button"
-                    class="btn btn-default dropdown-toggle"
-                    data-toggle="dropdown">
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right wam-left">
-                <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.ifStatement.rightOperand = variable">
-                    <a>{{variable}}</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-
-<div>
-    Jump to statement if True
-</div>
-<div>
-    <select name="then"
-            ng-options="statement.name for statement in model.statements track by statement.name"
-            ng-model="model.statement.ifStatement.then"
-            class="form-control">
-        <option value="">No Jump</option>
-    </select>
 </div>
 
 <div ng-show="!model.statement.ifStatement.then">
-    <div>
-        Jump to statement if False
-    </div>
-    <div>
-        <select name="else"
-                ng-options="statement.name for statement in model.statements track by statement.name"
-                ng-model="model.statement.ifStatement.else"
-                class="form-control">
-        </select>
+    <div class="form-group">
+        <label for="jumpSt1">Jump to statement if False</label>
+
+        <div>
+            <select name="else"
+                    ng-options="statement.name for statement in model.statements track by statement.name"
+                    ng-model="model.statement.ifStatement.else"
+                    class="form-control" id="jumpSt1">
+            </select>
+        </div>
     </div>
 </div>
