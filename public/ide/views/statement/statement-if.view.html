@@ -11,8 +11,8 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right wam-left">
-                <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.ifStatement.leftOperand = variable">
-                    <a>{{variable}}</a>
+                <li ng-repeat="widget in model.widgets" ng-click="model.statement.ifStatement.leftOperand = widget.name">
+                    <a>{{widget.name}}</a>
                 </li>
             </ul>
         </div>
@@ -41,8 +41,8 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right wam-left">
-                <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.ifStatement.rightOperand = variable">
-                    <a>{{variable}}</a>
+                <li ng-repeat="widget in model.widgets" ng-click="model.statement.ifStatement.rightOperand = widget.name">
+                    <a>{{widget.name}}</a>
                 </li>
             </ul>
         </div>
@@ -55,7 +55,7 @@
 </div>
 <div>
     <select name="then"
-            ng-options="statement.name for statement in model.statements track by statement.name"
+            ng-options="statement._id for statement in model.statements track by statement._id"
             ng-model="model.statement.ifStatement.then"
             class="form-control">
         <option value="">No Jump</option>
@@ -68,7 +68,7 @@
     </div>
     <div>
         <select name="else"
-                ng-options="statement.name for statement in model.statements track by statement.name"
+                ng-options="statement._id for statement in model.statements track by statement._id"
                 ng-model="model.statement.ifStatement.else"
                 class="form-control">
         </select>
