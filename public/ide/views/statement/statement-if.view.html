@@ -1,97 +1,75 @@
-
-<div class="row">
-    <div class="col-xs-3">
-        <h4>If</h4>
-    </div>
-    <div class="col-xs-9">
-        <div class="input-group">
-            <input ng-model="model.selectedWidget.name" type="text" class="form-control">
-            <div class="input-group-btn">
-                <button type="button"
-                        class="btn btn-default dropdown-toggle"
-                        data-toggle="dropdown">
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-right wam-left">
-                    <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget = widget">
-                        <a>{{widget.name}}</a>
-                    </li>
-                </ul>
-            </div>
+<div>
+    What do you have to compare?
+</div>
+<div>
+    <div class="input-group">
+        <input ng-model="model.statement.ifStatement.leftOperand" type="text" class="form-control">
+        <div class="input-group-btn">
+            <button type="button"
+                    class="btn btn-default dropdown-toggle"
+                    data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right wam-left">
+                <li ng-repeat="widget in model.widgets" ng-click="model.statement.ifStatement.leftOperand = widget.name">
+                    <a>{{widget.name}}</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-xs-3">
-        <h4>Is</h4>
-    </div>
-    <div class="col-xs-9">
+<div>Which comparison you want to do?</div>
+<div>
+    <div>
         <select name="variable"
-                ng-options="statement.label for statement in model.verboseComparators track by statement.label"
-                ng-model="model.comparator0"
+                ng-options="operation.label for operation in model.verboseComparators track by operation.label"
+                ng-model="model.statement.ifStatement.comparator"
                 class="form-control">
         </select>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-xs-3">
-        <h4>Than</h4>
-    </div>
-    <div class="col-xs-9">
-        <div class="input-group">
-            <input ng-model="model.selectedWidget2.name" type="text" class="form-control">
-            <div class="input-group-btn">
-                <button type="button"
-                        class="btn btn-default dropdown-toggle"
-                        data-toggle="dropdown">
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-right wam-left">
-                    <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget2 = widget">
-                        <a>{{widget.name}}</a>
-                    </li>
-                </ul>
-            </div>
+<div>With what do you wish to compare?</div>
+<div>
+    <div class="input-group">
+        <input ng-model="model.statement.ifStatement.rightOperand" type="text" class="form-control">
+        <div class="input-group-btn">
+            <button type="button"
+                    class="btn btn-default dropdown-toggle"
+                    data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right wam-left">
+                <li ng-repeat="widget in model.widgets" ng-click="model.statement.ifStatement.rightOperand = widget.name">
+                    <a>{{widget.name}}</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-xs-3">
-        <h4>Then</h4>
-    </div>
-    <div class="col-xs-9">
-        <select name="then"
-                ng-options="then.label for then in model.ifThen track by then.label"
-                ng-model="model.then"
-                class="form-control">
-        </select>
-    </div>
+
+<div>
+    Jump to statement if True
+</div>
+<div>
+    <select name="then"
+            ng-options="statement._id for statement in model.statements track by statement._id"
+            ng-model="model.statement.ifStatement.then"
+            class="form-control">
+        <option value="">No Jump</option>
+    </select>
 </div>
 
-<div ng-show="model.then.label==='Go to statement'" class="row">
-    <div class="col-xs-3">
-        <h4>Go to</h4>
+<div ng-show="!model.statement.ifStatement.then">
+    <div>
+        Jump to statement if False
     </div>
-    <div class="col-xs-9">
-        <select name="page"
-                ng-options="statement.name for statement in model.statements track by statement.name"
-                ng-model="model.statement"
-                class="form-control">
-        </select>
-    </div>
-</div>
-
-<div ng-show="model.then.label==='Navigate to page'" class="row">
-    <div class="col-xs-3">
-        <h4>Navigate</h4>
-    </div>
-    <div class="col-xs-9">
-        <select name="page"
-                ng-options="page.name for page in model.pages track by page.name"
-                ng-model="model.page"
+    <div>
+        <select name="else"
+                ng-options="statement._id for statement in model.statements track by statement._id"
+                ng-model="model.statement.ifStatement.else"
                 class="form-control">
         </select>
     </div>
