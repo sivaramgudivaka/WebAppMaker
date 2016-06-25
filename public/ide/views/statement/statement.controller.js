@@ -161,16 +161,12 @@
         }
 
         function saveStatement() {
-          
             if (vm.statementType.label === "If")
                 vm.statement.ifStatement.comparator = vm.statement.ifStatement.comparator.label;
-
-
 
             //AW: Specific to String statements
             if(vm.statement.statementType === "STRING")
                 vm.statement.stringStatement.operationType = vm.stringOperation.label.toUpperCase();
-
             StatementService
                 .saveStatement(vm, vm.statement)
                 .then(
