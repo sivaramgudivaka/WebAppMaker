@@ -8,9 +8,16 @@
             addStatement : addStatement,
             findStatement: findStatement,
             deleteStatement: deleteStatement,
-            saveStatement: saveStatement
+            saveStatement: saveStatement,
+            findAllStatements: findAllStatements
         };
         return api;
+
+        function findAllStatements(scope){
+            var url  = apiBaseUrl(scope);
+            url += "/script/"+scope.scriptId+"/statement/";
+            return $http.get(url);
+        }
 
         function deleteStatement(scope) {
             var url  = apiBaseUrl(scope);

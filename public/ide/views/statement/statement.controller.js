@@ -133,6 +133,16 @@
                         }
                     );
             }
+            StatementService
+                .findAllStatements(vm)
+                .then(
+                    function(response) {
+                        vm.statements = response.data;
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
         }
         init();
 
@@ -152,10 +162,16 @@
         function saveStatement() {
 
 
+
             //AW: TODO: Remove this commenting
             //vm.statement.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
             vm.statement.statementType = vm.statementType.label.toUpperCase();
             delete vm.statementType;
+
+
+            // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
+            if (vm.statementType.label === "If")
+                vm.statement.ifStatement.comparator = vm.statement.ifStatement.comparator.label;
 
 
             //AW: Specific to String statements
