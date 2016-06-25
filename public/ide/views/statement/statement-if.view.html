@@ -1,76 +1,220 @@
-<div>
-    What do you have to compare?
-</div>
-<div>
-    <div class="input-group">
-        <input ng-model="model.statement.ifStatement.leftOperand" type="text" class="form-control">
-        <div class="input-group-btn">
-            <button type="button"
-                    class="btn btn-default dropdown-toggle"
-                    data-toggle="dropdown">
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right wam-left">
-                <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.ifStatement.leftOperand = variable">
-                    <a>{{variable}}</a>
-                </li>
-            </ul>
+<nav class="navbar navbar-default navbar-fixed-top jga">
+    <div class="navbar-header">
+
+        <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.widget._page}}/widget"
+           class="btn btn-default btn-transparent pull-left">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="navbar-brand wam-capitalize">{{model.widget.widgetType.toLowerCase()}} Widget</a>
+
+        <button type="submit" form="widgetForm" ng-click="model.updateWidget(model.widget)"
+                class="btn btn-default btn-transparent pull-right">
+            <span class="glyphicon glyphicon-ok"></span>
+        </button>
+
+    </div>
+</nav>
+
+<form name="widgetForm" id="widgetForm" novalidate>
+
+    Name
+    <input ng-model="model.widget.name" class="form-control"/>
+
+    Bootstrap Class
+    <input ng-model="model.widget.bootClass" class="form-control"/>
+
+    <div ng-switch="model.widget.widgetType">
+
+        <div ng-switch-when="HEADER">
+            Text
+            <input ng-model="model.widget.text" class="form-control" name="text" required/>
+            <span ng-show="widgetForm.text.$invalid && widgetForm.$submitted">
+                Text is required
+            </span>
+            Size
+            <select ng-model="model.widget.header.size" class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+        </div>
+
+        <div ng-switch-when="BUTTON">
+            Text
+            <input ng-model="model.widget.text" class="form-control"/>
+
+            Style
+            <select ng-model="model.widget.button.style" class="form-control">
+                <option>Default</option>
+                <option>Primary</option>
+                <option>Success</option>
+                <option>Info</option>
+                <option>Warning</option>
+                <option>Danger</option>
+            </select>
+            <!-- dropdown to select button navigate property -->
+            Navigate to page
+            <select ng-options="page as page.name for page in model.pages track by page._id"
+                    ng-model="model.widget.button.navigate" class="form-control">
+            </select>
+
+            <!-- choose database action when button is clicked -->
+            Action
+            <select ng-model="model.widget.button.dbCommand" class="form-control">
+                <option>INSERT</option>
+                <option>SELECT</option>
+                <option>UPDATE</option>
+                <option>DELETE</option>
+            </select>
+
+            <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/script"
+               class="btn btn-block btn-success">
+                Run Script
+            </a>
+        </div>
+
+        <!-- datatable widget collection is name of page, fields is comma separated string -->
+        <div ng-switch-when="DATATABLE">
+
+            Collection:
+            <select ng-options="page as page.name for page in model.pages track by page._id"
+                    ng-model="model.widget.datatable.collection" class="form-control">
+            </select>
+
+            Fields:
+            <input ng-model="model.widget.datatable.fields"
+                   class="form-control"/>
+
+            <!-- configure deletable for datatable -->
+            <div class="input-group jga-margin-bottom-5px">
+                <input type="text"
+                       readonly
+                       value="Deletable"
+                       class="form-control jga-white-bg"/>
+                <span class="input-group-addon">
+                    <input ng-model="model.widget.datatable.deletable"
+                           type="checkbox"/>
+                </span>
+            </div>
+
+        </div>
+        <!-- REPEATER widget is same as DATATABLE widget except that it has a template -->
+        <div ng-switch-when="REPEATER">
+
+            Collection:
+            <select ng-options="page as page.name for page in model.pages track by page._id"
+                    ng-model="model.widget.repeater.collection" class="form-control">
+            </select>
+
+            Fields:
+            <input ng-model="model.widget.repeater.fields"
+                   class="form-control"/>
+
+            <!-- configure deletable for repeater -->
+            <div class="input-group jga-margin-bottom-5px">
+                <input type="text"
+                       readonly
+                       value="Deletable"
+                       class="form-control jga-white-bg"/>
+                <span class="input-group-addon">
+                    <input ng-model="model.widget.repeater.deletable"
+                           type="checkbox"/>
+                </span>
+            </div>
+
+            <!-- template allows users to provide HTML to format each record -->
+            Template:
+            <div text-angular
+                 ng-model="model.widget.repeater.template">
+            </div>
+
+        </div>
+        <div ng-switch-when="LINK">
+            Text
+            <input ng-model="model.widget.text" class="form-control"/>
+            URL
+            <input ng-model="model.widget.link.url" class="form-control"/>
+            Target
+            <select ng-model="model.widget.link.target" class="form-control">
+                <option>_blank</option>
+                <option>_self</option>
+                <option>_parent</option>
+                <option>_top</option>
+            </select>
+        </div>
+        <div ng-switch-when="HTML">
+            HTML
+            <!-- use textangular directive to render a WYSIWYG HTML editor -->
+            <div text-angular
+                 ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"
+                 ng-model="model.widget.html.text">
+            </div>
+        </div>
+        <div ng-switch-when="TEXT">
+            Text
+            <input ng-model="model.widget.text" class="form-control"/>
+            Rows
+            <input ng-model="model.widget.textInput.rows" class="form-control" type="number"/>
+            Placeholder
+            <input ng-model="model.widget.textInput.placeholder" class="form-control"/>
+            <!-- checkbox to select formatted text -->
+            <div class="input-group jga-margin-bottom-5px">
+                <input type="text"
+                       readonly
+                       value="Formatted"
+                       class="form-control jga-white-bg"/>
+                <span class="input-group-addon">
+                    <input ng-model="model.widget.textInput.formatted"
+                           type="checkbox"/>
+                </span>
+            </div>
+        </div>
+        <div ng-switch-when="IMAGE">
+            URL
+            <input ng-model="model.widget.image.url" class="form-control"/>
+            Width
+            <input ng-model="model.widget.image.width" class="form-control"/>
+            Upload
+            <form action="/api/upload"
+                  method="post"
+                  enctype="multipart/form-data">
+                <input name="websiteId" value="{{model.websiteId}}" style="display: none"/>
+                <input name="pageId" value="{{model.pageId}}" style="display: none"/>
+                <input name="widgetId" value="{{model.widgetId}}" style="display: none"/>
+                <input name="width" value="{{model.widget.image.width}}" style="display: none"/>
+                <input  type="file" name="myFile" class="form-control"/>
+                <button type="submit" class="btn btn-block btn-primary">
+                    Upload Image
+                </button>
+            </form>
+
+            <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/flickr" class="btn btn-success btn-block">
+                Flickr
+            </a>
+        </div>
+        <div ng-switch-when="YOUTUBE">
+            URL
+            <input ng-model="model.widget.youTube.url" class="form-control"/>
+            Width
+            <input ng-model="model.widget.youTube.width" class="form-control"/>
         </div>
     </div>
-</div>
 
-<div>Which comparison you want to do?</div>
-<div>
-    <div>
-        <select name="variable"
-                ng-options="operation.label for operation in model.verboseComparators track by operation.label"
-                ng-model="model.statement.ifStatement.comparator"
-                class="form-control">
-        </select>
+    <a ng-click="model.removeWidget(widget)" class="btn btn-danger btn-block">
+        Delete
+    </a>
+
+</form>
+
+<nav class="navbar navbar-default navbar-fixed-bottom jga">
+    <div class="navbar-header">
+        <a href="#/developer/{{model.developerId}}"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
     </div>
-</div>
-
-<div>With what do you wish to compare?</div>
-<div>
-    <div class="input-group">
-        <input ng-model="model.statement.ifStatement.rightOperand" type="text" class="form-control">
-        <div class="input-group-btn">
-            <button type="button"
-                    class="btn btn-default dropdown-toggle"
-                    data-toggle="dropdown">
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right wam-left">
-                <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.ifStatement.rightOperand = variable">
-                    <a>{{variable}}</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-
-<div>
-    Jump to statement if True
-</div>
-<div>
-    <select name="then"
-            ng-options="statement.name for statement in model.statements track by statement.name"
-            ng-model="model.statement.ifStatement.then"
-            class="form-control">
-        <option value="">No Jump</option>
-    </select>
-</div>
-
-<div ng-show="!model.statement.ifStatement.then">
-    <div>
-        Jump to statement if False
-    </div>
-    <div>
-        <select name="else"
-                ng-options="statement.name for statement in model.statements track by statement.name"
-                ng-model="model.statement.ifStatement.else"
-                class="form-control">
-        </select>
-    </div>
-</div>
+</nav>
