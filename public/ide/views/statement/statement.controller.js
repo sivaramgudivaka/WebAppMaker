@@ -226,6 +226,8 @@
             //AW: Specific to String statements
             if(vm.statement.statementType === "STRING")
                 vm.statement.stringStatement.operationType = vm.stringOperation.value;
+            if (vm.statementType.label === "If")
+                vm.statement.ifStatement.comparator = vm.statement.ifStatement.comparator.label;
 
             if (vm.statementType.label === "If")
                 vm.statement.ifStatement.comparator = vm.statement.ifStatement.comparator.label;
