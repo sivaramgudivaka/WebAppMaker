@@ -159,6 +159,16 @@
                         }
                     );
             }
+            StatementService
+                .findAllStatements(vm)
+                .then(
+                    function(response) {
+                        vm.statements = response.data;
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
         }
         init();
         function deleteStatement() {
@@ -181,6 +191,8 @@
             //AW: Specific to String statements
             if(vm.statement.statementType === "STRING")
                 vm.statement.stringStatement.operationType = vm.stringOperation.value;
+            if (vm.statementType.label === "If")
+                vm.statement.ifStatement.comparator = vm.statement.ifStatement.comparator.label;
 
             StatementService
                 .saveStatement(vm, vm.statement)

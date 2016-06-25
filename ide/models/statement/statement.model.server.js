@@ -10,6 +10,20 @@ module.exports = function(models) {
         deleteStatement: deleteStatement
     };
     return api;
+    
+    function findAllStatements(scope){
+        var scriptId = scope.scriptId;
+        return Statement
+            .find({_script:scriptId})
+            .then(
+                function(statements){
+                    return statements;
+                },
+                function(err){
+                    console.log(err);
+                }
+            );
+    }
 
     function deleteStatement(scope) {
         return Statement
@@ -43,6 +57,9 @@ module.exports = function(models) {
                     function(statement) {
                         return statement
                             .populate('_script');
+                    },
+                    function(err){
+                        console.log(err);
                     }
                 );
         } else {
