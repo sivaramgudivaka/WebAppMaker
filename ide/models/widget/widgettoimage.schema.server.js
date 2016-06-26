@@ -1,14 +1,16 @@
+/**
+ * Created by rushi on 6/25/16.
+ */
 var mongoose = require("mongoose");
 
 module.exports = function () {
 
-    var ImageSchema = mongoose.Schema({
+    var ImagetoWidgetSchema = mongoose.Schema({
         url   : String,
         width : String,
         height: String,
-        user_Id:{ type: mongoose.Schema.Types.ObjectId, ref: 'Developer' }
-        
+
     });
 
-    return ImageSchema;
+    return ImagetoWidgetSchema;
 };
