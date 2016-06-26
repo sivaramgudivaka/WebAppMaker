@@ -76,8 +76,16 @@
             {label: 'Go to statement'},
             {label: 'Navigate to page'}
         ];
-
-        // route params
+///////////////////////////////////////////////////
+        vm.numericOperations = [
+            {label: 'Addition'},
+            {label: 'Subtraction'},
+            {label: 'Multiplication'},
+            {label: 'Division'}
+        ];
+        // vm.numericOperation = vm.numericOperations[0];
+//////////////////////////////////////////////////////////////
+// route params
         vm.username    = $routeParams.username;
         vm.developerId = $routeParams.developerId;
         vm.websiteId   = $routeParams.websiteId;
@@ -142,12 +150,22 @@
                 );
         }
 
+
         function saveStatement() {
             console.log(vm.statement);
+/////////////////////////////////////////////////////////////////////////////start
+// //AW: TODO: Remove this commenting
+// //vm.statement.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
+// vm.statement.statementType = vm.statementType.label.toUpperCase();
+// delete vm.statementType;
 
-            // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
+//AW: Specific to String statements
+            if(vm.statement.statementType === "NUMERIC")
+                vm.statement.numericStatement.operationType = vm.numericOperation.label.toUpperCase();
 
-            
+///////////////////////////////////////////////////////////////////////////end
+
+            console.log(vm.statement);
 
             StatementService
                 .saveStatement(vm, vm.statement)
