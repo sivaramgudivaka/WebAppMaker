@@ -62,9 +62,6 @@
             </div>
             <!-- render datatable widget sample -->
             <div ng-switch-when="DATATABLE">
-                <div class="alert alert-info">
-                    <p>Sort Type: {{ model.orderByField }} Sort Reverse: {{ model.reverseSort }} Search Data: {{ model.search }} Filters Saved: {{ model.filters}}</p>
-                </div>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -78,40 +75,52 @@
                         <th ng-if="!widget.datatable.sortable" ng-repeat="field in widget.datatable.fields">
                             {{field}}
                         </th>
-                        <th ng-if="widget.datatable.deletable || widget.datatable.filterable">
+                        <th ng-if="widget.datatable.deletable">
                             &nbsp;
                         </th>
                     </tr>
                     <tr ng-hide="!widget.datatable.filterable">
                         <td ng-repeat="field in widget.datatable.fields">
                             <div class="input-group">
-                                <input type="text" class="form-control" autofocus placeholder="Search {{field}}" ng-model=model.search[field]>
+                                <input type="text" class="form-control" placeholder="Search {{field}}" ng-model=model.search[field]>
                             </div>
                         </td>
-                        <td ng-if="widget.datatable.deletable || widget.datatable.filterable">
-                            <a ng-if="widget.datatable.filterable" class="pull-right">
-                                <span class="glyphicon glyphicon-filter"></span>
-                            </a>
+                        <td ng-if="widget.datatable.deletable">
                             &nbsp;
                         </td>
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- 3 sample dummy rows, just to give look and feel -->
-                    <tr ng-repeat="s in model.sushi | filter:model.search | orderBy:model.orderByField:model.reverseSort">
+                    <tr ng-repeat="s in model.items | filter:model.search | orderBy:model.orderByField:model.reverseSort">
                         <td ng-repeat="column in s">
                             {{column}}
                         </td>
                         <!-- show remove button if deletable -->
-                        <td ng-if="widget.datatable.deletable || widget.datatable.filterable">
+                        <td ng-if="widget.datatable.deletable">
                             <a ng-if="widget.datatable.deletable" class="pull-right">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
-                            &nbsp;
                         </td>
                     </tr>
                     </tbody>
                 </table>
+                <ul ng-if="model.pager.pages.length" class="pagination">
+                    <li ng-class="{disabled:model.pager.currentPage === 1}">
+                        <a ng-click="model.setPage(1)">First</a>
+                    </li>
+                    <li ng-class="{disabled:model.pager.currentPage === 1}">
+                        <a ng-click="model.setPage(model.pager.currentPage - 1)">Previous</a>
+                    </li>
+                    <li ng-repeat="page in model.pager.pages" ng-class="{active:model.pager.currentPage === page}">
+                        <a ng-click="model.setPage(page)">{{page}}</a>
+                    </li>
+                    <li ng-class="{disabled:model.pager.currentPage === model.pager.totalPages}">
+                        <a ng-click="model.setPage(model.pager.currentPage + 1)">Next</a>
+                    </li>
+                    <li ng-class="{disabled:model.pager.currentPage === model.pager.totalPages}">
+                        <a ng-click="model.setPage(model.pager.totalPages)">Last</a>
+                    </li>
+                </ul>
             </div>
             <div ng-switch-when="TEXT">
                 <input ng-if="!widget.textInput.formatted && (!widget.textInput.rows || widget.textInput.rows===1)"
