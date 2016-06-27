@@ -149,6 +149,7 @@
         }
 
         function saveStatement() {
+            console.log(vm.statement);
 
             // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
 
@@ -160,7 +161,7 @@
             //AW: Specific to String statements
             if(vm.statement.statementType === "STRING")
                 vm.statement.stringStatement.operationType = vm.stringOperation.label.toUpperCase();
-            
+
             StatementService
                 .saveStatement(vm, vm.statement)
                 .then(
