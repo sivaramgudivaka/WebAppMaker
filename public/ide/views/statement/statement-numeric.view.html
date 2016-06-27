@@ -1,6 +1,6 @@
 Numeric
 
-<!--<div class="hidden-xs">-->
+<div class="hidden-xs">
 <!--.hidden-sm-up-->
 <div class="hidden-sm-up">
     <div class="row">
@@ -54,7 +54,7 @@ Numeric
         <div class="col-xs-12">
             Input 2
             <div class="input-group">
-                <input ng-model="model.statement.selectedWidget2.input2"
+                <input ng-model="model.statement.numberStatement.input2"
                        type="text"
                        name="drop3"
                        class="form-control">
@@ -65,7 +65,7 @@ Numeric
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right wam-left">
-                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.selectedWidget2.input2 = widget.name">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.numberStatement.input2 = widget.name">
                             <a>{{widget.name}}</a>
                         </li>
                     </ul>
@@ -75,12 +75,12 @@ Numeric
     </div>
 
 
-    <div ng-show= model.statement.selectedWidget2.input2!=null class="row" >
+    <div ng-show= model.statement.numberStatement.input2!=null class="row" >
         <!--<div class="row">-->
         <div class="col-xs-12">
             Output
             <div class="input-group">
-                <input ng-model="model.selectedWidget3.output"
+                <input ng-model="model.statement.numberStatement.output"
                        type="text"
                        name="drop4"
                        class="form-control">
@@ -91,7 +91,7 @@ Numeric
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right wam-left">
-                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.selectedWidget3.output = widget.name">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.numberStatement.output = widget.name">
                             <a>{{widget.name}}</a>
                         </li>
                     </ul>
@@ -101,13 +101,13 @@ Numeric
     </div>
 </div>
 
-<div class="hidden-xs-down">
-    <!--<div class="hidden-md">-->
+<!--<div class="hidden-xs-down">-->
+    <div class="hidden-md">
 
     <div class="row">
         <div class="col-xs-3">
             <div class="input-group">
-                <input ng-model="model.statement.selectedWidget3.output" type="text" class="form-control">
+                <input ng-model="model.statement.numberStatement.output" type="text" class="form-control">
                 <div class="input-group-btn">
                     <button type="button"
                             class="btn btn-default dropdown-toggle"
@@ -115,7 +115,7 @@ Numeric
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right wam-left">
-                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.selectedWidget3.output = widget.name">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.numberStatement.output = widget.name">
                             <a>{{widget.name}}</a>
                         </li>
                     </ul>
@@ -125,7 +125,7 @@ Numeric
         </div>
         <div class="col-xs-3">
             <div class="input-group">
-                <input ng-model="model.statement.selectedWidget1.input1" type="text" class="form-control">
+                <input ng-model="model.statement.numberStatement.input1" type="text" class="form-control">
                 <div class="input-group-btn">
                     <button type="button"
                             class="btn btn-default dropdown-toggle"
@@ -133,7 +133,7 @@ Numeric
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right wam-left">
-                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.selectedWidget1.input1= widget.name">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.numberStatement.input1= widget.name">
                             <a>{{widget.name}}</a>
                         </li>
                     </ul>
@@ -153,7 +153,7 @@ Numeric
         </div>
         <div class="col-xs-3">
             <div class="input-group">
-                <input ng-model="model.statement.selectedWidget2.input2" type="text" class="form-control">
+                <input ng-model="model.statement.numberStatement.input2" type="text" class="form-control">
                 <div class="input-group-btn">
                     <button type="button"
                             class="btn btn-default dropdown-toggle"
@@ -161,7 +161,7 @@ Numeric
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right wam-left">
-                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.selectedWidget2.input2 = widget.name">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.numberStatement.input2 = widget.name">
                             <a>{{widget.name}}</a>
                         </li>
                     </ul>
