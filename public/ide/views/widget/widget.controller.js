@@ -1,6 +1,7 @@
 (function () {
     angular
         .module ("WebAppMakerApp")
+        .factory('Pagination', Pagination)
         .controller ("WidgetListController", widgetListController)
         .controller ("WidgetEditController", widgetEditController)
         .controller ("ChooseWidgetController", chooseWidgetController);
@@ -68,7 +69,7 @@
         }
     }
 
-    function widgetListController ($routeParams, PageService, WidgetService, $sce) {
+    function widgetListController ($routeParams, PageService, WidgetService, $sce, Pagination) {
 
         var vm = this;
         vm.username       = $routeParams.username;
@@ -86,13 +87,28 @@
             { name: 'Cali Roll', fish: 'Crab', tastiness: 2 },
             { name: 'Philly', fish: 'Tuna', tastiness: 4 },
             { name: 'Tiger', fish: 'Eel', tastiness: 7 },
+            { name: 'Rainbow', fish: 'Variety', tastiness: 6 },
+            { name: 'Cali Roll', fish: 'Crab', tastiness: 2 },
+            { name: 'Philly', fish: 'Tuna', tastiness: 4 },
+            { name: 'Tiger', fish: 'Eel', tastiness: 7 },
+            { name: 'Rainbow', fish: 'Variety', tastiness: 6 },
+            { name: 'Cali Roll', fish: 'Crab', tastiness: 2 },
+            { name: 'Philly', fish: 'Tuna', tastiness: 4 },
+            { name: 'Tiger', fish: 'Eel', tastiness: 7 },
+            { name: 'Rainbow', fish: 'Variety', tastiness: 6 },
+            { name: 'Cali Roll', fish: 'Crab', tastiness: 2 },
+            { name: 'Philly', fish: 'Tuna', tastiness: 4 },
+            { name: 'Tiger', fish: 'Eel', tastiness: 7 },
             { name: 'Rainbow', fish: 'Variety', tastiness: 6 }
         ];
         
-        vm.filters = {};
         vm.orderByField = '';
         vm.reverseSort = false;
         vm.search = {};
+
+        vm.pager = {};
+        vm.setPage = setPage;
+
 
         function init() {
             PageService
@@ -109,6 +125,7 @@
                 .then(
                     function(response) {
                         vm.widgets = response.data;
+                        vm.setPage(1);
                     },
                     function(err) {
                         vm.error = err;
@@ -116,6 +133,18 @@
                 );
         }
         init();
+
+        function setPage(page) {
+            if (page < 1 || page > vm.pager.totalPages) {
+                return;
+            }
+
+            // get pager object from service
+            vm.pager = Pagination.GetPager(vm.sushi.length, page);
+
+            // get current page of items
+            vm.items = vm.sushi.slice(vm.pager.startIndex, vm.pager.endIndex);
+        }
 
         function trustAsHtml(html) {
             return $sce.trustAsHtml(html);
@@ -147,6 +176,69 @@
                         vm.error = err;
                     }
                 );
+        }
+    }
+
+    function Pagination() {
+        // service definition
+        var service = {};
+
+        service.GetPager = GetPager;
+
+        return service;
+
+        // service implementation
+        function GetPager(totalItems, currentPage, pageSize) {
+            // default to first page
+            currentPage = currentPage || 1;
+
+            // default page size is 10
+            pageSize = pageSize || 5;
+
+            // calculate total pages
+            var totalPages = Math.ceil(totalItems / pageSize);
+
+            var startPage, endPage;
+            if (totalPages <= 10) {
+                // less than 10 total pages so show all
+                startPage = 1;
+                endPage = totalPages;
+            } else {
+                // more than 10 total pages so calculate start and end pages
+                if (currentPage <= 6) {
+                    startPage = 1;
+                    endPage = 10;
+                } else if (currentPage + 4 >= totalPages) {
+                    startPage = totalPages - 9;
+                    endPage = totalPages;
+                } else {
+                    startPage = currentPage - 5;
+                    endPage = currentPage + 4;
+                }
+            }
+
+            // calculate start and end item indexes
+            var startIndex = (currentPage - 1) * pageSize;
+            var endIndex = startIndex + pageSize;
+
+            // create an array of pages to ng-repeat in the pager control
+            var pages = [];
+            for (var i=startPage; i<endPage + 1; i++) {
+                pages.push(i);
+            }
+
+            // return object with all pager properties required by the view
+            return {
+                totalItems: totalItems,
+                currentPage: currentPage,
+                pageSize: pageSize,
+                totalPages: totalPages,
+                startPage: startPage,
+                endPage: endPage,
+                startIndex: startIndex,
+                endIndex: endIndex,
+                pages: pages
+            };
         }
     }
 
