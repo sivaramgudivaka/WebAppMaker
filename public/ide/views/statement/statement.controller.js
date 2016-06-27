@@ -152,9 +152,6 @@
             console.log(vm.statement);
 
             // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
-
-            //AW: TODO: Remove this commenting
-            //vm.statement.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
             vm.statement.statementType = vm.statementType.label.toUpperCase();
             delete vm.statementType;
 
