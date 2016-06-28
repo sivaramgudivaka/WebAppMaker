@@ -21,6 +21,7 @@
         <div ng-repeat="widget in model.widgets | orderBy : 'order'"
              ng-class="widget.bootClass"
              ng-switch="widget.widgetType">
+
             <div class="pull-right jga-widget-list-tools">
                 <a href="#/developer/{{model.developerId}}/website/{{model.page._website}}/page/{{model.page._id}}/widget/{{widget._id}}">
                     <span class="glyphicon glyphicon-cog"></span>
