@@ -1,42 +1,16 @@
-Select Date Operation
-<select name="dateOperation"
-        ng-options="operation.label for operation in model.dateOperations track by operation.label"
-        ng-model="model.statement.dateStatement.dateOperation" class="form-control">
-</select>
+<script>
+    $(function(){
+        $("#date1").datepicker();
+        $("#date2").datepicker();
+    });
+</script>
 
-<div ng-show="model.dateOperation.label==='Create From String'">
-    Provide String
-    <div class="input-group">
-        <input ng-model="model.selectedWidget2.name" type="text" class="form-control">
-        <div class="input-group-btn">
-            <button type="button"
-                    class="btn btn-default dropdown-toggle"
-                    data-toggle="dropdown">
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right wam-left">
-                <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget2 = widget">
-                    <a>{{widget.name}}</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    Format
-    <input class="form-control" placeholder="format" value="yyyy/mm/dd"/>
-</div>
+From variable or per digits
 
-<div ng-hide="model.dateOperation.label==='Create From String'">
-    Select Date Variable
-    <select name="variable"
-            ng-options="widget.name for widget in model.widgets track by widget.name"
-            ng-model="model.variable10"
-            class="form-control">
-    </select>
-</div>
-
-Put Result in Variable
 <div class="input-group">
-    <input ng-model="model.selectedWidget2.name" type="text" class="form-control">
+    <input ng-model="model.statement.dateStatement.dateOperand1"
+           type="text"
+           class="form-control">
     <div class="input-group-btn">
         <button type="button"
                 class="btn btn-default dropdown-toggle"
@@ -44,9 +18,389 @@ Put Result in Variable
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right wam-left">
-            <li ng-repeat="widget in model.widgets" ng-click="model.selectedWidget2 = widget">
+            <li ng-click="model.statement.dateStatement.dateOperand1 = 'Per single digit'">
+                <a>Per single digit</a>
+            </li>
+            <li ng-click="model.statement.dateStatement.dateOperand1 = 'Pick Date'">
+                <a>Pick Date</a>
+            </li>
+            <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.dateOperand1 = widget.name">
                 <a>{{widget.name}}</a>
             </li>
+            <!-- got to add intermediate variables list -->
         </ul>
+    </div>
+</div>
+
+<div ng-show="model.statement.dateStatement.dateOperand1==='Pick Date'" class="input-date">
+    Pick a date
+    <input ng-model="model.statement.dateStatement.pickedDate1"
+           type="text"
+           id="date1"
+           class="form-control"/>
+</div>
+
+
+<div ng-show="model.statement.dateStatement.dateOperand1==='Per single digit'">
+    What Time/Date have to be calculated
+    <div class="row">
+        <div class="col-sm-2">
+            Provide Seconds
+            <div class="input-group">
+                <input ng-model="model.statement.dateStatement.operand1Seconds"
+                       type="text"
+                       class="form-control"
+                       placeholder="S">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets"
+                            ng-click="model.statement.dateStatement.operand1Seconds = widget.name">
+                            <a>{{widget.name}}</a>
+                        </li>
+                        <!-- got to add intermediate variables list -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            Provide Minutes
+            <div class="input-group">
+                <input ng-model="model.statement.dateStatement.operand1Minutes"
+                       type="text"
+                       class="form-control"
+                       placeholder="M">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.operand1Minutes = widget.name">
+                            <a>{{widget.name}}</a>
+                        </li>
+                        <!-- got to add intermediate variables list -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            Provide Hours
+            <div class="input-group">
+                <input ng-model="model.statement.dateStatement.operand1Hours"
+                       type="text"
+                       class="form-control"
+                       placeholder="H">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.operand1Hours = widget.name">
+                            <a>{{widget.name}}</a>
+                        </li>
+                        <!-- got to add intermediate variables list -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            Provide Date
+            <div class="input-group">
+                <input ng-model="model.statement.dateStatement.operand1Date"
+                       type="text"
+                       class="form-control"
+                       placeholder="D">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.operand1Date = widget.name">
+                            <a>{{widget.name}}</a>
+                        </li>
+                        <!-- got to add intermediate variables list -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            Provide Month
+            <div class="input-group">
+                <input ng-model="model.statement.dateStatement.operand1Month"
+                       type="text"
+                       class="form-control"
+                       placeholder="M">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.operand1Month = widget.name">
+                            <a>{{widget.name}}</a>
+                        </li>
+                        <!-- got to add intermediate variables list -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            Provide Year
+            <div class="input-group">
+                <input ng-model="model.statement.dateStatement.operand1Year"
+                       type="text"
+                       class="form-control"
+                       placeholder="Y">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.operand1Year = widget.name">
+                            <a>{{widget.name}}</a>
+                        </li>
+                        <!-- got to add intermediate variables list -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="(model.statement.dateStatement.dateOperand1!=undefined &&
+model.statement.dateStatement.dateOperand1!='Per single digit' && model.statement.dateStatement.dateOperand1!='Pick Date') ||
+(model.statement.dateStatement.dateOperand1==='Pick Date' && model.statement.dateStatement.pickedDate1!=undefined) ||
+(model.statement.dateStatement.dateOperand1==='Per single digit' && model.statement.dateStatement.operand1Seconds!=undefined &&
+model.statement.dateStatement.operand1Minutes!=undefined && model.statement.dateStatement.operand1Hours!=undefined &&
+model.statement.dateStatement.operand1Date!=undefined && model.statement.dateStatement.operand1Month!=undefined &&
+model.statement.dateStatement.operand1Year!=undefined)">
+    What math operation to do?
+
+    <select name="dateOperation"
+            ng-options="operation.label for operation in model.dateOperations track by operation.label"
+            ng-model="model.statement.dateStatement.dateOperation" class="form-control">
+    </select>
+</div>
+
+<div ng-show="model.statement.dateStatement.dateOperation!=undefined && model.statement.dateStatement.dateOperand1!=undefined">
+    From variable or per digits
+
+    <div class="input-group">
+        <input ng-model="model.statement.dateStatement.dateOperand2" type="text" class="form-control">
+        <div class="input-group-btn">
+            <button type="button"
+                    class="btn btn-default dropdown-toggle"
+                    data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right wam-left">
+                <li ng-click="model.statement.dateStatement.dateOperand2 = 'Per single digit'">
+                    <a>Per single digit</a>
+                </li>
+                <li ng-click="model.statement.dateStatement.dateOperand2 = 'Pick Date'">
+                    <a>Pick Date</a>
+                </li>
+                <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.dateOperand2 = widget.name">
+                    <a>{{widget.name}}</a>
+                </li>
+                <!-- got to add intermediate variables list -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div ng-show="model.statement.dateStatement.dateOperand2==='Pick Date'" class="input-date">
+    Pick a date
+    <input ng-model="model.statement.dateStatement.pickedDate2"
+           type="text"
+           id="date2"
+           class="form-control"/>
+</div>
+
+<div ng-show="model.statement.dateStatement.dateOperand2==='Per single digit'">
+    What Time/Date have to be calculated
+    <div class="row">
+        <div class="col-sm-2">
+            Provide Seconds
+            <div class="input-group">
+                <input ng-model="model.statement.dateStatement.operand2Seconds"
+                       type="text"
+                       class="form-control"
+                       placeholder="S">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.operand2Seconds = widget.name">
+                            <a>{{widget.name}}</a>
+                        </li>
+                        <!-- got to add intermediate variables list -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            Provide Minutes
+            <div class="input-group">
+                <input ng-model="model.statement.dateStatement.operand2Minutes"
+                       type="text"
+                       class="form-control"
+                       placeholder="M">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.operand2Minutes = widget.name">
+                            <a>{{widget.name}}</a>
+                        </li>
+                        <!-- got to add intermediate variables list -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            Provide Hours
+            <div class="input-group">
+                <input ng-model="model.statement.dateStatement.operand2Hours"
+                       type="text"
+                       class="form-control"
+                       placeholder="H">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.operand2Hours = widget.name">
+                            <a>{{widget.name}}</a>
+                        </li>
+                        <!-- got to add intermediate variables list -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            Provide Date
+            <div class="input-group">
+                <input ng-model="model.statement.dateStatement.operand2Date"
+                       type="text"
+                       class="form-control"
+                       placeholder="D">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.operand2Date = widget.name">
+                            <a>{{widget.name}}</a>
+                        </li>
+                        <!-- got to add intermediate variables list -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            Provide Month
+            <div class="input-group">
+                <input ng-model="model.statement.dateStatement.operand2Month"
+                       type="text"
+                       class="form-control"
+                       placeholder="M">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.operand2Month = widget.name">
+                            <a>{{widget.name}}</a>
+                        </li>
+                        <!-- got to add intermediate variables list -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            Provide Year
+            <div class="input-group">
+                <input ng-model="model.statement.dateStatement.operand2Year"
+                       type="text"
+                       class="form-control"
+                       placeholder="Y">
+                <div class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right wam-left">
+                        <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.operand2Year = widget.name">
+                            <a>{{widget.name}}</a>
+                        </li>
+                        <!-- got to add intermediate variables list -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="(model.statement.dateStatement.dateOperand2!=undefined &&
+model.statement.dateStatement.dateOperand2!='Per single digit' && model.statement.dateStatement.dateOperand2!='Pick Date') ||
+(model.statement.dateStatement.dateOperand2==='Pick Date' && model.statement.dateStatement.pickedDate2!=undefined) ||
+(model.statement.dateStatement.dateOperand2==='Per single digit' && model.statement.dateStatement.operand2Seconds!=undefined &&
+model.statement.dateStatement.operand2Minutes!=undefined && model.statement.dateStatement.operand2Hours!=undefined &&
+model.statement.dateStatement.operand2Date!=undefined && model.statement.dateStatement.operand2Month!=undefined &&
+model.statement.dateStatement.operand2Year!=undefined)">
+
+    Save the result in
+    <div class="input-group">
+        <input ng-model="model.statement.dateStatement.resultDateOperation"
+               type="text"
+               class="form-control">
+        <div class="input-group-btn">
+            <button type="button"
+                    class="btn btn-default dropdown-toggle"
+                    data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right wam-left">
+                <li ng-repeat="widget in model.widgets" ng-click="model.statement.dateStatement.resultDateOperation = widget.name">
+                    <a>{{widget.name}}</a>
+                </li>
+                <!-- got to add intermediate variables list-->
+            </ul>
+        </div>
     </div>
 </div>

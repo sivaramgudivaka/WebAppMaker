@@ -3,7 +3,7 @@ module.exports = function() {
     var mongoose = require("mongoose");
     var mongojs  = require('mongojs');
 
-    var connectionString = 'mongodb://127.0.0.1:27017/wam';
+    var connectionString = 'mongodb://localhost/wam';
     var dbName = process.env.OPENSHIFT_APP_NAME || 'wam';
 
     if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {

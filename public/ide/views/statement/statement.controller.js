@@ -36,13 +36,9 @@
         vm.databaseOperation = vm.databaseOperations[0];
 
         vm.dateOperations = [
-            {label: 'Create From String'},
-            {label: 'Get Date'},
-            {label: 'Get Day'},
-            {label: 'Get Full Year'},
-            {label: 'Get Hours'}
+            {label: '+'},
+            {label: '-'}
         ];
-        vm.dateOperation = vm.dateOperations[0];
 
         vm.collections = [
             {label: 'Collection 1'},
@@ -76,6 +72,9 @@
             {label: 'Go to statement'},
             {label: 'Navigate to page'}
         ];
+
+        //$(".input-date#date1").datepicker();
+        //$("#date2").datepicker();
 
         // route params
         vm.username    = $routeParams.username;
@@ -143,7 +142,7 @@
         }
 
         function saveStatement() {
-            console.log(vm.statement);
+           // console.log(vm.statement);
 
             // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
 
@@ -160,6 +159,7 @@
                     }
                 );
         }
+        
     }
 
     function ChooseStatementController($routeParams, ScriptService, $location) {
