@@ -5,7 +5,7 @@ module.exports = function() {
     var DateStatementSchema = mongoose.Schema({
         dateOperation : {
             label: {type : String, enum : ["Add", "Subtract", "Create Date from String", "Create Date from milliseconds",
-            "Create Date from selecting in calendar", "Create Date by providing each parameter"]}
+                "Create Date from selecting in calendar", "Create Date by providing each parameter"]}
         },
         dateOperand1         : String,
         pickedDate1          : String,
