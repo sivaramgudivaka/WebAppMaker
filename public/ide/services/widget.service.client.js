@@ -12,7 +12,8 @@
             updateWidget: updateWidget,
             removeWidget: removeWidget,
             sortWidget: sortWidget,
-            findPagesFromWidgetId: findPagesFromWidgetId
+            findPagesFromWidgetId: findPagesFromWidgetId,
+            findUserImages:findUserImages
         };
         return api;
 
@@ -44,8 +45,12 @@
             return $http.get("/api/website/"+websiteId+"/page/"+pageId+"/widget");
         }
 
-        function addWidget(websiteId, pageId, widgetType) {
-            return $http.post("/api/website/"+websiteId+"/page/"+pageId+"/widget?widgetType="+widgetType);
+        function addWidget(developerId,websiteId, pageId, widgetType) {
+            return $http.post("/api/website/"+websiteId+"/page/"+pageId+"/widget?widgetType="+widgetType+"&developerId="+developerId);
+        }
+        function findUserImages(userId)
+        {
+            return $http.get("/api/widget/images/"+userId);
         }
     }
 })();

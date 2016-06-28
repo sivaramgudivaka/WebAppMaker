@@ -16,13 +16,29 @@ module.exports = function (app, model) {
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
     app.put    ("/api/website/:websiteId/page/:pageId/widget", updateWidgets);
     app.get   ("/api/widget/:widgetId/page", findPagesFromWidgetId);
+    app.get("/api/widget/images/:userId",findUserImages);
 
+    function findUserImages(req,res)
+    {
+        var userId=req.params.userId;
+        widgetModel
+            .findUserImages(userId)
+            .then(function(images)
+                {
+                    res.json(images);
+                },  function(error){
+                    res.status(404).send(error);
+                }
+            )
+    }
     function findAllWidgets(req, res) {
         widgetModel
             .findAllWidgets()
             .then(
                 function(widgets) {
+                    console.log(widgets);
                     res.json(widgets);
+
                 },
                 function(error) {
                     res.status(404).send(error);
@@ -201,8 +217,9 @@ module.exports = function (app, model) {
         var websiteId = req.params.websiteId;
         var pageId = req.params.pageId;
         var widgetType = req.query.widgetType;
+        var devloperId=req.query.developerId;
         widgetModel
-            .createWidget(websiteId, pageId, widgetType)
+            .createWidget(devloperId,websiteId, pageId, widgetType)
             .then(
                 function(widget) {
                     res.send(widget);

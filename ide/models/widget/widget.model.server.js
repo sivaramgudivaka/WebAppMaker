@@ -15,9 +15,16 @@ module.exports = function(model) {
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
         removeWidget: removeWidget,
-        sortWidget  : sortWidget
+        sortWidget  : sortWidget,
+        findUserImages:findUserImages
     };
     return api;
+    function findUserImages(user_Id)
+    {
+        return Widget
+           .find({widgetType:"IMAGE",_developer:user_Id});
+
+    }
 
     function findWidgetById(widgetId) {
         return Widget.findById(widgetId);
@@ -239,7 +246,7 @@ module.exports = function(model) {
             );
     }
 
-    function createWidget(websiteId, pageId, widgetType) {
+    function createWidget(developerId,websiteId, pageId, widgetType) {
 
         return Widget
             .findOne({_page: pageId})
@@ -250,6 +257,7 @@ module.exports = function(model) {
                     widget.widgetType = widgetType;
                     widget._page = pageId;
                     widget._website = websiteId;
+                    widget._developer=developerId;
                     if(lastWidget) {
                         widget.order = ++lastWidget.order;
                     }

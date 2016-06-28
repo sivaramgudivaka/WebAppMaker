@@ -152,7 +152,18 @@
                 controller: "FlickrSearchController",
                 controllerAs: "model"
             })
-
+            .when("/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/image",{
+                templateUrl: "views/widget/flickr/image.gallery.search.view.html",
+                controller: "ImageGalleryController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
+            .when("/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/google",{
+            templateUrl: "views/widget/flickr/widget-google-image-search.view.client.html",
+            controller: "GoogleSearchController",
+            controllerAs: "model",
+            resolve: { loggedin: checkLoggedin }
+        })
             // script routes
             // .when ("/developer/:username/website/:websiteId/page/:pageId/widget/:widgetId/script", {
             //     templateUrl: "views/script/script-list.view.html",

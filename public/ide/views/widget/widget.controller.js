@@ -96,6 +96,7 @@
                 .then(
                     function(response) {
                         vm.widgets = response.data;
+                        //console.log(vm.widgets);
                     },
                     function(err) {
                         vm.error = err;
@@ -135,6 +136,7 @@
                     }
                 );
         }
+
     }
 
     function chooseWidgetController ($routeParams, WidgetService, PageService, $location) {
@@ -154,8 +156,10 @@
                 .then(
                     function(response) {
                         vm.page = response.data;
+                        //console.log("PAge");
+                        //console.log(vm.page);
                         return WidgetService
-                            .addWidget(vm.page._website, vm.page._id, widgetType)
+                            .addWidget(vm.developerId,vm.page._website, vm.page._id, widgetType)
                     },
                     function(error) {
                         vm.error = error;
@@ -163,8 +167,18 @@
                 )
                 .then(
                     function(response) {
-                        var newWidget = response.data
-                        $location.url("/developer/"+vm.developerId+"/website/"+vm.websiteId+"/page/"+vm.page._id+"/widget/" + newWidget._id);
+                        var newWidget = response.data;
+                        console.log("imageWidget");
+                        console.log(newWidget);
+                       if(newWidget.widgetType==="IMAGE")
+                        {
+                            console.log("New Image");
+                            console.log(vm.developerId);
+                            $location.url("/developer/"+vm.developerId+"/website/"+vm.websiteId+"/page/"+vm.page._id+"/widget/" + newWidget._id+"/image");
+                        }
+                        else {
+                           $location.url("/developer/" + vm.developerId + "/website/" + vm.websiteId + "/page/" + vm.page._id + "/widget/" + newWidget._id);
+                       }
                     },
                     function(err) {
                         vm.error = err;

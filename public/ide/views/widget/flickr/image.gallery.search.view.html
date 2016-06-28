@@ -1,0 +1,39 @@
+<nav class="navbar navbar-default navbar-fixed-top jga">
+    <div class="navbar-header">
+
+        <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+           class="btn btn-default btn-transparent pull-left">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="navbar-brand">Search User Images</a>
+
+    </div>
+</nav>
+
+
+<div class="row" class="margin-left: 0px !important;margin-right: 0px !important;">
+    <div ng-repeat="widget in model.widgets" class="col-xs-4" style="padding-right: 1px;padding-left: 0px;padding-bottom: 1px;">
+
+        <img ng-click="model.selectImage(widget)"
+             ng-src={{widget.image.url}}
+             width="100%"/>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom jga">
+    <div class="navbar-header">
+        <a href="#/developer/{{currentUser.username}}/edit"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+        <a href=#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/google
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+        <a href=#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-upload"></span>
+        </a>
+    </div>
+</nav>
