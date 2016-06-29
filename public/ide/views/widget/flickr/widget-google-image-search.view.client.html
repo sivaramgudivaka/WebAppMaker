@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top jga">
     <div class="navbar-header">
 
-        <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+        <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/image"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -32,6 +32,10 @@
         <a href="#/developer/{{currentUser.username}}/edit"
            class="navbar-toggle collapsed">
             <span class="glyphicon glyphicon-user"></span>
+        </a>
+        <a ng-click="model.moreImage()"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-arrow-down"></span>
         </a>
     </div>
 </nav>

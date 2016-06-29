@@ -38,15 +38,15 @@ module.exports = function (app, model) {
         }));
 
     var googleConfig = {
-        clientID        : process.env.GOOGLE_CLIENT_ID,
-        clientSecret    : process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL     : process.env.GOOGLE_CALLBACK_URL
+        clientID        : "175825708073-vp8o9drj69jhkma73a04979ffb73k7pv.apps.googleusercontent.com",
+        clientSecret    : "tBWexHeG6ZdfDZ9tr49q2yuh",
+        callbackURL     : "http://127.0.0.1:3000/auth/google/callback"
     };
 
     var facebookConfig = {
-        clientID        : process.env.FACEBOOK_CLIENT_ID,
-        clientSecret    : process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL     : process.env.FACEBOOK_CALLBACK_URL
+        clientID        :" ",
+        clientSecret    : " ",
+        callbackURL     : ""
     };
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));

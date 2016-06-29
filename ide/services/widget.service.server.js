@@ -13,10 +13,12 @@ module.exports = function (app, model) {
     app.get  ("/api/website/:websiteId/page/:pageId/widget/:widgetId", findWidgetById);
     app.put  ("/api/website/:websiteId/page/:pageId/widget/:widgetId", updateWidget);
     app.delete("/api/website/:websiteId/page/:pageId/widget/:widgetId", removeWidget);
-    app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
     app.put    ("/api/website/:websiteId/page/:pageId/widget", updateWidgets);
     app.get   ("/api/widget/:widgetId/page", findPagesFromWidgetId);
     app.get("/api/widget/images/:userId",findUserImages);
+   //app.get ("/api/upload", upload.single('myFile'), uploadImage);
+
 
     function findUserImages(req,res)
     {
@@ -82,14 +84,14 @@ module.exports = function (app, model) {
     }
 
     function uploadImage(req, res) {
-
-        var username      = req.user.username;
+        console.log("In Api Upload")
+    //    var username      = req.user.username;
         var websiteId     = req.body.websiteId;
         var pageId        = req.body.pageId;
         var widgetId      = req.body.widgetId;
         var width         = req.body.width;
         var myFile        = req.file;
-
+        var developerId   = req.body.developerId;
         var destination   = myFile.destination;
         var path          = myFile.path;
         var originalname  = myFile.originalname;
@@ -97,30 +99,25 @@ module.exports = function (app, model) {
         var mimetype      = myFile.mimetype;
         var filename      = myFile.filename;
 
-        websiteModel.getMongooseModel()
-            .findById(websiteId)
-            .then(
-                function(website) {
-                    var widget = website.pages.id(pageId).widgets.id(widgetId);
-                    widget.image = {
-                        url: "/uploads/" + filename,
-                        width: width
-                    }
-                    return website.save();
-                },
-                function(err) {
-                    res.status(400).send(err);
+        var widget = {
+            image:{
+                url: "/uploads/" + filename,
+                width: width
+            }
+        };
+                    widgetModel
+                        .updateWidget(websiteId, pageId, widgetId, widget)
+                        .then(function(response) {
+                            console.log("In widget");
+
+                            },
+                            function(err) {
+                                res.status(404).send(err);
+                            });
+        res.redirect("/ide/index.html#/developer/"+developerId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
                 }
-            )
-            .then(
-                function(){
-                    res.redirect("/ide/#/developer/"+username+"/website/"+websiteId+"/page/"+pageId+"/widget");
-                },
-                function(err) {
-                    res.status(400).send(err);
-                }
-            );
-    }
+
+
 
     function removeWidget(req, res) {
         var websiteId = req.params.websiteId;
