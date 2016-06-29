@@ -16,7 +16,7 @@
     </div>
 </nav>
 
-<form name="widgetForm" id="widgetForm" novalidate>
+
 
     Name
     <input ng-model="model.widget.name" class="form-control"/>
@@ -178,6 +178,7 @@
             <input ng-model="model.widget.image.url" class="form-control"/>
             Width
             <input ng-model="model.widget.image.width" class="form-control"/>
+            
             Upload
             <form action="/api/upload"
                   method="post"
@@ -185,6 +186,7 @@
                 <input name="websiteId" value="{{model.websiteId}}" style="display: none"/>
                 <input name="pageId" value="{{model.pageId}}" style="display: none"/>
                 <input name="widgetId" value="{{model.widgetId}}" style="display: none"/>
+                <input name="developerId" value="{{model.developerId}}" style="display: none"/>
                 <input name="width" value="{{model.widget.image.width}}" style="display: none"/>
                 <input  type="file" name="myFile" class="form-control"/>
                 <button type="submit" class="btn btn-block btn-primary">
@@ -192,7 +194,6 @@
                 </button>
             </form>
 
-            
         </div>
         <div ng-switch-when="YOUTUBE">
             URL
@@ -206,7 +207,7 @@
         Delete
     </a>
 
-</form>
+
 
 <nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
