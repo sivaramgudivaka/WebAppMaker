@@ -152,6 +152,12 @@
                 controller: "FlickrSearchController",
                 controllerAs: "model"
             })
+            .when("/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/image/new",{
+                templateUrl: "views/widget/flickr/image-gallery-add-image.view.client.html",
+                controller: "AddNewImageController",
+                controllerAs: "model"
+
+            })
             .when("/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/image",{
                 templateUrl: "views/widget/flickr/image.gallery.search.view.html",
                 controller: "ImageGalleryController",
