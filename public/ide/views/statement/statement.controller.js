@@ -77,7 +77,18 @@
         vm.stringOperations = [
             {label: 'Substring'},
             {label: 'Concatenate'},
-            {label: 'Length'}
+            {label: 'Length'},
+            {label: 'Char At'},
+            {label: 'Index Of'},
+            {label: 'Last Index Of'},
+            {label: 'Search'},
+            {label: 'Repeat'},
+            {label: 'Replace'},
+            {label: 'Lowercase'},
+            {label: 'Uppercase'},
+            {label: 'Trim'},
+            {label: 'Starts With'},
+            {label: 'Ends With'}
         ];
         vm.stringOperation = vm.stringOperations[0];
 
