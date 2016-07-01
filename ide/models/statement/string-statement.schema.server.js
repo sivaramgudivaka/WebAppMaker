@@ -10,7 +10,11 @@ module.exports = function() {
         input2        : String,
         output        : String,
         length        : String,
-        start         : String
+        start         : String,
+        index         : String,
+        searchvalue   : String,
+        newvalue      : String,
+        count         : String
     });
 
     return StringStatementSchema;
