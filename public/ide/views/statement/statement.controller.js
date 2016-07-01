@@ -155,7 +155,6 @@
                 );
         }
         init();
-
         function deleteStatement() {
             ScriptService
                 .deleteStatement(vm)
@@ -175,7 +174,7 @@
 
             //AW: Specific to String statements
             if(vm.statement.statementType === "STRING")
-                vm.statement.stringStatement.operationType = vm.stringOperation.label.toUpperCase().trim();
+                vm.statement.stringStatement.operationType = vm.stringOperation.label.toUpperCase().replace( /\s/g, "");
 
             StatementService
                 .saveStatement(vm, vm.statement)
