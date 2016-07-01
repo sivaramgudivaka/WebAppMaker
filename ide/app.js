@@ -9,7 +9,7 @@ module.exports = function (app, db) {
     var scriptService      = require("./services/script.service.server.js")     (app, model);
     var statementService   = require("./services/statement.service.server.js")  (app, model);
     var shareService       = require("./services/share.service.server.js")      (app, model);
-
+    var imageGalleryService= require("./services/imagegallery.service.server.js")(app,model);
     // pass express app and db connection to database service
     var databaseService = require("./services/database.service.server")(app, model);
 

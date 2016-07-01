@@ -2,11 +2,37 @@
     angular
         .module("WebAppMakerApp")
         .controller("ImageGalleryController", ImageGalleryController)
-        .controller("GoogleSearchController",GoogleSearchController);
+        .controller("GoogleSearchController",GoogleSearchController)
+        .controller("AddNewImageController",AddNewImageController);
 
     var urlBase = "https://www.googleapis.com/customsearch/v1?key=AIzaSyAiyY6nBD2tQB-BbvzzpkIwhoNQ_ulTCIw&cx=008380424979074753132:2odwekrize8&q=flower&searchType=image&fileType=jpg&imgSize=small&alt=json";
 
-    function ImageGalleryController($http, $location, $routeParams, WidgetService) {
+    function AddNewImageController($http,$location,$routeParams,ImageGalleryService)
+    {
+        var vm=this;
+        vm.developerId = $routeParams.developerId;
+        vm.websiteId = $routeParams.websiteId;
+        vm.pageId = $routeParams.pageId;
+        vm.widgetId = $routeParams.widgetId;
+        vm.addImage=addImage;
+
+        function addImage(image)
+        {
+            ImageGalleryService
+                .addImage(image)
+                .then(function (response) {
+                    $location.url("/developer/" + vm.developerId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget"+vm.widgetId+"/image");
+                },
+                function(error){
+                    vm.error="Unable to add Image to database";
+                })
+        }
+
+
+
+    }
+    
+    function ImageGalleryController($http, $location, $routeParams,WidgetService) {
         var vm = this;
 
         vm.developerId = $routeParams.developerId;
@@ -49,6 +75,7 @@
                     });
         }
     }
+
         function GoogleSearchController($http, $location, $routeParams, WidgetService)
         {
             var vm=this;
