@@ -164,7 +164,7 @@
 
             //AW: Specific to String statements
             if(vm.statement.statementType === "STRING")
-                vm.statement.stringStatement.operationType = vm.stringOperation.label.toUpperCase();
+                vm.statement.stringStatement.operationType = vm.stringOperation.label.toUpperCase().trim();
 
             StatementService
                 .saveStatement(vm, vm.statement)
