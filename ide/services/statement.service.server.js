@@ -8,7 +8,6 @@ module.exports = function (app, model) {
 
     var statementModel = model.statementModel;
     var scriptModel    = model.scriptModel;
-<<<<<<< ae2d46846ca1e1ef88fc86a4d01adb320cbc647f
 
     function findAllStatements(req, res) {
         statementModel
@@ -87,21 +86,6 @@ module.exports = function (app, model) {
                 }
             );
     }
-
-    function findAllStatements(req, res) {
-        statementModel
-            .findAllStatements(req.params)
-            .then(
-                function(statements) {
-                    res.json(statements);
-                },
-                function(err) {
-                    res.statusCode(400).send(err);
-                }
-            );
-    }
-=======
->>>>>>> added findAllStatements functionality for the script in the scope.
 
     function findAllStatements(req, res) {
         statementModel
