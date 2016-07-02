@@ -11,8 +11,8 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right wam-left">
-                <li ng-repeat="widget in model.widgets" ng-click="model.statement.ifStatement.leftOperand = widget.name">
-                    <a>{{widget.name}}</a>
+                <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.ifStatement.leftOperand = variable">
+                    <a>{{variable}}</a>
                 </li>
             </ul>
         </div>
@@ -41,8 +41,8 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right wam-left">
-                <li ng-repeat="widget in model.widgets" ng-click="model.statement.ifStatement.rightOperand = widget.name">
-                    <a>{{widget.name}}</a>
+                <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.ifStatement.rightOperand = variable">
+                    <a>{{variable}}</a>
                 </li>
             </ul>
         </div>
