@@ -155,6 +155,8 @@
         function saveStatement() {
            // console.log(vm.statement);
 
+            vm.statement.name= vm.statementName;
+
             // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
 
             if (vm.statementType.label === "If")
