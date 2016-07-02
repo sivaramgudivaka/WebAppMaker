@@ -15,7 +15,8 @@ module.exports = function(websiteModel) {
         addStatement : addStatement,
         findStatement: findStatement,
         deleteStatement: deleteStatement,
-        updateStatement: updateStatement
+        updateStatement: updateStatement,
+        findStatementById: findStatementById,
     };
     return api;
 
@@ -60,7 +61,10 @@ module.exports = function(websiteModel) {
                 });
     }
 
-
+    //AW: Added this function to get statement for editing
+    function findStatementById(scope) {
+        return StatementModel.findById(scope.statementId);
+    }
 
     function findStatement(scope) {
 
