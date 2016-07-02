@@ -210,6 +210,8 @@
             
             vm.statement.name= vm.statementName;
 
+            vm.statement.name= vm.statementName;
+
             // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
             vm.statement.statementType = vm.statementType.value;
             
