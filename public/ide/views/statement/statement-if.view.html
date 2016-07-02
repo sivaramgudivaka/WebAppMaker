@@ -55,7 +55,7 @@
 </div>
 <div>
     <select name="then"
-            ng-options="statement._id for statement in model.statements track by statement._id"
+            ng-options="statement.name for statement in model.statements track by statement.name"
             ng-model="model.statement.ifStatement.then"
             class="form-control">
         <option value="">No Jump</option>
@@ -68,7 +68,7 @@
     </div>
     <div>
         <select name="else"
-                ng-options="statement._id for statement in model.statements track by statement._id"
+                ng-options="statement.name for statement in model.statements track by statement.name"
                 ng-model="model.statement.ifStatement.else"
                 class="form-control">
         </select>
