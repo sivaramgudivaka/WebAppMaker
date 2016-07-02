@@ -1,32 +1,162 @@
+<div class="hidden-xs">
 <div class="row">
     <div class="col-xs-3">
-        <select ng-model="model.statement.numberStatement.output"
-                class="form-control">
-            <option value="">Select Output</option>
-            <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
-        </select>
+        Output
+        <div class="input-group">
+            <input ng-model="model.statement.booleanStatement.output" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.booleanStatement.output = variable">
+                        <a>{{variable}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <span class="pull-right" style="position: relative;top:-35px;left:20px">=</span>
     </div>
     <div class="col-xs-3">
-        <select ng-model="model.statement.numberStatement.input1"
-                class="form-control">
-            <option value="">Select Input 1</option>
-            <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
-        </select>
+        Input 1
+        <div class="input-group">
+            <input ng-model="model.statement.booleanStatement.input1" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-click="model.statement.booleanStatement.input1 = 'NOT'">
+                        <a>NOT</a>
+                    </li>
+                    <li ng-click="model.statement.booleanStatement.input1 = 'True'">
+                        <a>True</a>
+                    </li>
+                    <li ng-click="model.statement.booleanStatement.input1 = 'False'">
+                        <a>False</a>
+                    </li>
+                    <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.booleanStatement.input1= variable">
+                        <a>{{variable}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="col-xs-3">
-        <select ng-model="model.statement.numberStatement.operationType"
+
+    <div class="col-xs-3"  ng-if="model.statement.booleanStatement.input1 !== 'NOT' && model.statement.booleanStatement.input1 !== 'True' && model.statement.booleanStatement.input1!== 'False'">
+        Operation
+        <select ng-model="model.statement.booleanStatement.operationType"
                 class="form-control">
             <option value="">Select Operation</option>
             <option value="AND">AND</option>
             <option value="OR">OR</option>
+            <option ng-repeat="operation in model.verboseComparators">{{operation.label}}</option>
         </select>
     </div>
-    <div class="col-xs-3">
-        <select ng-model="model.statement.numberStatement.input2"
+    <div class="col-xs-3" ng-if="model.statement.booleanStatement.input1 !== 'True' && model.statement.booleanStatement.input1!== 'False'">
+        Input 2
+        <div class="input-group">
+            <input ng-model="model.statement.booleanStatement.input2" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.booleanStatement.input2 = variable">
+                        <a>{{variable}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="hidden-sm hidden-md hidden-lg">
+<div class="row">
+    <div class="col-xs-12">
+        Oputput
+        <div class="input-group">
+            <input ng-model="model.statement.booleanStatement.output" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.booleanStatement.output = variable">
+                        <a>{{variable}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="input-group">
+            <span>=</span>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        Input 1
+        <div class="input-group">
+            <input ng-model="model.statement.booleanStatement.input1" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-click="model.statement.booleanStatement.input1 = 'NOT'">
+                        <a>NOT</a>
+                    </li>
+                    <li ng-click="model.statement.booleanStatement.input1 = 'True'">
+                        <a>True</a>
+                    </li>
+                    <li ng-click="model.statement.booleanStatement.input1 = 'False'">
+                        <a>False</a>
+                    </li>
+                    <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.booleanStatement.input1= variable">
+                        <a>{{variable}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12"  ng-if="model.statement.booleanStatement.input1 !== 'NOT' && model.statement.booleanStatement.input1 !== 'True' && model.statement.booleanStatement.input1!== 'False'">
+        Operation
+        <select ng-model="model.statement.booleanStatement.operationType"
                 class="form-control">
-            <option value="">Select Input 2</option>
-            <option ng-repeat="variable in model.statement.variables">{{variable}}</option>
+            <option value="">Select Operation</option>
+            <option value="AND">AND</option>
+            <option value="OR">OR</option>
+            <option ng-repeat="operation in model.verboseComparators">{{operation.label}}</option>
         </select>
+    </div>
+    <div class="col-xs-12" ng-if="model.statement.booleanStatement.input1 !== 'True' && model.statement.booleanStatement.input1!== 'False'">
+        Input 2
+        <div class="input-group">
+            <input ng-model="model.statement.booleanStatement.input2" type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right wam-left">
+                    <li ng-repeat="variable in model.stmtvariables" ng-click="model.statement.booleanStatement.input2 = variable">
+                        <a>{{variable}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
