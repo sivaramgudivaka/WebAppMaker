@@ -182,7 +182,7 @@
 
     }
 
-    function EditScriptController($routeParams, ScriptService, $location) {
+    function EditScriptController($routeParams, ScriptService, StatementService, $location) {
 
         var vm = this;
 
@@ -195,7 +195,6 @@
 
         // event handlers
         vm.saveScript      = saveScript;
-
         function init() {
             ScriptService
                 .findScript(vm)
@@ -204,6 +203,20 @@
                         vm.script = response.data;
                         if(!vm.script || vm.script == 'null') {
                             vm.script = {};
+                        }
+                            //AW: If script is present below action is executed
+                        else {
+                            vm.scriptId = vm.script._id;
+                            StatementService
+                                .findAllStatements(vm)
+                                .then(
+                                    function (response) {
+                                        vm.statements = response.data;
+                                    },
+                                    function (err) {
+                                        vm.error = err;
+                                    }
+                                );
                         }
                     },
                     function(err) {
@@ -231,7 +244,7 @@
         }
     }
 
-    function NewScriptController($routeParams, ScriptService) {
+    function NewScriptController($location, $routeParams, ScriptService) {
 
         var vm = this;
 
