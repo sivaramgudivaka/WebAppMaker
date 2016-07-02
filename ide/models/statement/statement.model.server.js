@@ -48,6 +48,20 @@ module.exports = function(models) {
             );
     }
 
+    function findAllStatements(scope){
+        var scriptId = scope.scriptId;
+        return Statement
+            .find({_script:scriptId})
+            .then(
+                function(statements){
+                    return statements;
+                },
+                function(err){
+                    console.log(err);
+                }
+            );
+    }
+
     function saveStatement(scope, statement) {
         statement._script = scope.scriptId;
         if(scope.statementId === 'new') {
