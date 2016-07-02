@@ -5,9 +5,24 @@ module.exports = function(models) {
     var Statement       = mongoose.model("Statement", StatementSchema);
 
     var api = {
-        saveStatement: saveStatement
+        saveStatement: saveStatement,
+        findAllStatements:findAllStatements
     };
     return api;
+
+    function findAllStatements(scope){
+        var scriptId = scope.scriptId;
+        return Statement
+            .find({_script:scriptId})
+            .then(
+                function(statements){
+                    return statements;
+                },
+                function(err){
+                    console.log(err);
+                }
+            );
+    }
 
     function saveStatement(scope, statement) {
         statement._script = scope.scriptId;

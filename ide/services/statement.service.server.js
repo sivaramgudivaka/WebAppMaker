@@ -4,9 +4,23 @@ module.exports = function (app, model) {
     app.get    ("/api/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/script/:scriptId/statement/:statementId", findStatement);
     app.put    ("/api/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/script/:scriptId/statement/:statementId", saveStatement);
     app.delete ("/api/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/script/:scriptId/statement/:statementId", deleteStatement);
+    app.get    ("/api/developer/:developerId/website/:websiteId/page/:pageId/widget/:widgetId/script/:scriptId/statement", findAllStatements);
 
     var statementModel = model.statementModel;
     var scriptModel    = model.scriptModel;
+    
+    function findAllStatements(req, res) {
+        statementModel
+            .findAllStatements(req.params)
+            .then(
+                function(statements) {
+                    res.json(statements);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
+    }
 
     function deleteStatement(req, res) {
         scriptModel
@@ -50,7 +64,7 @@ module.exports = function (app, model) {
     // handle http request for statement
     function findStatement(req, res) {
         scriptModel
-            .findStatement(req.params)
+            .findStatementById(req.params)
             .then(
                 function(statement) {
                     res.json(statement);
