@@ -148,6 +148,25 @@
                 .then(
                     function(response) {
                         vm.statements = response.data;
+                        vm.stmtvariables =[];
+                        for(var stmt in vm.statements){
+                            var st = vm.statements[stmt];
+                            if (st.stringStatement && st.stringStatement.output){
+                                vm.stmtvariables.push(st.stringStatement.output)
+                            }
+                            if (st.booleanStatement && st.booleanStatement.output){
+                                vm.stmtvariables.push(st.booleanStatement.output)
+                            }
+                            if (st.numberStatement && st.numberStatement.output){
+                                vm.stmtvariables.push(st.numberStatement.output)
+                            }
+                            if (st.dateStatement && st.dateStatement.resultVariable){
+                                vm.stmtvariables.push(st.dateStatement.resultVariable)
+                            }
+                            for(var variable in st.variables){
+                                vm.stmtvariables.push(st.variables[variable]);
+                            }
+                        }
                     },
                     function(err) {
                         vm.error = err;
@@ -176,6 +195,11 @@
             // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
             if (vm.statementType.label === "If")
                 vm.statement.ifStatement.comparator = vm.statement.ifStatement.comparator.label;
+            
+            /*if (vm.statementType.label === "Boolean"){
+                if(vm.statement.booleanStatement.input1 === 'NOT'){
+                }
+            }*/
 
             //AW: Specific to String statements
             if(vm.statement.statementType === "STRING")
