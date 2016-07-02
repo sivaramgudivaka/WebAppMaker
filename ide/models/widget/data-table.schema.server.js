@@ -8,6 +8,7 @@ module.exports = function () {
         sortable       :  Boolean,
         filterable     :  Boolean,
         paginable      :  Boolean,
+        pageRows       :  Number,
         deletable      :  Boolean // added deletable 
     });
 

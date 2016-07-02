@@ -125,7 +125,7 @@
                 .then(
                     function(response) {
                         vm.widgets = response.data;
-                        vm.setPage(1);
+                        vm.setPage(1, 1);
                     },
                     function(err) {
                         vm.error = err;
@@ -134,13 +134,13 @@
         }
         init();
 
-        function setPage(page) {
+        function setPage(page, rows) {
             if (page < 1 || page > vm.pager.totalPages) {
                 return;
             }
 
             // get pager object from service
-            vm.pager = Pagination.GetPager(vm.sushi.length, page);
+            vm.pager = Pagination.GetPager(vm.sushi.length, page, rows);
 
             // get current page of items
             vm.items = vm.sushi.slice(vm.pager.startIndex, vm.pager.endIndex);
@@ -188,12 +188,12 @@
         return service;
 
         // service implementation
-        function GetPager(totalItems, currentPage, pageSize) {
+        function GetPager(totalItems, currentPage, pageSize, rows) {
             // default to first page
             currentPage = currentPage || 1;
 
-            // default page size is 10
-            pageSize = pageSize || 5;
+            // default page size is rows
+            pageSize = pageSize || rows;
 
             // calculate total pages
             var totalPages = Math.ceil(totalItems / pageSize);

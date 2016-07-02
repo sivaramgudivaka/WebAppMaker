@@ -163,6 +163,7 @@ module.exports = function(model) {
                             // save deletable in database
                             deletable: newWidget.datatable.deletable,
                             paginable: newWidget.datatable.paginable,
+                            pageRows: newWidget.datatable.pageRows,
                             sortable: newWidget.datatable.sortable,
                             filterable: newWidget.datatable.filterable
                         };

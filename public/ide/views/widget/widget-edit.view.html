@@ -138,6 +138,13 @@
                 </span>
             </div>
 
+            Rows per page:
+            <input ng-model="model.widget.datatable.pageRows"
+                   type="number"
+                   value="5"
+                   placeholder="Rows per page...."
+                   class="form-control"/>
+
         </div>
         <!-- REPEATER widget is same as DATATABLE widget except that it has a template -->
         <div ng-switch-when="REPEATER">

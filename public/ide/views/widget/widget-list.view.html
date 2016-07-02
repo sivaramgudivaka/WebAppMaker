@@ -115,19 +115,19 @@
                 </table>
                 <ul ng-if="widget.datatable.paginable" class="pagination">
                     <li ng-class="{disabled:model.pager.currentPage === 1}">
-                        <a ng-click="model.setPage(1)">First</a>
+                        <a ng-click="model.setPage(1, widget.datatable.pageRows)">First</a>
                     </li>
                     <li ng-class="{disabled:model.pager.currentPage === 1}">
-                        <a ng-click="model.setPage(model.pager.currentPage - 1)">Previous</a>
+                        <a ng-click="model.setPage(model.pager.currentPage - 1, widget.datatable.pageRows)">Previous</a>
                     </li>
                     <li ng-repeat="page in model.pager.pages" ng-class="{active:model.pager.currentPage === page}">
-                        <a ng-click="model.setPage(page)">{{page}}</a>
+                        <a ng-click="model.setPage(page, widget.datatable.pageRows)">{{page}}</a>
                     </li>
                     <li ng-class="{disabled:model.pager.currentPage === model.pager.totalPages}">
-                        <a ng-click="model.setPage(model.pager.currentPage + 1)">Next</a>
+                        <a ng-click="model.setPage(model.pager.currentPage + 1, widget.datatable.pageRows)">Next</a>
                     </li>
                     <li ng-class="{disabled:model.pager.currentPage === model.pager.totalPages}">
-                        <a ng-click="model.setPage(model.pager.totalPages)">Last</a>
+                        <a ng-click="model.setPage(model.pager.totalPages, widget.datatable.pageRows)">Last</a>
                     </li>
                 </ul>
             </div>
