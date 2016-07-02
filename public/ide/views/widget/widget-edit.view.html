@@ -9,7 +9,7 @@
         <a class="navbar-brand wam-capitalize">{{model.widget.widgetType.toLowerCase()}} Widget</a>
 
         <button type="submit" form="widgetForm" ng-click="model.updateWidget(model.widget)"
-           class="btn btn-default btn-transparent pull-right">
+                class="btn btn-default btn-transparent pull-right">
             <span class="glyphicon glyphicon-ok"></span>
         </button>
 
@@ -138,12 +138,18 @@
                 </span>
             </div>
 
+
             Rows per page:
             <input ng-model="model.widget.datatable.pageRows"
                    type="number"
                    value="5"
                    placeholder="Rows per page...."
-                   class="form-control"/>
+                   class="form-control"
+                   name="pageRows" required/>
+            <span ng-show="widgetForm.pageRows.$invalid && widgetForm.$submitted">
+                Rows per page is required
+            </span>
+
 
         </div>
         <!-- REPEATER widget is same as DATATABLE widget except that it has a template -->
