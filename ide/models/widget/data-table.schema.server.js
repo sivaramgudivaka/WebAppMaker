@@ -7,6 +7,7 @@ module.exports = function () {
         fields         : [String],
         sortable       :  Boolean,
         filterable     :  Boolean,
+        paginable      :  Boolean,
         deletable      :  Boolean // added deletable 
     });
 

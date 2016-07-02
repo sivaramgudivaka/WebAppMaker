@@ -81,9 +81,7 @@
                     </tr>
                     <tr ng-hide="!widget.datatable.filterable">
                         <td ng-repeat="field in widget.datatable.fields">
-                            <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search {{field}}" ng-model=model.search[field]>
-                            </div>
                         </td>
                         <td ng-if="widget.datatable.deletable">
                             &nbsp;
@@ -91,7 +89,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="s in model.items | filter:model.search | orderBy:model.orderByField:model.reverseSort">
+                    <tr ng-if="!widget.datatable.paginable" ng-repeat="s in model.sushi | filter:model.search | orderBy:model.orderByField:model.reverseSort">
+                        <td ng-repeat="column in s">
+                            {{column}}
+                        </td>
+                        <!-- show remove button if deletable -->
+                        <td ng-if="widget.datatable.deletable">
+                            <a ng-if="widget.datatable.deletable" class="pull-right">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr ng-if="widget.datatable.paginable" ng-repeat="s in model.items | filter:model.search | orderBy:model.orderByField:model.reverseSort">
                         <td ng-repeat="column in s">
                             {{column}}
                         </td>
@@ -104,7 +113,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <ul ng-if="model.pager.pages.length" class="pagination">
+                <ul ng-if="widget.datatable.paginable" class="pagination">
                     <li ng-class="{disabled:model.pager.currentPage === 1}">
                         <a ng-click="model.setPage(1)">First</a>
                     </li>

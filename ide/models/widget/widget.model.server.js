@@ -162,6 +162,7 @@ module.exports = function(model) {
                         widget.datatable = {
                             // save deletable in database
                             deletable: newWidget.datatable.deletable,
+                            paginable: newWidget.datatable.paginable,
                             sortable: newWidget.datatable.sortable,
                             filterable: newWidget.datatable.filterable
                         };
