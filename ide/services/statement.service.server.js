@@ -8,7 +8,7 @@ module.exports = function (app, model) {
 
     var statementModel = model.statementModel;
     var scriptModel    = model.scriptModel;
-    
+
     function findAllStatements(req, res) {
         statementModel
             .findAllStatements(req.params)
