@@ -1,6 +1,6 @@
 Numeric
 
-<div class="hidden-md">
+<div class="hidden-sm hidden-md hidden-lg">
 <!--.hidden-sm-up-->
 <!--<div class="hidden-sm-up">-->
     <div class="row">
@@ -43,11 +43,39 @@ Numeric
                 <option value="-">-</option>
                 <option value="x">x</option>
                 <option value="/">/</option>
+                <option value="log">log</option>
+                <option value="power">power (raised to)</option>
+                <option value="square root">square root</option>
+                <option value="%"> % (Modulus)</option>
+                <option value="sin">sin</option>
+                <option value="cos">cos</option>
+                <option value="tan">tan</option>
+                <option value="cosec">cosec</option>
+                <option value="cosine">cosine</option>
+                <option value="tan">tan</option>
+                <option value="cot">cot</option>
+                <option value="square">square</option>
+                <option value="cube">cube</option>
+                <option value="square root">square root</option>
+                <option value="cube root">cube root</option>
+
+
             </select>
         </div>
     </div>
-
-    <div ng-show= model.statement.numberStatement.operationType!=null class="row" >
+    <!--{{model.statement.numberStatement}}-->
+        <div ng-show="(model.statement.numberStatement.operationType!=null &&
+             model.statement.numberStatement.operationType!='sin' &&
+           model.statement.numberStatement.operationType!='cos' &&
+           model.statement.numberStatement.operationType!='tan' &&
+           model.statement.numberStatement.operationType!='log' &&
+           model.statement.numberStatement.operationType!='cosine' &&
+            model.statement.numberStatement.operationType!='cosec' &&
+            model.statement.numberStatement.operationType!='cot' &&
+            model.statement.numberStatement.operationType!='square' &&
+            model.statement.numberStatement.operationType!='cube' &&
+            model.statement.numberStatement.operationType!='square root' &&
+            model.statement.numberStatement.operationType!='cube root')" class="row" >
         <!--<div class="row">-->
         <div class="col-xs-12">
             Input 2
@@ -147,10 +175,37 @@ Numeric
                 <option value="-">-</option>
                 <option value="x">x</option>
                 <option value="/">/</option>
+                <option value="log">log</option>
+                <option value="power">power (raised to)</option>
+                <option value="square root">square root</option>
+                <option value="%"> % (Modulus)</option>
+                <option value="sin">sin</option>
+                <option value="cos">cos</option>
+                <option value="tan">tan</option>
+                <option value="cosec">cosec</option>
+                <option value="cosine">cosine</option>
+                <option value="tan">tan</option>
+                <option value="cot">cot</option>
+                <option value="square">square</option>
+                <option value="cube">cube</option>
+                <option value="square root">square root</option>
+                <option value="cube root">cube root</option>
             </select>
         </div>
         <div class="col-xs-3">
-            <div class="input-group">
+            <div ng-show="(
+             model.statement.numberStatement.operationType!='sin' &&
+           model.statement.numberStatement.operationType!='cos' &&
+           model.statement.numberStatement.operationType!='tan' &&
+           model.statement.numberStatement.operationType!='log' &&
+           model.statement.numberStatement.operationType!='cosine' &&
+            model.statement.numberStatement.operationType!='cosec' &&
+            model.statement.numberStatement.operationType!='cot' &&
+            model.statement.numberStatement.operationType!='square' &&
+            model.statement.numberStatement.operationType!='cube' &&
+            model.statement.numberStatement.operationType!='square root' &&
+            model.statement.numberStatement.operationType!='cube root')" class="row" >
+            <div class="input-group" >
                 <input ng-model="model.statement.numberStatement.input2" type="text" class="form-control">
                 <div class="input-group-btn">
                     <button type="button"
@@ -164,6 +219,7 @@ Numeric
                         </li>
                     </ul>
                 </div>
+            </div>
             </div>
         </div>
     </div>
