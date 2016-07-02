@@ -228,6 +228,11 @@
                 vm.statement.stringStatement.operationType = vm.stringOperation.value;
             if (vm.statementType.label === "If")
                 vm.statement.ifStatement.comparator = vm.statement.ifStatement.comparator.label;
+            
+            /*if (vm.statementType.label === "Boolean"){
+                if(vm.statement.booleanStatement.input1 === 'NOT'){
+                }
+            }*/
 
             if (vm.statementType.label === "If")
                 vm.statement.ifStatement.comparator = vm.statement.ifStatement.comparator.label;
