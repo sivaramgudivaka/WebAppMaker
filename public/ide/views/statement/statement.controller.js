@@ -11,14 +11,25 @@
 
         vm.statementId = $routeParams.statementId;
 
+        //AW: method to repopulate the selected types
+        function getType(typeArray, value) {
+            for(i in typeArray)
+            {
+                if(typeArray[i].value === value)
+                    return typeArray[i];
+            }
+            return null;
+        }
+
+        //AW: Values are needed for cross-referencing
         vm.statementTypes = [
-            {label: 'Numeric'},
-            {label: 'String'},
-            {label: 'Boolean'},
-            {label: 'If'},
+            {label: 'Numeric',  value: 'NUMBER'},
+            {label: 'String',   value: 'STRING'},
+            {label: 'Boolean',  value: 'BOOLEAN'},
+            {label: 'If',       value: 'DECISION'},
             {label: 'Navigation'},
-            {label: 'Date'},
-            {label: 'Database'}
+            {label: 'Date',     value: 'DATE'},
+            {label: 'Database', value: 'DATABASE'}
         ];
         vm.statementType = vm.statementTypes[0];
 
@@ -75,20 +86,20 @@
         ];
 
         vm.stringOperations = [
-            {label: 'Substring'},
-            {label: 'Concatenate'},
-            {label: 'Length'},
-            {label: 'Char At'},
-            {label: 'Index Of'},
-            {label: 'Last Index Of'},
-            {label: 'Search'},
-            {label: 'Repeat'},
-            {label: 'Replace'},
-            {label: 'Lowercase'},
-            {label: 'Uppercase'},
-            {label: 'Trim'},
-            {label: 'Starts With'},
-            {label: 'Ends With'}
+            {label: 'Substring',    value: 'SUBSTRING'},
+            {label: 'Concatenate',  value: 'CONCATENATE'},
+            {label: 'Length',       value: 'LENGTH'},
+            {label: 'Char At',      value: 'CHARAT'},
+            {label: 'Index Of',     value: 'INDEXOF'},
+            {label: 'Last Index Of',value: 'LASTINDEXOF'},
+            {label: 'Search',       value: 'SEARCH'},
+            {label: 'Repeat',       value: 'REPEAT'},
+            {label: 'Replace',      value: 'REPLACE'},
+            {label: 'Lowercase',    value: 'LOWERCASE'},
+            {label: 'Uppercase',    value: 'UPPERCASE'},
+            {label: 'Trim',         value: 'TRIM'},
+            {label: 'Starts With',  value: 'STARTSWITH'},
+            {label: 'Ends With',    value: 'ENDSWITH'}
         ];
         vm.stringOperation = vm.stringOperations[0];
 
@@ -137,6 +148,11 @@
                     .then(
                         function(response) {
                             vm.statement = response.data;
+                            //AW: Selected types are repopulated from the retrieved statement
+                            if(vm.statement != null) {
+                                vm.statementType = getType(vm.statementTypes, vm.statement.statementType);
+                                vm.stringOperation = getType(vm.stringOperations, vm.statement.stringStatement.operationType);
+                            }
                         },
                         function(err) {
                             vm.error = err;
@@ -200,10 +216,11 @@
                 if(vm.statement.booleanStatement.input1 === 'NOT'){
                 }
             }*/
+            vm.statement.statementType = vm.statementType.value;
 
             //AW: Specific to String statements
             if(vm.statement.statementType === "STRING")
-                vm.statement.stringStatement.operationType = vm.stringOperation.label.toUpperCase().replace( /\s/g, "");
+                vm.statement.stringStatement.operationType = vm.stringOperation.value;
 
             StatementService
                 .saveStatement(vm, vm.statement)
