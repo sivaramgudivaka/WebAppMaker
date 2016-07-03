@@ -6,7 +6,8 @@ module.exports = function(models) {
 
     var api = {
         saveStatement: saveStatement,
-        findAllStatements:findAllStatements
+        findAllStatements:findAllStatements,
+        deleteStatement: deleteStatement
     };
     return api;
     
@@ -20,6 +21,15 @@ module.exports = function(models) {
                 },
                 function(err){
                     console.log(err);
+                }
+            );
+    }
+
+    function deleteStatement(scope) {
+        return Statement
+            .remove(
+                {
+                    _id: scope.statementId
                 }
             );
     }

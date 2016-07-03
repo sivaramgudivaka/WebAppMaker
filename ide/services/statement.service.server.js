@@ -36,7 +36,7 @@ module.exports = function (app, model) {
     }
 
     function deleteStatement(req, res) {
-        scriptModel
+        statementModel
             .deleteStatement(req.params)
             .then(
                 function(status) {
