@@ -78,7 +78,8 @@ img {
     right: 05px;
     z-index: 1;
     opacity: 10;
-    background-color: white;
+    color:green;
+    background-color: whitesmoke;
 }
 .wrapper .plus{
     position: absolute;
@@ -86,7 +87,17 @@ img {
     right: 20px;
     z-index: 1;
     opacity: 10;
-    background-color: white;
+    color:red;
+    background-color: whitesmoke;
+}
+.wrapper .add{
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    z-index: 1;
+    opacity: 10;
+    color:dodgerblue;
+    background-color: whitesmoke;
 }
 .navbar-brand {
     font-weight: bold;
