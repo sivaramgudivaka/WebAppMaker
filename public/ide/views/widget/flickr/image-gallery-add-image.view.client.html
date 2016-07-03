@@ -1,27 +1,40 @@
+<nav class="navbar navbar-default navbar-fixed-top jga">
+    <div class="navbar-header">
+
+        <a href="#"
+           class="btn btn-default btn-transparent pull-left">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="navbar-brand">Add New Image</a>
+
+        <a ng-click="model.addImage(model.image)"
+           class="btn btn-default btn-transparent pull-right">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+
+    </div>
+</nav>
+
+
+
 <div class="container container-bottom">
-    <form>
+    <form action="/api/imageupload" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="widgetname">Name</label>
-            <input ng-model= "model.widget.name" required type="text" class="form-control" id="widgetname" placeholder="Name" value="WidgetName">
+            <label for="imagename">Name</label>
+            <input ng-model= "model.image.name" required type="text" class="form-control" id="imagename" placeholder="Name" value="Image Name">
         </div>
         <div class="form-group">
-            <label for="widgettext">Text</label>
-            <input ng-model= "model.widget.text" required type="text" class="form-control" id="widgettext" placeholder="Text" value="WidgetText">
+            <label for="imageurl">URL</label>
+            <input ng-model= "model.image.url" type="url" class="form-control" id="imageurl" placeholder="URL" value="ImageURL">
         </div>
-        <div class="form-group">
-            <label for="widgeturl">URL</label>
-            <input ng-model= "model.widget.url" type="url" class="form-control" id="widgeturl" placeholder="URL" value="WidgetURL">
-        </div>
-        <div class="form-group">
-            <label for="widgetwidth">Width (Enter Number)</label>
-            <input ng-model= "model.widget.width" required type="text" class="form-control" id="widgetwidth" placeholder="%" value="WidgetWidth">
-        </div>
-    </form>
+
     <div class = "form-group">
-        <form action="/api/upload" method="post" enctype="multipart/form-data">
+
             <input  name="myFile"   value="{{model.widget.widgetFile}}" type="file" class="form-control"/>
             <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
             <input  name="widgetId" value="{{model.widgetId}}"     style="display: none"/>
+        <input  name="developerId" value="{{model.developerId}}"     style="display: none"/>
             <input  name="pageId" value="{{model.pageId}}"     style="display: none"/>
             <input  name="userId" value="{{model.userId}}"     style="display: none"/>
             <input  name="websiteId" value="{{model.websiteId}}"     style="display: none"/>

@@ -21,10 +21,13 @@
 </div>
 <div class="row" class="margin-left: 0px !important;margin-right: 0px !important;">
     <div ng-repeat="photo in model.results" class="col-xs-4" style="padding-right: 1px;padding-left: 0px;padding-bottom: 1px;">
+        <div ng-if="photo.link" class="wrapper">
         <img ng-click="model.selectImage(photo,model.widget)"
              ng-src={{photo.link}}
-             width="100%"/>
+             width="100%"/><a ng-click="model.selectImage(photo,model.widget)"><span class="cog glyphicon glyphicon-ok"></span></a>
+        <a ng-click="model.addImage(photo)"><span class="add glyphicon glyphicon-plus"></span></a>
     </div>
+        </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom jga">

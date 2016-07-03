@@ -9,17 +9,21 @@
     function imageGalleryService ($http) {
         var api = {
             addImage: addImage,
-            deleteImage:deleteImage
+            deleteImage:deleteImage,
+            findUserImages:findUserImages
         };
         return api;
 
-        function addImage(image) {
-            return $http.post("/api/image/", image);
+        function addImage(developerId,image) {
+            return $http.post("/api/image/"+developerId, image);
         }
 
         function deleteImage(imageId){
             return $http.delete("/api/image/"+imageId);
         }
-
+        function findUserImages(developerId)
+        {
+            return $http.get("/api/image/"+developerId);
+        }
     }
 })();
