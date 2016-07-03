@@ -29,20 +29,20 @@
             <input ng-model= "model.image.url" type="url" class="form-control" id="imageurl" placeholder="URL" value="ImageURL">
         </div>
 
-    <div class = "form-group">
+        <div class = "form-group">
 
             <input  name="myFile"   value="{{model.widget.widgetFile}}" type="file" class="form-control"/>
             <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
             <input  name="widgetId" value="{{model.widgetId}}"     style="display: none"/>
-        <input  name="developerId" value="{{model.developerId}}"     style="display: none"/>
+            <input  name="developerId" value="{{model.developerId}}"     style="display: none"/>
             <input  name="pageId" value="{{model.pageId}}"     style="display: none"/>
             <input  name="userId" value="{{model.userId}}"     style="display: none"/>
             <input  name="websiteId" value="{{model.websiteId}}"     style="display: none"/>
             <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
-        </form>
-    </div>
+    </form>
+</div>
 
-    </div>
+</div>
 <nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
         <a href="#/developer/{{currentUser.username}}/edit"

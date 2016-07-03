@@ -1,6 +1,4 @@
-/**
- * Created by rushi on 6/30/16.
- */
+
 var mongoose = require("mongoose");
 
 module.exports = function (app, model) {
@@ -23,7 +21,7 @@ module.exports = function (app, model) {
         imageGalleryModel
             .addImage(ImageGallery)
             .then(function(image){
-                
+
                 res.json(image);
             },function(error){
                 res.status(404).send(error);
@@ -70,10 +68,10 @@ module.exports = function (app, model) {
         var filename      = myFile.filename;
 
         var imageGallery = {
-                _developer:developerId,
-                url: "/uploads/" + filename,
-                source: "upload",
-            
+            _developer:developerId,
+            url: "/uploads/" + filename,
+            source: "upload",
+
         };
         console.log(imageGallery)
         imageGalleryModel

@@ -3,11 +3,11 @@
         <a class="navbar-brand">Search User Images</a>
 
 
-    <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/image/new"
-       class="btn btn-default btn-transparent pull-right">
-        <span class="glyphicon glyphicon-plus"></span>
-    </a>
-</div>
+        <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/image/new"
+           class="btn btn-default btn-transparent pull-right">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
 </nav>
 
 
@@ -18,13 +18,13 @@
             <div class="fill">
                 <a ng-click="model.selectImage(image)"><span class="cog glyphicon glyphicon-ok"></span></a >
                 <a ng-click="model.deleteImage(image._id)"><span class="plus glyphicon glyphicon-remove"></span></a>
-            <img
-                                      ng-src={{image.url}}
-                                      class="resize_fit_center"
-            />
-    </div>
+                <img
+                        ng-src={{image.url}}
+                        class="resize_fit_center"
+                />
+            </div>
         </div>
-</div>
+    </div>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
