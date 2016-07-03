@@ -162,7 +162,7 @@
         }
         init();
         function deleteStatement() {
-            ScriptService
+            StatementService
                 .deleteStatement(vm)
                 .then(
                     function() {
