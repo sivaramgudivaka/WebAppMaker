@@ -213,18 +213,13 @@
             vm.statement.name= vm.statementName;
             // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
             vm.statement.statementType = vm.statementType.value;
-            
+
             //AW: Specific to String statements
             if(vm.statement.statementType === "STRING")
                 vm.statement.stringStatement.operationType = vm.stringOperation.value;
 
             if (vm.statementType.label === "If")
                 vm.statement.ifStatement.comparator = vm.statement.ifStatement.comparator.label;
-            
-            /*if (vm.statementType.label === "Boolean"){
-                if(vm.statement.booleanStatement.input1 === 'NOT'){
-                }
-            }*/
 
 
             /*if (vm.statementType.label === "Boolean"){
