@@ -1,7 +1,8 @@
+
 <nav class="navbar navbar-default navbar-fixed-top jga">
     <div class="navbar-header">
 
-        <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.widget._page}}/widget"
+        <a href="#/page/{{model.widget._page}}/widget"
            class="btn btn-default btn-transparent pull-left">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
@@ -16,204 +17,241 @@
     </div>
 </nav>
 
+<form name="widgetForm" id="widgetForm" novalidate>
+    <div class="form-group">
+        <label for="widgetName">Name</label>
+        <input ng-model="model.widget.name" id="widgetName" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="bootstrapClass">Bootstrap Class</label>
+        <input ng-model="model.widget.bootClass" id="bootstrapClass" class="form-control"/>
+    </div>
+    <div ng-switch="model.widget.widgetType">
 
-
-Name
-<input ng-model="model.widget.name" class="form-control"/>
-
-Bootstrap Class
-<input ng-model="model.widget.bootClass" class="form-control"/>
-
-<div ng-switch="model.widget.widgetType">
-
-    <div ng-switch-when="HEADER">
-        Text
-        <input ng-model="model.widget.text" class="form-control" name="text" required/>
+        <div ng-switch-when="HEADER">
+            <div class="form-group">
+                <label for="widgetHeaderText">Text</label>
+                <input ng-model="model.widget.text" class="form-control" id="widgetHeaderText" name="text" required/>
+            </div>
             <span ng-show="widgetForm.text.$invalid && widgetForm.$submitted">
                 Text is required
             </span>
-        Size
-        <select ng-model="model.widget.header.size" class="form-control">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-        </select>
-    </div>
+            <div class="form-group">
+                <label for="widgetHeaderSize">Size</label>
+                <select ng-model="model.widget.header.size" id="widgetHeaderSize" class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
+            </div>
+        </div>
 
-    <div ng-switch-when="BUTTON">
-        Text
-        <input ng-model="model.widget.text" class="form-control"/>
+        <div ng-switch-when="BUTTON">
+            <div class="form-group">
+                <label for="widgetButtonText">Text</label>
+                <input ng-model="model.widget.text" id="widgetButtonText" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="widgetButtonStyle">Style</label>
+                <select ng-model="model.widget.button.style" id="widgetButtonStyle" class="form-control">
+                    <option>Default</option>
+                    <option>Primary</option>
+                    <option>Success</option>
+                    <option>Info</option>
+                    <option>Warning</option>
+                    <option>Danger</option>
+                </select>
+            </div>
+            <!-- dropdown to select button navigate property -->
+            <div class="form-group">
+                <label for="widgetButtonNavi">Navigate to page</label>
+                <select ng-options="page as page.name for page in model.pages track by page._id"
+                        ng-model="model.widget.button.navigate" id="widgetButtonNavi"class="form-control">
+                </select>
+            </div>
+            <!-- choose database action when button is clicked -->
+            <div class="form-group">
+                <label for="widgetButtonAction">Action</label>
+                <select ng-model="model.widget.button.dbCommand" id="widgetButtonAction" class="form-control">
+                    <option>INSERT</option>
+                    <option>SELECT</option>
+                    <option>UPDATE</option>
+                    <option>DELETE</option>
+                </select>
+            </div>
 
-        Style
-        <select ng-model="model.widget.button.style" class="form-control">
-            <option>Default</option>
-            <option>Primary</option>
-            <option>Success</option>
-            <option>Info</option>
-            <option>Warning</option>
-            <option>Danger</option>
-        </select>
-        <!-- dropdown to select button navigate property -->
-        Navigate to page
-        <select ng-options="page as page.name for page in model.pages track by page._id"
-                ng-model="model.widget.button.navigate" class="form-control">
-        </select>
+            <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/script/edit"
+               class="btn btn-block btn-success">
+                Run Script
+            </a>
+        </div>
 
-        <!-- choose database action when button is clicked -->
-        Action
-        <select ng-model="model.widget.button.dbCommand" class="form-control">
-            <option>INSERT</option>
-            <option>SELECT</option>
-            <option>UPDATE</option>
-            <option>DELETE</option>
-        </select>
+        <!-- datatable widget collection is name of page, fields is comma separated string -->
+        <div ng-switch-when="DATATABLE">
 
-        <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/script"
-           class="btn btn-block btn-success">
-            Run Script
-        </a>
-    </div>
-
-    <!-- datatable widget collection is name of page, fields is comma separated string -->
-    <div ng-switch-when="DATATABLE">
-
-        Collection:
-        <select ng-options="page as page.name for page in model.pages track by page._id"
-                ng-model="model.widget.datatable.collection" class="form-control">
-        </select>
-
-        Fields:
-        <input ng-model="model.widget.datatable.fields"
-               class="form-control"/>
-
-        <!-- configure deletable for datatable -->
-        <div class="input-group jga-margin-bottom-5px">
-            <input type="text"
-                   readonly
-                   value="Deletable"
-                   class="form-control jga-white-bg"/>
+            <div class="form-group">
+                <label for="widgetCollection">Collection:</label>
+                <select ng-options="page as page.name for page in model.pages track by page._id"
+                        ng-model="model.widget.datatable.collection"id="widgetCollection" class="form-control">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="widgetFields">Fields:</label>
+                <input ng-model="model.widget.datatable.fields"
+                       id="widgetFields" class="form-control"/>
+            </div>
+            <!-- configure deletable for datatable -->
+            <div class="input-group jga-margin-bottom-5px">
+                <input type="text"
+                       readonly
+                       value="Deletable"
+                       class="form-control jga-white-bg"/>
                 <span class="input-group-addon">
                     <input ng-model="model.widget.datatable.deletable"
                            type="checkbox"/>
                 </span>
+            </div>
+
         </div>
+        <!-- REPEATER widget is same as DATATABLE widget except that it has a template -->
+        <div ng-switch-when="REPEATER">
+            <div class="form-group">
+                <label for="widgetRepeaterCollection">Collection:</label>
+                <select ng-options="page as page.name for page in model.pages track by page._id"
+                        ng-model="model.widget.repeater.collection" id="widgetRepeaterCollection" class="form-control">
+                </select>
+            </div>
 
-    </div>
-    <!-- REPEATER widget is same as DATATABLE widget except that it has a template -->
-    <div ng-switch-when="REPEATER">
-
-        Collection:
-        <select ng-options="page as page.name for page in model.pages track by page._id"
-                ng-model="model.widget.repeater.collection" class="form-control">
-        </select>
-
-        Fields:
-        <input ng-model="model.widget.repeater.fields"
-               class="form-control"/>
-
-        <!-- configure deletable for repeater -->
-        <div class="input-group jga-margin-bottom-5px">
-            <input type="text"
-                   readonly
-                   value="Deletable"
-                   class="form-control jga-white-bg"/>
+            <div class="form-group">
+                <label for="widgetRepeaterFields">Fields:</label>
+                <input ng-model="model.widget.repeater.fields"
+                       id="widgetRepeaterFields" class="form-control"/>
+            </div>
+            <!-- configure deletable for repeater -->
+            <div class="input-group jga-margin-bottom-5px">
+                <input type="text"
+                       readonly
+                       value="Deletable"
+                       class="form-control jga-white-bg"/>
                 <span class="input-group-addon">
                     <input ng-model="model.widget.repeater.deletable"
                            type="checkbox"/>
                 </span>
-        </div>
+            </div>
 
-        <!-- template allows users to provide HTML to format each record -->
-        Template:
-        <div text-angular
-             ng-model="model.widget.repeater.template">
-        </div>
+            <!-- template allows users to provide HTML to format each record -->
+            Template:
+            <div text-angular
+                 ng-model="model.widget.repeater.template">
+            </div>
 
-    </div>
-    <div ng-switch-when="LINK">
-        Text
-        <input ng-model="model.widget.text" class="form-control"/>
-        URL
-        <input ng-model="model.widget.link.url" class="form-control"/>
-        Target
-        <select ng-model="model.widget.link.target" class="form-control">
-            <option>_blank</option>
-            <option>_self</option>
-            <option>_parent</option>
-            <option>_top</option>
-        </select>
-    </div>
-    <div ng-switch-when="HTML">
-        HTML
-        <!-- use textangular directive to render a WYSIWYG HTML editor -->
-        <div text-angular
-             ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"
-             ng-model="model.widget.html.text">
         </div>
-    </div>
-    <div ng-switch-when="TEXT">
-        Text
-        <input ng-model="model.widget.text" class="form-control"/>
-        Rows
-        <input ng-model="model.widget.textInput.rows" class="form-control" type="number"/>
-        Placeholder
-        <input ng-model="model.widget.textInput.placeholder" class="form-control"/>
-        <!-- checkbox to select formatted text -->
-        <div class="input-group jga-margin-bottom-5px">
-            <input type="text"
-                   readonly
-                   value="Formatted"
-                   class="form-control jga-white-bg"/>
+        <div ng-switch-when="LINK">
+            <div class="form-group">
+                <label for="widgetLinkText">Text</label>
+                <input ng-model="model.widget.text" id="widgetLinkText" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="widgetLinkURL">URL</label>
+                <input ng-model="model.widget.link.url" id="widgetLinkURL" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="widgetTarget">Target</label>
+                <select ng-model="model.widget.link.target" id="widgetTarget" class="form-control">
+                    <option>_blank</option>
+                    <option>_self</option>
+                    <option>_parent</option>
+                    <option>_top</option>
+                </select>
+            </div>
+        </div>
+        <div ng-switch-when="HTML">
+            <div class="form-group">
+                <label for="widgetHTMLHead">HTML</label>
+                <!-- use textangular directive to render a WYSIWYG HTML editor -->
+                <div text-angular id="widgetHTMLHead"
+                     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"
+                     ng-model="model.widget.html.text">
+                </div>
+            </div>
+            <div ng-switch-when="TEXT">
+                <div class="form-group">
+                    <label for="widgetTextText">Text</label>
+                    <input ng-model="model.widget.text" id="widgetTextText" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="widgetTextRows">Rows</label>
+                    <input ng-model="model.widget.textInput.rows" id="widgetTextRows" class="form-control" type="number"/>
+                </div>
+                <div class="form-group">
+                    <label for="widgetTextPlaceholder">Placeholder</label>
+                    <input ng-model="model.widget.textInput.placeholder" id="widgetTextPlaceholder" class="form-control"/>
+                </div>
+                <!-- checkbox to select formatted text -->
+                <div class="input-group jga-margin-bottom-5px">
+                    <input type="text"
+                           readonly
+                           value="Formatted"
+                           class="form-control jga-white-bg"/>
                 <span class="input-group-addon">
                     <input ng-model="model.widget.textInput.formatted"
                            type="checkbox"/>
                 </span>
+                </div>
+            </div>
+            <div ng-switch-when="IMAGE">
+                <div class="form-group">
+                    <label for="widgetImageURL">URL</label>
+                    <input ng-model="model.widget.image.url" id="widgetImageURL" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="widgetImageWidth">Width</label>
+                    <input ng-model="model.widget.image.width" id="widgetImageWidth" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="widgetImageUpload">Upload</label>
+                    <form action="/api/upload"
+                          method="post"
+                          enctype="multipart/form-data">
+                        <input name="websiteId" value="{{model.websiteId}}" style="display: none"/>
+                        <input name="pageId" value="{{model.pageId}}" style="display: none"/>
+                        <input name="widgetId" value="{{model.widgetId}}" style="display: none"/>
+                        <input name="width" value="{{model.widget.image.width}}" style="display: none"/>
+                        <input  type="file" name="myFile" id="widgetImageUpload" class="form-control"/>
+                        <button type="submit" class="btn btn-block btn-primary">
+                            Upload Image
+                        </button>
+                    </form>
+                </div>
+
+                <a href="#/developer/{{model.username}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/flickr" class="btn btn-success btn-block">
+                    Flickr
+                </a>
+            </div>
+            <div ng-switch-when="YOUTUBE">
+                <div class="form-group">
+                    <label for="widgetYouTubeURL">URL</label>
+                    <input ng-model="model.widget.youTube.url" id="widgetYouTubeURL" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="widgetYoutubeWidth">Width</label>
+                    <input ng-model="model.widget.youTube.width" id="widgetYoutubeWidth" class="form-control"/>
+                </div>
+            </div>
         </div>
-    </div>
-    <div ng-switch-when="IMAGE">
-        Url
-        <input ng-model="model.widget.image.url" class="form-control" readonly/>
-        Width
-        <input ng-model="model.widget.image.width" class="form-control"/>
 
-        <!--Upload
-        <form action="/api/upload"
-              method="post"
-              enctype="multipart/form-data">
-            <input name="websiteId" value="{{model.websiteId}}" style="display: none"/>
-            <input name="pageId" value="{{model.pageId}}" style="display: none"/>
-            <input name="widgetId" value="{{model.widgetId}}" style="display: none"/>
-            <input name="developerId" value="{{model.developerId}}" style="display: none"/>
-            <input name="width" value="{{model.widget.image.width}}" style="display: none"/>
-            <input  type="file" name="myFile" class="form-control"/>
-            <button type="submit" class="btn btn-block btn-primary">
-                Upload Image
-            </button>
-        </form>-->
-        <a ng-click="model.changeWidget(widget)" class="btn btn-danger btn-block">
-            Change Image
+        <a ng-click="model.removeWidget(widget)" class="btn btn-danger btn-block">
+            Delete
         </a>
-    </div>
-    <div ng-switch-when="YOUTUBE">
-        URL
-        <input ng-model="model.widget.youTube.url" class="form-control"/>
-        Width
-        <input ng-model="model.widget.youTube.width" class="form-control"/>
-    </div>
-</div>
 
-<a ng-click="model.removeWidget(widget)" class="btn btn-danger btn-block">
-    Delete
-</a>
-
-
+</form>
 
 <nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
-        <a href="#/developer/{{model.developerId}}"
+        <a href="#/developer/{{currentUser.username}}/edit"
            class="navbar-toggle collapsed">
             <span class="glyphicon glyphicon-user"></span>
         </a>
