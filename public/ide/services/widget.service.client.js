@@ -13,7 +13,7 @@
             removeWidget: removeWidget,
             sortWidget: sortWidget,
             findPagesFromWidgetId: findPagesFromWidgetId,
-            findUserImages:findUserImages
+            deleteUserImages:deleteUserImages
         };
         return api;
 
@@ -48,7 +48,7 @@
         function addWidget(developerId,websiteId, pageId, widgetType) {
             return $http.post("/api/website/"+websiteId+"/page/"+pageId+"/widget?widgetType="+widgetType+"&developerId="+developerId);
         }
-        function findUserImages(userId)
+        function deleteUserImages(userId)
         {
             return $http.get("/api/widget/images/"+userId);
         }

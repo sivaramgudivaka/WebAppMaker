@@ -16,7 +16,7 @@ module.exports = function (app, model) {
     app.post("/api/upload", upload.single('myFile'), uploadImage);
     app.put    ("/api/website/:websiteId/page/:pageId/widget", updateWidgets);
     app.get   ("/api/widget/:widgetId/page", findPagesFromWidgetId);
-    app.get("/api/widget/images/:userId",findUserImages);
+    app.get("/api/widget/images/:imageId",deleteUserImages);
    //app.get ("/api/upload", upload.single('myFile'), uploadImage);
 
 
@@ -144,7 +144,8 @@ module.exports = function (app, model) {
             .updateWidget(websiteId, pageId, widgetId, widget)
             .then(
                 function(response) {
-                    res.send(200);
+                   // console.log(response);
+                    res.json(response);
                 },
                 function(err) {
                     res.status(404).send(err);
@@ -225,5 +226,16 @@ module.exports = function (app, model) {
                     res.status(400).send(err);
                 }
             )
+    }
+    function deleteUserImages(req,res){
+        var  imageId=req.params.imageId;
+        widgetModel
+            .deleteUserImages(imageId)
+            .then(function(response){
+                //console.log(widget)
+             res.send(200)
+            },function (err){
+                res.status(400).send(err)
+            });
     }
 }
