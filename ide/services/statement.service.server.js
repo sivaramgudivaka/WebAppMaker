@@ -8,19 +8,6 @@ module.exports = function (app, model) {
 
     var statementModel = model.statementModel;
     var scriptModel    = model.scriptModel;
-    
-    function findAllStatements(req, res) {
-        statementModel
-            .findAllStatements(req.params)
-            .then(
-                function(statements) {
-                    res.json(statements);
-                },
-                function(err) {
-                    res.statusCode(400).send(err);
-                }
-            );
-    }
 
     function findAllStatements(req, res) {
         statementModel
