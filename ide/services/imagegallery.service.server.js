@@ -1,4 +1,6 @@
-
+/**
+ * Created by rushi on 6/30/16.
+ */
 var mongoose = require("mongoose");
 
 module.exports = function (app, model) {
