@@ -16,13 +16,16 @@ module.exports = function(model) {
         updateWidget: updateWidget,
         removeWidget: removeWidget,
         sortWidget  : sortWidget,
-        findUserImages:findUserImages
+       // findUserImages:findUserImages,
+        deleteUserImages:deleteUserImages
     };
     return api;
-    function findUserImages(user_Id)
+    function deleteUserImages(imageId)
     {
+      //  console.log("In delete User Images");
+       // console.log(imageId);
         return Widget
-           .find({widgetType:"IMAGE",_developer:user_Id});
+           .update({'image.image_Id':imageId},{'image.image_Id':null,'image.url':"http:tpfg"}, {multi: true});
 
     }
 
@@ -145,6 +148,7 @@ module.exports = function(model) {
                     } else if(widget.widgetType === "IMAGE") {
                         if(newWidget.image) {
                             widget.image = {
+                                image_Id:newWidget.image.image_Id,
                                 url   : newWidget.image.url,
                                 width : newWidget.image.width
                             };

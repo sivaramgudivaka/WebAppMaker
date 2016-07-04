@@ -42,15 +42,7 @@
         </form>
     </div>
 
-    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/search">
-        <button class="btn btn-block btn-primary">Search</button>
-    </a>
-
-
-    <a ng-click="model.deleteWidget()">
-        <button ng-click="model.deleteWidget()" type="submit" class="btn btn-block btn-danger">Delete</button>
-    </a>
-</div>
+    </div>
 <nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
         <a href="#/developer/{{currentUser.username}}/edit"
@@ -63,9 +55,6 @@
            class="navbar-toggle collapsed">
             <span class="glyphicon glyphicon-search"></span>
         </a>
-        <a href=#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}
-           class="navbar-toggle collapsed">
-            <span class="glyphicon glyphicon-upload"></span>
-        </a>
+
     </div>
 </nav>

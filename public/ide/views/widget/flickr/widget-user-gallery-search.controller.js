@@ -63,6 +63,7 @@
         function selectImage(image) {
             var newWidget={
                 image:{
+                    image_Id:image._id,
                     url:image.url,
                     size:""
                 }
@@ -88,11 +89,19 @@
             ImageGalleryService
                 .deleteImage(imageId)
                 .then(function(response){
-                    init();
+                    WidgetService
+                        .deleteUserImages(imageId)
+                        .then(function (response) {
+                            init();
+                            },function (error) {
+                        vm.error="Something Went Wrong";
+                    });
+
                 },function(error)
                 {
                     vm.error="Unable to remove Image";
                 })
+            
         }
     }
 
@@ -133,6 +142,7 @@
             function selectImage(photo,widget) {
                 console.log(photo.link);
                 var image={
+
                     url:photo.link,
                     name:"Google-Image",
                     source:"Google Search"
@@ -140,9 +150,12 @@
                 ImageGalleryService
                     .addImage(vm.developerId,image)
                     .then(function (response) {
-                        var result=response.data
+                        var image=response.data;
+                        console.log("The image _id");
+                        console.log(image._id)
                         var newWidget={
                             image:{
+                                image_Id:image._id,
                                 url:photo.link,
                                 size:""
                             }
