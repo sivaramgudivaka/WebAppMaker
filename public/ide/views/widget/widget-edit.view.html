@@ -174,12 +174,12 @@
             </div>
         </div>
         <div ng-switch-when="IMAGE">
-            URL
-            <input ng-model="model.widget.image.url" class="form-control"/>
+            Url
+            <input ng-model="model.widget.image.url" class="form-control" readonly/>
             Width
             <input ng-model="model.widget.image.width" class="form-control"/>
-            
-            Upload
+
+            <!--Upload
             <form action="/api/upload"
                   method="post"
                   enctype="multipart/form-data">
@@ -192,8 +192,10 @@
                 <button type="submit" class="btn btn-block btn-primary">
                     Upload Image
                 </button>
-            </form>
-
+            </form>-->
+            <a ng-click="model.changeWidget(widget)" class="btn btn-danger btn-block">
+                Change Image
+            </a>
         </div>
         <div ng-switch-when="YOUTUBE">
             URL
