@@ -165,6 +165,19 @@ module.exports = function (app, model) {
             );
     }
 
+    function findAllStatements(req, res) {
+        statementModel
+            .findAllStatements(req.params)
+            .then(
+                function(statements) {
+                    res.json(statements);
+                },
+                function(err) {
+                    res.statusCode(400).send(err);
+                }
+            );
+    }
+
     function deleteStatement(req, res) {
         statementModel
             .deleteStatement(req.params)
