@@ -16,7 +16,7 @@
 
         vm.updateWidget  = updateWidget;
         vm.removeWidget  = removeWidget;
-
+        vm.changeWidget =changeWidget;
         function init() {
             PageService
                 .findPagesForWebsite(vm.websiteId)
@@ -65,6 +65,10 @@
                         vm.error = error;
                     }
                 );
+        }
+        function changeWidget(widget)
+        {
+            $location.url("/developer/"+vm.developerId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/" + vm.widgetId+"/image");
         }
     }
 
