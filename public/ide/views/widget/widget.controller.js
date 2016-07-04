@@ -125,7 +125,13 @@
                 .then(
                     function(response) {
                         vm.widgets = response.data;
-                        vm.setPage(1, 1);
+                        for(var i = 0; i< vm.widgets.length; i++)
+                        {
+                            if(vm.widgets[i].widgetType == 'DATATABLE')
+                            {
+                                vm.setPage(1, vm.widgets[i].datatable.pageRows);
+                            }
+                        }
                     },
                     function(err) {
                         vm.error = err;
