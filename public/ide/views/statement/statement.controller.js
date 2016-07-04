@@ -48,8 +48,12 @@
         vm.databaseOperation = vm.databaseOperations[0];
 
         vm.dateOperations = [
-            {label: '+'},
-            {label: '-'}
+            {label: 'Add'},
+            {label: 'Subtract'},
+            {label: 'Create Date from String'},
+            {label: 'Create Date from milliseconds'},
+            {label: 'Create Date from selecting in calendar'},
+            {label: 'Create Date by providing each parameter'}
         ];
 
         vm.collections = [
@@ -105,6 +109,7 @@
 
         //$(".input-date#date1").datepicker();
         //$("#date2").datepicker();
+
         // route params
         vm.username    = $routeParams.username;
         vm.developerId = $routeParams.developerId;
@@ -207,7 +212,7 @@
             console.log(vm.statement);
 
             vm.statement.name= vm.statementName;
-
+            
             // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
             if (vm.statementType.label === "If")
                 vm.statement.ifStatement.comparator = vm.statement.ifStatement.comparator.label;

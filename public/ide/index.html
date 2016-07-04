@@ -7,9 +7,12 @@
     <!--<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">-->
     <link rel="apple-touch-icon" href="images/wam.png">
 
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/cupertino/jquery-ui.css"/>
-
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+    <!-- datetimepicker needs bootstrap-datetimepicker-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+
     <!-- textAngular needs font awesome fonts and styles -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link href="../css/styles.css" rel="stylesheet"/>
@@ -28,6 +31,11 @@
     <script src="../js/angular-touch.js"></script>
     <script src="../directives/jga-directives.js"></script>
     <script src="../directives/wam-directives.js"></script>
+    <script src="../directives/datetime-directives.js"></script>
+
+    <!-- datetimepicker needs bootstrap-datetimepicker-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
     <script src="app.js"></script>
     <script src="config.js"></script>
     <!-- load autocomplete directive -->
@@ -60,8 +68,8 @@
     <title>wam</title>
 </head>
 <body>
-    <div class="container" ng-controller="MainController as main">
-        <div ng-view></div>
-    </div>
+<div class="container" ng-controller="MainController as main">
+    <div ng-view></div>
+</div>
 </body>
 </html>
