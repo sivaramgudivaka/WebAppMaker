@@ -222,7 +222,7 @@
                 }
             }*/
             vm.statement.statementType = vm.statementType.value;
-
+            
             //AW: Specific to String statements
             if(vm.statement.statementType === "STRING")
                 vm.statement.stringStatement.operationType = vm.stringOperation.value;
