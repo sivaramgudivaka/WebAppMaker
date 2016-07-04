@@ -20,19 +20,23 @@
 
 <form name="websiteForm" id="websiteForm" novalidate>
 
-    Name
-    <input ng-model="model.website.name"
-           class="form-control"
-           placeholder="Name" name="name" required/>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input ng-model="model.website.name"
+               class="form-control" id="name"
+               placeholder="Name" name="name" required/>
+    </div>
     <div ng-show="websiteForm.$submitted && websiteForm.name.$invalid">
         Website name is required
     </div>
 
-    Description
+    <div class="form-group">
+        <label for="description">Description</label>
     <textarea ng-model="model.website.description"
-           rows="5"
-           class="form-control"
-           placeholder="Description"></textarea>
+              rows="5" id="description"
+              class="form-control"
+              placeholder="Description"></textarea>
+    </div>
 
 </form>
 

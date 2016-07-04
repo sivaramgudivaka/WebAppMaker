@@ -16,15 +16,19 @@
     </div>
 </nav>
 
-Name
-<input ng-model="model.page.name"
-       class="form-control"
-       placeholder="Page Name"/>
+<div class="form-group">
+    <label for="pageName">Name</label>
+    <input ng-model="model.page.name"
+           id="pageName" class="form-control"
+           placeholder="Page Name"/>
+</div>
 
-Title
-<input ng-model="model.page.title"
-       class="form-control"
-       placeholder="Page Title"/>
+<div class="form-group">
+    <label for="pageTitle">Title</label>
+    <input ng-model="model.page.title"
+           id="pageTitle" class="form-control"
+           placeholder="Page Title"/>
+</div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
