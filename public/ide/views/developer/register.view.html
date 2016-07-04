@@ -11,6 +11,7 @@
 </div>
 
 <form name="registerForm" id="registerForm" novalidate>
+    <div class="form-group">
     <input ng-model="developer.username"
            placeholder="username"
            autocorrect="off"
@@ -18,23 +19,26 @@
            required
            name="username"
            class="form-control"/>
+        </div>
 
     <div ng-show="registerForm.$submitted && registerForm.username.$invalid">
         Username is required
     </div>
 
+    <div class="form-group">
     <input ng-model="developer.password"
            placeholder="password"
            type="password"
            name="password"
            class="form-control"/>
-
+</div>
+    <div class="form-group">
     <input ng-model="developer.password2"
            placeholder="verify password"
            type="password"
            name="password2"
            class="form-control"/>
-
+</div>
     <!--<div ng-show="registerForm.$submitted && registerForm.password != registerForm.password2">-->
         <!--Passwords must match-->
     <!--</div>-->
