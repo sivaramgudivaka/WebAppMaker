@@ -11,15 +11,6 @@ module.exports = function(models) {
     };
     return api;
 
-    function deleteStatement(scope) {
-        return Statement
-            .remove(
-                {
-                    _id: scope.statementId
-                }
-            );
-    }
-
     function findAllStatements(scope){
         var scriptId = scope.scriptId;
         return Statement
