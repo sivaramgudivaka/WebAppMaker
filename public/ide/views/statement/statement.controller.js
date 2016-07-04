@@ -36,8 +36,12 @@
         vm.databaseOperation = vm.databaseOperations[0];
 
         vm.dateOperations = [
-            {label: '+'},
-            {label: '-'}
+            {label: 'Add'},
+            {label: 'Subtract'},
+            {label: 'Create Date from String'},
+            {label: 'Create Date from milliseconds'},
+            {label: 'Create Date from selecting in calendar'},
+            {label: 'Create Date by providing each parameter'}
         ];
 
         vm.collections = [
@@ -72,9 +76,6 @@
             {label: 'Go to statement'},
             {label: 'Navigate to page'}
         ];
-
-        //$(".input-date#date1").datepicker();
-        //$("#date2").datepicker();
 
         // route params
         vm.username    = $routeParams.username;
@@ -146,7 +147,7 @@
 
             // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
 
-            
+
 
             StatementService
                 .saveStatement(vm, vm.statement)
