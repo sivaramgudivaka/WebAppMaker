@@ -4,18 +4,18 @@ module.exports = function() {
 
     var DateStatementSchema = mongoose.Schema({
         dateOperation : {
-            label: {type : String, enum : ["+", "-"]}
+            label: {type : String, enum : ["Add", "Subtract", "Create Date from String", "Create Date from milliseconds",
+            "Create Date from selecting in calendar", "Create Date by providing each parameter"]}
         },
         dateOperand1         : String,
-        dateOperand2         : String,
         pickedDate1          : String,
+        operand1MilliSeconds : String,
         operand1Seconds      : String,
         operand1Minutes      : String,
         operand1Hours        : String,
         operand1Date         : String,
         operand1Month        : String,
         operand1Year         : String,
-        pickedDate2          : String,
         operand2Seconds      : String,
         operand2Minutes      : String,
         operand2Hours        : String,

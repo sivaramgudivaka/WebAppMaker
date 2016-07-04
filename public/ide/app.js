@@ -2,6 +2,6 @@
     angular
         .module ("WebAppMakerApp",
             ["ngRoute", "ngTouch", "jgaDirectives", "wamDirectives",
-                "textAngular",
+                "textAngular", "datetimeDirectives",
                 "angucomplete-alt"]); // add autocomplete dependency
 })();

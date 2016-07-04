@@ -47,8 +47,12 @@
         vm.databaseOperation = vm.databaseOperations[0];
 
         vm.dateOperations = [
-            {label: '+'},
-            {label: '-'}
+            {label: 'Add'},
+            {label: 'Subtract'},
+            {label: 'Create Date from String'},
+            {label: 'Create Date from milliseconds'},
+            {label: 'Create Date from selecting in calendar'},
+            {label: 'Create Date by providing each parameter'}
         ];
 
         vm.collections = [
@@ -208,7 +212,7 @@
 
             // vm.dateStatement.dateOperation = vm.statement.dateStatement.dateOperation.label;
             vm.statement.statementType = vm.statementType.value;
-
+            
             //AW: Specific to String statements
             if(vm.statement.statementType === "STRING")
                 vm.statement.stringStatement.operationType = vm.stringOperation.value;
