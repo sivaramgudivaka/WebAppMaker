@@ -228,3 +228,7 @@ th {
     right: 0px;
     left:  auto;
 }
+.customPadding {
+    padding-right: 10px;
+    padding-left: 10px
+}
