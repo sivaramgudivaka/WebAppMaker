@@ -66,10 +66,11 @@
                     <thead>
                     <tr>
                         <th ng-if="widget.datatable.sortable" ng-repeat="field in widget.datatable.fields">
-                            <a ng-click="model.orderByField = field; model.reverseSort = !model.reverseSort">
+                            <a ng-click="model.datatableMethods[widget._id]['orderByField'] = field;
+                            model.datatableMethods[widget._id]['reverseSort'] = !model.datatableMethods[widget._id]['reverseSort']">
                                 {{field}}
-                                <span ng-show="model.orderByField == field && !model.reverseSort" class="fa fa-caret-down"></span>
-                                <span ng-show="model.orderByField == field && model.reverseSort" class="fa fa-caret-up"></span>
+                                <span ng-show="model.datatableMethods[widget._id]['orderByField'] == field && !model.datatableMethods[widget._id]['reverseSort']" class="fa fa-caret-down"></span>
+                                <span ng-show="model.datatableMethods[widget._id]['orderByField'] == field && model.datatableMethods[widget._id]['reverseSort']" class="fa fa-caret-up"></span>
                             </a>
                         </th>
                         <th ng-if="!widget.datatable.sortable" ng-repeat="field in widget.datatable.fields">
@@ -81,7 +82,7 @@
                     </tr>
                     <tr ng-hide="!widget.datatable.filterable">
                         <td ng-repeat="field in widget.datatable.fields">
-                                <input type="text" class="form-control" placeholder="Search {{field}}" ng-model=model.search[field]>
+                                <input type="text" class="form-control" placeholder="Search {{field}}" ng-model=model.datatableMethods[widget._id]['search'][field]>
                         </td>
                         <td ng-if="widget.datatable.deletable">
                             &nbsp;
@@ -89,7 +90,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-if="!widget.datatable.paginable" ng-repeat="s in model.sushi | filter:model.search | orderBy:model.orderByField:model.reverseSort">
+                    <tr ng-if="!widget.datatable.paginable" ng-repeat="s in model.sushi | filter:model.datatableMethods[widget._id]['search']
+                        | orderBy:model.datatableMethods[widget._id]['orderByField']:model.datatableMethods[widget._id]['reverseSort']">
                         <td ng-repeat="column in s">
                             {{column}}
                         </td>
@@ -100,7 +102,8 @@
                             </a>
                         </td>
                     </tr>
-                    <tr ng-if="widget.datatable.paginable" ng-repeat="s in model.items | filter:model.search | orderBy:model.orderByField:model.reverseSort">
+                    <tr ng-if="widget.datatable.paginable" ng-repeat="s in model.items | filter:model.datatableMethods[widget._id]['search']
+                        | orderBy:model.datatableMethods[widget._id]['orderByField']:model.datatableMethods[widget._id]['reverseSort']">
                         <td ng-repeat="column in s">
                             {{column}}
                         </td>

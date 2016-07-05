@@ -102,12 +102,11 @@
             { name: 'Rainbow', fish: 'Variety', tastiness: 6 }
         ];
         
-        vm.orderByField = '';
-        vm.reverseSort = false;
-        vm.search = {};
-
+        vm.datatableMethods = {}; // contains sort, filter info of all datatables
+        
         vm.pager = {};
         vm.setPage = setPage;
+        vm.initializeDataTableMethods = initializeDataTableMethods;
 
 
         function init() {
@@ -129,6 +128,7 @@
                         {
                             if(vm.widgets[i].widgetType == 'DATATABLE')
                             {
+                                initializeDataTableMethods(vm.widgets[i]._id);
                                 vm.setPage(1, vm.widgets[i].datatable.pageRows);
                             }
                         }
@@ -139,6 +139,10 @@
                 );
         }
         init();
+
+        function initializeDataTableMethods(id) {
+            vm.datatableMethods[id] = {'orderByField': '', 'reverseSort': false, 'search': {}};
+        }
 
         function setPage(page, rows) {
             if (page < 1 || page > vm.pager.totalPages) {
