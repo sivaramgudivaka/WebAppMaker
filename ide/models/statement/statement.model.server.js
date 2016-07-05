@@ -24,7 +24,6 @@ module.exports = function(models) {
                 }
             );
     }
-
     function deleteStatement(scope) {
         return Statement
             .remove(
