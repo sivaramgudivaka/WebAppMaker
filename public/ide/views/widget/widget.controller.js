@@ -104,9 +104,8 @@
         
         vm.datatableMethods = {}; // contains sort, filter info of all datatables
         
-        vm.pager = {};
-        vm.setPage = setPage;
-        vm.initializeDataTableMethods = initializeDataTableMethods;
+        vm.setPage = setPage; // set the current page
+        vm.initializeDataTableMethods = initializeDataTableMethods; // initialize data table methods
 
 
         function init() {
@@ -129,7 +128,7 @@
                             if(vm.widgets[i].widgetType == 'DATATABLE')
                             {
                                 initializeDataTableMethods(vm.widgets[i]._id);
-                                vm.setPage(1, vm.widgets[i].datatable.pageRows);
+                                vm.setPage(1, vm.widgets[i]._id, vm.widgets[i].datatable.pageRows);
                             }
                         }
                     },
@@ -141,19 +140,19 @@
         init();
 
         function initializeDataTableMethods(id) {
-            vm.datatableMethods[id] = {'orderByField': '', 'reverseSort': false, 'search': {}};
+            vm.datatableMethods[id] = {'orderByField': '', 'reverseSort': false, 'search': {}, 'pager': {}, 'page_items': []};
         }
 
-        function setPage(page, rows) {
-            if (page < 1 || page > vm.pager.totalPages) {
+        function setPage(page, id, rows) {
+            if (page < 1 || page > vm.datatableMethods[id]['pager'].totalPages) {
                 return;
             }
 
             // get pager object from service
-            vm.pager = Pagination.GetPager(vm.sushi.length, page, rows);
+            vm.datatableMethods[id]['pager'] = Pagination.GetPager(vm.sushi.length, page, rows);
 
             // get current page of items
-            vm.items = vm.sushi.slice(vm.pager.startIndex, vm.pager.endIndex);
+            vm.datatableMethods[id]['page_items'] = vm.sushi.slice(vm.datatableMethods[id]['pager'].startIndex, vm.datatableMethods[id]['pager'].endIndex);
         }
 
         function trustAsHtml(html) {
@@ -198,12 +197,9 @@
         return service;
 
         // service implementation
-        function GetPager(totalItems, currentPage, pageSize, rows) {
+        function GetPager(totalItems, currentPage, pageSize) {
             // default to first page
             currentPage = currentPage || 1;
-
-            // default page size is rows
-            pageSize = pageSize || rows;
 
             // calculate total pages
             var totalPages = Math.ceil(totalItems / pageSize);

@@ -102,7 +102,8 @@
                             </a>
                         </td>
                     </tr>
-                    <tr ng-if="widget.datatable.paginable" ng-repeat="s in model.items | filter:model.datatableMethods[widget._id]['search']
+                    <tr ng-if="widget.datatable.paginable" ng-repeat="s in model.datatableMethods[widget._id]['page_items']
+                        | filter:model.datatableMethods[widget._id]['search']
                         | orderBy:model.datatableMethods[widget._id]['orderByField']:model.datatableMethods[widget._id]['reverseSort']">
                         <td ng-repeat="column in s">
                             {{column}}
@@ -117,20 +118,27 @@
                     </tbody>
                 </table>
                 <ul ng-if="widget.datatable.paginable" class="pagination">
-                    <li ng-class="{disabled:model.pager.currentPage === 1}">
-                        <a ng-click="model.setPage(1, widget.datatable.pageRows)">First</a>
+                    <li ng-class="{disabled:model.datatableMethods[widget._id]['pager'].currentPage === 1}">
+                        <a ng-click="model.setPage(1, widget._id ,widget.datatable.pageRows)">First</a>
                     </li>
-                    <li ng-class="{disabled:model.pager.currentPage === 1}">
-                        <a ng-click="model.setPage(model.pager.currentPage - 1, widget.datatable.pageRows)">Previous</a>
+                    <li ng-class="{disabled:model.datatableMethods[widget._id]['pager'].currentPage === 1}">
+                        <a ng-click="model.setPage(model.datatableMethods[widget._id]['pager'].currentPage - 1, widget._id, widget.datatable.pageRows)">
+                            Previous
+                        </a>
                     </li>
-                    <li ng-repeat="page in model.pager.pages" ng-class="{active:model.pager.currentPage === page}">
-                        <a ng-click="model.setPage(page, widget.datatable.pageRows)">{{page}}</a>
+                    <li ng-repeat="page in model.datatableMethods[widget._id]['pager'].pages"
+                        ng-class="{active:model.datatableMethods[widget._id]['pager'].currentPage === page}">
+                        <a ng-click="model.setPage(page, widget._id, widget.datatable.pageRows)">{{page}}</a>
                     </li>
-                    <li ng-class="{disabled:model.pager.currentPage === model.pager.totalPages}">
-                        <a ng-click="model.setPage(model.pager.currentPage + 1, widget.datatable.pageRows)">Next</a>
+                    <li ng-class="{disabled:model.datatableMethods[widget._id]['pager'].currentPage === model.datatableMethods[widget._id]['pager'].totalPages}">
+                        <a ng-click="model.setPage(model.datatableMethods[widget._id]['pager'].currentPage + 1, widget._id, widget.datatable.pageRows)">
+                            Next
+                        </a>
                     </li>
-                    <li ng-class="{disabled:model.pager.currentPage === model.pager.totalPages}">
-                        <a ng-click="model.setPage(model.pager.totalPages, widget.datatable.pageRows)">Last</a>
+                    <li ng-class="{disabled:model.datatableMethods[widget._id]['pager'].currentPage === model.datatableMethods[widget._id]['pager'].totalPages}">
+                        <a ng-click="model.setPage(model.datatableMethods[widget._id]['pager'].totalPages, widget._id, widget.datatable.pageRows)">
+                            Last
+                        </a>
                     </li>
                 </ul>
             </div>
