@@ -101,7 +101,20 @@ Numeric
     </div>
 
 
-    <div ng-show= model.statement.numberStatement.input2!=null class="row" >
+    <div ng-show= "((model.statement.numberStatement.input2!=null )||
+           (model.statement.numberStatement.operationType=='sin' ||
+           model.statement.numberStatement.operationType=='cos' ||
+           model.statement.numberStatement.operationType=='tan' ||
+           model.statement.numberStatement.operationType=='log' ||
+           model.statement.numberStatement.operationType=='cosine' ||
+            model.statement.numberStatement.operationType=='cosec' ||
+            model.statement.numberStatement.operationType=='cot' ||
+            model.statement.numberStatement.operationType=='square' ||
+            model.statement.numberStatement.operationType=='cube' ||
+            model.statement.numberStatement.operationType=='square root' ||
+            model.statement.numberStatement.operationType=='cube root') )"
+
+         class="row" >
         <!--<div class="row">-->
         <div class="col-xs-12">
             Output
