@@ -65,82 +65,29 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th ng-if="widget.datatable.sortable" ng-repeat="field in widget.datatable.fields">
-                            <a ng-click="model.datatableMethods[widget._id]['orderByField'] = field;
-                            model.datatableMethods[widget._id]['reverseSort'] = !model.datatableMethods[widget._id]['reverseSort']">
-                                {{field}}
-                                <span ng-show="model.datatableMethods[widget._id]['orderByField'] == field && !model.datatableMethods[widget._id]['reverseSort']" class="fa fa-caret-down"></span>
-                                <span ng-show="model.datatableMethods[widget._id]['orderByField'] == field && model.datatableMethods[widget._id]['reverseSort']" class="fa fa-caret-up"></span>
-                            </a>
-                        </th>
-                        <th ng-if="!widget.datatable.sortable" ng-repeat="field in widget.datatable.fields">
+                        <th ng-repeat="field in widget.datatable.fields">
                             {{field}}
                         </th>
                         <th ng-if="widget.datatable.deletable">
                             &nbsp;
                         </th>
                     </tr>
-                    <tr ng-hide="!widget.datatable.filterable">
-                        <td ng-repeat="field in widget.datatable.fields">
-                                <input type="text" class="form-control" placeholder="Search {{field}}" ng-model=model.datatableMethods[widget._id]['search'][field]>
-                        </td>
-                        <td ng-if="widget.datatable.deletable">
-                            &nbsp;
-                        </td>
-                    </tr>
                     </thead>
                     <tbody>
-                    <tr ng-if="!widget.datatable.paginable" ng-repeat="s in model.sushi | filter:model.datatableMethods[widget._id]['search']
-                        | orderBy:model.datatableMethods[widget._id]['orderByField']:model.datatableMethods[widget._id]['reverseSort']">
-                        <td ng-repeat="column in s">
-                            {{column}}
+                    <!-- 3 sample dummy rows, just to give look and feel -->
+                    <tr ng-repeat="time in [1,2,3]">
+                        <td ng-repeat="field in widget.datatable.fields">
+                            &nbsp;
                         </td>
                         <!-- show remove button if deletable -->
                         <td ng-if="widget.datatable.deletable">
-                            <a ng-if="widget.datatable.deletable" class="pull-right">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr ng-if="widget.datatable.paginable" ng-repeat="s in model.datatableMethods[widget._id]['page_items']
-                        | filter:model.datatableMethods[widget._id]['search']
-                        | orderBy:model.datatableMethods[widget._id]['orderByField']:model.datatableMethods[widget._id]['reverseSort']">
-                        <td ng-repeat="column in s">
-                            {{column}}
-                        </td>
-                        <!-- show remove button if deletable -->
-                        <td ng-if="widget.datatable.deletable">
-                            <a ng-if="widget.datatable.deletable" class="pull-right">
+                            <a class="pull-right">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                <ul ng-if="widget.datatable.paginable" class="pagination">
-                    <li ng-class="{disabled:model.datatableMethods[widget._id]['pager'].currentPage === 1}">
-                        <a ng-click="model.setPage(1, widget._id ,widget.datatable.pageRows)">First</a>
-                    </li>
-                    <li ng-class="{disabled:model.datatableMethods[widget._id]['pager'].currentPage === 1}">
-                        <a ng-click="model.setPage(model.datatableMethods[widget._id]['pager'].currentPage - 1, widget._id, widget.datatable.pageRows)">
-                            Previous
-                        </a>
-                    </li>
-                    <li ng-repeat="page in model.datatableMethods[widget._id]['pager'].pages"
-                        ng-class="{active:model.datatableMethods[widget._id]['pager'].currentPage === page}">
-                        <a ng-click="model.setPage(page, widget._id, widget.datatable.pageRows)">{{page}}</a>
-                    </li>
-                    <li ng-class="{disabled:model.datatableMethods[widget._id]['pager'].currentPage === model.datatableMethods[widget._id]['pager'].totalPages}">
-                        <a ng-click="model.setPage(model.datatableMethods[widget._id]['pager'].currentPage + 1, widget._id, widget.datatable.pageRows)">
-                            Next
-                        </a>
-                    </li>
-                    <li ng-class="{disabled:model.datatableMethods[widget._id]['pager'].currentPage === model.datatableMethods[widget._id]['pager'].totalPages}">
-                        <a ng-click="model.setPage(model.datatableMethods[widget._id]['pager'].totalPages, widget._id, widget.datatable.pageRows)">
-                            Last
-                        </a>
-                    </li>
-                </ul>
             </div>
             <div ng-switch-when="TEXT">
                 <input ng-if="!widget.textInput.formatted && (!widget.textInput.rows || widget.textInput.rows===1)"

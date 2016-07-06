@@ -1,7 +1,6 @@
 (function () {
     angular
         .module ("WebAppMakerApp")
-        .factory('Pagination', Pagination)
         .controller ("WidgetListController", widgetListController)
         .controller ("WidgetEditController", widgetEditController)
         .controller ("ChooseWidgetController", chooseWidgetController);
@@ -69,7 +68,7 @@
         }
     }
 
-    function widgetListController ($routeParams, PageService, WidgetService, $sce, Pagination) {
+    function widgetListController ($routeParams, PageService, WidgetService, $sce) {
 
         var vm = this;
         vm.username       = $routeParams.username;
@@ -81,32 +80,6 @@
         vm.getButtonClass = getButtonClass;
         vm.sortWidget     = sortWidget;
         vm.trustAsHtml    = trustAsHtml;
-
-
-        vm.sushi = [
-            { name: 'Cali Roll', fish: 'Crab', tastiness: 2 },
-            { name: 'Philly', fish: 'Tuna', tastiness: 4 },
-            { name: 'Tiger', fish: 'Eel', tastiness: 7 },
-            { name: 'Rainbow', fish: 'Variety', tastiness: 6 },
-            { name: 'Cali Roll', fish: 'Crab', tastiness: 2 },
-            { name: 'Philly', fish: 'Tuna', tastiness: 4 },
-            { name: 'Tiger', fish: 'Eel', tastiness: 7 },
-            { name: 'Rainbow', fish: 'Variety', tastiness: 6 },
-            { name: 'Cali Roll', fish: 'Crab', tastiness: 2 },
-            { name: 'Philly', fish: 'Tuna', tastiness: 4 },
-            { name: 'Tiger', fish: 'Eel', tastiness: 7 },
-            { name: 'Rainbow', fish: 'Variety', tastiness: 6 },
-            { name: 'Cali Roll', fish: 'Crab', tastiness: 2 },
-            { name: 'Philly', fish: 'Tuna', tastiness: 4 },
-            { name: 'Tiger', fish: 'Eel', tastiness: 7 },
-            { name: 'Rainbow', fish: 'Variety', tastiness: 6 }
-        ];
-        
-        vm.datatableMethods = {}; // contains sort, filter info of all datatables
-        
-        vm.setPage = setPage; // set the current page
-        vm.initializeDataTableMethods = initializeDataTableMethods; // initialize data table methods
-
 
         function init() {
             PageService
@@ -123,14 +96,6 @@
                 .then(
                     function(response) {
                         vm.widgets = response.data;
-                        for(var i = 0; i< vm.widgets.length; i++)
-                        {
-                            if(vm.widgets[i].widgetType == 'DATATABLE')
-                            {
-                                initializeDataTableMethods(vm.widgets[i]._id);
-                                vm.setPage(1, vm.widgets[i]._id, vm.widgets[i].datatable.pageRows);
-                            }
-                        }
                     },
                     function(err) {
                         vm.error = err;
@@ -138,22 +103,6 @@
                 );
         }
         init();
-
-        function initializeDataTableMethods(id) {
-            vm.datatableMethods[id] = {'orderByField': '', 'reverseSort': false, 'search': {}, 'pager': {}, 'page_items': []};
-        }
-
-        function setPage(page, id, rows) {
-            if (page < 1 || page > vm.datatableMethods[id]['pager'].totalPages) {
-                return;
-            }
-
-            // get pager object from service
-            vm.datatableMethods[id]['pager'] = Pagination.GetPager(vm.sushi.length, page, rows);
-
-            // get current page of items
-            vm.datatableMethods[id]['page_items'] = vm.sushi.slice(vm.datatableMethods[id]['pager'].startIndex, vm.datatableMethods[id]['pager'].endIndex);
-        }
 
         function trustAsHtml(html) {
             return $sce.trustAsHtml(html);
@@ -185,66 +134,6 @@
                         vm.error = err;
                     }
                 );
-        }
-    }
-
-    function Pagination() {
-        // service definition
-        var service = {};
-
-        service.GetPager = GetPager;
-
-        return service;
-
-        // service implementation
-        function GetPager(totalItems, currentPage, pageSize) {
-            // default to first page
-            currentPage = currentPage || 1;
-
-            // calculate total pages
-            var totalPages = Math.ceil(totalItems / pageSize);
-
-            var startPage, endPage;
-            if (totalPages <= 10) {
-                // less than 10 total pages so show all
-                startPage = 1;
-                endPage = totalPages;
-            } else {
-                // more than 10 total pages so calculate start and end pages
-                if (currentPage <= 6) {
-                    startPage = 1;
-                    endPage = 10;
-                } else if (currentPage + 4 >= totalPages) {
-                    startPage = totalPages - 9;
-                    endPage = totalPages;
-                } else {
-                    startPage = currentPage - 5;
-                    endPage = currentPage + 4;
-                }
-            }
-
-            // calculate start and end item indexes
-            var startIndex = (currentPage - 1) * pageSize;
-            var endIndex = startIndex + pageSize;
-
-            // create an array of pages to ng-repeat in the pager control
-            var pages = [];
-            for (var i=startPage; i<endPage + 1; i++) {
-                pages.push(i);
-            }
-
-            // return object with all pager properties required by the view
-            return {
-                totalItems: totalItems,
-                currentPage: currentPage,
-                pageSize: pageSize,
-                totalPages: totalPages,
-                startPage: startPage,
-                endPage: endPage,
-                startIndex: startIndex,
-                endIndex: endIndex,
-                pages: pages
-            };
         }
     }
 

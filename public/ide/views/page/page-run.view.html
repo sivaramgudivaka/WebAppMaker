@@ -71,33 +71,83 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <!-- render the field names as headers -->
-                    <th ng-repeat="field in widget.datatable.fields">
+                    <th ng-if="widget.datatable.sortable" ng-repeat="field in widget.datatable.fields">
+                        <a ng-click="model.datatableMethods[widget._id]['orderByField'] = field;
+                            model.datatableMethods[widget._id]['reverseSort'] = !model.datatableMethods[widget._id]['reverseSort']">
+                            {{field}}
+                            <span ng-show="model.datatableMethods[widget._id]['orderByField'] == field && !model.datatableMethods[widget._id]['reverseSort']" class="fa fa-caret-down"></span>
+                            <span ng-show="model.datatableMethods[widget._id]['orderByField'] == field && model.datatableMethods[widget._id]['reverseSort']" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th ng-if="!widget.datatable.sortable" ng-repeat="field in widget.datatable.fields">
                         {{field}}
                     </th>
                     <th ng-if="widget.datatable.deletable">
                         &nbsp;
                     </th>
                 </tr>
+                <tr ng-hide="!widget.datatable.filterable">
+                    <td ng-repeat="field in widget.datatable.fields">
+                        <input type="text" class="form-control" placeholder="Search {{field}}" ng-model=model.datatableMethods[widget._id]['search'][field]>
+                    </td>
+                    <td ng-if="widget.datatable.deletable">
+                        &nbsp;
+                    </td>
+                </tr>
                 </thead>
                 <tbody>
                 <!-- iterate over the records in database. 1 row per record -->
-                <tr ng-repeat="record in model.data">
-                    <!-- iterate over the fields in a record. 1 column per field -->
+                <tr ng-if="!widget.datatable.paginable" ng-repeat="s in model.datatableMethods[widget._id]['data'] | filter:model.datatableMethods[widget._id]['search']
+                        | orderBy:model.datatableMethods[widget._id]['orderByField']:model.datatableMethods[widget._id]['reverseSort']">
                     <td ng-repeat="field in widget.datatable.fields">
-                        <!-- record is map of fields. use field names as key -->
-                        {{record[field]}}
+                        {{s[field]}}
                     </td>
-                    <!-- show delete button if deletable -->
-                    <!-- notify controller -->
+                    <!-- show remove button if deletable -->
                     <td ng-if="widget.datatable.deletable">
-                        <a class="pull-right" ng-click="model.deleteRecord(widget.widgetType, widget.datatable.collectionName, record._id)">
+                        <a ng-if="widget.datatable.deletable" class="pull-right">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </td>
+                </tr>
+                <tr ng-if="widget.datatable.paginable" ng-repeat="s in model.datatableMethods[widget._id]['page_items']
+                        | filter:model.datatableMethods[widget._id]['search']
+                        | orderBy:model.datatableMethods[widget._id]['orderByField']:model.datatableMethods[widget._id]['reverseSort']">
+                    <td ng-repeat="field in widget.datatable.fields">
+                        {{s[field]}}
+                    </td>
+                    <!-- show remove button if deletable -->
+                    <td ng-if="widget.datatable.deletable">
+                        <a ng-if="widget.datatable.deletable" class="pull-right">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                     </td>
                 </tr>
                 </tbody>
             </table>
+            <ul ng-if="widget.datatable.paginable" class="pagination">
+                <li ng-class="{disabled:model.datatableMethods[widget._id]['pager'].currentPage === 1}">
+                    <a ng-click="model.setPage(1, widget._id ,widget.datatable.pageRows)">First</a>
+                </li>
+                <li ng-class="{disabled:model.datatableMethods[widget._id]['pager'].currentPage === 1}">
+                    <a ng-click="model.setPage(model.datatableMethods[widget._id]['pager'].currentPage - 1, widget._id, widget.datatable.pageRows)">
+                        Previous
+                    </a>
+                </li>
+                <li ng-repeat="page in model.datatableMethods[widget._id]['pager'].pages"
+                    ng-class="{active:model.datatableMethods[widget._id]['pager'].currentPage === page}">
+                    <a ng-click="model.setPage(page, widget._id, widget.datatable.pageRows)">{{page}}</a>
+                </li>
+                <li ng-class="{disabled:model.datatableMethods[widget._id]['pager'].currentPage === model.datatableMethods[widget._id]['pager'].totalPages}">
+                    <a ng-click="model.setPage(model.datatableMethods[widget._id]['pager'].currentPage + 1, widget._id, widget.datatable.pageRows)">
+                        Next
+                    </a>
+                </li>
+                <li ng-class="{disabled:model.datatableMethods[widget._id]['pager'].currentPage === model.datatableMethods[widget._id]['pager'].totalPages}">
+                    <a ng-click="model.setPage(model.datatableMethods[widget._id]['pager'].totalPages, widget._id, widget.datatable.pageRows)">
+                        Last
+                    </a>
+                </li>
+            </ul>
         </div>
         <div ng-switch-when="TEXT">
             <!-- use textangular for users to input formatted text -->
