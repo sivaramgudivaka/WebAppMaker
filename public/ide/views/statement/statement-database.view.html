@@ -1,7 +1,8 @@
-Select Database Operation
+<div class="form-group">
+    <label for="databaseOperation">Select Database Operation</label>
 <select name="databaseOperation"
         ng-options="statement.label for statement in model.databaseOperations track by statement.label"
-        ng-model="model.statement.databaseStatement.databaseOperation" class="form-control">
+        ng-model="model.statement.databaseStatement.databaseOperation" class="form-control" id="databaseOperation">
 </select>
 
 <span ng-show="model.statement.databaseOperation.label==='Select'">
@@ -16,9 +17,11 @@ Select Database Operation
 <span ng-show="model.statement.databaseOperation.label==='Delete'">
     Remove from
 </span>
-collection
+</div>
+<div class="form-group">
+    <label for="databaseCollection">collection</label>
 <div class="input-group">
-    <input ng-model="model.statement.databaseStatement.collectionName" type="text" class="form-control">
+    <input ng-model="model.statement.databaseStatement.collectionName" type="text" class="form-control" id="databaseCollection">
     <div class="input-group-btn">
         <button type="button"
                 class="btn btn-default dropdown-toggle"
@@ -32,6 +35,7 @@ collection
         </ul>
     </div>
 </div>
+    </div>
 
 <div class="panel panel-default wam-margin-bottom-5px" ng-show="model.databaseOperation.label==='Update' || model.databaseOperation.label==='Insert'">
     <div class="panel-heading" data-toggle="collapse" data-target="#set-collapse">

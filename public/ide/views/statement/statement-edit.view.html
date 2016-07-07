@@ -20,16 +20,20 @@
     </div>
 </nav>
 
-Name
-<input ng-model="model.statementName" class="form-control"/>
+<div class="form-group">
+<label for="statementName">Name</label>
+<input ng-model="model.statementName" class="form-control" id="statementName"/>
+</div>
 
-Select Operation Type
+<div class="form-group">
+<label for="statementSelect">Select Operation Type</label>
 
 <select name="statementType"
         ng-options="statement.label for statement in model.statementTypes track by statement.label"
-        ng-model="model.statementType" class="form-control">
+        ng-model="model.statementType" class="form-control" id="statementSelect">
     <option ng-value="null">Select Operation</option>
 </select>
+    </div>
 
 <!--Title-->
 <!--<input ng-model="model.statement.title"-->

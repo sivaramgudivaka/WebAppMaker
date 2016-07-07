@@ -1,15 +1,18 @@
-Choose kind of operation
+<div class="form-group">
+<label for="stringOperation">Choose kind of operation</label>
 <select name="stringOperation"
         ng-options="operation.label for operation in model.stringOperations track by operation.label"
         ng-model="model.stringOperation"
-        class="form-control">
+        class="form-control" id="stringOperation">
     <option value="">Select Operation</option>
 </select>
+    </div>
 <!--Substring Operation-->
 <div ng-show="model.stringOperation.label==='Substring'">
-    String
+    <div class="form-group">
+        <label for="stringString">String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="stringString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -23,10 +26,12 @@ Choose kind of operation
             </ul>
         </div>
     </div>
+    </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Start
+        <div class="form-group">
+            <label for="stringStart">Start</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.start" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.start" type="text" class="form-control" id="stringStart">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -40,11 +45,13 @@ Choose kind of operation
                 </ul>
             </div>
         </div>
+        </div>
     </div>
     <div ng-show="model.statement.stringStatement.start">
-        Length
+        <div class="form-group">
+            <label for="stringLength">Length</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.length" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.length" type="text" class="form-control" id="stringLength">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -58,11 +65,13 @@ Choose kind of operation
                 </ul>
             </div>
         </div>
+        </div>
     </div>
     <div ng-show="model.statement.stringStatement.length">
-        Output
+        <div class="form-group">
+            <label for="stringOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="stringOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -76,13 +85,15 @@ Choose kind of operation
                 </ul>
             </div>
         </div>
+        </div>
     </div>
 </div>
 <!--Concatenate Operation-->
 <div ng-show="model.stringOperation.label==='Concatenate'">
-    First String
+    <div class="form-group">
+        <label for="stringFirstString">First String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="stringFirstString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -95,11 +106,13 @@ Choose kind of operation
                 </li>
             </ul>
         </div>
+        </div>
     </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Second String
+        <div class="form-group">
+            <label for="stringSecondString">Second String</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.input2" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.input2" type="text" class="form-control" id="stringSecondString">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -113,11 +126,13 @@ Choose kind of operation
                 </ul>
             </div>
         </div>
+            </div>
     </div>
     <div ng-show="model.statement.stringStatement.input2">
-        Output
+        <div class="form-group">
+            <label for="stringConOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="stringConOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -130,14 +145,16 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
 </div>
 <!--Length Operation-->
 <div ng-show="model.stringOperation.label==='Length'">
-    String
+    <div class="form-group">
+        <label for="stringLenString">String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="stringLenString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -150,11 +167,13 @@ Choose kind of operation
                 </li>
             </ul>
         </div>
+        </div>
     </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Output
+        <div class="form-group">
+            <label for="stringLenOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="stringLenOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -166,6 +185,7 @@ Choose kind of operation
                         <a>{{widget.name}}</a>
                     </li>
                 </ul>
+            </div>
             </div>
         </div>
     </div>
@@ -173,9 +193,10 @@ Choose kind of operation
 
 <!--"Char At" Operation-->
 <div ng-show="model.stringOperation.label==='Char At'">
-    String
+    <div class="form-group">
+        <label for="charString">String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="charString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -187,12 +208,15 @@ Choose kind of operation
                     <a>{{widget.name}}</a>
                 </li>
             </ul>
+            </div>
         </div>
-    </div>
+        </div>
+
     <div ng-show="model.statement.stringStatement.input1">
-        Index
+        <div class="form-group">
+            <label for="charIndex">Index</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.index" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.index" type="text" class="form-control" id="charIndex">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -205,12 +229,14 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.index">
-        Output
+        <div class="form-group">
+            <label for="charOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="charOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -222,6 +248,7 @@ Choose kind of operation
                         <a>{{widget.name}}</a>
                     </li>
                 </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -229,9 +256,10 @@ Choose kind of operation
 
 <!--"Index Of" Operation-->
 <div ng-show="model.stringOperation.label==='Index Of'">
-    String
+    <div class="form-group">
+        <label for="indexString">String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="indexString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -243,12 +271,14 @@ Choose kind of operation
                     <a>{{widget.name}}</a>
                 </li>
             </ul>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Search Value
+        <div class="form-group">
+            <label for="indexSearch">Search Value</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.searchvalue" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.searchvalue" type="text" class="form-control" id="indexSearch">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -260,13 +290,15 @@ Choose kind of operation
                         <a>{{widget.name}}</a>
                     </li>
                 </ul>
+                </div>
             </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.searchvalue">
-        Start
+       <div class="form-group">
+           <label for="indexStart">Start</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.start" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.start" type="text" class="form-control" id="indexStart">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -278,13 +310,15 @@ Choose kind of operation
                         <a>{{widget.name}}</a>
                     </li>
                 </ul>
+                </div>
             </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.start">
-        Output
+        <div class="form-group">
+            <label for="indexOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="indexOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -296,6 +330,7 @@ Choose kind of operation
                         <a>{{widget.name}}</a>
                     </li>
                 </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -303,9 +338,10 @@ Choose kind of operation
 
 <!--"Last Index Of" Operation-->
 <div ng-show="model.stringOperation.label==='Last Index Of'">
-    String
+    <div class="form-group">
+    <label for="lastIndexString">String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="lastIndexString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -317,12 +353,14 @@ Choose kind of operation
                     <a>{{widget.name}}</a>
                 </li>
             </ul>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Search Value
+        <div class="form-group">
+        <label for="lastIndexSearch">Search Value</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.searchvalue" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.searchvalue" type="text" class="form-control" id="lastIndexSearch">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -334,13 +372,15 @@ Choose kind of operation
                         <a>{{widget.name}}</a>
                     </li>
                 </ul>
+                </div>
             </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.searchvalue">
-        Start
+        <div class="form-group">
+        <label for="lastIndexStart">Start</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.start" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.start" type="text" class="form-control" id="lastIndexStart">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -353,12 +393,14 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.start">
-        Output
+        <div class="form-group">
+            <label for="lastIndexOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="lastIndexOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -370,6 +412,7 @@ Choose kind of operation
                         <a>{{widget.name}}</a>
                     </li>
                 </ul>
+            </div>
             </div>
         </div>
     </div>
@@ -377,7 +420,8 @@ Choose kind of operation
 
 <!--"Search" Operation-->
 <div ng-show="model.stringOperation.label==='Search'">
-    String
+    <div class="form-group">
+    <label for="lastIndexString">String</label>
     <div class="input-group">
         <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
         <div class="input-group-btn">
@@ -392,9 +436,11 @@ Choose kind of operation
                 </li>
             </ul>
         </div>
+        </div>
     </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Search Value
+        <div class="form-group">
+            <label for="lastIndexSearch">Search Value</label>
         <div class="input-group">
             <input ng-model="model.statement.stringStatement.searchvalue" type="text" class="form-control">
             <div class="input-group-btn">
@@ -409,10 +455,12 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.searchvalue">
-        Output
+        <div class="form-group">
+        <label for="lastIndexOutput">Output</label>
         <div class="input-group">
             <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
             <div class="input-group-btn">
@@ -427,15 +475,17 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
 </div>
 
 <!--"Replace" Operation-->
 <div ng-show="model.stringOperation.label==='Replace'">
-    String
+    <div class="form-group">
+        <label for="replaceString">String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="replaceString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -448,11 +498,13 @@ Choose kind of operation
                 </li>
             </ul>
         </div>
+        </div>
     </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Search Value
+        <div class="form-group">
+        <label for="replaceSearch">Search Value</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.searchvalue" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.searchvalue" type="text" class="form-control" id="replaceSearch">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -465,12 +517,14 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.searchvalue">
-        Replace With
+        <div class="form-group">
+        <label for="replaceReplace">Replace With</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.newvalue" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.newvalue" type="text" class="form-control" id="replaceReplace">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -483,12 +537,14 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.newvalue">
-        Output
+        <div class="form-group">
+        <label for="replaceOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="replaceOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -504,12 +560,14 @@ Choose kind of operation
         </div>
     </div>
 </div>
+    </div>
 
 <!--"Repeat" Operation-->
 <div ng-show="model.stringOperation.label==='Repeat'">
-    String
+    <div class="form-group">
+        <label for="repeatString">String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="repeatString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -521,12 +579,14 @@ Choose kind of operation
                     <a>{{widget.name}}</a>
                 </li>
             </ul>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Count
+        <div class="form-group">
+        <label for="repeatCount">Count</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.count" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.count" type="text" class="form-control" id="repeatCount">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -539,12 +599,14 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.count">
-        Output
+        <div class="form-group">
+        <label for="repeatOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="repeatOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -556,6 +618,7 @@ Choose kind of operation
                         <a>{{widget.name}}</a>
                     </li>
                 </ul>
+            </div>
             </div>
         </div>
     </div>
@@ -563,9 +626,10 @@ Choose kind of operation
 
 <!--To Lowercase Operation-->
 <div ng-show="model.stringOperation.label==='Lowercase'">
-    String
+    <div class="form-group">
+        <label for="lowerCaseString">String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="lowerCaseString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -577,12 +641,14 @@ Choose kind of operation
                     <a>{{widget.name}}</a>
                 </li>
             </ul>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Output
+        <div class="form-group">
+            <label for="lowerCaseOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="lowerCaseOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -594,6 +660,7 @@ Choose kind of operation
                         <a>{{widget.name}}</a>
                     </li>
                 </ul>
+            </div>
             </div>
         </div>
     </div>
@@ -601,9 +668,10 @@ Choose kind of operation
 
 <!--To Uppercase Operation-->
 <div ng-show="model.stringOperation.label==='Uppercase'">
-    String
+    <div class="form-group">
+        <label for="upperCaseString">String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="upperCaseString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -615,12 +683,14 @@ Choose kind of operation
                     <a>{{widget.name}}</a>
                 </li>
             </ul>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Output
+        <div class="form-group">
+            <label for="upperCaseOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="upperCaseOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -632,6 +702,7 @@ Choose kind of operation
                         <a>{{widget.name}}</a>
                     </li>
                 </ul>
+            </div>
             </div>
         </div>
     </div>
@@ -639,9 +710,10 @@ Choose kind of operation
 
 <!--Trim Operation-->
 <div ng-show="model.stringOperation.label==='Trim'">
-    String
+    <div class="form-group">
+    <label for="trimString">String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="trimString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -654,11 +726,13 @@ Choose kind of operation
                 </li>
             </ul>
         </div>
+        </div>
     </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Output
+        <div class="form-group">
+        <label for="trimOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="trimOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -671,15 +745,17 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
 </div>
 
 <!--"Starts With" Operation-->
 <div ng-show="model.stringOperation.label==='Starts With'">
-    String
+    <div class="form-group">
+    <label for="startString">String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="startString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -692,11 +768,13 @@ Choose kind of operation
                 </li>
             </ul>
         </div>
+        </div>
     </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Search Value
+        <div class="form-group">
+        <label for="startSearch">Search Value</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.searchvalue" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.searchvalue" type="text" class="form-control" id="startSearch">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -709,12 +787,14 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.searchvalue">
-        Start
+        <div class="form-group">
+            <label for="startStart">Start</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.start" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.start" type="text" class="form-control" id="startStart">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -727,12 +807,14 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.start">
-        Output
+        <div class="form-group">
+        <label for="startOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="startOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -745,15 +827,17 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
 </div>
 
 <!--"Ends With" Operation-->
 <div ng-show="model.stringOperation.label==='Ends With'">
-    String
+    <div class="form-group">
+    <label for="endsString">String</label>
     <div class="input-group">
-        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control">
+        <input ng-model="model.statement.stringStatement.input1" type="text" class="form-control" id="endsString">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -766,11 +850,13 @@ Choose kind of operation
                 </li>
             </ul>
         </div>
+        </div>
     </div>
     <div ng-show="model.statement.stringStatement.input1">
-        Search Value
+        <div class="form-group">
+        <label for="endsSearch">Search Value</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.searchvalue" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.searchvalue" type="text" class="form-control" id="endsSearch">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -783,12 +869,14 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.searchvalue">
-        Length
+        <div class="form-group">
+        <label for="endsLength">Length</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.length" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.length" type="text" class="form-control" id="endsLength">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -801,12 +889,14 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+            </div>
         </div>
     </div>
     <div ng-show="model.statement.stringStatement.length">
-        Output
+        <div class="form-group">
+            <label for="endsOutput">Output</label>
         <div class="input-group">
-            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control">
+            <input ng-model="model.statement.stringStatement.output" type="text" class="form-control" id="endsOutput">
             <div class="input-group-btn">
                 <button type="button"
                         class="btn btn-default dropdown-toggle"
@@ -819,6 +909,7 @@ Choose kind of operation
                     </li>
                 </ul>
             </div>
+        </div>
         </div>
     </div>
 </div>

@@ -1,20 +1,22 @@
+<div class="form-group">
+    <label for="dateOperation">What operation to do?</label>
 
-What operation to do?
 
 <select name="dateOperation"
         ng-options="operation.label for operation in model.dateOperations track by operation.label"
-        ng-model="model.statement.dateStatement.dateOperation" class="form-control">
+        ng-model="model.statement.dateStatement.dateOperation" class="form-control" id="dateOperation">
 </select>
+    </div>
 
 <div ng-show="model.statement.dateStatement.dateOperation!=undefined &&
 (model.statement.dateStatement.dateOperation.label==='Add' || model.statement.dateStatement.dateOperation.label==='Subtract')">
-
-    Select a variable or from calender or per digits
+    <div class="form-group">
+        <label for="dateSelectType">Select a variable or from calender or per digits</label>
 
     <div class="input-group">
         <input ng-model="model.statement.dateStatement.dateOperand1"
                type="text"
-               class="form-control">
+               class="form-control" id="dateSelectType">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -34,6 +36,7 @@ What operation to do?
             </ul>
         </div>
     </div>
+        </div>
 </div>
 
 <div ng-if="(model.statement.dateStatement.dateOperation.label ==='Create Date from milliseconds')"
@@ -44,13 +47,13 @@ What operation to do?
 <div ng-show="model.statement.dateStatement.dateOperation!=undefined &&
 (model.statement.dateStatement.dateOperation.label==='Create Date from String' ||
 model.statement.dateStatement.dateOperation.label==='Create Date from milliseconds')">
-
-    Select a variable or provide input
+    <div class="form-group">
+        <label for="dateVar">Select a variable or provide input</label>
 
     <div class="input-group">
         <input ng-model="model.statement.dateStatement.dateOperand1"
                type="text"
-               class="form-control">
+               class="form-control" id="dateVar">
         <div class="input-group-btn">
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -64,18 +67,20 @@ model.statement.dateStatement.dateOperation.label==='Create Date from millisecon
             </ul>
         </div>
     </div>
+        </div>
 </div>
 
 <div ng-show="model.statement.dateStatement.dateOperation.label==='Create Date by providing each parameter'">
     <div class="row">
 
         <div class="col-sm-2">
-            Year:
+            <div class="form-group">
+                <label for="dateParamYear">Year:</label>
             <div class="input-group">
                 <input ng-model="model.statement.dateStatement.operand1Year"
                        type="text"
                        class="form-control"
-                       placeholder="Y">
+                       placeholder="Y" id="dateParamYear">
                 <div class="input-group-btn">
                     <button type="button"
                             class="btn btn-default dropdown-toggle"
@@ -89,15 +94,17 @@ model.statement.dateStatement.dateOperation.label==='Create Date from millisecon
                     </ul>
                 </div>
             </div>
+                </div>
         </div>
 
         <div class="col-sm-2">
-            Month:
+            <div class="form-group">
+                <label for="dateParamMonth">Month:</label>
             <div class="input-group">
                 <input ng-model="model.statement.dateStatement.operand1Month"
                        type="text"
                        class="form-control"
-                       placeholder="M">
+                       placeholder="M" id="dateParamMonth">
                 <div class="input-group-btn">
                     <button type="button"
                             class="btn btn-default dropdown-toggle"
@@ -111,15 +118,17 @@ model.statement.dateStatement.dateOperation.label==='Create Date from millisecon
                     </ul>
                 </div>
             </div>
+                 </div>
         </div>
 
         <div class="col-sm-2">
-            Day:
+            <div class="form-group">
+                <label for="dateParamDay">Day:</label>
             <div class="input-group">
                 <input ng-model="model.statement.dateStatement.operand1Date"
                        type="text"
                        class="form-control"
-                       placeholder="D">
+                       placeholder="D" id="dateParamDay">
                 <div class="input-group-btn">
                     <button type="button"
                             class="btn btn-default dropdown-toggle"
@@ -133,15 +142,17 @@ model.statement.dateStatement.dateOperation.label==='Create Date from millisecon
                     </ul>
                 </div>
             </div>
+                </div>
         </div>
 
         <div class="col-sm-2">
-            Hours:
+            <div class="form-group">
+                <label for="dateParamHours">Hours:</label>
             <div class="input-group">
                 <input ng-model="model.statement.dateStatement.operand1Hours"
                        type="text"
                        class="form-control"
-                       placeholder="H">
+                       placeholder="H" id="dateParamHours">
                 <div class="input-group-btn">
                     <button type="button"
                             class="btn btn-default dropdown-toggle"
@@ -155,15 +166,17 @@ model.statement.dateStatement.dateOperation.label==='Create Date from millisecon
                     </ul>
                 </div>
             </div>
+                </div>
         </div>
 
         <div class="col-sm-2">
-            Minutes:
+            <div class="form-group">
+                <label for="dateParamMin">Minutes:</label>
             <div class="input-group">
                 <input ng-model="model.statement.dateStatement.operand1Minutes"
                        type="text"
                        class="form-control"
-                       placeholder="M">
+                       placeholder="M" id="dateParamMin">
                 <div class="input-group-btn">
                     <button type="button"
                             class="btn btn-default dropdown-toggle"
@@ -177,15 +190,17 @@ model.statement.dateStatement.dateOperation.label==='Create Date from millisecon
                     </ul>
                 </div>
             </div>
+                </div>
         </div>
 
         <div class="col-sm-2">
-            Seconds:
+            <div class="form-group">
+                <label for="dateParamSeconds">Seconds:</label>
             <div class="input-group">
                 <input ng-model="model.statement.dateStatement.operand1Seconds"
                        type="text"
                        class="form-control"
-                       placeholder="S">
+                       placeholder="S" id="dateParamSeconds">
                 <div class="input-group-btn">
                     <button type="button"
                             class="btn btn-default dropdown-toggle"
@@ -200,15 +215,17 @@ model.statement.dateStatement.dateOperation.label==='Create Date from millisecon
                     </ul>
                 </div>
             </div>
+                </div>
         </div>
 
         <div class="col-sm-2">
-            Milliseconds:
+            <div class="form-group">
+                <label for="dateParamMillisecons">Milliseconds:</label>
             <div class="input-group">
                 <input ng-model="model.statement.dateStatement.operand1MilliSeconds"
                        type="text"
                        class="form-control"
-                       placeholder="ms">
+                       placeholder="ms" id="dateParamMillisecons">
                 <div class="input-group-btn">
                     <button type="button"
                             class="btn btn-default dropdown-toggle"
@@ -223,6 +240,7 @@ model.statement.dateStatement.dateOperation.label==='Create Date from millisecon
                     </ul>
                 </div>
             </div>
+                </div>
         </div>
 
     </div>
