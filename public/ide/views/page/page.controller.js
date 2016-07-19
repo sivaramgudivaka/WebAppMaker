@@ -345,12 +345,36 @@
         }
     }
 
-    function newPageController($routeParams, PageService, $location) {
+    function newPageController($routeParams, WebsiteService, PageService, $location) {
 
         var vm = this;
         vm.developerId = $routeParams.developerId;
         vm.websiteId = $routeParams.websiteId;
         vm.createPage = createPage;
+
+        function init() {
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .then(
+                    function(response){
+                        vm.website = response.data;
+                        return PageService
+                            .findPagesForWebsite(vm.websiteId);
+                    },
+                    function(error){
+                        vm.error = error;
+                    }
+                )
+                .then(
+                    function (response) {
+                        vm.pages = response.data;
+                    },
+                    function (err) {
+                        vm.error = err;
+                    }
+                );
+        }
+        init();
 
         function createPage(page) {
             PageService
