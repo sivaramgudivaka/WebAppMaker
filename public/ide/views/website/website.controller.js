@@ -130,6 +130,9 @@
 
         var vm = this;
         vm.developerId = $routeParams.developerId;
+        vm.viewType = 'list';
+
+        vm.toggleView    = toggleView;
 
         function init () {
             WebsiteService
@@ -144,6 +147,10 @@
                 )
         }
         init ();
+
+        function toggleView() {
+            vm.viewType = vm.viewType === 'list' ? 'grid' : 'list';
+        }
     }
 
     function newWebsiteController (

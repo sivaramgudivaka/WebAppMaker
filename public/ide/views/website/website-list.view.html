@@ -18,7 +18,7 @@
 </div>
 
 <div>
-    <div ng-repeat="website in model.websites"
+    <div ng-repeat="website in model.websites" ng-show="model.viewType == 'list'"
          class="row jga-bg-highlight-on-hover" style="padding: 8px">
         <div class="col-xs-10">
             <a href="#/developer/{{model.developerId}}/website/{{website._id}}/page">
@@ -34,13 +34,43 @@
                class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
+        </div>
+    </div>
+
+    <div ng-show="model.viewType == 'grid'">
+        <div class="row">
+            <div class="col-sm-6 col-md-4" ng-repeat="website in model.websites">
+                <div class="thumbnail">
+                    <img src="" alt="...">
+                    <div class="caption">
+                        <p>
+                            <a href="#/developer/{{model.developerId}}/website/{{website._id}}/page" class="pull-left">
+                                {{website.name}}
+                            </a>
+
+                            <a href="#/developer/{{model.developerId}}/website/{{website._id}}"
+                               class="pull-right">
+                                <span class="glyphicon glyphicon-cog"></span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom jga">
     <div class="navbar-header">
+        <a ng-click="model.toggleView()"
+           class="btn btn-default btn-transparent pull-left">
+            <span class="glyphicon glyphicon-th" ng-show="model.viewType == 'list'"></span>
+            <span class="glyphicon glyphicon-th-list" ng-show="model.viewType == 'grid'"></span>
+        </a>
+
         <a href="#/developer/{{currentUser.username}}/edit"
            class="navbar-toggle collapsed">
             <span class="glyphicon glyphicon-user"></span>
