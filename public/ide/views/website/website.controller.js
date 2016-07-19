@@ -94,7 +94,20 @@
                     function(err) {
                         vm.error = err;
                     }
+                );
+
+            //    To populate the list in landscape mode
+            WebsiteService
+                .findWebsitesForDeveloperId ($routeParams.developerId)
+                .then (
+                    function (response) {
+                        vm.websites = response.data;
+                    },
+                    function (err) {
+                        vm.error = err;
+                    }
                 )
+
         }
         init ();
 
