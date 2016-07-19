@@ -1,0 +1,93 @@
+<div class="navbar navbar-default navbar-fixed-top jga">
+    <div class="navbar-header">
+        <div class="row">
+            <div class="col-sm-4">
+                <ul>
+                    <li class="link-nav back"><a href="#/developer/{{model.developerId}}/website"
+                                                 class="btn btn-default btn-transparent">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a></li>
+
+                    <li class="link-nav name">
+                        <a class="navbar-brand">Pages</a>
+                    </li>
+
+                    <li class="link-nav plus">
+                        <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/new"
+                           class="btn btn-default btn-transparent">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="col-sm-8">
+                <ul>
+
+
+                    <li class="link-nav"><a class="navbar-brand">{{model.page.name}}</a></li>
+
+                    <li class="link-nav">
+                        <a ng-click="model.updatePage (model.page)"
+                           class="btn btn-default btn-transparent pull-right">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        <div jga-sortable
+             jga-sortable-callback="model.sortPage(start, end)">
+            <div ng-repeat="page in model.pages"
+                 class="row jga-bg-highlight-on-hover" style="padding: 8px">
+                <div class="col-xs-10">
+                    <a href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                        {{page.name}}
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a  href="#/developer/{{model.developerId}}/website/{{model.websiteId}}/page/{{page._id}}"
+                        class="pull-right">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-8">
+        <div class="form-group">
+            <label for="pageEditName">Name</label>
+            <input ng-model="model.page.name"
+                   id="pageEditName" class="form-control"
+                   placeholder="Page Name"/>
+        </div>
+
+        <div class="form-group">
+            <label for="pageEditTitle">Title</label>
+            <input ng-model="model.page.title"
+                   id="pageEditTitle" class="form-control"
+                   placeholder="Page Title"/>
+        </div>
+
+        <button ng-click="model.removePage(model.page)"
+                class="btn btn-danger btn-block">
+            Delete
+        </button>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom jga">
+    <div class="navbar-header">
+        <a href="#/developer/{{model.developerId}}"
+           class="navbar-toggle collapsed">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>
