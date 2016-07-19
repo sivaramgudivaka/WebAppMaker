@@ -305,8 +305,10 @@
         var vm = this;
         vm.developerId = $routeParams.developerId;
         vm.websiteId = $routeParams.websiteId;
+        vm.viewType = 'list';
 
         vm.sortPage      = sortPage;
+        vm.toggleView    = toggleView;
 
         function init() {
             WebsiteService
@@ -342,6 +344,10 @@
                         vm.error = err;
                     }
                 );
+        }
+        
+        function toggleView() {
+            vm.viewType = vm.viewType === 'list' ? 'grid' : 'list';
         }
     }
 
